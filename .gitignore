@@ -20,6 +20,7 @@ Temporary Items
 
 ### Swift ###
 # Xcode
+Package.swift
 xcuserdata/
 *.xcuserstate
 *.xcscmblueprint
