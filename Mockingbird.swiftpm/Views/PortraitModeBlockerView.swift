@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PortraitModeBlockerView: View {
-    @State private var orientation = UIDeviceOrientation.unknown
+    @State private var orientation = UIInterfaceOrientation.unknown
     
     var body: some View {
         ZStack{
@@ -18,6 +18,11 @@ struct PortraitModeBlockerView: View {
         }
         .onRotate { newOrientation in
             orientation = newOrientation
+        }
+        .onAppear {
+            // Get the initial device orientation
+            orientation = UIApplication.shared.statusBarOrientation
+            print(orientation)
         }
     }
 }
