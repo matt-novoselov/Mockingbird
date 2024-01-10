@@ -20,8 +20,8 @@ let package = Package(
             teamIdentifier: "GXDG2KXXXC",
             displayVersion: "1.0",
             bundleVersion: "1",
-            appIcon: .placeholder(icon: .butterfly),
-            accentColor: .presetColor(.green),
+            appIcon: .placeholder(icon: .bird),
+            accentColor: .presetColor(.teal),
             supportedDeviceFamilies: [
                 .pad,
                 .phone
@@ -31,7 +31,8 @@ let package = Package(
                 .landscapeRight,
                 .landscapeLeft,
                 .portraitUpsideDown(.when(deviceFamilies: [.pad]))
-            ]
+            ],
+            appCategory: .education
         )
     ],
     targets: [
