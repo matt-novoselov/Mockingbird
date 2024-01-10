@@ -8,16 +8,31 @@
 import SwiftUI
 
 struct PortraitModeBlockerView: View {
+    @State private var orientation = UIDeviceOrientation.unknown
+    
+    var body: some View {
+        ZStack{
+            if orientation.isPortrait {
+                BlockerMessage()
+            }
+        }
+        .onRotate { newOrientation in
+            orientation = newOrientation
+        }
+    }
+}
+
+struct BlockerMessage: View {
     var body: some View {
         ZStack{
             Color(.red)
                 .ignoresSafeArea()
             
-            Text("Please, rotate the screen to the landscape")
+            Text("Experience is better in the landscape mode")
         }
     }
 }
 
 #Preview {
-    PortraitModeBlockerView()
+    BlockerMessage()
 }

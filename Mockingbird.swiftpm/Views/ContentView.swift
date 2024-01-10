@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack{
-            Text("Hello world")
+            Text("Hello world!")
         }
     }
 }
