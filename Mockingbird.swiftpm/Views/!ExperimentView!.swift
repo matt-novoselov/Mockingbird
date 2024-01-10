@@ -19,7 +19,7 @@ struct ExperimentView: View {
                     .resizable()
                     .frame(width: 200, height: 200)
                 
-                FontText(text: "Hello world!")
+                FontText(text: "Hello world!", size: 35)
             }
         }
     }
