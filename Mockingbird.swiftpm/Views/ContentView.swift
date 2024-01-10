@@ -29,6 +29,14 @@ struct ContentView: View {
                     orientation = newOrientation
                 }
                 
+                Rectangle()
+                    .fill(Color.MBgreenColor)
+                    .frame(width: 200, height: 200)
+                
+                Image("Image1")
+                    .resizable()
+                    .frame(width: 200, height: 200)
+                
                 Text("Hello, world!")
                     .font(font)
                     .onAppear(){
