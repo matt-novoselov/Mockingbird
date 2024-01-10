@@ -20,9 +20,9 @@ struct PortraitModeBlockerView: View {
             orientation = newOrientation
         }
         .onAppear {
-            // Get the initial device orientation
-            orientation = UIApplication.shared.statusBarOrientation
-            print(orientation)
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                orientation = windowScene.interfaceOrientation
+            }
         }
     }
 }

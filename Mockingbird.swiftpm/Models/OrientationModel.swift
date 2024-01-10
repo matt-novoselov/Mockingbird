@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 // Our custom view modifier to track rotation and
 // call our action
 struct DeviceRotationViewModifier: ViewModifier {
@@ -15,10 +14,19 @@ struct DeviceRotationViewModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .onAppear()
-            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didChangeStatusBarOrientationNotification)) { _ in
-                action(UIApplication.shared.statusBarOrientation)
+            .onAppear {
+                self.handleOrientationChange()
             }
+            .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+                self.handleOrientationChange()
+            }
+    }
+
+    private func handleOrientationChange() {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            let interfaceOrientation = windowScene.interfaceOrientation
+            action(interfaceOrientation)
+        }
     }
 }
 
