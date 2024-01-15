@@ -12,10 +12,10 @@ struct ExperimentView: View {
         ZStack{
             VStack{
                 Rectangle()
-                    .fill(Color(.banana))
+                    .fill(Color("banana"))
                     .frame(width: 200, height: 200)
                 
-                Image(.image1)
+                Image("grid")
                     .resizable()
                     .frame(width: 200, height: 200)
                 
