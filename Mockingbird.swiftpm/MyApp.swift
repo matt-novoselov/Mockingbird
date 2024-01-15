@@ -4,10 +4,25 @@ import SwiftUI
 struct MyApp: App {
     var body: some Scene {
         WindowGroup {
-
+            
+            //            ZStack{
+            //                ContentView()
+            //                PortraitModeBlockerView()
+            //            }
+            //            .preferredColorScheme(.light)
+            
+            //            ZStack{
+            //                Exp2_call_and_link()
+            //            }
+            //            .preferredColorScheme(.light)
+            
+            //            ZStack{
+            //                SK_Combine()
+            //            }
+            //            .preferredColorScheme(.light)
+            
             ZStack{
-                ContentView()
-                PortraitModeBlockerView()
+                Experiment1_Transition()
             }
             .preferredColorScheme(.light)
         }
