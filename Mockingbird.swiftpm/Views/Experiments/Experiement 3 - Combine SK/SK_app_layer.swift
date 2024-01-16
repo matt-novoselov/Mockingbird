@@ -8,12 +8,23 @@
 import SwiftUI
 
 struct SK_app_layer: View {
+    @Binding var scene: SK_Game_Layer
+    
     var body: some View {
-        Rectangle()
-            .fill(.blue)
+        VStack{
+            Rectangle()
+                .fill(.blue)
+            
+            Circle()
+        }
+        .ignoresSafeArea()
+        .onTapGesture(coordinateSpace: .global) { location in
+            print("Tapped at \(location)")
+            scene.test_call(xpos: location.x, ypos: location.y)
+        }
     }
 }
 
 #Preview {
-    SK_app_layer()
+    SK_app_layer(scene: .constant(SK_Game_Layer(size: CGSize(width: 500, height: 500))))
 }

@@ -19,14 +19,18 @@ class SK_Game_Layer: SKScene {
         self.addChild(trailSmoke)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
-            let location = touch.location(in: self)
-            trailSmoke.position = location
-        }
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        if let touch = touches.first {
+//            let location = touch.location(in: self)
+//            trailSmoke.position = location
+//        }
+//    }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func test_call(xpos: Double, ypos: Double) {
+        trailSmoke.position = CGPoint(x: xpos, y: ypos)
     }
 }
