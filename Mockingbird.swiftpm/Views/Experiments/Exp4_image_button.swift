@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SwiftUIView: View {
+struct Exp4_image_button: View {
     @State var currentDisplayedImage: String = "grid"
     
     var body: some View {
@@ -23,5 +23,5 @@ struct SwiftUIView: View {
 }
 
 #Preview {
-    SwiftUIView()
+    Exp4_image_button()
 }
