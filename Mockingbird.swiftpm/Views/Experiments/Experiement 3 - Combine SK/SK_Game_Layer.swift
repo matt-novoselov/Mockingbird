@@ -9,28 +9,17 @@ import SpriteKit
 
 class SK_Game_Layer: SKScene {
     let trailSmoke: SKEmitterNode = SKEmitterNode(fileNamed: "MyParticle.sks")!
-    
-    override init(size: CGSize) {
-        super.init(size: size)
-        self.scaleMode = .resizeFill
+        
+    override func didMove(to view: SKView) {
         self.backgroundColor = .clear
         
-        trailSmoke.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+        self.size = UIScreen.main.bounds.size
+        
+        trailSmoke.position = CGPoint(x: 0, y: 0)
         self.addChild(trailSmoke)
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if let touch = touches.first {
-//            let location = touch.location(in: self)
-//            trailSmoke.position = location
-//        }
-//    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     public func test_call(xpos: Double, ypos: Double) {
-        trailSmoke.position = CGPoint(x: xpos, y: ypos)
+        trailSmoke.position = CGPoint(x: xpos, y: self.size.height - ypos)
     }
 }

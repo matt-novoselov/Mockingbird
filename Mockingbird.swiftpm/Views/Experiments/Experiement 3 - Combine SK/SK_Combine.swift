@@ -10,7 +10,7 @@ import SpriteKit
 
 struct SK_Combine: View {
     var body: some View {
-        @State var scene = SK_Game_Layer(size: CGSize(width: 500, height: 500))
+        @State var scene = SK_Game_Layer()
         
         ZStack{
             SK_app_layer(scene: $scene)
@@ -19,7 +19,8 @@ struct SK_Combine: View {
                 scene: scene,
                 options: [.allowsTransparency]
             )
-            .allowsHitTesting(false) // This allows touches to pass through SpriteKit
+            .allowsHitTesting(false)
+            .ignoresSafeArea()
         }
         
     }
