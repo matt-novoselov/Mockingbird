@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct View1: View {
-    var toggleView: () -> Void
+    var transitionToScene: (Int) -> Void
     
     var body: some View {
         ZStack{
@@ -17,10 +17,10 @@ struct View1: View {
                 .ignoresSafeArea()
             
             Button("Show Next View") {
-                toggleView()
+                transitionToScene(1)
             }
             .buttonStyle(.borderedProminent)
         }
-
+        
     }
 }

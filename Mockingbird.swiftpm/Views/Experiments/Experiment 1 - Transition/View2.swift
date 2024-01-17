@@ -9,19 +9,18 @@ import SwiftUI
 
 
 struct View2: View {
-    var toggleView: () -> Void
+    var transitionToScene: (Int) -> Void
     
     var body: some View {
-        
         ZStack{
             Color(.blue)
                 .ignoresSafeArea()
             
             Button("Show Next View") {
-                toggleView()
+                transitionToScene(2)
             }
             .buttonStyle(.borderedProminent)
         }
-
+        
     }
 }

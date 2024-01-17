@@ -10,7 +10,7 @@ struct MyApp: App {
                 //                PortraitModeBlockerView()
                 //            }
                 
-                TestHolder()
+                TransitionManager()
             }
             .preferredColorScheme(.light)
             .statusBar(hidden: true)
