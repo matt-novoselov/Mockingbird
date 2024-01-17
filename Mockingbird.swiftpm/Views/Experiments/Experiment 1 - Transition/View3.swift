@@ -7,25 +7,8 @@
 
 import SwiftUI
 
-struct View3: View {
-    @State private var isNextViewVisible: Bool = false
-    
-    var body: some View {
-        ZStack {
-            View3_content(isNextViewVisible: $isNextViewVisible)
-            .offset(y: isNextViewVisible ? -UIScreen.main.bounds.height : 0)
-            
-            if (isNextViewVisible){
-                View1()
-                    .offset(y: isNextViewVisible ? 0 : UIScreen.main.bounds.height)
-            }
-        }
-        .transition(.slideTransition)
-        .ignoresSafeArea()
-    }
-}
 
-struct View3_content: View {
+struct View3: View {
     @Binding var isNextViewVisible: Bool
     
     var body: some View {
@@ -35,7 +18,7 @@ struct View3_content: View {
                 .ignoresSafeArea()
           
             Button("Show Next View") {
-                withAnimation(.easeInOut(duration: 0.5)) {
+                withAnimation(.easeInOut(duration: 2)) {
                     isNextViewVisible.toggle()
                 }
             }

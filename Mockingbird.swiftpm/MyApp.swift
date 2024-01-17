@@ -10,10 +10,7 @@ struct MyApp: App {
                 //                PortraitModeBlockerView()
                 //            }
                 
-                ZStack{
-                    SK_Combine()
-                }
-                .preferredColorScheme(.light)
+                TestHolder()
             }
             .preferredColorScheme(.light)
             .statusBar(hidden: true)
