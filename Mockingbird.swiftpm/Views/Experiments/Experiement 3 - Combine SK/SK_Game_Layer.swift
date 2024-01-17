@@ -15,6 +15,8 @@ class SK_Game_Layer: SKScene {
         
         self.size = UIScreen.main.bounds.size
         
+        self.scaleMode = .resizeFill
+        
         self.addChild(trailSmoke)
     }
     

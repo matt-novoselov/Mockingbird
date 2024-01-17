@@ -4,32 +4,20 @@ import SwiftUI
 struct MyApp: App {
     var body: some Scene {
         WindowGroup {
-            
-            //            ZStack{
-            //                ContentView()
-            //                PortraitModeBlockerView()
-            //            }
-            //            .preferredColorScheme(.light)
-            
-            //            ZStack{
-            //                Exp2_call_and_link()
-            //            }
-            //            .preferredColorScheme(.light)
-            
-            //                        ZStack{
-            //                            SK_Combine()
-            //                        }
-            //                        .preferredColorScheme(.light)
-            
-            ZStack{
-                Exp10_swiftui_sound()
+            Group{
+                //            ZStack{
+                //                ContentView()
+                //                PortraitModeBlockerView()
+                //            }
+                
+                ZStack{
+                    SK_Combine()
+                }
+                .preferredColorScheme(.light)
             }
             .preferredColorScheme(.light)
-            
-            //            ZStack{
-            //                View1()
-            //            }
-            //            .preferredColorScheme(.light)
+            .statusBar(hidden: true)
+            .persistentSystemOverlays(.hidden)
         }
     }
 }

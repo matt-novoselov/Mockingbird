@@ -9,10 +9,10 @@ import SwiftUI
 import SpriteKit
 
 struct SK_Combine: View {
+    @State private var scene = SK_Game_Layer()
+    
     var body: some View {
-        @State var scene = SK_Game_Layer()
-        
-        ZStack{
+        ZStack {
             SK_app_layer(scene: $scene)
             
             SpriteView(
@@ -22,7 +22,6 @@ struct SK_Combine: View {
             .allowsHitTesting(false)
             .ignoresSafeArea()
         }
-        
     }
 }
 
