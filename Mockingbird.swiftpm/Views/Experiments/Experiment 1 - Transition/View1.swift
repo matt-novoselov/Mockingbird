@@ -22,20 +22,18 @@ struct View1: View {
             }
         }
         .transition(.slideTransition)
+        .ignoresSafeArea()
     }
 }
 
 struct View1_content: View {
     @Binding var isNextViewVisible: Bool
-    @State private var rectangleVisible = false
     
     var body: some View {
         
         ZStack{
             Color(.green)
                 .ignoresSafeArea()
-            
-            Exp8_timer_action()
             
             Button("Show Next View") {
                 withAnimation(.easeInOut(duration: 0.5)) {

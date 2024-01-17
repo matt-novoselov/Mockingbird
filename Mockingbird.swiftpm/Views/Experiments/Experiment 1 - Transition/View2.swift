@@ -21,6 +21,7 @@ struct View2: View {
             }
         }
         .transition(.slideTransition)
+        .ignoresSafeArea()
     }
 }
 
@@ -32,8 +33,6 @@ struct View2_content: View {
         ZStack{
             Color(.blue)
                 .ignoresSafeArea()
-            
-            Exp8_timer_action()
             
             Button("Show Next View") {
                 withAnimation(.easeInOut(duration: 0.5)) {
