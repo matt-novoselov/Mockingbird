@@ -16,15 +16,15 @@ struct MyApp: App {
             //            }
             //            .preferredColorScheme(.light)
             
-//                        ZStack{
-//                            SK_Combine()
-//                        }
-//                        .preferredColorScheme(.light)
+                        ZStack{
+                            SK_Combine()
+                        }
+                        .preferredColorScheme(.light)
             
-            ZStack{
-                View1()
-            }
-            .preferredColorScheme(.light)
+//            ZStack{
+//                View1()
+//            }
+//            .preferredColorScheme(.light)
         }
     }
 }

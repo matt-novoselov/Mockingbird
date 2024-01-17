@@ -15,7 +15,6 @@ class SK_Game_Layer: SKScene {
         
         self.size = UIScreen.main.bounds.size
         
-        trailSmoke.position = CGPoint(x: 0, y: 0)
         self.addChild(trailSmoke)
     }
     
