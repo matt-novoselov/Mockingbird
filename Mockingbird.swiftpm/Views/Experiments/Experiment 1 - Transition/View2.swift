@@ -13,12 +13,14 @@ struct View2: View {
     
     var body: some View {
         ZStack{
-            Color(.blue)
-                .ignoresSafeArea()
+            Image("background")
+                .resizable()
+                .scaledToFill()
             
             Button("Show Next View") {
                 transitionToScene(2)
             }
+            .foregroundColor(.yellow)
             .buttonStyle(.borderedProminent)
         }
         
