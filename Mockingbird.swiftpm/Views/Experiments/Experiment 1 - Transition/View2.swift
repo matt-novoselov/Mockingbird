@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct View2: View {
-    @Binding var isNextViewVisible: Bool
+    var toggleView: () -> Void
     
     var body: some View {
         
@@ -18,9 +18,7 @@ struct View2: View {
                 .ignoresSafeArea()
             
             Button("Show Next View") {
-                withAnimation(.easeInOut(duration: 2)) {
-                    isNextViewVisible.toggle()
-                }
+                toggleView()
             }
             .buttonStyle(.borderedProminent)
         }

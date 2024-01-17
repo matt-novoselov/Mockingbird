@@ -14,16 +14,22 @@ struct TestHolder: View {
         VStack{
             Group{
                 if (isNextViewVisible){
-                    View1(isNextViewVisible: $isNextViewVisible)
+                    View1(toggleView: toggleView)
                 }
                 else{
-                    View2(isNextViewVisible: $isNextViewVisible)
+                    View2(toggleView: toggleView)
                 }
             }
             .transition(.slideTransition)
             
         }
         .ignoresSafeArea()
+    }
+    
+    func toggleView() {
+        withAnimation(.easeInOut(duration: 2)) {
+            isNextViewVisible.toggle()
+        }
     }
 }
 

@@ -9,18 +9,15 @@ import SwiftUI
 
 
 struct View1: View {
-    @Binding var isNextViewVisible: Bool
+    var toggleView: () -> Void
     
     var body: some View {
-        
         ZStack{
             Color(.green)
                 .ignoresSafeArea()
             
             Button("Show Next View") {
-                withAnimation(.easeInOut(duration: 2)) {
-                    isNextViewVisible.toggle()
-                }
+                toggleView()
             }
             .buttonStyle(.borderedProminent)
         }
