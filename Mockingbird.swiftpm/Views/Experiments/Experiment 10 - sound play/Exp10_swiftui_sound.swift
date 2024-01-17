@@ -17,3 +17,7 @@ struct Exp10_swiftui_sound: View {
         }
     }
 }
+
+#Preview {
+    Exp10_swiftui_sound()
+}
