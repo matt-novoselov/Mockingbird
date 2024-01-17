@@ -26,7 +26,7 @@ struct Exp9_blinking: View {
     }
     
     private func blink() {
-        var animationIntervals: [Double] = [
+        let animationIntervals: [Double] = [
             2,
             0.05, 0.05, 0.05, 0.05,  // Initial quick flickers
             0.1, 0.1, 0.1,   // Initial quick flickers
