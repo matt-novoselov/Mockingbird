@@ -12,7 +12,7 @@ struct Exp10_swiftui_sound: View {
         VStack {
             Button("Play Sound") {
                 // Call a function to play the sound
-                playSound()
+                playSound(name: "pop", ext: "mp3")
             }
         }
     }

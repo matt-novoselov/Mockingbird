@@ -7,8 +7,9 @@
 
 import AudioToolbox
 
-func playSound() {
-    guard let soundURL = Bundle.main.url(forResource: "pop", withExtension: "mp3") else {
+func playSound(name: String, ext: String) {
+    guard let soundURL = Bundle.main.url(forResource: name, withExtension: ext) else {
+        print("[!] Error playing audio file")
         return
     }
     
