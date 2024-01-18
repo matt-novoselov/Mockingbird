@@ -10,43 +10,46 @@ import SwiftUI
 struct Exp16_drag_view: View {
     var body: some View {
         VStack{
-            DraggableCircle()
-                .background(.blue)
-            
-            DraggableCircle()
-                .background(.blue)
-            
-            DraggableCircle()
-                .background(.blue)
+            HStack{
+                VStack{
+                    DraggableCircle()
+                    DraggableCircle()
+                    DraggableCircle()
+                }
+                .padding()
+                
+                Spacer()
+            }
+            Spacer()
         }
     }
 }
 
 struct DraggableCircle: View {
-    @State private var InitLocation: CGPoint = CGPoint(x: 50, y: 50)
     @State private var circlePosition: CGPoint? // Make circlePosition optional
     
     var body: some View {
-        GeometryReader { geometry in
-            Circle()
-                .foregroundColor(.red)
-                .position(circlePosition ?? InitLocation)
-                .gesture(
-                    DragGesture()
-                        .onChanged { value in
-                            circlePosition = value.location
+        let circleSize: CGFloat = 100
+        let initialLocation = CGPoint(x: circleSize / 2, y: circleSize / 2)
+        
+        return Circle()
+            .foregroundColor(.red)
+            .position(circlePosition ?? initialLocation)
+            .frame(width: circleSize, height: circleSize)
+            .gesture(
+                DragGesture()
+                    .onChanged { value in
+                        circlePosition = value.location
+                    }
+                    .onEnded { _ in
+                        withAnimation {
+                            circlePosition = initialLocation
                         }
-                        .onEnded { _ in
-                            withAnimation {
-                                circlePosition = InitLocation
-                            }
-                        }
-                )
-        }
-        .frame(width: 100, height: 100)
+                    }
+            )
+            .background(.blue)
     }
 }
-
 
 #Preview {
     Exp16_drag_view()
