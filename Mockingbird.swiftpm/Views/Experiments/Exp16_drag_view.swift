@@ -22,7 +22,7 @@ struct Exp16_drag_view: View {
                         DraggableCircle()
                     }
                     .padding()
-
+                    
                     Spacer()
                 }
                 Spacer()
@@ -33,42 +33,30 @@ struct Exp16_drag_view: View {
 
 struct DraggableCircle: View {
     @State private var circlePosition: CGPoint? // Make circlePosition optional
-
+    
     var body: some View {
         let circleSize: CGFloat = 100
         let initialLocation = CGPoint(x: circleSize / 2, y: circleSize / 2)
-
-        GeometryReader { geometry in
-            Circle()
-                .foregroundColor(.red)
-//                .background(GeometryReader { geometry in
-//                    Color.clear
-//                        .onChange(of: geometry.frame(in: .global)) { newLocalRect in
-//                            
-//                            
-//                                                    
-//                            if let window = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-//                                let newGlobalRect = geometry.frame(in: .global).applying(window.screen.coordinateSpace as! CGAffineTransform)
-//                                print(newGlobalRect)
-//                            }
-//                            
-//
-//                        }
-//                })
-                .position(circlePosition ?? initialLocation)
-                .gesture(
-                    DragGesture()
-                        .onChanged { value in
-                            circlePosition = value.location
+        
+        Circle()
+            .position(circlePosition ?? initialLocation)
+            .frame(width: circleSize, height: circleSize)
+            .foregroundColor(.red)
+            .gesture(
+                DragGesture()
+                    .onChanged { value in
+                        circlePosition = value.location
+                    }
+                    .onEnded { _ in
+                        withAnimation {
+                            circlePosition = initialLocation
                         }
-                        .onEnded { _ in
-                            withAnimation {
-                                circlePosition = initialLocation
-                            }
-                        }
-                )
-                .background(.blue)
-        }
-        .frame(width: circleSize, height: circleSize)
+                    }
+            )
+            .background(.blue)
     }
+}
+
+#Preview{
+    Exp16_drag_view()
 }
