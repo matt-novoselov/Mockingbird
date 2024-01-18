@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Heaven.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

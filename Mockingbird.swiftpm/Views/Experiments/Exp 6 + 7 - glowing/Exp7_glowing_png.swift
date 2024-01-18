@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SwiftUIView: View {
+struct Exp7_glowing_png: View {
     @State var isShowingShadow: Bool = false
     
     var body: some View {
@@ -36,5 +36,5 @@ struct SwiftUIView: View {
 }
 
 #Preview {
-    SwiftUIView()
+    Exp7_glowing_png()
 }
