@@ -10,7 +10,7 @@ struct MyApp: App {
                 //                PortraitModeBlockerView()
                 //            }
                 
-                Exp14_scaling()
+                ContentView()
             }
             .preferredColorScheme(.light)
             .statusBar(hidden: true)
