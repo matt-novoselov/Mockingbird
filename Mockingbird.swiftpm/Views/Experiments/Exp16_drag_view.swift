@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Matt Novoselov on 18/01/24.
 //
@@ -9,46 +9,43 @@ import SwiftUI
 
 struct Exp16_drag_view: View {
     var body: some View {
-        ZStack{
-            Rectangle()
-                .frame(width: 200, height: 200)
-                .foregroundColor(.yellow)
-            
-            DraggableCircles()
+        VStack{
+            DraggableCircle()
+                .background(.blue)
+            DraggableCircle()
+            DraggableCircle()
         }
     }
 }
 
-struct DraggableCircles: View {
-    private var InitLocation: CGPoint = CGPoint(x: 50, y: 50)
-    @State private var location: CGPoint = CGPoint(x: 50, y: 50)
-    @GestureState private var startLocation: CGPoint? = nil
+struct DraggableCircle: View {
+    private var InitLocation: CGPoint = CGPoint(x: 0, y: 0)
+    @State private var circlePosition: CGPoint? // Make circlePosition optional
     
     var body: some View {
-        
-        // Here is create DragGesture and handel jump when you again start the dragging/
-        let dragGesture = DragGesture()
-            .onChanged { value in
-                var newLocation = startLocation ?? location
-                newLocation.x += value.translation.width
-                newLocation.y += value.translation.height
-                self.location = newLocation
-            }.updating($startLocation) { (value, startLocation, transaction) in
-                startLocation = startLocation ?? location
-            }
-            .onEnded{_ in
-                withAnimation{
-                    location=InitLocation
-                }
-            }
-        
-        return Circle().fill(Color.red)
+        Circle()
             .frame(width: 100, height: 100)
-            .position(location)
-            .gesture(dragGesture)
-            .padding()
+            .foregroundColor(.red)
+            .position(circlePosition ?? InitLocation) // Use nil coalescing operator to fallback to InitLocation if circlePosition is nil
+            .onAppear() {
+                circlePosition = InitLocation
+            }
+            .gesture(
+                DragGesture()
+                    .onChanged { value in
+                        // Update the circle position as the finger is dragged
+                        circlePosition = value.location
+                    }
+                    .onEnded { _ in
+                        withAnimation {
+                            // Reset the circle position when drag ends
+                            circlePosition = InitLocation
+                        }
+                    }
+            )
     }
 }
+
 
 #Preview {
     Exp16_drag_view()
