@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct Exp15_animation: View {
-    @State private var rotationAngle: Double = 0.0
     @State var isCoinInserted: Bool = false
-    @State var isAnimationInProcess: Bool = false
 
     var body: some View {
         VStack{
@@ -20,28 +18,44 @@ struct Exp15_animation: View {
                 isCoinInserted = true
             }
             
-            Rectangle()
-                .frame(width: 20, height: 200)
-                .foregroundColor(.blue)
-                .rotationEffect(.degrees(rotationAngle), anchor: .bottom)
-                .onTapGesture {
-                    if (isCoinInserted && !isAnimationInProcess){
-                        rotateHandleAnimation()
-                        isCoinInserted = false
-                    }
-                    else{
+            HStack (spacing: 0){
+                Rectangle()
+                    .frame(width: 200, height: 200)
+                    .foregroundColor(.yellow)
+                
+                Handle(isCoinInserted: $isCoinInserted)
+            }
+        }
+
+    }
+}
+
+struct Handle: View {
+    @State private var rotationAngle: Double = 0.0
+    @State var isAnimationInProcess: Bool = false
+    @Binding var isCoinInserted: Bool
+    
+    var body: some View {
+        Rectangle()
+            .frame(width: 20, height: 200)
+            .foregroundColor(.blue)
+            .rotationEffect(.degrees(rotationAngle), anchor: .bottom)
+            .onTapGesture {
+                if (isCoinInserted && !isAnimationInProcess){
+                    rotateHandleAnimation()
+                    isCoinInserted = false
+                }
+                else{
+                    idleHandleAnimation()
+                }
+            }
+            .onAppear {
+                Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
+                    if (isCoinInserted){
                         idleHandleAnimation()
                     }
                 }
-                .onAppear {
-                    Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
-                        if (isCoinInserted){
-                            idleHandleAnimation()
-                        }
-                    }
-                }
-        }
-
+            }
     }
     
     func rotateHandleAnimation(){
