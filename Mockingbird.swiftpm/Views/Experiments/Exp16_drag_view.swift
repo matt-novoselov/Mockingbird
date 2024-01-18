@@ -12,37 +12,38 @@ struct Exp16_drag_view: View {
         VStack{
             DraggableCircle()
                 .background(.blue)
+            
             DraggableCircle()
+                .background(.blue)
+            
             DraggableCircle()
+                .background(.blue)
         }
     }
 }
 
 struct DraggableCircle: View {
-    private var InitLocation: CGPoint = CGPoint(x: 0, y: 0)
+    @State private var InitLocation: CGPoint = CGPoint(x: 50, y: 50)
     @State private var circlePosition: CGPoint? // Make circlePosition optional
     
     var body: some View {
-        Circle()
-            .frame(width: 100, height: 100)
-            .foregroundColor(.red)
-            .position(circlePosition ?? InitLocation) // Use nil coalescing operator to fallback to InitLocation if circlePosition is nil
-            .onAppear() {
-                circlePosition = InitLocation
-            }
-            .gesture(
-                DragGesture()
-                    .onChanged { value in
-                        // Update the circle position as the finger is dragged
-                        circlePosition = value.location
-                    }
-                    .onEnded { _ in
-                        withAnimation {
-                            // Reset the circle position when drag ends
-                            circlePosition = InitLocation
+        GeometryReader { geometry in
+            Circle()
+                .foregroundColor(.red)
+                .position(circlePosition ?? InitLocation)
+                .gesture(
+                    DragGesture()
+                        .onChanged { value in
+                            circlePosition = value.location
                         }
-                    }
-            )
+                        .onEnded { _ in
+                            withAnimation {
+                                circlePosition = InitLocation
+                            }
+                        }
+                )
+        }
+        .frame(width: 100, height: 100)
     }
 }
 
