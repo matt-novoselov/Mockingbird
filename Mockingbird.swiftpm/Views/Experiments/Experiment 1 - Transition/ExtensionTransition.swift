@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension AnyTransition {
-    static var customPushTransition: AnyTransition {
+    static var pushUpTransition: AnyTransition {
         let insertion = AnyTransition.move(edge: .bottom)
         let removal = AnyTransition.move(edge: .top)
         return .asymmetric(insertion: insertion, removal: removal)

@@ -24,7 +24,7 @@ struct TransitionManager: View {
                     Text("Error, this sceneID doesn't exist")
                 }
             }
-            .transition(.customPushTransition)
+            .transition(.pushUpTransition)
             
         }
         .ignoresSafeArea()
