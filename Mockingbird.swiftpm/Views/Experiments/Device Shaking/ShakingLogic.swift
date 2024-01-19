@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  File.swift
 //  
 //
 //  Created by Matt Novoselov on 19/01/24.
@@ -39,18 +39,4 @@ extension View {
     func onShake(perform action: @escaping () -> Void) -> some View {
         self.modifier(DeviceShakeViewModifier(action: action))
     }
-}
-
-// An example view that responds to being shaken
-struct Exp20_device_shake: View {
-    var body: some View {
-        Text("Shake me!")
-            .onShake {
-                print("Device shaken!")
-            }
-    }
-}
-
-#Preview{
-    Exp20_device_shake()
 }

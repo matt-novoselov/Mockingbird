@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct Exp19_view_shake: View {
+    @State var isShaken: Bool = false
+    
     var body: some View {
         VStack{
-//            GeometryReader{ proxy in
-//                
-//                    
-//            }
-//            .background(.green)
-//            
+            //            GeometryReader{ proxy in
+            //                
+            //                    
+            //            }
+            //            .background(.green)
+            //            
             Text("Something fell out")
-                .opacity(0.8)
+                .opacity(isShaken ? 1 : 0)
             
             DraggableCircle2()
         }
