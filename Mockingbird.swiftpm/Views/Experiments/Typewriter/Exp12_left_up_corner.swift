@@ -11,26 +11,38 @@ struct Exp12_left_up_corner: View {
     @State var text: String = ""
     let finalText: String = "Sint commodo laborum magna fugiat culpa amet minim cillum fugiat. Reprehenderit quis sit excepteur nisi labore quis aute."
     
+    @State var isTextDisplayed: Bool = false
+    
     var body: some View {
         VStack{
             HStack{
-                Text(text)
-                    .font(.title3)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: 200)
-                    .padding()
-                    .background(.gray)
-                    .foregroundColor(.black)
-                    .cornerRadius(15)
-                    .padding()
-                    .onAppear(){
-                        typeWriter()
-                    }
+                if (isTextDisplayed){
+                    Text(text)
+                        .font(.title3)
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: 200)
+                        .padding()
+                        .background(.gray)
+                        .foregroundColor(.black)
+                        .cornerRadius(15)
+                        .padding()
+                        .onAppear(){
+                            typeWriter()
+                        }
+                        .transition(.move(edge: .leading))
+                }
+
 
                 Spacer()
             }
             
             Spacer()
+            
+            Button("Button") {
+                withAnimation{
+                    isTextDisplayed.toggle()
+                }
+            }
         }
         .ignoresSafeArea()
     }
