@@ -16,6 +16,9 @@ struct Exp19_view_shake: View {
 //            }
 //            .background(.green)
 //            
+            Text("Something fell out")
+                .opacity(0.8)
+            
             DraggableCircle2()
         }
     }
@@ -36,7 +39,7 @@ struct DraggableCircle2: View {
                 DragGesture()
                     .onChanged { value in
                         circlePosition = value.location
-                        if (abs(value.velocity.width) > 6000 && abs(value.velocity.height) > 6000){
+                        if (abs(value.velocity.width) > 4000 && abs(value.velocity.height) > 4000){
                             print("Shaked")
                         }
                     }
