@@ -15,18 +15,18 @@ struct NewTextBlob: View {
     var body: some View {
         Group {
             Text(String(finalText.prefix(shift)))
+                .font(getFont(size: 32))
                 .foregroundColor(.black) +
             
             Text(String(finalText.suffix(from: finalText.index(finalText.startIndex, offsetBy: shift))))
+                .font(getFont(size: 32))
                 .foregroundColor(.black.opacity(0))
-                
+
         }
-        .font(.title3)
-        .multilineTextAlignment(.leading)
-        .frame(maxWidth: 200)
+        .frame(maxWidth: 330)
         .padding()
         .background(.gray)
-        .cornerRadius(15)
+        .cornerRadius(20)
         .padding()
         .onAppear(){
             DispatchQueue.main.asyncAfter(deadline: .now() + animationMoveInDuration - 0.25) {
