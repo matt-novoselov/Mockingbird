@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ExperimentView: View {
+struct Exp0_accessing_element: View {
     var body: some View {
         ZStack{
             VStack{
@@ -26,5 +26,5 @@ struct ExperimentView: View {
 }
 
 #Preview {
-    ExperimentView()
+    Exp0_accessing_element()
 }
