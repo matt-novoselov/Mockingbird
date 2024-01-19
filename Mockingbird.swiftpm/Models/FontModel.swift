@@ -8,11 +8,11 @@
 import SwiftUI
 
 func getFont(size: CGFloat) -> Font {
-    let cfURL = Bundle.main.url(forResource: "RedBurger", withExtension: "otf")! as CFURL
+    let cfURL = Bundle.main.url(forResource: "PatrickHand", withExtension: "ttf")! as CFURL
     
     CTFontManagerRegisterFontsForURL(cfURL, CTFontManagerScope.process, nil)
     
-    let uiFont = UIFont(name: "RED BURGER", size:  size)
+    let uiFont = UIFont(name: "Patrick Hand", size:  size)
     
     return Font(uiFont ?? UIFont())
 }

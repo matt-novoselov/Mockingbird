@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct Exp12_left_up_corner: View {
-    let finalText: String = "Sint commodo laborum magna fugiat culpa amet minim cillum fugiat. Reprehenderit quis sit excepteur nisi labore quis aute."
+    let finalText: String = "For example, alcohol stimulates the release of dopamine in your body, tricking your brain into feeling pleasure."
     
     @State var isTextDisplayed: Bool = false
     
@@ -26,7 +26,7 @@ struct Exp12_left_up_corner: View {
             Spacer()
             
             Button("Button") {
-                withAnimation(Animation.easeInOut) {
+                withAnimation(Animation.easeInOut(duration: NewTextBlob().animationMoveInDuration)) {
                     isTextDisplayed.toggle()
                 }
             }

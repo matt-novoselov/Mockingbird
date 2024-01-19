@@ -10,6 +10,7 @@ import SwiftUI
 struct NewTextBlob: View {
     @State var shift: Int = 0
     var finalText: String = ""
+    let animationMoveInDuration: Double = 1.0
     
     var body: some View {
         Group {
@@ -28,7 +29,9 @@ struct NewTextBlob: View {
         .cornerRadius(15)
         .padding()
         .onAppear(){
-            typeWriter()
+            DispatchQueue.main.asyncAfter(deadline: .now() + animationMoveInDuration - 0.25) {
+                typeWriter()
+            }
         }
         .transition(.move(edge: .leading))
     }
