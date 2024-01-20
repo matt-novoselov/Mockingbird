@@ -21,14 +21,7 @@ struct Exp17_layer_mixing: View {
             
             Text(darkSlider.description)
             
-            ZStack{
-                WhiteBackground()
-                
-                DarkBackground(darkSlider: $darkSlider)
-                
-                HeavenBackground(heavenSlider: $heavenSlider, darkSlider: $darkSlider)
-            }
-            .ignoresSafeArea()
+            LayerMixing(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
         }
     }
 }
