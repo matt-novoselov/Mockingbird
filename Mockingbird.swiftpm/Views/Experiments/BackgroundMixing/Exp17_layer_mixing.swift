@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Exp17_layer_mixing: View {
-    @State var darkSlider: Double = 1
+    @State var darkSlider: Double = 0
     @State var heavenSlider: Double = 0
     
     var body: some View {
@@ -24,7 +24,7 @@ struct Exp17_layer_mixing: View {
                 
                 DarkBackground(darkSlider: $darkSlider)
                 
-                HeavenBackground(heavenSlider: $heavenSlider)
+                HeavenBackground(heavenSlider: $heavenSlider, darkSlider: $darkSlider)
             }
             .ignoresSafeArea()
         }

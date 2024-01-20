@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HeavenBackground: View {
     @Binding var heavenSlider: Double
+    @Binding var darkSlider: Double
     
     var breakPoint: Double = 0.5
     var dotsAdjustedValue: Double {
@@ -26,10 +27,13 @@ struct HeavenBackground: View {
                 .scaledToFill()
                 .opacity(heavenSlider)
             
-//            Image("dark_dots")
-//                .resizable()
-//                .scaledToFill()
-//                .opacity(dotsAdjustedValue)
+            if darkSlider>0.65{
+                Image("white_dots")
+                    .resizable()
+                    .scaledToFill()
+                    .opacity(dotsAdjustedValue)
+            }
+
         }
         .ignoresSafeArea()
     }
