@@ -12,22 +12,17 @@ struct Exp19_view_shake: View {
     
     var body: some View {
         VStack{
-            //            GeometryReader{ proxy in
-            //                
-            //                    
-            //            }
-            //            .background(.green)
-            //            
             Text("Something fell out")
                 .opacity(isShaken ? 1 : 0)
             
-            DraggableCircle2()
+            DraggableCircle2(isShaken: $isShaken)
         }
     }
 }
 
 struct DraggableCircle2: View {
-    @State private var circlePosition: CGPoint? // Make circlePosition optional
+    @State private var circlePosition: CGPoint?
+    @Binding var isShaken: Bool
     
     var body: some View {
         let circleSize: CGFloat = 100
@@ -42,7 +37,7 @@ struct DraggableCircle2: View {
                     .onChanged { value in
                         circlePosition = value.location
                         if (abs(value.velocity.width) > 4000 && abs(value.velocity.height) > 4000){
-                            print("Shaked")
+                            isShaken = true
                         }
                     }
                     .onEnded { _ in

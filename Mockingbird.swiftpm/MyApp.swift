@@ -10,7 +10,7 @@ struct MyApp: App {
                 //                PortraitModeBlockerView()
                 //            }
                 
-                Exp22_background_anim()
+                Exp20_device_shake()
             }
             .preferredColorScheme(.light)
             .statusBar(hidden: true)
