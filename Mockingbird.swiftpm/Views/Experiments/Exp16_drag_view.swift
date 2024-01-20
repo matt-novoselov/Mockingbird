@@ -11,19 +11,20 @@ struct Exp16_drag_view: View {
     var body: some View {
         ZStack{
             Rectangle()
-                .foregroundColor(.green)
                 .frame(width: 100, height: 100)
+                .position(x: 75, y: 75)
+                .foregroundColor(Color.green)
             
             VStack {
                 HStack {
+                    Spacer()
+                    
                     VStack {
                         DraggableCircle()
                         DraggableCircle()
                         DraggableCircle()
                     }
                     .padding()
-                    
-                    Spacer()
                 }
                 Spacer()
             }
@@ -38,22 +39,28 @@ struct DraggableCircle: View {
         let circleSize: CGFloat = 100
         let initialLocation = CGPoint(x: circleSize / 2, y: circleSize / 2)
         
-        Circle()
-            .position(circlePosition ?? initialLocation)
-            .frame(width: circleSize, height: circleSize)
-            .foregroundColor(.red)
-            .gesture(
-                DragGesture()
-                    .onChanged { value in
-                        circlePosition = value.location
-                    }
-                    .onEnded { _ in
-                        withAnimation {
-                            circlePosition = initialLocation
+        GeometryReader { geometry in
+            Circle()
+                .position(circlePosition ?? initialLocation)
+                .foregroundColor(.red)
+                .gesture(
+                    DragGesture()
+                        .onChanged { value in
+                            circlePosition = value.location
+                            let globalX: Double = geometry.frame(in: .global).origin.x + value.location.x
+                            let globalY: Double = geometry.frame(in: .global).origin.y + value.location.y
+                            let rect2 = CGRect(x: 75, y: 75, width: 100, height: 100)
+                            
+                            print(CGRect(x: globalX, y: globalY, width: circleSize, height: circleSize).intersects(rect2))
                         }
-                    }
-            )
-            .background(.blue)
+                        .onEnded { _ in
+                            withAnimation {
+                                circlePosition = initialLocation
+                            }
+                        }
+                )
+        }
+        .frame(width: circleSize, height: circleSize)
     }
 }
 
