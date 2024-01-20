@@ -28,10 +28,10 @@ struct HeavenBackground: View {
                 .opacity(heavenSlider)
             
             if darkSlider>0.65{
-                Image("white_dots")
+                Image("dark_dots")
                     .resizable()
                     .scaledToFill()
-                    .opacity(dotsAdjustedValue)
+                    .opacity(dotsAdjustedValue / 1.5)
             }
 
         }

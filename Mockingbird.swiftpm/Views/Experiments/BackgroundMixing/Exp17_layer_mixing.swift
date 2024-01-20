@@ -19,6 +19,8 @@ struct Exp17_layer_mixing: View {
             Slider(value: $heavenSlider)
                 .padding()
             
+            Text(darkSlider.description)
+            
             ZStack{
                 WhiteBackground()
                 
