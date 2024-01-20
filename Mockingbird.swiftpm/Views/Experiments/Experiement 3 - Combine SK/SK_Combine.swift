@@ -20,8 +20,8 @@ struct SK_Combine: View {
                 options: [.allowsTransparency]
             )
             .allowsHitTesting(false)
-            .ignoresSafeArea()
         }
+        .ignoresSafeArea()
     }
 }
 
