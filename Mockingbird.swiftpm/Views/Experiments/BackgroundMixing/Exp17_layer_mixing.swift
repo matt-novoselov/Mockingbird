@@ -13,13 +13,17 @@ struct Exp17_layer_mixing: View {
     
     var body: some View {
         VStack{
+            Text(darkSlider.description)
+            
             Slider(value: $darkSlider)
+                .tint(.black)
                 .padding()
+            
+            Text(heavenSlider.description)
             
             Slider(value: $heavenSlider)
+                .tint(.yellow)
                 .padding()
-            
-            Text(darkSlider.description)
             
             LayerMixing(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
         }
