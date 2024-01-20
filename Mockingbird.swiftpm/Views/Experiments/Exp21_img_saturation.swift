@@ -13,7 +13,7 @@ struct Exp21_img_saturation: View {
     
     var body: some View {
         VStack{
-            Image("grid")
+            Image("PH_grid")
                 .saturation(imgSatuation)
                 .opacity(imgOpacity)
             

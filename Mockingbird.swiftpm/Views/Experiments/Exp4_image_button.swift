@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct Exp4_image_button: View {
-    @State var currentDisplayedImage: String = "grid"
+    @State var currentDisplayedImage: String = "PH_grid"
     
     var body: some View {
         Button(action: {
             withAnimation(.none) {
-                currentDisplayedImage = "calendar"
+                currentDisplayedImage = "PH_calendar"
             }
         })
         {

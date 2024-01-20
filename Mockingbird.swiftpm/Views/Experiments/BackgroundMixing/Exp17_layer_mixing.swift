@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct Exp17_heaven_transition: View {
-    @State var darkSlider: Double = 0
+struct Exp17_layer_mixing: View {
+    @State var darkSlider: Double = 1
     @State var heavenSlider: Double = 0
     
     var body: some View {
@@ -32,5 +32,5 @@ struct Exp17_heaven_transition: View {
 }
 
 #Preview {
-    Exp17_heaven_transition()
+    Exp17_layer_mixing()
 }

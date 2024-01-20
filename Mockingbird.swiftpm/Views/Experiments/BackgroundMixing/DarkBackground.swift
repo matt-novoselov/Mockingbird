@@ -21,7 +21,7 @@ struct DarkBackground: View {
     
     var body: some View {
         ZStack{            
-            Image("dark")
+            Image("dark_background")
                 .resizable()
                 .scaledToFill()
                 .opacity(darkSlider)

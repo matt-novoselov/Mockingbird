@@ -10,7 +10,7 @@ import SwiftUI
 struct WhiteBackground: View {    
     var body: some View {
         ZStack{
-            Image("background")
+            Image("white_background")
                 .resizable()
                 .scaledToFill()
         }

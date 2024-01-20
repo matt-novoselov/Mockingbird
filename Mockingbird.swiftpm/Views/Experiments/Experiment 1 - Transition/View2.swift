@@ -13,7 +13,7 @@ struct View2: View {
     
     var body: some View {
         ZStack{
-            Image("background")
+            Image("white_background")
                 .resizable()
                 .scaledToFill()
             

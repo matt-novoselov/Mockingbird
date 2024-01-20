@@ -12,10 +12,10 @@ struct Exp0_accessing_element: View {
         ZStack{
             VStack{
                 Rectangle()
-                    .fill(Color("banana"))
+                    .fill(Color("PH_banana"))
                     .frame(width: 200, height: 200)
                 
-                Image("grid")
+                Image("PH_grid")
                     .resizable()
                     .frame(width: 200, height: 200)
                 

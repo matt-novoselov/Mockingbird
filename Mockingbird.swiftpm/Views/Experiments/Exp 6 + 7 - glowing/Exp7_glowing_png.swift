@@ -16,7 +16,7 @@ struct Exp7_glowing_png: View {
         })
         {
             
-            Image("cubes")
+            Image("PH_cubes")
                 .shadow(color: .red.opacity(isShowingShadow ? 1.0 : 0.0), radius: 20)
             
         }
@@ -27,7 +27,7 @@ struct Exp7_glowing_png: View {
         })
         {
             
-            Image("cubes")
+            Image("PH_cubes")
                 .glow(color: .red.opacity(isShowingShadow ? 0.4 : 0.0), radius: 20)
             
         }
