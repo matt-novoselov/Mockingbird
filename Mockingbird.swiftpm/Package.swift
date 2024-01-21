@@ -10,7 +10,7 @@ import AppleProductTypes
 let package = Package(
     name: "Mockingbird",
     platforms: [
-        .iOS("16.0")
+        .iOS("17.0")
     ],
     products: [
         .iOSApplication(
@@ -18,7 +18,7 @@ let package = Package(
             targets: ["AppModule"],
             bundleIdentifier: "com.mattnovoselov.Mockingbird",
             teamIdentifier: "GXDG2KXXXC",
-            displayVersion: "1.0",
+            displayVersion: "0.1",
             bundleVersion: "1",
             appIcon: .placeholder(icon: .bird),
             accentColor: .presetColor(.teal),
