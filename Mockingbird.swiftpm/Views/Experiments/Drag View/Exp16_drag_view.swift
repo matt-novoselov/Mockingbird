@@ -23,7 +23,7 @@ struct Exp16_drag_view: View {
                     
                     VStack {
                         ForEach(0..<6) { _ in
-                            DraggableCoin(insertCoin: insertCoin, rectCollider: rectCollider)
+                            DraggableCoin(isCoinInsertedInMachine: $isCoinInsertedInMachine, insertCoin: insertCoin, rectCollider: rectCollider)
                         }
                         
                         Button("Dispose Coin") {

@@ -11,6 +11,7 @@ struct DraggableCoin: View {
     @State private var circlePosition: CGPoint? // Make circlePosition optional
     @State var hasCollided: Bool = false
     
+    @Binding var isCoinInsertedInMachine: Bool
     var insertCoin: () -> Void
     var rectCollider: CGRect
     
@@ -46,7 +47,7 @@ struct DraggableCoin: View {
     }
     
     func checkCollision(coinCollider: CGRect, rectCollider: CGRect){
-        if (coinCollider.intersects(rectCollider) && !hasCollided){
+        if (coinCollider.intersects(rectCollider) && !hasCollided && !isCoinInsertedInMachine){
             withAnimation {
                 hasCollided = true
                 insertCoin()
