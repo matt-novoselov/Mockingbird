@@ -2,27 +2,15 @@
 //  SwiftUIView.swift
 //  
 //
-//  Created by Matt Novoselov on 19/01/24.
+//  Created by Matt Novoselov on 21/01/24.
 //
 
 import SwiftUI
 
-struct Exp19_view_shake: View {
-    @State var isShaken: Bool = false
-    
-    var body: some View {
-        VStack{
-            Text("Something fell out")
-                .opacity(isShaken ? 1 : 0)
-            
-            DraggableCircle2(isShaken: $isShaken)
-        }
-    }
-}
-
-struct DraggableCircle2: View {
+struct DraggableShakableView: View {
     @State private var circlePosition: CGPoint?
-    @Binding var isShaken: Bool
+    
+    var handleShake: () -> Void
     
     var body: some View {
         let circleSize: CGFloat = 100
@@ -36,9 +24,8 @@ struct DraggableCircle2: View {
                 DragGesture()
                     .onChanged { value in
                         circlePosition = value.location
-                        if (abs(value.velocity.width) > 4000 && abs(value.velocity.height) > 4000){
-                            isShaken = true
-                        }
+                        
+                        CheckShake(value: value)
                     }
                     .onEnded { _ in
                         withAnimation {
@@ -48,8 +35,14 @@ struct DraggableCircle2: View {
             )
             .background(.blue)
     }
+    
+    func CheckShake(value: DragGesture.Value){
+        if (abs(value.velocity.width) > 4000 && abs(value.velocity.height) > 4000){
+            handleShake()
+        }
+    }
 }
 
 #Preview {
-    Exp19_view_shake()
+    DraggableShakableView(handleShake: Exp19_view_shake().handleShake)
 }
