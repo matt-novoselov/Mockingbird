@@ -13,22 +13,31 @@ struct Exp12_left_up_corner: View {
     let notificationsSet: [Notification] = NotificationsViewModel().notifications
     
     var body: some View {
-        VStack{
-            HStack{
-                if(isTextDisplayed){
-                    NotificationTextBlob(text: notificationsSet[0].text)
-                }
-                
-                Spacer()
-            }
+        ZStack{
+            
+            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
+            
+//            VStack{
+//                HStack{
+//                    if(isTextDisplayed){
+//                        NotificationTextBlob(text: notificationsSet[0].text)
+//                            .padding(.all, 20)
+//                    }
+//                    Spacer()
+//                }
+//            }
+//            .ignoresSafeArea()
+            
+            NotificationTextBlob(text: notificationsSet[0].text)
+                .padding(.all, 20)
             
             Button("Button") {
                 withAnimation(Animation.easeInOut(duration: NotificationTextBlob().animationMoveInDuration)) {
                     isTextDisplayed.toggle()
                 }
             }
+            
         }
-        .ignoresSafeArea()
     }
 }
 
