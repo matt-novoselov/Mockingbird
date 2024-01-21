@@ -14,8 +14,12 @@ struct Exp16_drag_view: View {
         let rectCollider = createMachineCollider(height: 200, width: 200)
         
         ZStack{
-            MachineCollider(rectCollider: rectCollider)
-                .foregroundColor(isCoinInsertedInMachine ? Color.yellow : Color.green)
+            HStack (spacing: 0){
+                MachineCollider(rectCollider: rectCollider)
+                    .background(isCoinInsertedInMachine ? Color.yellow : Color.green)
+                
+                AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine)
+            }
             
             VStack {
                 HStack {
@@ -24,10 +28,6 @@ struct Exp16_drag_view: View {
                     VStack {
                         ForEach(0..<6) { _ in
                             DraggableCoin(isCoinInsertedInMachine: $isCoinInsertedInMachine, insertCoin: insertCoin, rectCollider: rectCollider)
-                        }
-                        
-                        Button("Dispose Coin") {
-                            isCoinInsertedInMachine = false
                         }
                     }
                     .padding()
@@ -41,7 +41,6 @@ struct Exp16_drag_view: View {
         if !isCoinInsertedInMachine{
             withAnimation(.easeInOut) {
                 isCoinInsertedInMachine = true
-                print("coin has collided and slot is empty")
             }
         }
     }

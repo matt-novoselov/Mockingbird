@@ -2,35 +2,12 @@
 //  SwiftUIView.swift
 //  
 //
-//  Created by Matt Novoselov on 18/01/24.
+//  Created by Matt Novoselov on 21/01/24.
 //
 
 import SwiftUI
 
-struct Exp15_animation: View {
-    @State var isCoinInserted: Bool = false
-
-    var body: some View {
-        VStack{
-            Text("Coin: \(isCoinInserted.description)")
-            
-            Button("Add coin") {
-                isCoinInserted = true
-            }
-            
-            HStack (spacing: 0){
-                Rectangle()
-                    .frame(width: 200, height: 200)
-                    .foregroundColor(.yellow)
-                
-                Handle(isCoinInserted: $isCoinInserted)
-            }
-        }
-
-    }
-}
-
-struct Handle: View {
+struct AnimatedHandle: View {
     @State private var rotationAngle: Double = 0.0
     @State var isAnimationInProcess: Bool = false
     @Binding var isCoinInserted: Bool
@@ -94,5 +71,5 @@ struct Handle: View {
 }
 
 #Preview {
-    Exp15_animation()
+    AnimatedHandle(isCoinInserted: .constant(false))
 }

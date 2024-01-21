@@ -11,9 +11,13 @@ struct MachineCollider: View {
     var rectCollider: CGRect
     
     var body: some View {
-        Rectangle()
-            .frame(width: rectCollider.width, height: rectCollider.height)
-            .position(x: rectCollider.midX, y: rectCollider.midY)
+        VStack{
+//            Rectangle()
+//                .frame(width: rectCollider.width, height: rectCollider.height)
+//                .position(x: rectCollider.midX, y: rectCollider.midY)
+                
+        }
+        .frame(width: rectCollider.width, height: rectCollider.height)
     }
 }
 
