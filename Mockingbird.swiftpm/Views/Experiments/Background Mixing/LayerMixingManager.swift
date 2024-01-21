@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LayerMixing: View {
+struct LayerMixingManager: View {
     @Binding var darkSlider: Double
     @Binding var heavenSlider: Double
     
@@ -24,5 +24,5 @@ struct LayerMixing: View {
 }
 
 #Preview {
-    LayerMixing(darkSlider: .constant(0), heavenSlider: .constant(0))
+    LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
 }

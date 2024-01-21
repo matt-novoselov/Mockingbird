@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct SK_app_layer: View {
-    @Binding var scene: SK_Game_Layer
+struct SwiftUILayer: View {
+    @Binding var scene: GameLayer
     
     var body: some View {
         ZStack{
@@ -44,5 +44,5 @@ struct SK_app_layer: View {
 }
 
 #Preview {
-    SK_app_layer(scene: .constant(SK_Game_Layer()))
+    SwiftUILayer(scene: .constant(GameLayer()))
 }

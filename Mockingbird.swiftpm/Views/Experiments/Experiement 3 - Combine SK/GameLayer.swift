@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class SK_Game_Layer: SKScene {
+class GameLayer: SKScene {
     let trailSmoke: SKEmitterNode = SKEmitterNode(fileNamed: "MyParticle.sks")!
         
     override func didMove(to view: SKView) {

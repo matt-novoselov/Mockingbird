@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InstagramView: View {
+struct InstagramViewController: View {
     @State private var currentSceneID: Int = 0
     var posts:InstagramPostViewModel = InstagramPostViewModel()
     
@@ -47,5 +47,5 @@ struct InstagramView: View {
 }
 
 #Preview {
-    InstagramView()
+    InstagramViewController()
 }

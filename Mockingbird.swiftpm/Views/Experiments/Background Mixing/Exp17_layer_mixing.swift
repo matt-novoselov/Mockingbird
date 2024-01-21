@@ -25,7 +25,7 @@ struct Exp17_layer_mixing: View {
                 .tint(.yellow)
                 .padding()
             
-            LayerMixing(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
+            LayerMixingManager(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
         }
     }
 }

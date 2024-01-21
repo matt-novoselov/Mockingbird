@@ -15,7 +15,7 @@ struct Exp16_drag_view: View {
         
         ZStack{
             HStack (spacing: 0){
-                MachineCollider(rectCollider: rectCollider)
+                DynamicMachineCollider(rectCollider: rectCollider)
                     .background(isCoinInsertedInMachine ? Color.yellow : Color.green)
                 
                 AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine)

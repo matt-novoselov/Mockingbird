@@ -13,7 +13,7 @@ struct Exp22_background_anim: View {
     
     var body: some View {
         ZStack{
-            LayerMixing(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
+            LayerMixingManager(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
             
             Button("Button") {
                 let animationDuration = 3.0

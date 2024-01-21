@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MachineCollider: View {
+struct DynamicMachineCollider: View {
     var rectCollider: CGRect
     
     var body: some View {
@@ -36,5 +36,5 @@ func createMachineCollider(height: CGFloat, width: CGFloat) -> CGRect{
 }
 
 #Preview {
-    MachineCollider(rectCollider: createMachineCollider(height: 200, width: 200))
+    DynamicMachineCollider(rectCollider: createMachineCollider(height: 200, width: 200))
 }

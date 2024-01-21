@@ -49,5 +49,5 @@ struct InstagramPostView: View {
 }
 
 #Preview {
-    InstagramPostView(username: "@example", postedTimeAgo: "ex ago", image: "PH_calendar", transitionToScene: InstagramView().transitionToNextPost)
+    InstagramPostView(username: "@example", postedTimeAgo: "ex ago", image: "PH_calendar", transitionToScene: InstagramViewController().transitionToNextPost)
 }

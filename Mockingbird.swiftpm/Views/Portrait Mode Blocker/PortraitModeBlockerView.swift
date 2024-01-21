@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Transparent by default
 struct PortraitModeBlockerView: View {
     @State private var orientation = UIInterfaceOrientation.unknown
     
@@ -27,17 +28,7 @@ struct PortraitModeBlockerView: View {
     }
 }
 
-struct BlockerMessage: View {
-    var body: some View {
-        ZStack{
-            Color(.red)
-                .ignoresSafeArea()
-            
-            Text("Experience is better in the landscape mode")
-        }
-    }
-}
 
 #Preview {
-    BlockerMessage()
+    PortraitModeBlockerView()
 }

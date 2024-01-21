@@ -8,12 +8,12 @@
 import SwiftUI
 import SpriteKit
 
-struct SK_Combine: View {
-    @State private var scene = SK_Game_Layer()
+struct CombinationManager: View {
+    @State private var scene = GameLayer()
     
     var body: some View {
         ZStack {
-            SK_app_layer(scene: $scene)
+            SwiftUILayer(scene: $scene)
             
             SpriteView(
                 scene: scene,
@@ -26,5 +26,5 @@ struct SK_Combine: View {
 }
 
 #Preview {
-    SK_Combine()
+    CombinationManager()
 }
