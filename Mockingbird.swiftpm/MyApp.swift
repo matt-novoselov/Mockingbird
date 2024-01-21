@@ -10,7 +10,7 @@ struct MyApp: App {
                 //                PortraitModeBlockerView()
                 //            }
                 
-                NotificationTextBlob()
+                Exp12_left_up_corner()
             }
             .preferredColorScheme(.light)
             .statusBar(hidden: true)

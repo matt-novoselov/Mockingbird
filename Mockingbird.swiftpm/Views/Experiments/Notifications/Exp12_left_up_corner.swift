@@ -22,8 +22,6 @@ struct Exp12_left_up_corner: View {
                 Spacer()
             }
             
-            Spacer()
-            
             Button("Button") {
                 withAnimation(Animation.easeInOut(duration: NotificationTextBlob().animationMoveInDuration)) {
                     isTextDisplayed.toggle()
