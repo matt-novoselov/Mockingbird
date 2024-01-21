@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Matt Novoselov on 19/01/24.
 //
@@ -22,12 +22,12 @@ struct NotificationTextBlob: View {
             Text(String(text.suffix(from: text.index(text.startIndex, offsetBy: shift))))
                 .font(getFont(size: 32))
                 .foregroundColor(.black.opacity(0))
-
+            
         }
         .frame(maxWidth: 330)
         .padding()
-        .background(.gray)
-        .cornerRadius(20)
+        .background(Color.gray)
+        .clipShape(BubbleShape())
         .padding()
         .onAppear(){
             DispatchQueue.main.asyncAfter(deadline: .now() + animationMoveInDuration - 0.25) {
