@@ -20,8 +20,7 @@ struct Exp22_background_anim: View {
                 
                 withAnimation(.easeInOut(duration: animationDuration)) {
                     heavenSlider = 0.5
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
+                } completion: {
                     withAnimation(.easeInOut(duration: animationDuration)) {
                         heavenSlider = 0
                     }
