@@ -7,18 +7,19 @@
 
 import SwiftUI
 
-struct NewTextBlob: View {
+struct NotificationTextBlob: View {
+    var text: String = ""
+    
     @State var shift: Int = 0
-    var finalText: String = ""
     let animationMoveInDuration: Double = 1.0
     
     var body: some View {
         Group {
-            Text(String(finalText.prefix(shift)))
+            Text(String(text.prefix(shift)))
                 .font(getFont(size: 32))
                 .foregroundColor(.black) +
             
-            Text(String(finalText.suffix(from: finalText.index(finalText.startIndex, offsetBy: shift))))
+            Text(String(text.suffix(from: text.index(text.startIndex, offsetBy: shift))))
                 .font(getFont(size: 32))
                 .foregroundColor(.black.opacity(0))
 
@@ -37,7 +38,7 @@ struct NewTextBlob: View {
     }
     
     func typeWriter() {
-        if shift < finalText.count {
+        if shift < text.count {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                 shift+=1
                 typeWriter()
@@ -47,5 +48,5 @@ struct NewTextBlob: View {
 }
 
 #Preview {
-    NewTextBlob(finalText: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis amet aute.")
+    NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis amet aute.")
 }

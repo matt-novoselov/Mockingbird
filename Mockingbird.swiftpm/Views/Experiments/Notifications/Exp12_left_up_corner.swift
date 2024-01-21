@@ -9,15 +9,14 @@ import SwiftUI
 
 
 struct Exp12_left_up_corner: View {
-    let finalText: String = "For example, alcohol stimulates the release of dopamine in your body, tricking your brain into feeling pleasure."
-    
     @State var isTextDisplayed: Bool = false
+    let notificationsSet: [Notification] = NotificationsViewModel().notifications
     
     var body: some View {
         VStack{
             HStack{
                 if(isTextDisplayed){
-                    NewTextBlob(finalText: finalText)
+                    NotificationTextBlob(text: notificationsSet[0].text)
                 }
                 
                 Spacer()
@@ -26,7 +25,7 @@ struct Exp12_left_up_corner: View {
             Spacer()
             
             Button("Button") {
-                withAnimation(Animation.easeInOut(duration: NewTextBlob().animationMoveInDuration)) {
+                withAnimation(Animation.easeInOut(duration: NotificationTextBlob().animationMoveInDuration)) {
                     isTextDisplayed.toggle()
                 }
             }
