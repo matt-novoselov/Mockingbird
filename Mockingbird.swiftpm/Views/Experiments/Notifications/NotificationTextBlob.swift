@@ -10,36 +10,28 @@ import SwiftUI
 struct NotificationTextBlob: View {
     var text: String = ""
     
-    @State private var textHeight: CGFloat = 0
-    
     @State var shift: Int = 0
     @State var customShift: Int = 1
     let animationMoveInDuration: Double = 1.0
     
     var body: some View {
-        ZStack{
-            
-            VStack{
-                Text(String(text.prefix(customShift)))
-                    .font(getFont(size: 32))
-                    .foregroundColor(.red.opacity(0))
-                    .frame(maxWidth: 330)
-                    .padding()
-                    .overlay(
-                        BubbleShape()
-                            .stroke(Color.black, lineWidth: 6) // Adjust color and width
-                    )
-                    .background(Color.white)
-                    .clipShape(BubbleShape())
-                    .onChange(of: shift){
-                        withAnimation{
-                            customShift = shift + 10
-                        }
+        ZStack (alignment: .top){
+            Text(String(text.prefix(customShift)))
+                .font(getFont(size: 32))
+                .foregroundColor(.red.opacity(0))
+                .frame(maxWidth: 330)
+                .padding()
+                .overlay(
+                    BubbleShape()
+                        .stroke(Color.black, lineWidth: 6)
+                )
+                .background(Color.white)
+                .clipShape(BubbleShape())
+                .onChange(of: shift){
+                    withAnimation{
+                        customShift = shift + 10
                     }
-                
-                Spacer()
-            }
-            .frame(height: textHeight + 10)
+                }
             
             Group {
                 Text(String(text.prefix(shift)))
@@ -54,15 +46,6 @@ struct NotificationTextBlob: View {
             .frame(maxWidth: 330)
             .padding()
             .clipShape(BubbleShape())
-            .background(GeometryReader {
-                Color.clear.preference(
-                    key: TextHeightKey.self,
-                    value: $0.frame(in: .local).size.height
-                )
-            })
-                        .onPreferenceChange(TextHeightKey.self) {
-                            self.textHeight = $0
-                        }
             
         }
         .onAppear(){
@@ -71,7 +54,6 @@ struct NotificationTextBlob: View {
             }
         }
         .transition(.move(edge: .leading))
-        .background(.red)
         .ignoresSafeArea()
     }
     
@@ -82,14 +64,6 @@ struct NotificationTextBlob: View {
                 typeWriter()
             }
         }
-    }
-}
-
-struct TextHeightKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
-
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = max(value, nextValue())
     }
 }
 

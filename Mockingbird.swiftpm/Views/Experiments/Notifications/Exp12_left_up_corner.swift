@@ -14,23 +14,20 @@ struct Exp12_left_up_corner: View {
     
     var body: some View {
         ZStack{
+//            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
             
-            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
-            
-//            VStack{
-//                HStack{
-//                    if(isTextDisplayed){
-//                        NotificationTextBlob(text: notificationsSet[0].text)
-//                            .padding(.all, 20)
-//                    }
-//                    Spacer()
-//                }
-//            }
-//            .ignoresSafeArea()
-            
-            NotificationTextBlob(text: notificationsSet[0].text)
-                .padding(.all, 20)
-            
+            VStack{
+                HStack{
+                    if(isTextDisplayed){
+                        NotificationTextBlob(text: notificationsSet[0].text)
+                            .padding(.all, 20)
+                    }
+                    Spacer()
+                }
+                
+                Spacer()
+            }
+
             Button("Button") {
                 withAnimation(Animation.easeInOut(duration: NotificationTextBlob().animationMoveInDuration)) {
                     isTextDisplayed.toggle()
