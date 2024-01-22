@@ -8,26 +8,30 @@
 import SwiftUI
 
 struct Exp23_ArrangeProblem: View {
+    @State var screenWidth: CGFloat?
+    @State var screenHeight: CGFloat?
+    
     var body: some View {
-        OverlayView()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background { /// here!
-                Image("PH_grid")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .ignoresSafeArea()
+        
+        ZStack {
+            GeometryReader { geometry in
+                LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
+                    .onAppear(){
+                        screenWidth = geometry.size.width
+                        screenHeight = geometry.size.height
+                    }
             }
-    }
-}
-
-struct OverlayView: View {
-    var body: some View {
-        VStack {
-            Rectangle()
-                .frame(width: 100, height: 100)
-                .foregroundColor(.red)
             
-            Spacer()
+            VStack {
+                Rectangle()
+                    .frame(width: 100, height: 100)
+                    .foregroundColor(.red)
+                    .padding()
+                
+                Spacer()
+            }
+            .frame(maxWidth: screenWidth,
+                   maxHeight: screenHeight)
         }
     }
 }
