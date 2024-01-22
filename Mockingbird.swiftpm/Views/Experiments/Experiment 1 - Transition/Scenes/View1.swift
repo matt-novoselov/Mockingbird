@@ -13,9 +13,7 @@ struct View1: View {
     
     var body: some View {
         ZStack {
-            GeometryReader { _ in 
-                LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
-            }
+            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
             
             HStack{
                 Spacer()

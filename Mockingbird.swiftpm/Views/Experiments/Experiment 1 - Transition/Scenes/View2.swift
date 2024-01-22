@@ -13,9 +13,7 @@ struct View2: View {
     
     var body: some View {
         ZStack{
-            GeometryReader { _ in
-                LayerMixingManager(darkSlider: .constant(1), heavenSlider: .constant(0))
-            }
+            LayerMixingManager(darkSlider: .constant(1), heavenSlider: .constant(0))
             
             VStack{
                 Button("Show Next View") {

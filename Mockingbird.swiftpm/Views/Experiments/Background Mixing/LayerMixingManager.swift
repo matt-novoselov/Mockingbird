@@ -12,14 +12,16 @@ struct LayerMixingManager: View {
     @Binding var heavenSlider: Double
     
     var body: some View {
-        ZStack{
-            WhiteBackground()
-            
-            DarkBackground(darkSlider: $darkSlider)
-            
-            HeavenBackground(heavenSlider: $heavenSlider, darkSlider: $darkSlider)
+        GeometryReader { _ in
+            ZStack{
+                WhiteBackground()
+                
+                DarkBackground(darkSlider: $darkSlider)
+                
+                HeavenBackground(heavenSlider: $heavenSlider, darkSlider: $darkSlider)
+            }
+            .ignoresSafeArea()
         }
-        .ignoresSafeArea()
     }
 }
 
