@@ -14,9 +14,10 @@ struct BubbleShape: Shape {
     func path(in rect: CGRect) -> Path {
         Path { path in
             path.move(to: CGPoint(x: rect.minX, y: rect.maxY - radius))
-            path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY - rect.height / 2 ))
+            
             
             if showingTrail{
+                path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY - rect.height / 2))
                 path.addCurve(
                     to: CGPoint(x: rect.minX, y: rect.maxY - rect.height / 2 - tailSize),
                     control1: CGPoint(x: rect.minX - tailSize, y: rect.maxY - rect.height / 2),

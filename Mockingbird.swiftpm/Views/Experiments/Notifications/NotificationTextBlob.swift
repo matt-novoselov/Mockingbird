@@ -14,6 +14,7 @@ struct NotificationTextBlob: View {
     
     @State var shift: Int = 0
     @State var customShift: Int = 1
+    @State var stateShowButton: Bool = false
     let animationMoveInDuration: Double = 1.0
     
     var body: some View {
@@ -51,8 +52,18 @@ struct NotificationTextBlob: View {
             .padding()
             .clipShape(BubbleShape(showingTrail: showingTail))
             
-            if showingArrow{
-                ArrowCircleButton()
+            ZStack (alignment: .bottomTrailing){
+                Text(text)
+                    .font(getFont(size: 32))
+                    .foregroundColor(.red.opacity(0))
+                    .frame(maxWidth: 330)
+                    .padding()
+                
+                if showingArrow{
+                    ArrowCircleButton()
+                        .offset(x: 15, y: 15)
+                        .scaleEffect(stateShowButton ? 1.0 : 0.0)
+                }
             }
             
         }
@@ -70,6 +81,14 @@ struct NotificationTextBlob: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                 shift+=1
                 typeWriter()
+            }
+        }
+        else{
+            // On typewriter animation end
+            if showingArrow{
+                withAnimation{
+                    stateShowButton = true
+                }
             }
         }
     }
@@ -99,6 +118,6 @@ struct ArrowCircleButton: View {
         Color(.red)
             .ignoresSafeArea()
         
-        NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis amet aute.", showingArrow: true, showingTail: true)
+        NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis amet aute.", showingArrow: true, showingTail: false)
     }
 }
