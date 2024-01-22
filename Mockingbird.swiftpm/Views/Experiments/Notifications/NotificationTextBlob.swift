@@ -29,10 +29,8 @@ struct NotificationTextBlob: View {
                 )
                 .overlay(
                     BubbleShape(showingTrail: showingTail)
-                        .stroke(Color.black, lineWidth: 6)
+                        .stroke(Color.black, lineWidth: 3)
                 )
-                .background(Color.white)
-                .clipShape(BubbleShape(showingTrail: true))
                 .onChange(of: shift){
                     withAnimation{
                         customShift = shift + 10
@@ -79,7 +77,7 @@ struct NotificationTextBlob: View {
 
 struct ArrowCircleButton: View {
     var body: some View {
-        Button(action: {print("1")}){
+        Button(action: {print("pressed arrow")}){
             ZStack{
                 Circle()
                     .frame(width: 50, height: 50)
