@@ -17,7 +17,8 @@ struct TransitionManager: View {
                 case 0:
                     View1(transitionToScene: transitionToScene)
                 case 1:
-                    View2(transitionToScene: transitionToScene)
+//                    View2(transitionToScene: transitionToScene)
+                    Exp12_left_up_corner()
                 case 2:
                     View3(transitionToScene: transitionToScene)
                 default:

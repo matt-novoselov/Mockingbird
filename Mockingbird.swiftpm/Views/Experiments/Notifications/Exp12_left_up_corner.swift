@@ -14,8 +14,6 @@ struct Exp12_left_up_corner: View {
     
     var body: some View {
         ZStack{
-//            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
-            
             VStack{
                 HStack{
                     if(isTextDisplayed){
@@ -34,6 +32,10 @@ struct Exp12_left_up_corner: View {
                 }
             }
             
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background {
+            LayerMixingManager(darkSlider: .constant(1), heavenSlider: .constant(0))
         }
     }
 }
