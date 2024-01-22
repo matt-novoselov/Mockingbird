@@ -13,15 +13,19 @@ struct View3: View {
     
     var body: some View {
         ZStack{
-            Image("white_background")
-                .resizable()
-                .scaledToFill()
-            
-            Button("Show Next View") {
-                transitionToScene(0)
+            GeometryReader { _ in
+                LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(1))
             }
-            .foregroundColor(.blue)
-            .buttonStyle(.borderedProminent)
+            
+            VStack{
+                Spacer()
+                
+                Button("Show Next View") {
+                    transitionToScene(0)
+                }
+                .foregroundColor(.yellow)
+                .buttonStyle(.borderedProminent)
+            }
         }
         
     }

@@ -14,6 +14,11 @@ struct Exp12_left_up_corner: View {
     
     var body: some View {
         ZStack{
+            
+            GeometryReader { _ in
+                LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(1))
+            }
+            
             VStack{
                 HStack{
                     if(isTextDisplayed){
@@ -25,17 +30,13 @@ struct Exp12_left_up_corner: View {
                 
                 Spacer()
             }
-
+            
             Button("Button") {
                 withAnimation(Animation.easeInOut(duration: NotificationTextBlob().animationMoveInDuration)) {
                     isTextDisplayed.toggle()
                 }
             }
             
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background {
-            LayerMixingManager(darkSlider: .constant(1), heavenSlider: .constant(0))
         }
     }
 }
