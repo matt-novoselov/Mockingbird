@@ -16,13 +16,13 @@ struct Exp12_left_up_corner: View {
         ZStack{
             
             GeometryReader { _ in
-                LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(1))
+                LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
             }
             
             VStack{
                 HStack{
                     if(isTextDisplayed){
-                        NotificationTextBlob(text: notificationsSet[0].text, showingArrow: false, showingTail: true)
+                        NotificationTextBlob(text: "Pursue happiness through indirect means. Rather than relying on substances or temporary escapes, try to find happiness in the present moment.", showingArrow: true, showingTail: true)
                             .padding(.all, 20)
                     }
                     Spacer()

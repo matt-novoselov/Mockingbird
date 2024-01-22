@@ -61,7 +61,7 @@ struct NotificationTextBlob: View {
                 
                 if showingArrow{
                     ArrowCircleButton()
-                        .offset(x: 15, y: 15)
+                        .offset(x: 20, y: 20)
                         .scaleEffect(stateShowButton ? 1.0 : 0.0)
                 }
             }
@@ -99,7 +99,7 @@ struct ArrowCircleButton: View {
         Button(action: {print("pressed arrow")}){
             ZStack{
                 Circle()
-                    .frame(width: 50, height: 50)
+                    .frame(width: 65, height: 65)
                     .foregroundStyle(.white)
                     .overlay(
                         Circle()
