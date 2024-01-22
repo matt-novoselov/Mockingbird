@@ -9,6 +9,8 @@ import SwiftUI
 
 struct NotificationTextBlob: View {
     var text: String = ""
+    var showingArrow: Bool = false
+    var showingTail: Bool = false
     
     @State var shift: Int = 0
     @State var customShift: Int = 1
@@ -21,12 +23,16 @@ struct NotificationTextBlob: View {
                 .foregroundColor(.red.opacity(0))
                 .frame(maxWidth: 330)
                 .padding()
+                .background(
+                    BubbleShape(showingTrail: showingTail)
+                        .foregroundColor(.white)
+                )
                 .overlay(
-                    BubbleShape()
+                    BubbleShape(showingTrail: showingTail)
                         .stroke(Color.black, lineWidth: 6)
                 )
                 .background(Color.white)
-                .clipShape(BubbleShape())
+                .clipShape(BubbleShape(showingTrail: true))
                 .onChange(of: shift){
                     withAnimation{
                         customShift = shift + 10
@@ -45,7 +51,11 @@ struct NotificationTextBlob: View {
             }
             .frame(maxWidth: 330)
             .padding()
-            .clipShape(BubbleShape())
+            .clipShape(BubbleShape(showingTrail: showingTail))
+            
+            if showingArrow{
+                ArrowCircleButton()
+            }
             
         }
         .onAppear(){
@@ -67,6 +77,30 @@ struct NotificationTextBlob: View {
     }
 }
 
+struct ArrowCircleButton: View {
+    var body: some View {
+        Button(action: {print("1")}){
+            ZStack{
+                Circle()
+                    .frame(width: 50, height: 50)
+                    .foregroundStyle(.white)
+                    .overlay(
+                        Circle()
+                            .stroke(Color.black, lineWidth: 3)
+                    )
+                
+                Text("->")
+                    .fontWeight(.black)
+            }
+        }
+    }
+}
+
 #Preview {
-    NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis amet aute.")
+    ZStack{
+        Color(.red)
+            .ignoresSafeArea()
+        
+        NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis amet aute.", showingArrow: true, showingTail: true)
+    }
 }

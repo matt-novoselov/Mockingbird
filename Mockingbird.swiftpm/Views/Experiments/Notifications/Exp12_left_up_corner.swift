@@ -22,7 +22,7 @@ struct Exp12_left_up_corner: View {
             VStack{
                 HStack{
                     if(isTextDisplayed){
-                        NotificationTextBlob(text: notificationsSet[0].text)
+                        NotificationTextBlob(text: notificationsSet[0].text, showingArrow: false, showingTail: true)
                             .padding(.all, 20)
                     }
                     Spacer()
