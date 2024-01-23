@@ -20,7 +20,7 @@ struct ParticleView: UIViewRepresentable {
     
     func updateUIView(_ uiView: SKView, context: Context) {}
     
-    static func testCall(xpos: Double, ypos: Double) {
+    static func spawnParticle(xpos: Double, ypos: Double) {
         let particlesTapEffect: SKEmitterNode = SKEmitterNode(fileNamed: "MyParticle.sks")!
         scene.addChild(particlesTapEffect)
         particlesTapEffect.position = CGPoint(x: xpos, y: scene.size.height - ypos)

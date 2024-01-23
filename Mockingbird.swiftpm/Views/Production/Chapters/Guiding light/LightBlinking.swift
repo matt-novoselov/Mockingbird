@@ -9,52 +9,36 @@ import SwiftUI
 
 struct LightBlinking: View {
     var transitionToScene: (Int) -> Void
-    
-    @State private var rectangleVisible = false
+    @State private var isGlowing = false
     
     var body: some View {
         ZStack {
-            Color(.black)
-                .ignoresSafeArea()
+            LayerMixingManager(darkSlider: .constant(1), heavenSlider: .constant(0))
             
             VStack{
-                Circle()
-                    .frame(width: 200, height: 200)
-                    .foregroundColor(rectangleVisible ? .yellow : .gray)
-                    .glow(color: .yellow.opacity(rectangleVisible ? 0.4 : 0.0), radius: 70)
-                    .onAppear {
-                        blink()
-                    }
-                
-                Text("guiding light")
-                    .foregroundColor(.yellow)
-                    .shadow(color: .yellow, radius: 10)
-                
-                Text("guiding light")
-                    .foregroundColor(.yellow)
-                    .glow(color: .yellow.opacity(0.4), radius: 10)
-                
-                ZStack{
-                    Group {
-                        Text("Even in the darkest time you can find the the the the the the ")
-                            .foregroundColor(.white) +
-                        
-                        Text("guiding light")
-                            .foregroundColor(.yellow)
-                    }
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+                FontText(text: "Even in the darkest time you", size: 96)
                     .multilineTextAlignment(.center)
+                    .foregroundColor(.white)
+                
+                HStack{
+                    FontText(text: "can find the ", size: 96)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.white)
                     
-                    Text("Even in the darkest time you can find the the the the the the guiding light")
-                        .foregroundColor(.yellow)
-                        .glow(color: .yellow.opacity(0.4), radius: 10)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
+                    FontText(text: "guiding light", size: 96)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(isGlowing ? .yellow : .white)
+                        .glow(color: .yellow.opacity(isGlowing ? 0.4 : 0.0), radius: 70)
+                        .onAppear {
+                            blink()
+                        }
                 }
-                
-
+            }
+        }
+        .onAppear {
+            Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { timer in
+                // Transition to scene
+                transitionToScene(10)
             }
         }
     }
@@ -74,8 +58,8 @@ struct LightBlinking: View {
         for interval in animationIntervals {
             timePassed += interval
             DispatchQueue.main.asyncAfter(deadline: .now() + timePassed) {
-                withAnimation(.none) {
-                    self.rectangleVisible.toggle()
+                withAnimation {
+                    self.isGlowing.toggle()
                 }
             }
         }

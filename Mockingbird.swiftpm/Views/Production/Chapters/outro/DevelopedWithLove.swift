@@ -28,7 +28,7 @@ struct DevelopedWithLove: View {
                         .onAppear {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                 if let circlePosition = getGlobalPosition(view: geometry) {
-                                    ParticleView.testCall(xpos: circlePosition.x, ypos: circlePosition.y)
+                                    ParticleView.spawnParticle(xpos: circlePosition.x, ypos: circlePosition.y)
                                 }
                             }
                         
