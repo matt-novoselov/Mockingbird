@@ -19,8 +19,10 @@ struct StartMenu: View {
             
             Button(action: {transitionToScene(2)}) {
                 Image(jigglingArray[currentIndex])
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 180)
                     .onAppear {
-                        // Use Timer to update the displayed image every 0.1 seconds
                         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
                             currentIndex = (currentIndex + 1) % jigglingArray.count
                         }
