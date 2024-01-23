@@ -15,8 +15,7 @@ struct StartMenu: View {
     
     var body: some View {
         ZStack {
-            Color(.green)
-                .ignoresSafeArea()
+            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
             
             Button(action: {transitionToScene(2)}) {
                 Image(jigglingArray[currentIndex])

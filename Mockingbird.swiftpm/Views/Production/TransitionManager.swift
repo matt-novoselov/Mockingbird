@@ -29,7 +29,7 @@ struct TransitionManager: View {
                 case 6:
                     GamblingScene(transitionToScene: transitionToScene)
                 case 7:
-                    PiggyBankScene(transitionToScene: transitionToScene)
+                    Text("Placeholder ID")
                 case 8:
                     DrugsScene(transitionToScene: transitionToScene)
                 case 9:
