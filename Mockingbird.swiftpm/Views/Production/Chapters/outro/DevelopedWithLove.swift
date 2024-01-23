@@ -10,32 +10,44 @@ import SwiftUI
 struct DevelopedWithLove: View {
     var transitionToScene: (Int) -> Void
     
-    @Binding var ParticleGameScene: ParticleLayer
+//    @Binding var ParticleGameScene: ParticleLayer
     
     var body: some View {
         ZStack{
-            Rectangle()
-                .fill(.blue)
-                .ignoresSafeArea()
+            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
             
             HStack {
-                Text("Developed with")
+                FontText(text: "Developed with", size: 64)
+                    .multilineTextAlignment(.center)
+                    .padding()
                 
                 GeometryReader { geometry in
-                    Circle()
-                        .onAppear {
-                            if let circlePosition = getGlobalPosition(view: geometry) {
-                                ParticleGameScene.test_call(xpos: circlePosition.x, ypos: -circlePosition.y)
-                            }
-                        }
+                    Image("SF_heart_white_bcg")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .glow(color: Color("MB_main_yellow").opacity(0.3), radius: 30)
+                        
+//                        .onAppear {
+//                            if let circlePosition = getGlobalPosition(view: geometry) {
+//                                ParticleGameScene.test_call(xpos: circlePosition.x, ypos: -circlePosition.y)
+//                            }
+//                        }
                 }
-                .frame(width: 30, height: 30)
+                .frame(width: 60, height: 60)
                 
-                Text("by Matt Novoselov")
+                FontText(text: "by Matt Novoselov", size: 64)
+                    .multilineTextAlignment(.center)
+                    .padding()
             }
         }
-        .onTapGesture(coordinateSpace: .global) { location in
-            ParticleGameScene.test_call(xpos: location.x, ypos: location.y)
+//        .onTapGesture(coordinateSpace: .global) { location in
+//            ParticleGameScene.test_call(xpos: location.x, ypos: location.y)
+//        }
+        .onAppear {
+            Timer.scheduledTimer(withTimeInterval: 8, repeats: false) { timer in
+                // Transition to scene
+                transitionToScene(1)
+            }
         }
     }
     
@@ -46,5 +58,5 @@ struct DevelopedWithLove: View {
 }
 
 #Preview {
-    DevelopedWithLove(transitionToScene: TransitionManager().transitionToScene, ParticleGameScene: .constant(ParticleLayer()))
+    DevelopedWithLove(transitionToScene: TransitionManager().transitionToScene)
 }

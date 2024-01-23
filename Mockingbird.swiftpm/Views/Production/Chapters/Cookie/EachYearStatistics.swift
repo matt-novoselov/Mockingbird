@@ -16,13 +16,13 @@ struct EachYearStatistics: View {
             
             FontText(text: "Each year, over 10 million people die from various forms of addictions.", size: 64)
                 .multilineTextAlignment(.center)
-                .onAppear {
-                    Timer.scheduledTimer(withTimeInterval: 8, repeats: false) { timer in
-                        // Transition to scene
-                        transitionToScene(3)
-                    }
-                }
                 .padding(.horizontal, 150)
+        }
+        .onAppear {
+            Timer.scheduledTimer(withTimeInterval: 8, repeats: false) { timer in
+                // Transition to scene
+                transitionToScene(3)
+            }
         }
     }
 }

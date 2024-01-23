@@ -4,11 +4,8 @@ import SwiftUI
 struct MyApp: App {
     var body: some Scene {
         WindowGroup {
-            Group{
-                ZStack{
-                    TransitionManager()
-//                    PortraitModeBlockerView()
-                }
+            Group{                
+                LayersManager()
             }
             .preferredColorScheme(.light)
             .statusBar(hidden: true)

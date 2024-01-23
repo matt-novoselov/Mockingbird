@@ -22,15 +22,15 @@ struct BetterExperienceInHeadphones: View {
                 
                 FontText(text: "Better experience with headphones ", size: 64)
                     .multilineTextAlignment(.center)
-                    .onAppear {
-                        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
-                            // Transition to scene
-                            transitionToScene(1)
-                        }
-                    }
                     .padding()
             }
 
+        }
+        .onAppear {
+            Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
+                // Transition to scene
+                transitionToScene(1)
+            }
         }
     }
 }

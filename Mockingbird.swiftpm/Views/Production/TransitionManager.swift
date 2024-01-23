@@ -44,8 +44,8 @@ struct TransitionManager: View {
                     LastScene(transitionToScene: transitionToScene)
                 case 14:
                     DoYouNeedHelp(transitionToScene: transitionToScene)
-//                case 15:
-//                    DevelopedWithLove(transitionToScene: transitionToScene, scene: .constant(ParticleLayer()))
+                case 15:
+                    DevelopedWithLove(transitionToScene: transitionToScene)
                 default:
                     Text("Error, this sceneID doesn't exist")
                 }

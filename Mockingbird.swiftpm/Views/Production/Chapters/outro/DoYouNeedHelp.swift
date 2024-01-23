@@ -11,35 +11,61 @@ struct DoYouNeedHelp: View {
     var transitionToScene: (Int) -> Void
     
     var body: some View {
-        VStack{
-            Text("Do you need help?")
+        ZStack{
+            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
             
-            Spacer()
-            
-            HStack{
-                Text("icon")
+            VStack{
+                FontText(text: "Do you need help?", size: 96)
+                    .multilineTextAlignment(.center)
+                    .padding()
                 
-                Link("+1 855 648 7228", destination: URL(string: "tel://+18556487228")!)
-                    .foregroundStyle(.black)
-            }
-            
-            HStack{
-                Text("icon")
+                Spacer()
                 
-                Link("+1 800 662 4357", destination: URL(string: "tel://+18006624357")!)
-                    .foregroundStyle(.black)
-            }
-            
-            HStack{
-                Text("icon")
+                VStack(alignment: .leading, spacing: 0){
+                    HStack(spacing: 30){
+                        Image("SF_phone")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 45)
+                        
+                        Link("+1 855 648 7228", destination: URL(string: "tel://+18556487228")!)
+                            .foregroundStyle(.black)
+                            .font(getFont(size: 64))
+                    }
+                    
+                    HStack(spacing: 30){
+                        Image("SF_phone")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 45)
+                        
+                        Link("+1 800 662 4357", destination: URL(string: "tel://+18006624357")!)
+                            .foregroundStyle(.black)
+                            .font(getFont(size: 64))
+                    }
+                    
+                    HStack(spacing: 30){
+                        Image("SF_globe")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 45)
+                        
+                        Link("recovered.org", destination: URL(string: "https://recovered.org/")!)
+                            .foregroundStyle(.black)
+                            .font(getFont(size: 64))
+                    }
+                }
                 
-                Link("recovered.org", destination: URL(string: "https://recovered.org/")!)
-                    .foregroundStyle(.black)
+                Spacer()
+                
+                Button(action: {transitionToScene(15)}) {
+                    Image("long_arrow_button")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 80)
+                        .padding()
+                }
             }
-            
-            Spacer()
-            
-            Text("->")
         }
     }
 }

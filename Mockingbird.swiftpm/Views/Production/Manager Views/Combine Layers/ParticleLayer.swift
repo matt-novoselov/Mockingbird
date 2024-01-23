@@ -17,10 +17,10 @@ class ParticleLayer: SKScene {
     }
     
     public func test_call(xpos: Double, ypos: Double) {
-        let trailSmoke: SKEmitterNode = SKEmitterNode(fileNamed: "MyParticle.sks")!
+        let particlesTapEffect: SKEmitterNode = SKEmitterNode(fileNamed: "MyParticle.sks")!
         
-        self.addChild(trailSmoke)
+        self.addChild(particlesTapEffect)
         
-        trailSmoke.position = CGPoint(x: xpos, y: self.size.height - ypos)
+        particlesTapEffect.position = CGPoint(x: xpos, y: self.size.height - ypos)
     }
 }

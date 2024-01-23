@@ -15,10 +15,6 @@ struct NotificationManagerView: View {
     var body: some View {
         ZStack{
             
-            GeometryReader { _ in
-                LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
-            }
-            
             VStack{
                 HStack{
                     if(isTextDisplayed){
@@ -31,7 +27,7 @@ struct NotificationManagerView: View {
                 Spacer()
             }
             
-            Button("Button") {
+            Button("Test call notification") {
                 withAnimation(Animation.easeInOut(duration: NotificationTextBlob().animationMoveInDuration)) {
                     isTextDisplayed.toggle()
                 }
