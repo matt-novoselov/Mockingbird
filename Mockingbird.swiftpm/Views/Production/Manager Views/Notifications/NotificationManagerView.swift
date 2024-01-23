@@ -12,13 +12,15 @@ struct NotificationManagerView: View {
     @State var isTextDisplayed: Bool = false
     let notificationsSet: [Notification] = NotificationsViewModel().notifications
     
+    @State var currentNotificationMessage: String = ""
+    
     var body: some View {
         ZStack{
             
             VStack{
                 HStack{
                     if(isTextDisplayed){
-                        NotificationTextBlob(text: "Pursue happiness through indirect means. Rather than relying on substances or temporary escapes, try to find happiness in the present moment.", showingArrow: true, showingTail: true)
+                        NotificationTextBlob(text: currentNotificationMessage, showingArrow: true, showingTail: true)
                             .padding(.all, 20)
                     }
                     Spacer()
@@ -26,13 +28,20 @@ struct NotificationManagerView: View {
                 
                 Spacer()
             }
-            
-            Button("Test call notification") {
-                withAnimation(Animation.easeInOut(duration: NotificationTextBlob().animationMoveInDuration)) {
-                    isTextDisplayed.toggle()
-                }
-            }
-            
+        }
+    }
+    
+    func CallNotification(ID: Int){
+        currentNotificationMessage = notificationsSet[ID].text
+        
+        withAnimation(Animation.easeInOut(duration: NotificationTextBlob().animationMoveInDuration)) {
+            isTextDisplayed = true
+        }
+    }
+    
+    func CloseNotification(){
+        withAnimation(Animation.easeInOut(duration: NotificationTextBlob().animationMoveInDuration)) {
+            isTextDisplayed = false
         }
     }
 }
