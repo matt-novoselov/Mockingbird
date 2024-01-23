@@ -13,7 +13,7 @@ struct CombinationManager: View {
     
     var body: some View {
         ZStack {
-            SwiftUILayer(scene: $scene)
+            DevelopedWithLove(scene: $scene)
             
             SpriteView(
                 scene: scene,

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Exp19_view_shake: View {
+struct DrugsScene: View {
     @State var isShaken: Bool = false
     
     var body: some View {
@@ -25,5 +25,5 @@ struct Exp19_view_shake: View {
 }
 
 #Preview {
-    Exp19_view_shake()
+    DrugsScene()
 }

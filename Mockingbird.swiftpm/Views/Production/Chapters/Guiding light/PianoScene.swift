@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Exp23_piano: View {
+struct PianoScene: View {
     var body: some View {
         ZStack(alignment: .top){
             Color(.gray)
@@ -110,5 +110,5 @@ struct smallPianoKey: View {
 }
 
 #Preview {
-    Exp23_piano()
+    PianoScene()
 }

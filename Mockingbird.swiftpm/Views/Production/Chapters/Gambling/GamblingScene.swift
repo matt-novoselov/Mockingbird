@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Exp16_drag_view: View {
+struct GamblingScene: View {
     @State var isCoinInsertedInMachine: Bool = false
 
     var body: some View {
@@ -47,5 +47,5 @@ struct Exp16_drag_view: View {
 }
 
 #Preview{
-    Exp16_drag_view()
+    GamblingScene()
 }

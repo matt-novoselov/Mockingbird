@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct Bootstrap: View {
     var body: some View {
         ZStack{
             Text("This is a bootstrap View")
@@ -16,5 +16,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    Bootstrap()
 }

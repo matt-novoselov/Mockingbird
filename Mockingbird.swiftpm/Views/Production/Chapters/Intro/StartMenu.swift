@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Exp13_jiggling: View {
+struct StartMenu: View {
     var jigglingArray: [String] = ["num1", "num2", "num3", "num4"]
     @State private var currentIndex = 0
     
@@ -29,5 +29,5 @@ struct Exp13_jiggling: View {
 
 
 #Preview {
-    Exp13_jiggling()
+    StartMenu()
 }

@@ -1,13 +1,13 @@
 //
 //  SwiftUIView.swift
+//  
 //
-//
-//  Created by Matt Novoselov on 16/01/24.
+//  Created by Matt Novoselov on 23/01/24.
 //
 
 import SwiftUI
 
-struct Exp4_image_button: View {
+struct CookieScene: View {
     @State var currentDisplayedImage: String = "PH_grid"
     
     var body: some View {
@@ -23,5 +23,5 @@ struct Exp4_image_button: View {
 }
 
 #Preview {
-    Exp4_image_button()
+    CookieScene()
 }

@@ -44,5 +44,5 @@ struct DraggableShakableView: View {
 }
 
 #Preview {
-    DraggableShakableView(handleShake: Exp19_view_shake().handleShake)
+    DraggableShakableView(handleShake: DrugsScene().handleShake)
 }

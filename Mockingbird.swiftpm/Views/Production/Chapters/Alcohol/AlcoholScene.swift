@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Exp21_img_saturation: View {
+struct AlcoholScene: View {
     @State var imgSatuation: Double = 1
     @State var imgOpacity: Double = 1
     
@@ -28,5 +28,5 @@ struct Exp21_img_saturation: View {
 }
 
 #Preview {
-    Exp21_img_saturation()
+    AlcoholScene()
 }

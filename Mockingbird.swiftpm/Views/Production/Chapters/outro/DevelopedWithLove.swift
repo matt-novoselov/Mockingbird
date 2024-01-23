@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SwiftUILayer: View {
+struct DevelopedWithLove: View {
     @Binding var scene: GameLayer
     
     var body: some View {
@@ -17,7 +17,7 @@ struct SwiftUILayer: View {
                 .ignoresSafeArea()
             
             HStack {
-                Text("lorem ipsum")
+                Text("Developed with")
                 
                 GeometryReader { geometry in
                     Circle()
@@ -29,7 +29,7 @@ struct SwiftUILayer: View {
                 }
                 .frame(width: 30, height: 30)
                 
-                Text("lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum")
+                Text("by Matt Novoselov")
             }
         }
         .onTapGesture(coordinateSpace: .global) { location in
@@ -44,5 +44,5 @@ struct SwiftUILayer: View {
 }
 
 #Preview {
-    SwiftUILayer(scene: .constant(GameLayer()))
+    DevelopedWithLove(scene: .constant(GameLayer()))
 }

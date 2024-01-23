@@ -6,7 +6,7 @@ struct MyApp: App {
         WindowGroup {
             Group{
                 //            ZStack{
-                //                ContentView()
+                //                Bootstrap()
                 //                PortraitModeBlockerView()
                 //            }
                 

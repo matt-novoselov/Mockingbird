@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Exp9_blinking: View {
+struct LightBlinking: View {
     @State private var rectangleVisible = false
     
     var body: some View {
@@ -50,5 +50,5 @@ struct Exp9_blinking: View {
 
 
 #Preview {
-    Exp9_blinking()
+    LightBlinking()
 }
