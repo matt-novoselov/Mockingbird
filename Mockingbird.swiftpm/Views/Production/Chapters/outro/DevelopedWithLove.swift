@@ -56,5 +56,10 @@ struct DevelopedWithLove: View {
 }
 
 #Preview {
-    DevelopedWithLove(transitionToScene: TransitionManager().transitionToScene)
+    ZStack{
+        DevelopedWithLove(transitionToScene: TransitionManager().transitionToScene)
+        
+        SwiftuiParticles()
+    }
+    .ignoresSafeArea()
 }
