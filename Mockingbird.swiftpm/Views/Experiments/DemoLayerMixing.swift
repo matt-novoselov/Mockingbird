@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Exp17_layer_mixing: View {
+struct DemoLayerMixing: View {
     @State var darkSlider: Double = 0
     @State var heavenSlider: Double = 0
     
@@ -31,5 +31,5 @@ struct Exp17_layer_mixing: View {
 }
 
 #Preview {
-    Exp17_layer_mixing()
+    DemoLayerMixing()
 }

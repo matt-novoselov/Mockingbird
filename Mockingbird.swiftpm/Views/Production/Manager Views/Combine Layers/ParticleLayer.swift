@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class GameLayer: SKScene {
+class ParticleLayer: SKScene {
     override func didMove(to view: SKView) {
         self.backgroundColor = .clear
         

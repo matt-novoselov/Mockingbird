@@ -9,7 +9,7 @@ import SwiftUI
 import SpriteKit
 
 struct CombinationManager: View {
-    @State private var scene = GameLayer()
+    @State private var scene = ParticleLayer()
     
     var body: some View {
         ZStack {

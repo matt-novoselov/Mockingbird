@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Exp22_background_anim: View {
+struct DemoBackgroundAnimation: View {
     @State var darkSlider: Double = 0
     @State var heavenSlider: Double = 0
     
@@ -32,5 +32,5 @@ struct Exp22_background_anim: View {
 }
 
 #Preview {
-    Exp22_background_anim()
+    DemoBackgroundAnimation()
 }

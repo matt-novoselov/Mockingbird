@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DevelopedWithLove: View {
-    @Binding var scene: GameLayer
+    @Binding var scene: ParticleLayer
     
     var body: some View {
         ZStack{
@@ -44,5 +44,5 @@ struct DevelopedWithLove: View {
 }
 
 #Preview {
-    DevelopedWithLove(scene: .constant(GameLayer()))
+    DevelopedWithLove(scene: .constant(ParticleLayer()))
 }

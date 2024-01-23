@@ -15,13 +15,45 @@ struct LightBlinking: View {
             Color(.black)
                 .ignoresSafeArea()
             
-            Circle()
-                .frame(width: 200, height: 200)
-                .foregroundColor(rectangleVisible ? .yellow : .gray)
-                .glow(color: .yellow.opacity(rectangleVisible ? 0.4 : 0.0), radius: 70)
-                .onAppear {
-                    blink()
+            VStack{
+                Circle()
+                    .frame(width: 200, height: 200)
+                    .foregroundColor(rectangleVisible ? .yellow : .gray)
+                    .glow(color: .yellow.opacity(rectangleVisible ? 0.4 : 0.0), radius: 70)
+                    .onAppear {
+                        blink()
+                    }
+                
+                Text("guiding light")
+                    .foregroundColor(.yellow)
+                    .shadow(color: .yellow, radius: 10)
+                
+                Text("guiding light")
+                    .foregroundColor(.yellow)
+                    .glow(color: .yellow.opacity(0.4), radius: 10)
+                
+                ZStack{
+                    Group {
+                        Text("Even in the darkest time you can find the the the the the the ")
+                            .foregroundColor(.white) +
+                        
+                        Text("guiding light")
+                            .foregroundColor(.yellow)
+                    }
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+                    
+                    Text("Even in the darkest time you can find the the the the the the guiding light")
+                        .foregroundColor(.yellow)
+                        .glow(color: .yellow.opacity(0.4), radius: 10)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
                 }
+                
+
+            }
         }
     }
     

@@ -6,11 +6,11 @@ struct MyApp: App {
         WindowGroup {
             Group{
                 //            ZStack{
-                //                Bootstrap()
+                //                TransitionManager()
                 //                PortraitModeBlockerView()
                 //            }
                 
-                CombinationManager()
+                TransitionManager()
             }
             .preferredColorScheme(.light)
             .statusBar(hidden: true)

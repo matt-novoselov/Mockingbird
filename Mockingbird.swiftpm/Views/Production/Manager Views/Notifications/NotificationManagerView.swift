@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct Exp12_left_up_corner: View {
+struct NotificationManagerView: View {
     @State var isTextDisplayed: Bool = false
     let notificationsSet: [Notification] = NotificationsViewModel().notifications
     
@@ -42,5 +42,5 @@ struct Exp12_left_up_corner: View {
 }
 
 #Preview {
-    Exp12_left_up_corner()
+    NotificationManagerView()
 }
