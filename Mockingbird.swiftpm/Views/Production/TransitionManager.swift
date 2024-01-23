@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TransitionManager: View {
-    @State private var currentSceneID: Int = 0
+    @State private var currentSceneID: Int = 15
     
     var body: some View {
         VStack{

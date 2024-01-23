@@ -10,8 +10,6 @@ import SwiftUI
 struct DevelopedWithLove: View {
     var transitionToScene: (Int) -> Void
     
-//    @Binding var ParticleGameScene: ParticleLayer
-    
     var body: some View {
         ZStack{
             LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
@@ -27,11 +25,14 @@ struct DevelopedWithLove: View {
                         .aspectRatio(contentMode: .fit)
                         .glow(color: Color("MB_main_yellow").opacity(0.3), radius: 30)
                         
-//                        .onAppear {
-//                            if let circlePosition = getGlobalPosition(view: geometry) {
-//                                ParticleGameScene.test_call(xpos: circlePosition.x, ypos: -circlePosition.y)
-//                            }
-//                        }
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                if let circlePosition = getGlobalPosition(view: geometry) {
+                                    ParticleView.testCall(xpos: circlePosition.x, ypos: circlePosition.y)
+                                }
+                            }
+                        
+                        }
                 }
                 .frame(width: 60, height: 60)
                 
@@ -40,11 +41,8 @@ struct DevelopedWithLove: View {
                     .padding()
             }
         }
-//        .onTapGesture(coordinateSpace: .global) { location in
-//            ParticleGameScene.test_call(xpos: location.x, ypos: location.y)
-//        }
         .onAppear {
-            Timer.scheduledTimer(withTimeInterval: 8, repeats: false) { timer in
+            Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
                 // Transition to scene
                 transitionToScene(1)
             }

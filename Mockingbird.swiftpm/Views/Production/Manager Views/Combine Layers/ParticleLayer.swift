@@ -15,12 +15,4 @@ class ParticleLayer: SKScene {
         
         self.scaleMode = .resizeFill
     }
-    
-    public func test_call(xpos: Double, ypos: Double) {
-        let particlesTapEffect: SKEmitterNode = SKEmitterNode(fileNamed: "MyParticle.sks")!
-        
-        self.addChild(particlesTapEffect)
-        
-        particlesTapEffect.position = CGPoint(x: xpos, y: self.size.height - ypos)
-    }
 }

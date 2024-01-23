@@ -8,16 +8,30 @@
 import SwiftUI
 import SpriteKit
 
-struct SwiftuiParticles: View {
-    @State private var particleGameScene = ParticleLayer()
+struct ParticleView: UIViewRepresentable {
+    static var scene = ParticleLayer()
     
+    func makeUIView(context: Context) -> SKView {
+        let view = SKView()
+        view.backgroundColor = .clear
+        view.presentScene(Self.scene)
+        return view
+    }
+    
+    func updateUIView(_ uiView: SKView, context: Context) {}
+    
+    static func testCall(xpos: Double, ypos: Double) {
+        let particlesTapEffect: SKEmitterNode = SKEmitterNode(fileNamed: "MyParticle.sks")!
+        scene.addChild(particlesTapEffect)
+        particlesTapEffect.position = CGPoint(x: xpos, y: scene.size.height - ypos)
+    }
+}
+
+struct SwiftuiParticles: View {
     var body: some View {
-        SpriteView(
-            scene: particleGameScene,
-            options: [.allowsTransparency]
-        )
-        .allowsHitTesting(false)
-        .ignoresSafeArea()
+        ParticleView()
+            .allowsHitTesting(false)
+            .ignoresSafeArea()
     }
 }
 
