@@ -7,15 +7,14 @@
 
 import SwiftUI
 
-struct InstagramScene: View {
+struct PiggyBankScene: View {
     var transitionToScene: (Int) -> Void
     
     var body: some View {
-        InstagramViewController()
-            .padding(.all, 100)
+        Text("PiggyBankScene")
     }
 }
 
 #Preview {
-    InstagramScene(transitionToScene: TransitionManager().transitionToScene)
+    PiggyBankScene(transitionToScene: TransitionManager().transitionToScene)
 }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PianoScene: View {
+    var transitionToScene: (Int) -> Void
+    
     var body: some View {
         ZStack(alignment: .top){
             Color(.gray)
@@ -110,5 +112,5 @@ struct smallPianoKey: View {
 }
 
 #Preview {
-    PianoScene()
+    PianoScene(transitionToScene: TransitionManager().transitionToScene)
 }

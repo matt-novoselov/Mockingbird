@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DoYouNeedHelp: View {
+    var transitionToScene: (Int) -> Void
+    
     var body: some View {
         VStack{
             Text("Do you need help?")
@@ -43,5 +45,5 @@ struct DoYouNeedHelp: View {
 }
 
 #Preview {
-    DoYouNeedHelp()
+    DoYouNeedHelp(transitionToScene: TransitionManager().transitionToScene)
 }

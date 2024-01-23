@@ -42,7 +42,3 @@ struct DraggableShakableView: View {
         }
     }
 }
-
-#Preview {
-    DraggableShakableView(handleShake: DrugsScene().handleShake)
-}

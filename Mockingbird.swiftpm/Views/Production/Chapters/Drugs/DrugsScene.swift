@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DrugsScene: View {
+    var transitionToScene: (Int) -> Void
+    
     @State var isShaken: Bool = false
     
     var body: some View {
@@ -25,5 +27,5 @@ struct DrugsScene: View {
 }
 
 #Preview {
-    DrugsScene()
+    DrugsScene(transitionToScene: TransitionManager().transitionToScene)
 }

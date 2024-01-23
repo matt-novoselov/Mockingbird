@@ -8,20 +8,26 @@
 import SwiftUI
 
 struct CookieScene: View {
+    var transitionToScene: (Int) -> Void
+    
     @State var currentDisplayedImage: String = "PH_grid"
     
     var body: some View {
-        Button(action: {
-            withAnimation(.none) {
-                currentDisplayedImage = "PH_calendar"
+        ZStack {
+            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
+            
+            Button(action: {
+                withAnimation(.none) {
+                    currentDisplayedImage = "PH_calendar"
+                }
+            })
+            {
+                Image(currentDisplayedImage)
             }
-        })
-        {
-            Image(currentDisplayedImage)
         }
     }
 }
 
 #Preview {
-    CookieScene()
+    CookieScene(transitionToScene: TransitionManager().transitionToScene)
 }

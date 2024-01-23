@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct GamblingScene: View {
+    var transitionToScene: (Int) -> Void
+    
     @State var isCoinInsertedInMachine: Bool = false
 
     var body: some View {
@@ -47,5 +49,5 @@ struct GamblingScene: View {
 }
 
 #Preview{
-    GamblingScene()
+    GamblingScene(transitionToScene: TransitionManager().transitionToScene)
 }

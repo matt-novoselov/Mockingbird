@@ -13,7 +13,7 @@ struct CombinationManager: View {
     
     var body: some View {
         ZStack {
-            DevelopedWithLove(scene: $scene)
+            DevelopedWithLove(transitionToScene: TransitionManager().transitionToScene, ParticleGameScene: $scene)
             
             SpriteView(
                 scene: scene,

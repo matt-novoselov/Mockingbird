@@ -15,11 +15,37 @@ struct TransitionManager: View {
             Group{
                 switch currentSceneID {
                 case 0:
-                    View1(transitionToScene: transitionToScene)
+                    BetterExperienceInHeadphones(transitionToScene: transitionToScene)
                 case 1:
-                    View2(transitionToScene: transitionToScene)
+                    StartMenu(transitionToScene: transitionToScene)
                 case 2:
-                    View3(transitionToScene: transitionToScene)
+                    EachYearStatistics(transitionToScene: transitionToScene)
+                case 3:
+                    CookieScene(transitionToScene: transitionToScene)
+                case 4:
+                    AlcoholScene(transitionToScene: transitionToScene)
+                case 5:
+                    InstagramScene(transitionToScene: transitionToScene)
+                case 6:
+                    GamblingScene(transitionToScene: transitionToScene)
+                case 7:
+                    PiggyBankScene(transitionToScene: transitionToScene)
+                case 8:
+                    DrugsScene(transitionToScene: transitionToScene)
+                case 9:
+                    LightBlinking(transitionToScene: transitionToScene)
+                case 10:
+                    YouAreNotAlone(transitionToScene: transitionToScene)
+                case 11:
+                    PianoScene(transitionToScene: transitionToScene)
+                case 12:
+                    FamilyScene(transitionToScene: transitionToScene)
+                case 13:
+                    LastScene(transitionToScene: transitionToScene)
+                case 14:
+                    DoYouNeedHelp(transitionToScene: transitionToScene)
+//                case 15:
+//                    DevelopedWithLove(transitionToScene: transitionToScene, scene: .constant(ParticleLayer()))
                 default:
                     Text("Error, this sceneID doesn't exist")
                 }

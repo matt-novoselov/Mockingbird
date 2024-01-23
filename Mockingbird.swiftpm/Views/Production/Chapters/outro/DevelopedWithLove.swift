@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct DevelopedWithLove: View {
-    @Binding var scene: ParticleLayer
+    var transitionToScene: (Int) -> Void
+    
+    @Binding var ParticleGameScene: ParticleLayer
     
     var body: some View {
         ZStack{
@@ -23,7 +25,7 @@ struct DevelopedWithLove: View {
                     Circle()
                         .onAppear {
                             if let circlePosition = getGlobalPosition(view: geometry) {
-                                scene.test_call(xpos: circlePosition.x, ypos: -circlePosition.y)
+                                ParticleGameScene.test_call(xpos: circlePosition.x, ypos: -circlePosition.y)
                             }
                         }
                 }
@@ -33,7 +35,7 @@ struct DevelopedWithLove: View {
             }
         }
         .onTapGesture(coordinateSpace: .global) { location in
-            scene.test_call(xpos: location.x, ypos: location.y)
+            ParticleGameScene.test_call(xpos: location.x, ypos: location.y)
         }
     }
     
@@ -44,5 +46,5 @@ struct DevelopedWithLove: View {
 }
 
 #Preview {
-    DevelopedWithLove(scene: .constant(ParticleLayer()))
+    DevelopedWithLove(transitionToScene: TransitionManager().transitionToScene, ParticleGameScene: .constant(ParticleLayer()))
 }

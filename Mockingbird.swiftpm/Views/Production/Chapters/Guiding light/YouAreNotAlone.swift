@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct YouAreNotAlone: View {
+    var transitionToScene: (Int) -> Void
+    
     var body: some View {
         Text("You are not alone")
     }
 }
 
 #Preview {
-    YouAreNotAlone()
+    YouAreNotAlone(transitionToScene: TransitionManager().transitionToScene)
 }

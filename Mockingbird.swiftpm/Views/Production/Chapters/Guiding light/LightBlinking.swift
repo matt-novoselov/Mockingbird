@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LightBlinking: View {
+    var transitionToScene: (Int) -> Void
+    
     @State private var rectangleVisible = false
     
     var body: some View {
@@ -82,5 +84,5 @@ struct LightBlinking: View {
 
 
 #Preview {
-    LightBlinking()
+    LightBlinking(transitionToScene: TransitionManager().transitionToScene)
 }
