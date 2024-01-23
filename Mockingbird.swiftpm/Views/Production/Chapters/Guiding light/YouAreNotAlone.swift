@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct YouAreNotAlone: View {
-    var transitionToScene: (Int) -> Void
+    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     var body: some View {
         Text("You are not alone")
@@ -16,5 +16,5 @@ struct YouAreNotAlone: View {
 }
 
 #Preview {
-    YouAreNotAlone(transitionToScene: TransitionManager().transitionToScene)
+    YouAreNotAlone()
 }

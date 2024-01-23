@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CookieScene: View {
-    var transitionToScene: (Int) -> Void
+    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     @State var currentDisplayedImage: String = "PH_grid"
     @State var heavenSlider: Double = 0
@@ -40,5 +40,5 @@ struct CookieScene: View {
 }
 
 #Preview {
-    CookieScene(transitionToScene: TransitionManager().transitionToScene)
+    CookieScene()
 }

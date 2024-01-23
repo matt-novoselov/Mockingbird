@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DoYouNeedHelp: View {
-    var transitionToScene: (Int) -> Void
+    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     var body: some View {
         ZStack{
@@ -58,7 +58,7 @@ struct DoYouNeedHelp: View {
                 
                 Spacer()
                 
-                Button(action: {transitionToScene(15)}) {
+                Button(action: {transitionManagerObservable.transitionToScene?(15)}) {
                     Image("long_arrow_button")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -71,5 +71,5 @@ struct DoYouNeedHelp: View {
 }
 
 #Preview {
-    DoYouNeedHelp(transitionToScene: TransitionManager().transitionToScene)
+    DoYouNeedHelp()
 }

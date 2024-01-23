@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FamilyScene: View {
-    var transitionToScene: (Int) -> Void
+    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     @State var isShowingShadow: Bool = false
     
@@ -27,5 +27,5 @@ struct FamilyScene: View {
 }
 
 #Preview {
-    FamilyScene(transitionToScene: TransitionManager().transitionToScene)
+    FamilyScene()
 }

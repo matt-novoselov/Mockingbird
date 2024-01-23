@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StartMenu: View {
-    var transitionToScene: (Int) -> Void
+    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     var jigglingArray: [String] = ["num1", "num2", "num3", "num4"]
     @State private var currentIndex = 0
@@ -17,7 +17,7 @@ struct StartMenu: View {
         ZStack {
             LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
             
-            Button(action: {transitionToScene(2)}) {
+            Button(action: {transitionManagerObservable.transitionToScene?(2)}) {
                 Image(jigglingArray[currentIndex])
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -35,5 +35,5 @@ struct StartMenu: View {
 
 
 #Preview {
-    StartMenu(transitionToScene: TransitionManager().transitionToScene)
+    StartMenu()
 }

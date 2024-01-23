@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BetterExperienceInHeadphones: View {
-    var transitionToScene: (Int) -> Void
+    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     var body: some View {
         ZStack {
@@ -29,12 +29,12 @@ struct BetterExperienceInHeadphones: View {
         .onAppear {
             Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
                 // Transition to scene
-                transitionToScene(1)
+                transitionManagerObservable.transitionToScene?(1)
             }
         }
     }
 }
 
 #Preview {
-    BetterExperienceInHeadphones(transitionToScene: TransitionManager().transitionToScene)
+    BetterExperienceInHeadphones()
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AlcoholScene: View {
-    var transitionToScene: (Int) -> Void
+    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     @State var imgSatuation: Double = 1
     @State var imgOpacity: Double = 1
@@ -30,5 +30,5 @@ struct AlcoholScene: View {
 }
 
 #Preview {
-    AlcoholScene(transitionToScene: TransitionManager().transitionToScene)
+    AlcoholScene()
 }

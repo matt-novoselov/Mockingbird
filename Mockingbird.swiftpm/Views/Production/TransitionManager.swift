@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TransitionManager: View {
+    @StateObject private var transitionManagerObservable = TransitionManagerObservable()
     @State private var currentSceneID: Int = 15
     
     var body: some View {
@@ -15,43 +16,46 @@ struct TransitionManager: View {
             Group{
                 switch currentSceneID {
                 case 0:
-                    BetterExperienceInHeadphones(transitionToScene: transitionToScene)
+                    BetterExperienceInHeadphones()
                 case 1:
-                    StartMenu(transitionToScene: transitionToScene)
+                    StartMenu()
                 case 2:
-                    EachYearStatistics(transitionToScene: transitionToScene)
+                    EachYearStatistics()
                 case 3:
-                    CookieScene(transitionToScene: transitionToScene)
+                    CookieScene()
                 case 4:
-                    AlcoholScene(transitionToScene: transitionToScene)
+                    AlcoholScene()
                 case 5:
-                    InstagramScene(transitionToScene: transitionToScene)
+                    InstagramScene()
                 case 6:
-                    GamblingScene(transitionToScene: transitionToScene)
+                    GamblingScene()
                 case 7:
                     Text("Placeholder ID")
                 case 8:
-                    DrugsScene(transitionToScene: transitionToScene)
+                    DrugsScene()
                 case 9:
-                    LightBlinking(transitionToScene: transitionToScene)
+                    LightBlinking()
                 case 10:
-                    YouAreNotAlone(transitionToScene: transitionToScene)
+                    YouAreNotAlone()
                 case 11:
-                    PianoScene(transitionToScene: transitionToScene)
+                    PianoScene()
                 case 12:
-                    FamilyScene(transitionToScene: transitionToScene)
+                    FamilyScene()
                 case 13:
-                    LastScene(transitionToScene: transitionToScene)
+                    LastScene()
                 case 14:
-                    DoYouNeedHelp(transitionToScene: transitionToScene)
+                    DoYouNeedHelp()
                 case 15:
-                    DevelopedWithLove(transitionToScene: transitionToScene)
+                    DevelopedWithLove()
                 default:
                     Text("Error, this sceneID doesn't exist")
                 }
             }
             .transition(.pushUpTransition)
-            
+        }
+        .environmentObject(transitionManagerObservable)
+        .onAppear {
+            transitionManagerObservable.setTransitionFunction(transitionFunction: transitionToScene)
         }
         .ignoresSafeArea()
     }
@@ -60,6 +64,14 @@ struct TransitionManager: View {
         withAnimation(.easeInOut(duration: 2)) {
             currentSceneID = newSceneID
         }
+    }
+}
+
+class TransitionManagerObservable: ObservableObject {
+    @Published var transitionToScene: ((Int) -> Void)?
+
+    func setTransitionFunction(transitionFunction: @escaping (Int) -> Void) {
+        self.transitionToScene = transitionFunction
     }
 }
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InstagramScene: View {
-    var transitionToScene: (Int) -> Void
+    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     var body: some View {
         InstagramViewController()
@@ -17,5 +17,5 @@ struct InstagramScene: View {
 }
 
 #Preview {
-    InstagramScene(transitionToScene: TransitionManager().transitionToScene)
+    InstagramScene()
 }

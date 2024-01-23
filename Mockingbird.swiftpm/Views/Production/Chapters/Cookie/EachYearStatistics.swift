@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EachYearStatistics: View {
-    var transitionToScene: (Int) -> Void
+    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     var body: some View {
         ZStack {
@@ -21,12 +21,12 @@ struct EachYearStatistics: View {
         .onAppear {
             Timer.scheduledTimer(withTimeInterval: 8, repeats: false) { timer in
                 // Transition to scene
-                transitionToScene(3)
+                transitionManagerObservable.transitionToScene?(3)
             }
         }
     }
 }
 
 #Preview {
-    EachYearStatistics(transitionToScene: TransitionManager().transitionToScene)
+    EachYearStatistics()
 }

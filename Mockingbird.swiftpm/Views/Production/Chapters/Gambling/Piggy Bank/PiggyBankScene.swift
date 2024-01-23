@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PiggyBankScene: View {
-    var transitionToScene: (Int) -> Void
+    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     var body: some View {
         Text("PiggyBankScene")
@@ -16,5 +16,5 @@ struct PiggyBankScene: View {
 }
 
 #Preview {
-    PiggyBankScene(transitionToScene: TransitionManager().transitionToScene)
+    PiggyBankScene()
 }

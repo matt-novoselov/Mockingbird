@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LightBlinking: View {
-    var transitionToScene: (Int) -> Void
+    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @State private var isGlowing = false
     
     var body: some View {
@@ -38,7 +38,7 @@ struct LightBlinking: View {
         .onAppear {
             Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { timer in
                 // Transition to scene
-                transitionToScene(10)
+                transitionManagerObservable.transitionToScene?(10)
             }
         }
     }
@@ -68,5 +68,5 @@ struct LightBlinking: View {
 
 
 #Preview {
-    LightBlinking(transitionToScene: TransitionManager().transitionToScene)
+    LightBlinking()
 }

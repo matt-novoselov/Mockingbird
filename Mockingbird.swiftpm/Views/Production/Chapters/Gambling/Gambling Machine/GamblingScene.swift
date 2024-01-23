@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GamblingScene: View {
-    var transitionToScene: (Int) -> Void
+    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     @State var isCoinInsertedInMachine: Bool = false
 
@@ -49,5 +49,5 @@ struct GamblingScene: View {
 }
 
 #Preview{
-    GamblingScene(transitionToScene: TransitionManager().transitionToScene)
+    GamblingScene()
 }

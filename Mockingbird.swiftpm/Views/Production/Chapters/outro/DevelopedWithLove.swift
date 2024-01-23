@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DevelopedWithLove: View {
-    var transitionToScene: (Int) -> Void
+    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     var body: some View {
         ZStack{
@@ -44,7 +44,7 @@ struct DevelopedWithLove: View {
         .onAppear {
             Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
                 // Transition to scene
-                transitionToScene(1)
+                transitionManagerObservable.transitionToScene?(1)
             }
         }
     }
@@ -57,7 +57,7 @@ struct DevelopedWithLove: View {
 
 #Preview {
     ZStack{
-        DevelopedWithLove(transitionToScene: TransitionManager().transitionToScene)
+        DevelopedWithLove()
         
         SwiftuiParticles()
     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PianoScene: View {
-    var transitionToScene: (Int) -> Void
+    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     var body: some View {
         ZStack{
@@ -71,5 +71,5 @@ struct Note: View {
 }
 
 #Preview {
-    PianoScene(transitionToScene: TransitionManager().transitionToScene)
+    PianoScene()
 }

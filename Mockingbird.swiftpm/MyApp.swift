@@ -10,6 +10,7 @@ struct MyApp: App {
             .preferredColorScheme(.light)
             .statusBar(hidden: true)
             .persistentSystemOverlays(.hidden)
+            .environmentObject(TransitionManagerObservable())
         }
     }
 }
