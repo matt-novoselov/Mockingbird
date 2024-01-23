@@ -22,6 +22,7 @@ struct BlockerMessage: View {
                 FontText(text: "Better experience in the landscape mode", size: 64)
                     .multilineTextAlignment(.center)
                     .padding()
+                    .padding(.horizontal, 100)
             }
 
         }
