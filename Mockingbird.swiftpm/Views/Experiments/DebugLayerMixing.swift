@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DemoLayerMixing: View {
+struct DebugLayerMixing: View {
     @State var darkSlider: Double = 0
     @State var heavenSlider: Double = 0
     
@@ -31,5 +31,5 @@ struct DemoLayerMixing: View {
 }
 
 #Preview {
-    DemoLayerMixing()
+    DebugLayerMixing()
 }
