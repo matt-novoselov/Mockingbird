@@ -9,6 +9,9 @@ import SwiftUI
 
 struct PianoScene: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
+    @EnvironmentObject var notificationManager: NotificationManager
+    
+    @State var countTotalNotesEmited: Int = 0
     
     var body: some View {
         ZStack{
@@ -16,17 +19,22 @@ struct PianoScene: View {
             
             HStack{
                 ForEach(0..<7) { _ in
-                    pianoKey()
+                    pianoKey(countTotalNotesEmited: $countTotalNotesEmited)
                 }
+            }
+        }
+        .onChange(of: countTotalNotesEmited){
+            if countTotalNotesEmited==5{
+                notificationManager.callNotification(ID: 0)
             }
         }
     }
 }
 
 struct pianoKey: View {
-    
     @State var animationHasEnded: Bool = true
     @State var amountOfNotes: Int = 0
+    @Binding var countTotalNotesEmited: Int
     
     var body: some View {
         ZStack{
@@ -38,6 +46,7 @@ struct pianoKey: View {
                 action: {
                     playSound(name: "pop", ext: "mp3")
                     
+                    countTotalNotesEmited+=1
                     amountOfNotes+=1
                 }
             ) {
@@ -45,6 +54,7 @@ struct pianoKey: View {
                     .frame(width: 100, height: 400)
                     .foregroundColor(.white)
             }
+            .buttonStyle(NoOpacityButtonStyle())
         }
     }
 }
@@ -71,5 +81,5 @@ struct Note: View {
 }
 
 #Preview {
-    PianoScene()
+    LayersManager(initialView: PianoScene())
 }
