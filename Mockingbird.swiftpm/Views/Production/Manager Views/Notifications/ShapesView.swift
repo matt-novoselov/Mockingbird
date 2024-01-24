@@ -7,7 +7,7 @@ struct BubbleShape: Shape {
 
     init(radius: CGFloat = 25, showingTrail: Bool = false) {
         self.radius = radius
-        self.tailSize = 20
+        self.tailSize = 10
         self.showingTrail = showingTrail
     }
 
@@ -17,11 +17,11 @@ struct BubbleShape: Shape {
             
             
             if showingTrail{
-                path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY - rect.height / 2))
+                path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY - rect.height / 2 + tailSize))
                 path.addCurve(
                     to: CGPoint(x: rect.minX, y: rect.maxY - rect.height / 2 - tailSize),
-                    control1: CGPoint(x: rect.minX - tailSize, y: rect.maxY - rect.height / 2),
-                    control2: CGPoint(x: rect.minX, y: rect.maxY - rect.height / 2 - tailSize / 2)
+                    control1: CGPoint(x: rect.minX - tailSize*2, y: rect.maxY - rect.height / 2 ),
+                    control2: CGPoint(x: rect.minX, y: rect.maxY - rect.height / 2 - tailSize / 2 )
                 )
             }
             
