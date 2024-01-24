@@ -19,6 +19,8 @@ struct NotificationTextBlob: View {
     @State var stateShowButton: Bool = false
     let animationMoveInDuration: Double = 1.0
     
+    @EnvironmentObject var notificationManager: NotificationManager
+    
     var body: some View {
         ZStack (alignment: .top){
             Text(String(text.prefix(customShift)))
@@ -87,6 +89,8 @@ struct NotificationTextBlob: View {
         }
         else{
             // On typewriter animation end
+            notificationManager.isTextPrintFinished = true
+            
             if showingArrow{
                 withAnimation{
                     stateShowButton = true

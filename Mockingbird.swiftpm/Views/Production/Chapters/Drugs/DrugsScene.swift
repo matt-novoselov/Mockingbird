@@ -26,6 +26,9 @@ struct DrugsScene: View {
             DraggableShakableView(handleShake: handleShake)
                 .glow(color: Color("MainYellow").opacity((1 - heavenSlider)/2), radius: 100)
             
+            Text(notificationManager.isTextPrintFinished.description)
+                .foregroundStyle(.white)
+            
             VStack{
                 Spacer()
                 
@@ -38,6 +41,10 @@ struct DrugsScene: View {
     
     func handleShake() {
         if isShaken{
+            return
+        }
+        
+        if !notificationManager.isTextPrintFinished{
             return
         }
         
