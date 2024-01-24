@@ -41,21 +41,28 @@ struct StartMenu: View {
                             }
                         }
                     ) {
-                        Image(jigglingArray[currentIndex])
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .onAppear {
-                                Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-                                    currentIndex = (currentIndex + 1) % jigglingArray.count
+                        VStack{
+                            Image(jigglingArray[currentIndex])
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .onAppear {
+                                    Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                                        currentIndex = (currentIndex + 1) % jigglingArray.count
+                                    }
                                 }
-                            }
+                            
+                            Image("button_line")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 400)
+                        }
                     }
                     .buttonStyle(PlainButtonStyle())
                     
                     Spacer()
                 }
             }
-            .frame(height: 180)
+            .frame(height: 150)
             
         }
     }
