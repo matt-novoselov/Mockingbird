@@ -21,8 +21,8 @@ struct NotificationManagerView: View {
                     if(notificationManager.isTextDisplayed){
                         NotificationTextBlob(
                             text: notificationManager.currentNotificationMessage,
-                            showingArrow: true,
-                            showingTail: true,
+                            showingArrow: notificationManager.arrowAction != nil,
+                            showingTail: notificationManager.arrowAction == nil,
                             darkMode: notificationManager.darkMode ?? false,
                             arrowAction: notificationManager.arrowAction ?? nil
                         )
@@ -35,14 +35,6 @@ struct NotificationManagerView: View {
                 Spacer()
             }
         }
-    }
-    
-    func callNotification(ID: Int, arrowAction: (() -> Void)? = nil, darkMode:Bool?) {
-        notificationManager.callNotification(ID: ID, arrowAction: arrowAction, darkMode: darkMode)
-    }
-    
-    func closeNotification() {
-        notificationManager.closeNotification()
     }
 }
 
@@ -67,7 +59,6 @@ class NotificationManager: ObservableObject {
     func closeNotification() {
         withAnimation(Animation.easeInOut(duration: NotificationTextBlob(arrowAction: {}).animationMoveInDuration)) {
             isTextDisplayed = false
-            // Optionally, you can also reset the arrowAction here
             arrowAction = nil
         }
     }

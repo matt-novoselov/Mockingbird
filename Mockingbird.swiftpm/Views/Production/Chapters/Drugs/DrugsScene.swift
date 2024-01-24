@@ -50,7 +50,10 @@ struct DrugsScene: View {
             }
         }
         else{
-            notificationManager.callNotification(ID: 0, darkMode: true)
+            notificationManager.callNotification(ID: 0, arrowAction: {
+                notificationManager.closeNotification()
+                transitionManagerObservable.transitionToScene?(9)
+            }, darkMode: true)
         }
     }
     

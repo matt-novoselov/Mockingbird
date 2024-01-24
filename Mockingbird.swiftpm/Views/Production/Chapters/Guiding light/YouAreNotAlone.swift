@@ -13,9 +13,10 @@ struct YouAreNotAlone: View {
     
     var body: some View {
         ZStack{
-            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
+            LayerMixingManager(darkSlider: .constant(1), heavenSlider: .constant(0))
             
             Text("You are not alone")
+                .foregroundStyle(.white)
         }
     }
 }
