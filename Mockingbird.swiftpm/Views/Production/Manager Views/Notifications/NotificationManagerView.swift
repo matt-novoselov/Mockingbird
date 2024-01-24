@@ -9,27 +9,20 @@ import SwiftUI
 
 
 struct NotificationManagerView: View {
-    @State var isTextDisplayed: Bool = false
+    @EnvironmentObject var notificationManager: NotificationManager
     let notificationsSet: [Notification] = NotificationsViewModel().notifications
     
     @State var currentNotificationMessage: String = ""
     
     var body: some View {
         ZStack{
-            ////////////
-            Color(.red)
-                .opacity(0.2)
-                .onAppear(){
-                    CallNotification(ID: 0)
-                }
-            //////////
-            
             VStack{
                 HStack{
-                    if(isTextDisplayed){
-                        NotificationTextBlob(text: currentNotificationMessage, showingArrow: true, showingTail: true)
+                    if(notificationManager.isTextDisplayed){
+                        NotificationTextBlob(text: notificationManager.currentNotificationMessage, showingArrow: true, showingTail: true)
                             .padding(.all, 20)
                     }
+                    
                     Spacer()
                 }
                 
@@ -38,15 +31,29 @@ struct NotificationManagerView: View {
         }
     }
     
-    func CallNotification(ID: Int){
-        currentNotificationMessage = notificationsSet[ID].text
+    func callNotification(ID: Int) {
+        notificationManager.callNotification(ID: ID)
+    }
+    
+    func closeNotification() {
+        notificationManager.closeNotification()
+    }
+}
+
+class NotificationManager: ObservableObject {
+    @Published var isTextDisplayed: Bool = false
+    @Published var currentNotificationMessage: String = ""
+    
+    func callNotification(ID: Int) {
+        let notificationsSet = NotificationsViewModel().notifications
         
+        currentNotificationMessage = notificationsSet[ID].text
         withAnimation(Animation.easeInOut(duration: NotificationTextBlob().animationMoveInDuration)) {
             isTextDisplayed = true
         }
     }
     
-    func CloseNotification(){
+    func closeNotification() {
         withAnimation(Animation.easeInOut(duration: NotificationTextBlob().animationMoveInDuration)) {
             isTextDisplayed = false
         }

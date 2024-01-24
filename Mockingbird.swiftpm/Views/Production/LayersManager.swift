@@ -25,6 +25,7 @@ struct LayersManager<InitialView: View>: View {
             PortraitModeBlockerView()
         }
         .ignoresSafeArea()
+        .environmentObject(NotificationManager())
         .environmentObject(TransitionManagerObservable())
     }
 }

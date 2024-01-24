@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StartMenu: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
+    @EnvironmentObject var notificationManager: NotificationManager
     
     var jigglingArray: [String] = ["num1", "num2", "num3", "num4"]
     @State private var currentIndex = 0
@@ -64,6 +65,16 @@ struct StartMenu: View {
             }
             .frame(height: 150)
             
+            VStack{
+                Button("Button") {
+                    notificationManager.callNotification(ID: 0)
+                }
+                
+                Button("Close") {
+                    notificationManager.closeNotification()
+                }
+            }
+
         }
     }
     
