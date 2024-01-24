@@ -23,6 +23,7 @@ struct NotificationManagerView: View {
                             text: notificationManager.currentNotificationMessage,
                             showingArrow: true,
                             showingTail: true,
+                            darkMode: notificationManager.darkMode ?? false,
                             arrowAction: notificationManager.arrowAction ?? nil
                         )
                         .padding(.all, 20)
@@ -36,8 +37,8 @@ struct NotificationManagerView: View {
         }
     }
     
-    func callNotification(ID: Int, arrowAction: (() -> Void)? = nil) {
-        notificationManager.callNotification(ID: ID, arrowAction: arrowAction)
+    func callNotification(ID: Int, arrowAction: (() -> Void)? = nil, darkMode:Bool?) {
+        notificationManager.callNotification(ID: ID, arrowAction: arrowAction, darkMode: darkMode)
     }
     
     func closeNotification() {
@@ -50,10 +51,12 @@ class NotificationManager: ObservableObject {
     @Published var isTextDisplayed: Bool = false
     @Published var currentNotificationMessage: String = ""
     @Published var arrowAction: (() -> Void)? = nil
+    @Published var darkMode: Bool?
     
-    func callNotification(ID: Int, arrowAction: (() -> Void)? = nil) {
+    func callNotification(ID: Int, arrowAction: (() -> Void)? = nil, darkMode: Bool? = false) {
         let notificationsSet = NotificationsViewModel().notifications
         self.arrowAction = arrowAction
+        self.darkMode = darkMode
         
         currentNotificationMessage = notificationsSet[ID].text
         withAnimation(Animation.easeInOut(duration: NotificationTextBlob(arrowAction: {}).animationMoveInDuration)) {

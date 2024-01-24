@@ -13,10 +13,12 @@ struct DraggableShakableView: View {
     var handleShake: () -> Void
     
     var body: some View {
-        let circleSize: CGFloat = 100
+        let circleSize: CGFloat = 400
         let initialLocation = CGPoint(x: circleSize / 2, y: circleSize / 2)
         
-        Circle()
+        Image("PH_grid")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
             .position(circlePosition ?? initialLocation)
             .frame(width: circleSize, height: circleSize)
             .foregroundColor(.red)
@@ -33,11 +35,11 @@ struct DraggableShakableView: View {
                         }
                     }
             )
-            .background(.blue)
+//            .background(.blue)
     }
     
     func CheckShake(value: DragGesture.Value){
-        if (abs(value.velocity.width) > 4000 && abs(value.velocity.height) > 4000){
+        if (abs(value.velocity.width) > 6000 && abs(value.velocity.height) > 6000){
             handleShake()
         }
     }
