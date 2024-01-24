@@ -69,7 +69,7 @@ struct InstagramIconButton: View {
                             isOneOfButtonsPressed = true
                         }
                         
-                        if let buttonPosition = getGlobalPosition(view: geometry) {
+                        if let buttonPosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {
                             ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
                         }
                         
@@ -89,11 +89,6 @@ struct InstagramIconButton: View {
             .buttonStyle(NoOpacityButtonStyle())
         }
         .frame(width: 50, height: 50)
-    }
-    
-    private func getGlobalPosition(view: GeometryProxy) -> CGPoint? {
-        let circleRect = view.frame(in: .global)
-        return CGPoint(x: circleRect.midX, y: circleRect.midY)
     }
 }
 

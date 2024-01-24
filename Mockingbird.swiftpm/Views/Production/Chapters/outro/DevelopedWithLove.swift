@@ -28,7 +28,7 @@ struct DevelopedWithLove: View {
                         
                         .onAppear {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                                if let circlePosition = getGlobalPosition(view: geometry) {
+                                if let circlePosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {
                                     ParticleView.spawnParticle(xpos: circlePosition.x, ypos: circlePosition.y)
                                 }
                             }
@@ -48,11 +48,6 @@ struct DevelopedWithLove: View {
                 transitionManagerObservable.transitionToScene?(1)
             }
         }
-    }
-    
-    private func getGlobalPosition(view: GeometryProxy) -> CGPoint? {
-        let circleRect = view.frame(in: .global)
-        return CGPoint(x: circleRect.midX, y: circleRect.midY)
     }
 }
 
