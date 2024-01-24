@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CookieScene: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
+    @EnvironmentObject var notificationManager: NotificationManager
     
     @State var currentDisplayedImage: String = "PH_grid"
     @State var heavenSlider: Double = 0
@@ -21,6 +22,8 @@ struct CookieScene: View {
                 withAnimation(.none) {
                     currentDisplayedImage = "PH_calendar"
                 }
+                
+                notificationManager.callNotification(ID: 0)
                 
                 let animationDuration = 3.0
                 
