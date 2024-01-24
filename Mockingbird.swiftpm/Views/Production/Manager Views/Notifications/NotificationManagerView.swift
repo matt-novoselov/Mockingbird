@@ -33,9 +33,6 @@ struct NotificationManagerView: View {
                 Spacer()
             }
         }
-        .onAppear(){
-            notificationManager.callNotification(ID: 0)
-        }
     }
 }
 
