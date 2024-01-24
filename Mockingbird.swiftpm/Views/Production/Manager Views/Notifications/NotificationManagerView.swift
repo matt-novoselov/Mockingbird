@@ -19,8 +19,13 @@ struct NotificationManagerView: View {
             VStack{
                 HStack{
                     if(notificationManager.isTextDisplayed){
-                        NotificationTextBlob(text: notificationManager.currentNotificationMessage, showingArrow: true, showingTail: true, arrowAction: notificationManager.arrowAction)
-                            .padding(.all, 20)
+                        NotificationTextBlob(
+                            text: notificationManager.currentNotificationMessage,
+                            showingArrow: true,
+                            showingTail: true,
+                            arrowAction: notificationManager.arrowAction ?? nil
+                        )
+                        .padding(.all, 20)
                     }
                     
                     Spacer()
@@ -31,7 +36,7 @@ struct NotificationManagerView: View {
         }
     }
     
-    func callNotification(ID: Int, arrowAction: @escaping () -> Void) {
+    func callNotification(ID: Int, arrowAction: (() -> Void)? = nil) {
         notificationManager.callNotification(ID: ID, arrowAction: arrowAction)
     }
     
@@ -40,12 +45,13 @@ struct NotificationManagerView: View {
     }
 }
 
+
 class NotificationManager: ObservableObject {
     @Published var isTextDisplayed: Bool = false
     @Published var currentNotificationMessage: String = ""
-    @Published var arrowAction: () -> Void = {}
+    @Published var arrowAction: (() -> Void)? = nil
     
-    func callNotification(ID: Int, arrowAction: @escaping () -> Void) {
+    func callNotification(ID: Int, arrowAction: (() -> Void)? = nil) {
         let notificationsSet = NotificationsViewModel().notifications
         self.arrowAction = arrowAction
         
@@ -58,6 +64,8 @@ class NotificationManager: ObservableObject {
     func closeNotification() {
         withAnimation(Animation.easeInOut(duration: NotificationTextBlob(arrowAction: {}).animationMoveInDuration)) {
             isTextDisplayed = false
+            // Optionally, you can also reset the arrowAction here
+            arrowAction = nil
         }
     }
 }

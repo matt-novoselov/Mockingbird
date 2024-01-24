@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Matt Novoselov on 23/01/24.
 //
@@ -23,7 +23,13 @@ struct CookieScene: View {
                     currentDisplayedImage = "PH_calendar"
                 }
                 
-                notificationManager.callNotification(ID: 0, arrowAction: {transitionManagerObservable.transitionToScene?(4)})
+                notificationManager.callNotification(
+                    ID: 0,
+                    arrowAction: {
+                        transitionManagerObservable.transitionToScene?(4)
+                        notificationManager.closeNotification()
+                    }
+                )
                 
                 let animationDuration = 3.0
                 
@@ -38,6 +44,7 @@ struct CookieScene: View {
             {
                 Image(currentDisplayedImage)
             }
+            .buttonStyle(NoOpacityButtonStyle())
         }
     }
 }
