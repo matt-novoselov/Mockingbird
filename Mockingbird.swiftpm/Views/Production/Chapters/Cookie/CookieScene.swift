@@ -23,7 +23,7 @@ struct CookieScene: View {
                     currentDisplayedImage = "PH_calendar"
                 }
                 
-                notificationManager.callNotification(ID: 0)
+                notificationManager.callNotification(ID: 0, arrowAction: {transitionManagerObservable.transitionToScene?(4)})
                 
                 let animationDuration = 3.0
                 

@@ -19,7 +19,7 @@ struct NotificationManagerView: View {
             VStack{
                 HStack{
                     if(notificationManager.isTextDisplayed){
-                        NotificationTextBlob(text: notificationManager.currentNotificationMessage, showingArrow: true, showingTail: true)
+                        NotificationTextBlob(text: notificationManager.currentNotificationMessage, showingArrow: true, showingTail: true, arrowAction: notificationManager.arrowAction)
                             .padding(.all, 20)
                     }
                     
@@ -31,8 +31,8 @@ struct NotificationManagerView: View {
         }
     }
     
-    func callNotification(ID: Int) {
-        notificationManager.callNotification(ID: ID)
+    func callNotification(ID: Int, arrowAction: @escaping () -> Void) {
+        notificationManager.callNotification(ID: ID, arrowAction: arrowAction)
     }
     
     func closeNotification() {
@@ -43,18 +43,20 @@ struct NotificationManagerView: View {
 class NotificationManager: ObservableObject {
     @Published var isTextDisplayed: Bool = false
     @Published var currentNotificationMessage: String = ""
+    @Published var arrowAction: () -> Void = {}
     
-    func callNotification(ID: Int) {
+    func callNotification(ID: Int, arrowAction: @escaping () -> Void) {
         let notificationsSet = NotificationsViewModel().notifications
+        self.arrowAction = arrowAction
         
         currentNotificationMessage = notificationsSet[ID].text
-        withAnimation(Animation.easeInOut(duration: NotificationTextBlob().animationMoveInDuration)) {
+        withAnimation(Animation.easeInOut(duration: NotificationTextBlob(arrowAction: {}).animationMoveInDuration)) {
             isTextDisplayed = true
         }
     }
     
     func closeNotification() {
-        withAnimation(Animation.easeInOut(duration: NotificationTextBlob().animationMoveInDuration)) {
+        withAnimation(Animation.easeInOut(duration: NotificationTextBlob(arrowAction: {}).animationMoveInDuration)) {
             isTextDisplayed = false
         }
     }

@@ -11,6 +11,7 @@ struct NotificationTextBlob: View {
     var text: String = ""
     var showingArrow: Bool = false
     var showingTail: Bool = false
+    var arrowAction: () -> Void
     
     @State var shift: Int = 0
     @State var customShift: Int = 1
@@ -60,7 +61,7 @@ struct NotificationTextBlob: View {
                     .padding()
                 
                 if showingArrow{
-                    ArrowCircleButton()
+                    ArrowCircleButton(arrowAction: arrowAction)
                         .offset(x: 20, y: 20)
                         .scaleEffect(stateShowButton ? 1.0 : 0.0)
                 }
@@ -95,10 +96,12 @@ struct NotificationTextBlob: View {
 }
 
 struct ArrowCircleButton: View {
+    var arrowAction: () -> Void
+    
     var body: some View {
         Button(
             action: {
-                print("pressed arrow")
+                arrowAction()
             }
         ){
             ZStack{
@@ -125,6 +128,6 @@ struct ArrowCircleButton: View {
         Color(.red)
             .ignoresSafeArea()
         
-        NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis amet aute.", showingArrow: true, showingTail: true)
+        NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis amet aute.", showingArrow: true, showingTail: true, arrowAction: {})
     }
 }
