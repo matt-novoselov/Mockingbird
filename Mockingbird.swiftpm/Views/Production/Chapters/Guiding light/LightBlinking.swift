@@ -28,7 +28,7 @@ struct LightBlinking: View {
                     FontText(text: "guiding light", size: 96)
                         .multilineTextAlignment(.center)
                         .foregroundColor(isGlowing ? .yellow : .white)
-                        .glow(color: .yellow.opacity(isGlowing ? 0.4 : 0.0), radius: 70)
+                        .glow(color: Color("MB_main_yellow").opacity(isGlowing ? 0.4 : 0.0), radius: 70)
                         .onAppear {
                             blink()
                         }

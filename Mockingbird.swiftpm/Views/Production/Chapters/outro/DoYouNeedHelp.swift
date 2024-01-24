@@ -65,6 +65,7 @@ struct DoYouNeedHelp: View {
                         .frame(height: 80)
                         .padding()
                 }
+                .buttonStyle(NoOpacityButtonStyle())
             }
         }
     }
