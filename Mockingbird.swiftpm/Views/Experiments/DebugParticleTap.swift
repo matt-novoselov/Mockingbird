@@ -27,10 +27,5 @@ struct DebugParticleTap: View {
 }
 
 #Preview {
-    ZStack{
-        DebugParticleTap()
-        
-        SwiftuiParticles()
-    }
-    .ignoresSafeArea()
+    LayersManager(initialView: DebugParticleTap())
 }

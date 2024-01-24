@@ -25,7 +25,7 @@ struct AlcoholScene: View {
                 Button("Button") {
                     withAnimation(Animation.easeInOut(duration: 2.0)) {
                         imgSatuation = 0
-                        imgOpacity = 0.6
+                        imgOpacity = 0.8
                     }
                 }
             }

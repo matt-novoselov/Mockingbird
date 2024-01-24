@@ -26,7 +26,7 @@ struct DevelopedWithLove: View {
                         .glow(color: Color("MB_main_yellow").opacity(0.3), radius: 30)
                         
                         .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                                 if let circlePosition = getGlobalPosition(view: geometry) {
                                     ParticleView.spawnParticle(xpos: circlePosition.x, ypos: circlePosition.y)
                                 }
