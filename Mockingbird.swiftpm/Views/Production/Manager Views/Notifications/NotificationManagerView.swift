@@ -16,6 +16,13 @@ struct NotificationManagerView: View {
     
     var body: some View {
         ZStack{
+            ////////////
+            Color(.red)
+                .opacity(0.2)
+                .onAppear(){
+                    CallNotification(ID: 0)
+                }
+            //////////
             
             VStack{
                 HStack{

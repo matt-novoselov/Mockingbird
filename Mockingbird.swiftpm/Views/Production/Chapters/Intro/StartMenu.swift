@@ -57,7 +57,7 @@ struct StartMenu: View {
                                 .frame(width: 400)
                         }
                     }
-                    .buttonStyle(PlainButtonStyle())
+                    .buttonStyle(NoOpacityButtonStyle())
                     
                     Spacer()
                 }
@@ -76,6 +76,6 @@ struct StartMenu: View {
 
 
 #Preview {
-    LayersManager(initialView: StartMenu    ())
+    LayersManager(initialView: StartMenu())
 }
 

@@ -10,9 +10,9 @@ import SwiftUI
 struct NoOpacityButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .foregroundColor(configuration.isPressed ? .accentColor : .primary)
-            .background(configuration.isPressed ? Color.clear : Color.accentColor.opacity(0.2))
-            .cornerRadius(8)
-            .padding()
+            .scaleEffect(
+                configuration.isPressed ? 0.9 : 1.0
+            )
+            .animation(Animation.easeInOut(duration: 0.5), value: configuration.isPressed)
     }
 }

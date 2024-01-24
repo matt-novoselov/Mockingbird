@@ -96,7 +96,11 @@ struct NotificationTextBlob: View {
 
 struct ArrowCircleButton: View {
     var body: some View {
-        Button(action: {print("pressed arrow")}){
+        Button(
+            action: {
+                print("pressed arrow")
+            }
+        ){
             ZStack{
                 Circle()
                     .frame(width: 65, height: 65)
@@ -106,10 +110,13 @@ struct ArrowCircleButton: View {
                             .stroke(Color.black, lineWidth: 3)
                     )
                 
-                Text("->")
-                    .fontWeight(.black)
+                Image("arrow_right")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 20)
             }
         }
+        .buttonStyle(NoOpacityButtonStyle())
     }
 }
 
@@ -118,6 +125,6 @@ struct ArrowCircleButton: View {
         Color(.red)
             .ignoresSafeArea()
         
-        NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis amet aute.", showingArrow: true, showingTail: false)
+        NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis amet aute.", showingArrow: true, showingTail: true)
     }
 }
