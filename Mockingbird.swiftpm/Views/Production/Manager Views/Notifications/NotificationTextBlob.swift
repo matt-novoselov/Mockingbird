@@ -11,6 +11,7 @@ struct NotificationTextBlob: View {
     var text: String = ""
     var showingArrow: Bool = false
     var showingTail: Bool = false
+    var darkMode: Bool = false
     var arrowAction: (() -> Void)?
     
     @State var shift: Int = 0
@@ -27,11 +28,11 @@ struct NotificationTextBlob: View {
                 .padding()
                 .background(
                     BubbleShape(showingTrail: showingTail)
-                        .foregroundColor(.white)
+                        .foregroundColor(darkMode ? Color("BlobDarkBackground") : .white)
                 )
                 .overlay(
                     BubbleShape(showingTrail: showingTail)
-                        .stroke(Color.black, lineWidth: 3)
+                        .stroke(darkMode ? .white : .black, lineWidth: 3)
                 )
                 .onChange(of: shift){
                     withAnimation{
@@ -42,11 +43,11 @@ struct NotificationTextBlob: View {
             Group {
                 Text(String(text.prefix(shift)))
                     .font(getFont(size: 32))
-                    .foregroundColor(.black) +
+                    .foregroundColor(darkMode ? .white : .black) +
                 
                 Text(String(text.suffix(from: text.index(text.startIndex, offsetBy: shift))))
                     .font(getFont(size: 32))
-                    .foregroundColor(.black.opacity(0))
+                    .foregroundColor(.red.opacity(0))
                 
             }
             .frame(maxWidth: 330)
@@ -61,7 +62,7 @@ struct NotificationTextBlob: View {
                     .padding()
                 
                 if showingArrow{
-                    ArrowCircleButton(arrowAction: arrowAction ?? nil)
+                    ArrowCircleButton(darkMode: darkMode, arrowAction: arrowAction ?? nil)
                         .offset(x: 20, y: 20)
                         .scaleEffect(stateShowButton ? 1.0 : 0.0)
                 }
@@ -96,6 +97,7 @@ struct NotificationTextBlob: View {
 }
 
 struct ArrowCircleButton: View {
+    var darkMode: Bool = false
     var arrowAction: (() -> Void)?
     
     var body: some View {
@@ -108,13 +110,13 @@ struct ArrowCircleButton: View {
             ZStack{
                 Circle()
                     .frame(width: 65, height: 65)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(darkMode ? Color("BlobDarkBackground") : .white)
                     .overlay(
                         Circle()
-                            .stroke(Color.black, lineWidth: 3)
+                            .stroke(darkMode ? .white : .black, lineWidth: 3)
                     )
                 
-                Image("arrow_right")
+                Image(darkMode ? "arrow_right_white" : "arrow_right")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 20)
@@ -129,6 +131,10 @@ struct ArrowCircleButton: View {
         Color(.red)
             .ignoresSafeArea()
         
-        NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis amet aute.", showingArrow: true, showingTail: true, arrowAction: {})
+        VStack{
+            NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis aute.", showingArrow: true, showingTail: true, darkMode: true, arrowAction: {})
+            
+            NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis aute.", showingArrow: true, showingTail: true, arrowAction: {})
+        }
     }
 }
