@@ -24,7 +24,7 @@ struct DrugsScene: View {
             LayerMixingManager(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
             
             DraggableShakableView(handleShake: handleShake)
-                .glow(color: Color("MB_main_yellow").opacity((1 - heavenSlider)/2), radius: 100)
+                .glow(color: Color("MainYellow").opacity((1 - heavenSlider)/2), radius: 100)
             
             VStack{
                 Spacer()
@@ -105,7 +105,7 @@ struct DrugsPill: View {
         }){
             Circle()
                 .frame(width: 100, height: 100)
-                .foregroundColor(Color("MB_main_yellow"))
+                .foregroundColor(Color("MainYellow"))
                 .padding()
         }
         .buttonStyle(NoOpacityButtonStyle())

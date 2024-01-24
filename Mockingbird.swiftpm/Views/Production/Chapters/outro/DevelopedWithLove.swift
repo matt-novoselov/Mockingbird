@@ -24,7 +24,7 @@ struct DevelopedWithLove: View {
                     Image("SF_heart_white_bcg")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .glow(color: Color("MB_main_yellow").opacity(0.3), radius: 30)
+                        .glow(color: Color("MainYellow").opacity(0.3), radius: 30)
                         
                         .onAppear {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {

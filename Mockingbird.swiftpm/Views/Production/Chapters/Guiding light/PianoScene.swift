@@ -68,7 +68,7 @@ struct Note: View {
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(height: 65)
-            .glow(color: Color("MB_main_yellow").opacity(0.6), radius: 30)
+            .glow(color: Color("MainYellow").opacity(0.6), radius: 30)
             .offset(y: noteOffset)
             .opacity(noteOpacity)
             .onAppear(){

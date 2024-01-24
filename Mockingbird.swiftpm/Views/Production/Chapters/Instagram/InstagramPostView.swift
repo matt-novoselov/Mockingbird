@@ -84,7 +84,7 @@ struct InstagramIconButton: View {
                 Image(!isButtonPressed ? symbol : filledSymbol)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .glow(color: Color("MB_main_yellow").opacity(isButtonPressed ? 0.3 : 0), radius: 30)
+                    .glow(color: Color("MainYellow").opacity(isButtonPressed ? 0.3 : 0), radius: 30)
             }
             .buttonStyle(NoOpacityButtonStyle())
         }
