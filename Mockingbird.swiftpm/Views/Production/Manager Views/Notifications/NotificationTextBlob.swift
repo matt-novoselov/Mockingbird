@@ -101,6 +101,7 @@ struct ArrowCircleButton: View {
     var body: some View {
         Button(
             action: {
+                
                 arrowAction?()
             }
         ){

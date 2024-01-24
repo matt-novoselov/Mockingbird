@@ -11,11 +11,16 @@ struct InstagramScene: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     var body: some View {
-        InstagramViewController()
-            .padding(.all, 100)
+        ZStack{
+            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
+            
+            InstagramViewController()
+                .padding(.all, 100)
+                .environmentObject(transitionManagerObservable)
+        }
     }
 }
 
 #Preview {
-    InstagramScene()
+    LayersManager(initialView: InstagramScene())
 }

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct InstagramViewController: View {
+    @EnvironmentObject var notificationManager: NotificationManager
+    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
+    
     @State private var currentSceneID: Int = 0
     var posts:InstagramPostViewModel = InstagramPostViewModel()
     
@@ -42,10 +45,19 @@ struct InstagramViewController: View {
             if currentSceneID<posts.posts.count-1{
                 currentSceneID += 1
             }
+            else{
+                notificationManager.callNotification(
+                    ID: 0,
+                    arrowAction: {
+                        transitionManagerObservable.transitionToScene?(6)
+                        notificationManager.closeNotification()
+                    }
+                )
+            }
         }
     }
 }
 
 #Preview {
-    InstagramViewController()
+    LayersManager(initialView: InstagramViewController())
 }

@@ -14,15 +14,19 @@ struct AlcoholScene: View {
     @State var imgOpacity: Double = 1
     
     var body: some View {
-        VStack{
-            Image("PH_grid")
-                .saturation(imgSatuation)
-                .opacity(imgOpacity)
+        ZStack{
+            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
             
-            Button("Button") {
-                withAnimation(Animation.easeInOut(duration: 2.0)) {
-                    imgSatuation = 0
-                    imgOpacity = 0.6
+            VStack{
+                Image("PH_grid")
+                    .saturation(imgSatuation)
+                    .opacity(imgOpacity)
+                
+                Button("Button") {
+                    withAnimation(Animation.easeInOut(duration: 2.0)) {
+                        imgSatuation = 0
+                        imgOpacity = 0.6
+                    }
                 }
             }
         }

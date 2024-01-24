@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Matt Novoselov on 20/01/24.
 //
@@ -12,42 +12,92 @@ struct InstagramPostView: View {
     var postedTimeAgo: String
     var image: String
     var transitionToScene: () -> Void
+    @State var isOneofbuttonsPressed: Bool = false
     
     var body: some View {
         VStack{
             HStack{
-                Text(username)
+                FontText(text: username, size: 20)
+                    .foregroundColor(Color("InstagramGray"))
                 
                 Spacer()
                 
-                Text(postedTimeAgo)
+                FontText(text: postedTimeAgo, size: 20)
+                    .foregroundColor(Color("InstagramGray"))
             }
             
             Image(image)
                 .resizable()
-                .scaledToFill()
+                .scaledToFit()
+                .cornerRadius(10)
             
             HStack{
-                Button("comment") {
-                    transitionToScene()
-                }
-
-                Spacer()
-                
-                Button("like") {
-                    transitionToScene()
-                }
+                InstagramIconButton(symbol: "SF_chat", filledSymbol: "SF_chat_filled", action: {transitionToScene()}, isOneOfButtonsPressed: $isOneofbuttonsPressed)
                 
                 Spacer()
                 
-                Button("share") {
-                    transitionToScene()
-                }
+                InstagramIconButton(symbol: "SF_like", filledSymbol: "SF_like_filled", action: {transitionToScene()}, isOneOfButtonsPressed: $isOneofbuttonsPressed)
+                
+                Spacer()
+                
+                InstagramIconButton(symbol: "SF_forward", filledSymbol: "SF_forward_filled", action: {transitionToScene()}, isOneOfButtonsPressed: $isOneofbuttonsPressed)
+                
+                
             }
         }
     }
 }
 
+struct InstagramIconButton: View {
+    var symbol: String
+    var filledSymbol: String
+    var action: () -> Void
+    
+    @State var isButtonPressed: Bool = false
+    @Binding var isOneOfButtonsPressed: Bool
+    
+    var body: some View {
+        GeometryReader { geometry in
+            Button(
+                action: {
+                    if isOneOfButtonsPressed{
+                        return
+                    }
+                    else{
+                        withAnimation(Animation.easeInOut(duration: 0.2)){
+                            isButtonPressed = true
+                            isOneOfButtonsPressed = true
+                        }
+                        
+                        if let buttonPosition = getGlobalPosition(view: geometry) {
+                            ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            action()
+                        }
+                        
+                    }
+                }
+            )
+            {
+                Image(!isButtonPressed ? symbol : filledSymbol)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
+            .buttonStyle(NoOpacityButtonStyle())
+        }
+        .frame(width: 50, height: 50)
+    }
+    
+    private func getGlobalPosition(view: GeometryProxy) -> CGPoint? {
+        let circleRect = view.frame(in: .global)
+        return CGPoint(x: circleRect.midX, y: circleRect.midY)
+    }
+}
+
 #Preview {
-    InstagramPostView(username: "@example", postedTimeAgo: "ex ago", image: "PH_calendar", transitionToScene: InstagramViewController().transitionToNextPost)
+    LayersManager(
+        initialView: InstagramPostView(username: "@example", postedTimeAgo: "ex ago", image: "PH_calendar", transitionToScene: InstagramViewController().transitionToNextPost)
+    )
 }
