@@ -10,9 +10,6 @@ import SwiftUI
 
 struct NotificationManagerView: View {
     @EnvironmentObject var notificationManager: NotificationManager
-    let notificationsSet: [Notification] = NotificationsViewModel().notifications
-    
-    @State var currentNotificationMessage: String = ""
     
     var body: some View {
         ZStack{
@@ -35,6 +32,9 @@ struct NotificationManagerView: View {
                 
                 Spacer()
             }
+        }
+        .onAppear(){
+            notificationManager.callNotification(ID: 0)
         }
     }
 }
@@ -69,5 +69,7 @@ class NotificationManager: ObservableObject {
 }
 
 #Preview {
-    LayersManager(initialView: NotificationManagerView())
+    NotificationManagerView()
+        .environmentObject(NotificationManager())
+        .ignoresSafeArea()
 }
