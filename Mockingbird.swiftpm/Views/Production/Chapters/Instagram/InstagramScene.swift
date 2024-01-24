@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InstagramScene: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
+    @EnvironmentObject var notificationManager: NotificationManager
     
     var body: some View {
         ZStack{

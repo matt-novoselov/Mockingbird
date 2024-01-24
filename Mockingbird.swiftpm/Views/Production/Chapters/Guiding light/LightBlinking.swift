@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LightBlinking: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
+    @EnvironmentObject var notificationManager: NotificationManager
+    
     @State private var isGlowing = false
     
     var body: some View {
@@ -68,5 +70,5 @@ struct LightBlinking: View {
 
 
 #Preview {
-    LightBlinking()
+    LayersManager(initialView: LightBlinking())
 }

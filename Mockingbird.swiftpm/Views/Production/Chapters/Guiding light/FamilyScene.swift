@@ -9,23 +9,28 @@ import SwiftUI
 
 struct FamilyScene: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
+    @EnvironmentObject var notificationManager: NotificationManager
     
     @State var isShowingShadow: Bool = false
     
     var body: some View {
-        Button(action: {
-            isShowingShadow.toggle()
-        })
-        {
+        ZStack{
+            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
             
-            Image("PH_cubes")
-                .glow(color: Color("MB_main_yellow").opacity(isShowingShadow ? 0.4 : 0.0), radius: 40)
-            
+            Button(action: {
+                isShowingShadow.toggle()
+            })
+            {
+                
+                Image("PH_cubes")
+                    .glow(color: Color("MB_main_yellow").opacity(isShowingShadow ? 0.4 : 0.0), radius: 40)
+                
+            }
+            .buttonStyle(PlainButtonStyle())
         }
-        .buttonStyle(PlainButtonStyle())
     }
 }
 
 #Preview {
-    FamilyScene()
+    LayersManager(initialView: FamilyScene())
 }

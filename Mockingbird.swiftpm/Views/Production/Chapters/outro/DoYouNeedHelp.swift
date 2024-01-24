@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DoYouNeedHelp: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
+    @EnvironmentObject var notificationManager: NotificationManager
     
     var body: some View {
         ZStack{
@@ -72,5 +73,5 @@ struct DoYouNeedHelp: View {
 }
 
 #Preview {
-    DoYouNeedHelp()
+    LayersManager(initialView: DoYouNeedHelp())
 }

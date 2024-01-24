@@ -9,12 +9,17 @@ import SwiftUI
 
 struct YouAreNotAlone: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
+    @EnvironmentObject var notificationManager: NotificationManager
     
     var body: some View {
-        Text("You are not alone")
+        ZStack{
+            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
+            
+            Text("You are not alone")
+        }
     }
 }
 
 #Preview {
-    YouAreNotAlone()
+    LayersManager(initialView: YouAreNotAlone())
 }

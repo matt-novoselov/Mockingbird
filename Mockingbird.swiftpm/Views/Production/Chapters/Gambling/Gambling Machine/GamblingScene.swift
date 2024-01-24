@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GamblingScene: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
+    @EnvironmentObject var notificationManager: NotificationManager
     
     @State var isCoinInsertedInMachine: Bool = false
 
@@ -16,6 +17,8 @@ struct GamblingScene: View {
         let rectCollider = createMachineCollider(height: 200, width: 200)
         
         ZStack{
+            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
+            
             HStack (spacing: 0){
                 DynamicMachineCollider(rectCollider: rectCollider)
                     .background(isCoinInsertedInMachine ? Color.yellow : Color.green)
@@ -49,5 +52,5 @@ struct GamblingScene: View {
 }
 
 #Preview{
-    GamblingScene()
+    LayersManager(initialView: GamblingScene())
 }

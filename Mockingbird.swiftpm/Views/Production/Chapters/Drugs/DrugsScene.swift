@@ -10,6 +10,7 @@ import SwiftUI
 struct DrugsScene: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
+    
     @State var darkSlider: Double = 0.5
     @State var heavenSlider: Double = 0
     

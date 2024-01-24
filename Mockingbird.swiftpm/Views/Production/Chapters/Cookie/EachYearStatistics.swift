@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EachYearStatistics: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
+    @EnvironmentObject var notificationManager: NotificationManager
     
     var body: some View {
         ZStack {
@@ -28,5 +29,5 @@ struct EachYearStatistics: View {
 }
 
 #Preview {
-    EachYearStatistics()
+    LayersManager(initialView: EachYearStatistics())
 }

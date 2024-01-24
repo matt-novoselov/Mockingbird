@@ -50,5 +50,5 @@ struct CookieScene: View {
 }
 
 #Preview {
-    CookieScene()
+    LayersManager(initialView: CookieScene())
 }

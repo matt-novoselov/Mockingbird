@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BetterExperienceInHeadphones: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
+    @EnvironmentObject var notificationManager: NotificationManager
     
     var body: some View {
         ZStack {
@@ -36,5 +37,5 @@ struct BetterExperienceInHeadphones: View {
 }
 
 #Preview {
-    BetterExperienceInHeadphones()
+    LayersManager(initialView: BetterExperienceInHeadphones())
 }
