@@ -7,10 +7,16 @@
 
 import SwiftUI
 
-struct LayersManager: View {
+struct LayersManager<InitialView: View>: View {
+    let initialView: InitialView
+
+    init(initialView: InitialView) {
+        self.initialView = initialView
+    }
+
     var body: some View {
-        ZStack{
-            TransitionManager()
+        ZStack {
+            initialView
             
             SwiftuiParticles()
             
@@ -19,9 +25,11 @@ struct LayersManager: View {
             PortraitModeBlockerView()
         }
         .ignoresSafeArea()
+        .environmentObject(TransitionManagerObservable())
     }
 }
 
+
 #Preview {
-    LayersManager()
+    LayersManager(initialView: TransitionManager())
 }

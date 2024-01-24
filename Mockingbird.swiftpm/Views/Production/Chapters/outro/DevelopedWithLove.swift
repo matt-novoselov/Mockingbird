@@ -56,10 +56,5 @@ struct DevelopedWithLove: View {
 }
 
 #Preview {
-    ZStack{
-        DevelopedWithLove()
-        
-        SwiftuiParticles()
-    }
-    .ignoresSafeArea()
+    LayersManager(initialView: DevelopedWithLove())
 }

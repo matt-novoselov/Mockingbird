@@ -67,13 +67,8 @@ struct StartMenu: View {
 }
 
 
+
 #Preview {
-    ZStack{
-        StartMenu()
-        
-        SwiftuiParticles()
-    }
-    .ignoresSafeArea()
-    .environmentObject(TransitionManagerObservable())
+    LayersManager(initialView: StartMenu    ())
 }
 
