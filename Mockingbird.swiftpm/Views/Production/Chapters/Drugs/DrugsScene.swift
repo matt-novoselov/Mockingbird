@@ -55,10 +55,7 @@ struct DrugsScene: View {
         }
         else{
             notificationManager.callNotification(ID: 16, arrowAction: {
-                notificationManager.closeNotification()
-                DispatchQueue.main.asyncAfter(deadline: .now() + NotificationTextBlob().animationMoveInDuration) {
-                    transitionManagerObservable.transitionToScene?(9)
-                }
+                transitionManagerObservable.transitionToScene?(9)
             }, darkMode: true)
         }
     }

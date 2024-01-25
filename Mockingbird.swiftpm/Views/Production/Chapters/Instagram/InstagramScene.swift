@@ -44,10 +44,7 @@ struct InstagramScene: View {
             notificationManager.callNotification(
                 ID: 9,
                 arrowAction: {
-                    notificationManager.closeNotification()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + NotificationTextBlob().animationMoveInDuration) {
-                        transitionManagerObservable.transitionToScene?(6)
-                    }
+                    transitionManagerObservable.transitionToScene?(6)
                 }
             )
         }

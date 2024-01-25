@@ -110,8 +110,11 @@ struct ArrowCircleButton: View {
     var body: some View {
         Button(
             action: {
-                arrowAction?()
                 notificationManager.closeNotification()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + NotificationTextBlob().animationMoveInDuration) {
+                    arrowAction?()
+                }
             }
         ){
             ZStack{
