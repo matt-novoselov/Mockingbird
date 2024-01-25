@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct DraggableCoin: View {
+    @EnvironmentObject var notificationManager: NotificationManager
+    
     @State private var circlePosition: CGPoint? // Make circlePosition optional
     @State var hasCollided: Bool = false
     
     @Binding var isCoinInsertedInMachine: Bool
+    @Binding var isInHeaven: Bool
+    
     var insertCoin: () -> Void
     var rectCollider: CGRect
     
@@ -46,12 +50,23 @@ struct DraggableCoin: View {
         }
     }
     
-    func checkCollision(coinCollider: CGRect, rectCollider: CGRect){
-        if (coinCollider.intersects(rectCollider) && !hasCollided && !isCoinInsertedInMachine){
-            withAnimation {
-                hasCollided = true
-                insertCoin()
-            }
+    func checkCollision(coinCollider: CGRect, rectCollider: CGRect) {
+        if isInHeaven{
+            return
+        }
+        
+        guard notificationManager.isTextPrintFinished else {
+            return
+        }
+
+        guard coinCollider.intersects(rectCollider) && !hasCollided && !isCoinInsertedInMachine else {
+            return
+        }
+
+        withAnimation {
+            hasCollided = true
+            insertCoin()
         }
     }
+
 }

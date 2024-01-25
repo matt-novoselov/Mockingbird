@@ -26,9 +26,6 @@ struct DrugsScene: View {
             DraggableShakableView(handleShake: handleShake)
                 .glow(color: Color("MainYellow").opacity((1 - heavenSlider)/2), radius: 100)
             
-            Text(notificationManager.isTextPrintFinished.description)
-                .foregroundStyle(.white)
-            
             VStack{
                 Spacer()
                 
@@ -57,14 +54,19 @@ struct DrugsScene: View {
             }
         }
         else{
-            notificationManager.callNotification(ID: 0, arrowAction: {
-                transitionManagerObservable.transitionToScene?(9)
+            notificationManager.callNotification(ID: 16, arrowAction: {
+                notificationManager.closeNotification()
+                DispatchQueue.main.asyncAfter(deadline: .now() + NotificationTextBlob().animationMoveInDuration) {
+                    transitionManagerObservable.transitionToScene?(9)
+                }
             }, darkMode: true)
         }
     }
     
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
         let animationDuration = 5.0
+        
+        notificationManager.closeNotification()
         
         withAnimation(.easeInOut(duration: animationDuration)) {
             heavenSlider = heavenSliderGoal ?? 1.0
@@ -79,10 +81,10 @@ struct DrugsScene: View {
                 isShaken = false
                 
                 if countPills == 1{
-                    notificationManager.callNotification(ID: 0, darkMode: true)
+                    notificationManager.callNotification(ID: 14, darkMode: true)
                 }
                 else if countPills == 2{
-                    notificationManager.callNotification(ID: 1, darkMode: true)
+                    notificationManager.callNotification(ID: 15, darkMode: true)
                 }
             }
         }

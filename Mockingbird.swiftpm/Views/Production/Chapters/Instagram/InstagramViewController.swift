@@ -11,13 +11,13 @@ struct InstagramViewController: View {
     @EnvironmentObject var notificationManager: NotificationManager
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
-    @State private var currentSceneID: Int = 0
+    @State private var currentPostID: Int = 0
     var posts:InstagramPostViewModel = InstagramPostViewModel()
     
     var body: some View {
         VStack{
             Group{
-                switch currentSceneID {
+                switch currentPostID {
                 case 0:
                     let selectedPost = posts.posts[0]
                     InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, transitionToScene: transitionToNextPost)
@@ -42,14 +42,17 @@ struct InstagramViewController: View {
     
     func transitionToNextPost() {
         withAnimation(.easeInOut(duration: 1)) {
-            if currentSceneID<posts.posts.count-1{
-                currentSceneID += 1
+            if currentPostID<posts.posts.count-1{
+                currentPostID += 1
             }
             else{
                 notificationManager.callNotification(
                     ID: 0,
                     arrowAction: {
-                        transitionManagerObservable.transitionToScene?(6)
+                        notificationManager.closeNotification()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + NotificationTextBlob().animationMoveInDuration) {
+                            transitionManagerObservable.transitionToScene?(6)
+                        }
                     }
                 )
             }

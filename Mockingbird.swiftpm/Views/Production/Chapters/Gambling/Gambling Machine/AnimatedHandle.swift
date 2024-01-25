@@ -12,6 +12,8 @@ struct AnimatedHandle: View {
     @State var isAnimationInProcess: Bool = false
     @Binding var isCoinInserted: Bool
     
+    var handleResult: () -> Void
+    
     var body: some View {
         Rectangle()
             .frame(width: 20, height: 200)
@@ -20,7 +22,6 @@ struct AnimatedHandle: View {
             .onTapGesture {
                 if (isCoinInserted && !isAnimationInProcess){
                     rotateHandleAnimation()
-                    isCoinInserted = false
                 }
                 else{
                     idleHandleAnimation()
@@ -47,7 +48,10 @@ struct AnimatedHandle: View {
             withAnimation(.easeInOut(duration: 0.4)) {
                 rotationAngle = 0
                 isAnimationInProcess = false
-            }
+            } completion: {
+                isCoinInserted = false
+                handleResult()
+                }
         }
     }
     
@@ -69,5 +73,5 @@ struct AnimatedHandle: View {
 }
 
 #Preview {
-    AnimatedHandle(isCoinInserted: .constant(false))
+    AnimatedHandle(isCoinInserted: .constant(false), handleResult: GamblingScene().handleResult)
 }

@@ -11,9 +11,12 @@ struct InstagramScene: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
+    @State var darkSlider: Double = 0
+    @State var heavenSlider: Double = 0
+    
     var body: some View {
         ZStack{
-            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
+            LayerMixingManager(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
             
             InstagramViewController()
                 .padding(.all, 100)
