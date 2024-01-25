@@ -50,7 +50,6 @@ struct InstagramViewController: View {
                     ID: 0,
                     arrowAction: {
                         transitionManagerObservable.transitionToScene?(6)
-                        notificationManager.closeNotification()
                     }
                 )
             }

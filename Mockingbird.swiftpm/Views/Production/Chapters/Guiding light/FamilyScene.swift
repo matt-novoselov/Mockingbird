@@ -27,7 +27,6 @@ struct FamilyScene: View {
         .onChange(of: countMemners){
             if countMemners==7{
                 notificationManager.callNotification(ID: 0, arrowAction: {
-                    notificationManager.closeNotification()
                     transitionManagerObservable.transitionToScene?(13)
                 })
             }

@@ -58,7 +58,6 @@ struct DrugsScene: View {
         }
         else{
             notificationManager.callNotification(ID: 0, arrowAction: {
-                notificationManager.closeNotification()
                 transitionManagerObservable.transitionToScene?(9)
             }, darkMode: true)
         }
@@ -66,7 +65,6 @@ struct DrugsScene: View {
     
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
         let animationDuration = 5.0
-        notificationManager.closeNotification()
         
         withAnimation(.easeInOut(duration: animationDuration)) {
             heavenSlider = heavenSliderGoal ?? 1.0

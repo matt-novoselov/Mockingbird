@@ -67,6 +67,7 @@ struct NotificationTextBlob: View {
                     ArrowCircleButton(darkMode: darkMode, arrowAction: arrowAction ?? nil)
                         .offset(x: 20, y: 20)
                         .scaleEffect(stateShowButton ? 1.0 : 0.0)
+                        .environmentObject(notificationManager)
                 }
             }
             
@@ -104,11 +105,13 @@ struct ArrowCircleButton: View {
     var darkMode: Bool = false
     var arrowAction: (() -> Void)?
     
+    @EnvironmentObject var notificationManager: NotificationManager
+    
     var body: some View {
         Button(
             action: {
-                
                 arrowAction?()
+                notificationManager.closeNotification()
             }
         ){
             ZStack{

@@ -27,7 +27,6 @@ struct CookieScene: View {
                     ID: 0,
                     arrowAction: {
                         transitionManagerObservable.transitionToScene?(4)
-                        notificationManager.closeNotification()
                     }
                 )
                 
