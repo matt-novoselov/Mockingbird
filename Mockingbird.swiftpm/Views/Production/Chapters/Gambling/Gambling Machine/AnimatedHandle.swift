@@ -13,6 +13,7 @@ struct AnimatedHandle: View {
     @Binding var isCoinInserted: Bool
     
     var handleResult: () -> Void
+    var handleNoCoin: () -> Void
     
     var body: some View {
         Rectangle()
@@ -60,6 +61,10 @@ struct AnimatedHandle: View {
             return
         }
         
+        if !isCoinInserted{
+            handleNoCoin()
+        }
+        
         isAnimationInProcess = true
         withAnimation(.easeInOut(duration: 0.2)) {
             rotationAngle = 15
@@ -73,5 +78,5 @@ struct AnimatedHandle: View {
 }
 
 #Preview {
-    AnimatedHandle(isCoinInserted: .constant(false), handleResult: GamblingScene().handleResult)
+    AnimatedHandle(isCoinInserted: .constant(false), handleResult: GamblingScene(switchScene: {}).handleResult, handleNoCoin: {})
 }

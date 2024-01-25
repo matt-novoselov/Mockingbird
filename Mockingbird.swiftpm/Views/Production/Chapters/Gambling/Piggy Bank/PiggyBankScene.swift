@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Matt Novoselov on 23/01/24.
 //
@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct PiggyBankScene: View {
-    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
+    var switchScene: () -> Void
     
     var body: some View {
-        Text("PiggyBankScene")
+        ZStack{
+            LayerMixingManager(darkSlider: .constant(0.5), heavenSlider: .constant(0))
+            
+            VStack{
+                Text("PiggyBankScene")
+                
+                Button("Go back")
+                {
+                    switchScene()
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    PiggyBankScene()
+    PiggyBankScene(switchScene: {})
 }

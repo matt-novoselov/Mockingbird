@@ -22,9 +22,13 @@ struct GamblingScene: View {
     
     @State var centerOfTheScreen: CGPoint?
     
-    var amountOfCoinsOnStart: Int = 3
+    var amountOfCoinsOnStart: Int = 2
     
     @State var showingCoins: Bool = false
+    
+    var switchScene: () -> Void
+    
+    @State var hasStartedSwitchingToScene: Bool = false
     
     var body: some View {
         let rectCollider = createMachineCollider(height: 200, width: 200)
@@ -45,7 +49,7 @@ struct GamblingScene: View {
                 DynamicMachineCollider(rectCollider: rectCollider)
                     .background(isCoinInsertedInMachine ? Color.yellow : Color.green)
                 
-                AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, handleResult: handleResult)
+                AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, handleResult: handleResult, handleNoCoin: handleNoCoin)
             }
             
             VStack {
@@ -72,11 +76,6 @@ struct GamblingScene: View {
                         showingCoins = true
                     }
                 }
-            }
-        }
-        .onAppear(){
-            DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
-                notificationManager.callNotification(ID: 10)
             }
         }
     }
@@ -115,6 +114,21 @@ struct GamblingScene: View {
         }
     }
     
+    func handleNoCoin(){
+        if notificationManager.isTextDisplayed == false && countVisitsToHeaven == 0{
+            //print("no coin, first try")
+            notificationManager.callNotification(ID: 10)
+        }
+        
+        if notificationManager.isTextDisplayed == true && countVisitsToHeaven == 2 && notificationManager.isTextPrintFinished && !hasStartedSwitchingToScene{
+            //print("no coin, switching scenes")
+            hasStartedSwitchingToScene = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                switchScene()
+            }
+        }
+    }
+    
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
         isInHeaven = true
         let animationDuration = 3.0
@@ -145,5 +159,5 @@ struct GamblingScene: View {
 }
 
 #Preview{
-    LayersManager(initialView: GamblingScene())
+    LayersManager(initialView: GamblingScene(switchScene: {}))
 }
