@@ -11,7 +11,7 @@ struct InstagramPostView: View {
     var username: String
     var postedTimeAgo: String
     var image: String
-    var transitionToScene: () -> Void
+    var action: () -> Void
     @State var isOneofbuttonsPressed: Bool = false
     
     var body: some View {
@@ -32,17 +32,15 @@ struct InstagramPostView: View {
                 .cornerRadius(10)
             
             HStack{
-                InstagramIconButton(symbol: "SF_chat", filledSymbol: "SF_chat_filled", action: {transitionToScene()}, isOneOfButtonsPressed: $isOneofbuttonsPressed)
+                InstagramIconButton(symbol: "SF_chat", filledSymbol: "SF_chat_filled", action: {action()}, isOneOfButtonsPressed: $isOneofbuttonsPressed)
                 
                 Spacer()
                 
-                InstagramIconButton(symbol: "SF_like", filledSymbol: "SF_like_filled", action: {transitionToScene()}, isOneOfButtonsPressed: $isOneofbuttonsPressed)
+                InstagramIconButton(symbol: "SF_like", filledSymbol: "SF_like_filled", action: {action()}, isOneOfButtonsPressed: $isOneofbuttonsPressed)
                 
                 Spacer()
                 
-                InstagramIconButton(symbol: "SF_forward", filledSymbol: "SF_forward_filled", action: {transitionToScene()}, isOneOfButtonsPressed: $isOneofbuttonsPressed)
-                
-                
+                InstagramIconButton(symbol: "SF_forward", filledSymbol: "SF_forward_filled", action: {action()}, isOneOfButtonsPressed: $isOneofbuttonsPressed)
             }
         }
     }
@@ -73,9 +71,7 @@ struct InstagramIconButton: View {
                             ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
                         }
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            action()
-                        }
+                        action()
                         
                     }
                 }
@@ -94,6 +90,6 @@ struct InstagramIconButton: View {
 
 #Preview {
     LayersManager(
-        initialView: InstagramPostView(username: "@example", postedTimeAgo: "ex ago", image: "PH_calendar", transitionToScene: InstagramViewController().transitionToNextPost)
+        initialView: InstagramPostView(username: "@example", postedTimeAgo: "ex ago", image: "PH_calendar", action: InstagramViewController(action: InstagramScene().handleOnReaction, shouldChangePost: .constant(false)).transitionToNextPost)
     )
 }

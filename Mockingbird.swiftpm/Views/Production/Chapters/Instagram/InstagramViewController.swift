@@ -14,22 +14,26 @@ struct InstagramViewController: View {
     @State private var currentPostID: Int = 0
     var posts:InstagramPostViewModel = InstagramPostViewModel()
     
+    var action: () -> Void
+    
+    @Binding var shouldChangePost: Bool
+    
     var body: some View {
         VStack{
             Group{
                 switch currentPostID {
                 case 0:
                     let selectedPost = posts.posts[0]
-                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, transitionToScene: transitionToNextPost)
+                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, action: action)
                 case 1:
                     let selectedPost = posts.posts[1]
-                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, transitionToScene: transitionToNextPost)
+                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, action: action)
                 case 2:
                     let selectedPost = posts.posts[2]
-                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, transitionToScene: transitionToNextPost)
+                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, action: action)
                 case 3:
                     let selectedPost = posts.posts[3]
-                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, transitionToScene: transitionToNextPost)
+                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, action: action)
                 default:
                     Text("Error, this sceneID doesn't exist")
                 }
@@ -38,6 +42,9 @@ struct InstagramViewController: View {
             
         }
         .padding()
+        .onChange(of: shouldChangePost){
+            transitionToNextPost()
+        }
     }
     
     func transitionToNextPost() {
@@ -45,21 +52,10 @@ struct InstagramViewController: View {
             if currentPostID<posts.posts.count-1{
                 currentPostID += 1
             }
-            else{
-                notificationManager.callNotification(
-                    ID: 0,
-                    arrowAction: {
-                        notificationManager.closeNotification()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + NotificationTextBlob().animationMoveInDuration) {
-                            transitionManagerObservable.transitionToScene?(6)
-                        }
-                    }
-                )
-            }
         }
     }
 }
 
 #Preview {
-    LayersManager(initialView: InstagramViewController())
+    LayersManager(initialView: InstagramViewController(action: InstagramScene().handleOnReaction, shouldChangePost: .constant(false)))
 }

@@ -19,11 +19,26 @@ struct GamblingScene: View {
     @State var countVisitsToHeaven: Int = 0
     
     @State var isInHeaven: Bool = false
-
+    
+    @State var centerOfTheScreen: CGPoint?
+    
+    var amountOfCoinsOnStart: Int = 3
+    
+    @State var showingCoins: Bool = false
+    
     var body: some View {
         let rectCollider = createMachineCollider(height: 200, width: 200)
         
         ZStack{
+            GeometryReader { geometry in
+                Color.red
+                    .onAppear {
+                        if let centerOfScreen = GlobalPositionUtility.getGlobalPosition(view: geometry) {
+                            centerOfTheScreen = centerOfScreen
+                        }
+                    }
+            }
+            
             LayerMixingManager(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
             
             HStack (spacing: 0){
@@ -37,15 +52,26 @@ struct GamblingScene: View {
                 HStack {
                     Spacer()
                     
-                    VStack {
-                        ForEach(0..<3) { _ in
-                            DraggableCoin(isCoinInsertedInMachine: $isCoinInsertedInMachine, isInHeaven: $isInHeaven, insertCoin: insertCoin, rectCollider: rectCollider)
-                                .environmentObject(notificationManager)
+                    if showingCoins{
+                        VStack {
+                            ForEach(0..<amountOfCoinsOnStart, id: \.self) { _ in
+                                DraggableCoin(isCoinInsertedInMachine: $isCoinInsertedInMachine, isInHeaven: $isInHeaven, insertCoin: insertCoin, rectCollider: rectCollider)
+                                    .environmentObject(notificationManager)
+                            }
                         }
+                        .padding()
+                        .transition(.move(edge: .trailing))
                     }
-                    .padding()
+                    
                 }
                 Spacer()
+            }
+            .onChange(of: notificationManager.isTextPrintFinished){
+                if (notificationManager.isTextPrintFinished == true && countVisitsToHeaven==0){
+                    withAnimation(Animation.easeInOut(duration: 1.5)){
+                        showingCoins = true
+                    }
+                }
             }
         }
         .onAppear(){
@@ -72,14 +98,16 @@ struct GamblingScene: View {
         ]
         
         if countVisitsToHeaven<2{
-            print("win!")
+            // case win
+            
+            ParticleView.spawnParticle(xpos: Double(centerOfTheScreen?.x ?? 0), ypos: Double(centerOfTheScreen?.y ?? 0))
             
             let tuple = heavenValues[countVisitsToHeaven]
             goToHeaven(heavenSliderGoal: tuple.0, darkSliderAfterwards: tuple.1)
             countVisitsToHeaven+=1
         }
         else{
-            print("loose")
+            // case loose
             
             notificationManager.callNotification(ID: 13, arrowAction: {
                 transitionManagerObservable.transitionToScene?(8)
