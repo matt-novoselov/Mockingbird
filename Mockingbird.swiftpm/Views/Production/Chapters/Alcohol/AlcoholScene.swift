@@ -28,6 +28,10 @@ struct AlcoholScene: View {
                         imgSatuation = 0
                         imgOpacity = 0.8
                     }
+                    
+                    notificationManager.callNotification(ID: 6, arrowAction: {
+                        transitionManagerObservable.transitionToScene?(5)
+                    })
                 }
             }
         }

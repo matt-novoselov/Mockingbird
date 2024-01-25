@@ -18,6 +18,11 @@ struct YouAreNotAlone: View {
             Text("You are not alone")
                 .foregroundStyle(.white)
         }
+        .onAppear(){
+            notificationManager.callNotification(ID: 17, arrowAction: {
+                transitionManagerObservable.transitionToScene?(11)
+            }, darkMode: true)
+        }
     }
 }
 
