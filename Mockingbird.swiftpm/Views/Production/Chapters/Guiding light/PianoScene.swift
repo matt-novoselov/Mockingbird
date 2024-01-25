@@ -25,7 +25,9 @@ struct PianoScene: View {
         }
         .onChange(of: countTotalNotesEmited){
             if countTotalNotesEmited==5{
-                notificationManager.callNotification(ID: 0)
+                notificationManager.callNotification(ID: 18, arrowAction: {
+                    transitionManagerObservable.transitionToScene?(12)
+                }, darkMode: true)
             }
         }
     }

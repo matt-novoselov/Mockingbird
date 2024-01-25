@@ -15,7 +15,7 @@ struct FamilyScene: View {
     
     var body: some View {
         ZStack{
-            LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
+            LayerMixingManager(darkSlider: .constant(1), heavenSlider: .constant(0))
             
             HStack {
                 ForEach(0..<7) { _ in
@@ -26,9 +26,9 @@ struct FamilyScene: View {
         }
         .onChange(of: countMemners){
             if countMemners==7{
-                notificationManager.callNotification(ID: 0, arrowAction: {
+                notificationManager.callNotification(ID: 19, arrowAction: {
                     transitionManagerObservable.transitionToScene?(13)
-                })
+                }, darkMode: true)
             }
         }
     }
