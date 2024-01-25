@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TransitionManager: View {
     @StateObject private var transitionManagerObservable = TransitionManagerObservable()
-    @State private var currentSceneID: Int = 5
+    @State private var currentSceneID: Int = 8
     let transitionDuration: Double = 2.0
     
     var body: some View {

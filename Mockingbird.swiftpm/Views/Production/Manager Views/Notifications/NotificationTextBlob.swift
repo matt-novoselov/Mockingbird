@@ -83,19 +83,25 @@ struct NotificationTextBlob: View {
     
     func typeWriter() {
         if shift < text.count {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                shift+=1
+            let interval: Double = notificationManager.isDebug ? 0.0005 : 0.05
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + interval) {
+                shift += 1
                 typeWriter()
             }
         }
         else{
             // On typewriter animation end
-            notificationManager.isTextPrintFinished = true
-            
-            if showingArrow{
-                withAnimation{
-                    stateShowButton = true
-                }
+            handleEndOfAnimation()
+        }
+    }
+    
+    func handleEndOfAnimation(){
+        notificationManager.isTextPrintFinished = true
+        
+        if showingArrow{
+            withAnimation{
+                stateShowButton = true
             }
         }
     }

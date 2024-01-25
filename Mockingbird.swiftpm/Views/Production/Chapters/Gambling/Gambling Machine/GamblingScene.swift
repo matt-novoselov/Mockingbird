@@ -11,7 +11,7 @@ struct GamblingScene: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
-    @State var darkSlider: Double = 0.15
+    @State public var darkSlider: Double = 0.15
     @State var heavenSlider: Double = 0
     
     @State var isCoinInsertedInMachine: Bool = false
@@ -35,7 +35,7 @@ struct GamblingScene: View {
         
         ZStack{
             GeometryReader { geometry in
-                Color.red
+                Color.red.opacity(0)
                     .onAppear {
                         if let centerOfScreen = GlobalPositionUtility.getGlobalPosition(view: geometry) {
                             centerOfTheScreen = centerOfScreen

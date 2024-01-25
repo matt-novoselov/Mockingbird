@@ -38,6 +38,8 @@ struct NotificationManagerView: View {
 
 
 class NotificationManager: ObservableObject {
+    @Published var isDebug: Bool = true
+    // - - - - - - - - - - - - - - - - - - - - //
     @Published var isTextDisplayed: Bool = false
     @Published var currentNotificationMessage: String = ""
     @Published var arrowAction: (() -> Void)? = nil

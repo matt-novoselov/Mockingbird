@@ -12,6 +12,7 @@ struct GamblingTransitionManager: View {
     @EnvironmentObject var notificationManager: NotificationManager
     
     @State var isPiggyBankScene: Bool = false
+    @State var switchHappened: Bool = false
 
     var body: some View {
         ZStack{
@@ -21,8 +22,14 @@ struct GamblingTransitionManager: View {
                         .transition(.move(edge: .leading))
                 }
                 else{
-                    GamblingScene(switchScene: switchScene)
-                        .transition(.move(edge: .trailing))
+                    if switchHappened{
+                        GamblingScene(darkSlider: 0.5, countVisitsToHeaven:2, amountOfCoinsOnStart: 1, showingCoins: true, switchScene: switchScene)
+                            .transition(.move(edge: .trailing))
+                    }
+                    else{
+                        GamblingScene(switchScene: switchScene)
+                            .transition(.move(edge: .trailing))
+                    }
                 }
             }
             .environmentObject(transitionManagerObservable)
@@ -36,6 +43,8 @@ struct GamblingTransitionManager: View {
         
         withAnimation(.easeInOut(duration: TransitionManager().transitionDuration)) {
             isPiggyBankScene.toggle()
+        } completion: {
+            switchHappened = true
         }
     }
 }
