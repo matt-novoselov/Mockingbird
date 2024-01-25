@@ -14,6 +14,8 @@ struct InstagramPostView: View {
     var action: () -> Void
     @State var isOneofbuttonsPressed: Bool = false
     
+    @EnvironmentObject var notificationManager: NotificationManager
+    
     var body: some View {
         VStack{
             HStack{
@@ -42,6 +44,7 @@ struct InstagramPostView: View {
                 
                 InstagramIconButton(symbol: "SF_forward", filledSymbol: "SF_forward_filled", action: {action()}, isOneOfButtonsPressed: $isOneofbuttonsPressed)
             }
+            .environmentObject(notificationManager)
         }
     }
 }
@@ -54,6 +57,8 @@ struct InstagramIconButton: View {
     @State var isButtonPressed: Bool = false
     @Binding var isOneOfButtonsPressed: Bool
     
+    @EnvironmentObject var notificationManager: NotificationManager
+    
     var body: some View {
         GeometryReader { geometry in
             Button(
@@ -61,19 +66,20 @@ struct InstagramIconButton: View {
                     if isOneOfButtonsPressed{
                         return
                     }
-                    else{
-                        withAnimation(Animation.easeInOut(duration: 0.2)){
-                            isButtonPressed = true
-                            isOneOfButtonsPressed = true
-                        }
-                        
-                        if let buttonPosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {
-                            ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
-                        }
-                        
-                        action()
-                        
+                    if notificationManager.isTextPrintFinished == false{
+                        return
                     }
+                    
+                    withAnimation(Animation.easeInOut(duration: 0.2)){
+                        isButtonPressed = true
+                        isOneOfButtonsPressed = true
+                    }
+                    
+                    if let buttonPosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {
+                        ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
+                    }
+                    
+                    action()
                 }
             )
             {

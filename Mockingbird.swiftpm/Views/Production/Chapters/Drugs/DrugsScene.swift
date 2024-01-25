@@ -24,7 +24,7 @@ struct DrugsScene: View {
             LayerMixingManager(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
             
             DraggableShakableView(handleShake: handleShake)
-                .glow(color: Color("MainYellow").opacity((1 - heavenSlider)/2), radius: 100)
+                .glow(color: Color("MainYellow").opacity((1 - heavenSlider)/4), radius: 100)
             
             VStack{
                 Spacer()

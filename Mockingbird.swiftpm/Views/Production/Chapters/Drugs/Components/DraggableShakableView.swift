@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DraggableShakableView: View {
     @State private var circlePosition: CGPoint?
+    @State var viewIsHeld: Bool = false
     
     var handleShake: () -> Void
     
@@ -16,9 +17,10 @@ struct DraggableShakableView: View {
         let circleSize: CGFloat = 400
         let initialLocation = CGPoint(x: circleSize / 2, y: circleSize / 2)
         
-        Image("PH_grid")
+        Image("PH_drugs_box")
             .resizable()
             .aspectRatio(contentMode: .fit)
+            .rotationEffect(Angle(degrees: viewIsHeld ? 65 : 0))
             .position(circlePosition ?? initialLocation)
             .frame(width: circleSize, height: circleSize)
             .foregroundColor(.red)
@@ -28,10 +30,18 @@ struct DraggableShakableView: View {
                         circlePosition = value.location
                         
                         CheckShake(value: value)
+                        
+                        withAnimation{
+                            viewIsHeld = true
+                        }
                     }
                     .onEnded { _ in
                         withAnimation {
                             circlePosition = initialLocation
+                        }
+                        
+                        withAnimation{
+                            viewIsHeld = false
                         }
                     }
             )
@@ -39,7 +49,7 @@ struct DraggableShakableView: View {
     }
     
     func CheckShake(value: DragGesture.Value){
-        if (abs(value.velocity.width) > 6000 && abs(value.velocity.height) > 6000){
+        if (abs(value.velocity.height) > 8000){
             handleShake()
         }
     }

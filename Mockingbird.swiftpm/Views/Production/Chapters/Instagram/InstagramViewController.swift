@@ -39,7 +39,7 @@ struct InstagramViewController: View {
                 }
             }
             .transition(.pushLeftTransition)
-            
+            .environmentObject(notificationManager)
         }
         .padding()
         .onChange(of: shouldChangePost){
