@@ -18,7 +18,6 @@ struct LayerMixingManager: View {
             GeometryReader { geometry in
                 Color.red.opacity(0)
                     .onAppear {
-                        print(geometry.size)
                         screenSize = geometry.size
                     }
             }

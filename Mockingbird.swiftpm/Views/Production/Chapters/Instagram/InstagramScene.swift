@@ -24,7 +24,6 @@ struct InstagramScene: View {
             LayerMixingManager(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
             
             InstagramViewController(action: handleOnReaction, shouldChangePost: $shouldChangePost)
-                .padding(.all, 100)
                 .environmentObject(transitionManagerObservable)
         }
     }
