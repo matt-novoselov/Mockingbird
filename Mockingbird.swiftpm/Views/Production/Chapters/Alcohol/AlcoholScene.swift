@@ -20,6 +20,7 @@ struct AlcoholScene: View {
             
             VStack{
                 Image("PH_grid")
+                    .interpolation(.high)
                     .saturation(imgSatuation)
                     .opacity(imgOpacity)
                 

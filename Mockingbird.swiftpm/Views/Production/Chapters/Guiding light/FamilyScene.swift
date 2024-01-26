@@ -54,6 +54,7 @@ struct FamilyMember: View {
         })
         {
             Image(imageName)
+                .interpolation(.high)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .glow(color: Color("MainYellow").opacity(isShowingShadow ? 0.4 : 0.0), radius: 40)

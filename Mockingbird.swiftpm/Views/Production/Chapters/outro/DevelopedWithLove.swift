@@ -22,6 +22,7 @@ struct DevelopedWithLove: View {
                 
                 GeometryReader { geometry in
                     Image("SF_heart_white_bcg")
+                        .interpolation(.high)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .glow(color: Color("MainYellow").opacity(0.3), radius: 30)

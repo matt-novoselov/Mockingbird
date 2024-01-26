@@ -133,6 +133,7 @@ struct ArrowCircleButton: View {
                     )
                 
                 Image(darkMode ? "arrow_right_white" : "arrow_right")
+                    .interpolation(.high)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 20)

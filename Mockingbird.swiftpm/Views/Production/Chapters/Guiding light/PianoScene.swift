@@ -67,6 +67,7 @@ struct Note: View {
     
     var body: some View {
         Image("SF_note")
+            .interpolation(.high)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(height: 65)

@@ -42,6 +42,7 @@ struct CookieScene: View {
             })
             {
                 Image(currentDisplayedImage)
+                    .interpolation(.high)
             }
             .buttonStyle(NoOpacityButtonStyle())
         }

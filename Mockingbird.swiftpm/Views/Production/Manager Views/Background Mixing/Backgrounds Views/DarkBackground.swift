@@ -22,11 +22,13 @@ struct DarkBackground: View {
     var body: some View {
         ZStack{            
             Image("dark_background")
+                .interpolation(.high)
                 .resizable()
                 .scaledToFill()
                 .opacity(darkSlider)
             
             Image("dark_dots")
+                .interpolation(.high)
                 .resizable()
                 .scaledToFill()
                 .opacity(dotsAdjustedValue)

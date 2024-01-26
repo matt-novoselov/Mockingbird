@@ -25,6 +25,7 @@ struct DoYouNeedHelp: View {
                 VStack(alignment: .leading, spacing: 0){
                     HStack(spacing: 30){
                         Image("SF_phone")
+                            .interpolation(.high)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 45)
@@ -36,6 +37,7 @@ struct DoYouNeedHelp: View {
                     
                     HStack(spacing: 30){
                         Image("SF_phone")
+                            .interpolation(.high)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 45)
@@ -47,6 +49,7 @@ struct DoYouNeedHelp: View {
                     
                     HStack(spacing: 30){
                         Image("SF_globe")
+                            .interpolation(.high)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 45)
@@ -61,6 +64,7 @@ struct DoYouNeedHelp: View {
                 
                 Button(action: {transitionManagerObservable.transitionToScene?(15)}) {
                     Image("long_arrow_button")
+                        .interpolation(.high)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 80)

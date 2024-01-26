@@ -17,6 +17,7 @@ struct BetterExperienceInHeadphones: View {
             
             VStack (spacing: 0){
                 Image("SF_headphones")
+                    .interpolation(.high)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 60)

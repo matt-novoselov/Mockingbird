@@ -15,6 +15,7 @@ struct BlockerMessage: View {
             
             VStack (spacing: 0){
                 Image("SF_orientation")
+                    .interpolation(.high)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 95)

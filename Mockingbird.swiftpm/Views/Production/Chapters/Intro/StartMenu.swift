@@ -44,6 +44,7 @@ struct StartMenu: View {
                     ) {
                         VStack{
                             Image(jigglingArray[currentIndex])
+                                .interpolation(.high)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .onAppear {
@@ -53,6 +54,7 @@ struct StartMenu: View {
                                 }
                             
                             Image("button_line")
+                                .interpolation(.high)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 400)

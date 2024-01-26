@@ -29,6 +29,7 @@ struct InstagramPostView: View {
             }
             
             Image(image)
+                .interpolation(.high)
                 .resizable()
                 .scaledToFit()
                 .cornerRadius(10)
@@ -84,6 +85,7 @@ struct InstagramIconButton: View {
             )
             {
                 Image(!isButtonPressed ? symbol : filledSymbol)
+                    .interpolation(.high)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .glow(color: Color("MainYellow").opacity(isButtonPressed ? 0.3 : 0), radius: 30)

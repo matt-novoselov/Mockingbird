@@ -18,6 +18,7 @@ struct DraggableShakableView: View {
         let initialLocation = CGPoint(x: circleSize / 2, y: circleSize / 2)
         
         Image("PH_drugs_box")
+            .interpolation(.high)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .rotationEffect(Angle(degrees: viewIsHeld ? 65 : 0))
