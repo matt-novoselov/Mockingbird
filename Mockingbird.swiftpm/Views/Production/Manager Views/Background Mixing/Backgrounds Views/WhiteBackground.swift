@@ -15,6 +15,5 @@ struct WhiteBackground: View {
                 .resizable()
                 .scaledToFill()
         }
-        .ignoresSafeArea()
     }
 }

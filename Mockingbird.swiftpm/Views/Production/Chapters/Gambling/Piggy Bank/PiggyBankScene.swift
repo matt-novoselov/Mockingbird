@@ -12,7 +12,7 @@ struct PiggyBankScene: View {
     
     var body: some View {
         ZStack{
-            LayerMixingManager(darkSlider: .constant(0.5), heavenSlider: .constant(0))
+            LayerMixingManager(darkSlider: .constant(0.15), heavenSlider: .constant(0))
             
             VStack{
                 Text("PiggyBankScene")

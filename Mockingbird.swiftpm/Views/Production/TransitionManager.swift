@@ -77,5 +77,5 @@ class TransitionManagerObservable: ObservableObject {
 }
 
 #Preview {
-    TransitionManager()
+    LayersManager(initialView: TransitionManager())
 }

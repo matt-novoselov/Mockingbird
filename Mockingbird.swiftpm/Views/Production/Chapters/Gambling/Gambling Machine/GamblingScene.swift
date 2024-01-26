@@ -22,11 +22,11 @@ struct GamblingScene: View {
     
     @State var centerOfTheScreen: CGPoint?
     
-    var amountOfCoinsOnStart: Int = 2
+    var amountOfCoinsOnStart: Int = 3
     
     @State var showingCoins: Bool = false
     
-    var switchScene: () -> Void
+//    var switchScene: () -> Void
     
     @State var hasStartedSwitchingToScene: Bool = false
     
@@ -120,13 +120,13 @@ struct GamblingScene: View {
             notificationManager.callNotification(ID: 10)
         }
         
-        if notificationManager.isTextDisplayed == true && countVisitsToHeaven == 2 && notificationManager.isTextPrintFinished && !hasStartedSwitchingToScene{
-            //print("no coin, switching scenes")
-            hasStartedSwitchingToScene = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                switchScene()
-            }
-        }
+//        if notificationManager.isTextDisplayed == true && countVisitsToHeaven == 2 && notificationManager.isTextPrintFinished && !hasStartedSwitchingToScene{
+//            //print("no coin, switching scenes")
+//            hasStartedSwitchingToScene = true
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                switchScene()
+//            }
+//        }
     }
     
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
@@ -159,5 +159,5 @@ struct GamblingScene: View {
 }
 
 #Preview{
-    LayersManager(initialView: GamblingScene(switchScene: {}))
+    LayersManager(initialView: GamblingScene())
 }

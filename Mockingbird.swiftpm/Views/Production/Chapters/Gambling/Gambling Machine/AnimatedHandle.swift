@@ -78,5 +78,5 @@ struct AnimatedHandle: View {
 }
 
 #Preview {
-    AnimatedHandle(isCoinInserted: .constant(false), handleResult: GamblingScene(switchScene: {}).handleResult, handleNoCoin: {})
+    AnimatedHandle(isCoinInserted: .constant(false), handleResult: GamblingScene().handleResult, handleNoCoin: {})
 }

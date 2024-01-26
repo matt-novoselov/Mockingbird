@@ -33,6 +33,5 @@ struct DarkBackground: View {
                 .scaledToFill()
                 .opacity(dotsAdjustedValue)
         }
-        .ignoresSafeArea()
     }
 }

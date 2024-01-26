@@ -11,8 +11,18 @@ struct LayerMixingManager: View {
     @Binding var darkSlider: Double
     @Binding var heavenSlider: Double
     
+    @State var screenSize: CGSize = CGSize(width: 0, height: 0)
+    
     var body: some View {
-        GeometryReader { _ in
+        ZStack{
+            GeometryReader { geometry in
+                Color.red.opacity(0)
+                    .onAppear {
+                        print(geometry.size)
+                        screenSize = geometry.size
+                    }
+            }
+            
             ZStack{
                 WhiteBackground()
                 
@@ -20,7 +30,7 @@ struct LayerMixingManager: View {
                 
                 HeavenBackground(heavenSlider: $heavenSlider, darkSlider: $darkSlider)
             }
-            .ignoresSafeArea()
+            .frame(width: screenSize.width, height: screenSize.height)
         }
     }
 }
