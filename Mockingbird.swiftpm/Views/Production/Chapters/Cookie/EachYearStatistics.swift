@@ -20,8 +20,7 @@ struct EachYearStatistics: View {
                 .padding(.horizontal, 150)
         }
         .onAppear {
-            Timer.scheduledTimer(withTimeInterval: 8, repeats: false) { timer in
-                // Transition to scene
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                 transitionManagerObservable.transitionToScene?(3)
             }
         }

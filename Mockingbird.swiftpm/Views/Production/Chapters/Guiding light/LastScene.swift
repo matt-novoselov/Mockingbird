@@ -18,9 +18,11 @@ struct LastScene: View {
             Text("Rather than relying on substances or temporary escapes, try to find happiness in the present moment.")
         }
         .onAppear(){
-            notificationManager.callNotification(ID: 20, arrowAction: {
-                transitionManagerObservable.transitionToScene?(14)
-            })
+            DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
+                notificationManager.callNotification(ID: 20, arrowAction: {
+                    transitionManagerObservable.transitionToScene?(14)
+                })
+            }
         }
     }
 }

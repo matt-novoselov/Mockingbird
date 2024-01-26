@@ -18,14 +18,14 @@ struct FamilyScene: View {
             LayerMixingManager(darkSlider: .constant(1), heavenSlider: .constant(0))
             
             HStack {
-                ForEach(0..<7) { _ in
+                ForEach(0..<4) { _ in
                     FamilyMember(imageName: "PH_cubes", countMemners: $countMemners)
                 }
             }
             .padding()
         }
         .onChange(of: countMemners){
-            if countMemners==7{
+            if countMemners==4{
                 notificationManager.callNotification(ID: 19, arrowAction: {
                     transitionManagerObservable.transitionToScene?(13)
                 }, darkMode: true)

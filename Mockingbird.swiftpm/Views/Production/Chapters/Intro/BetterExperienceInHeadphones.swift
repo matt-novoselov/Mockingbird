@@ -28,8 +28,7 @@ struct BetterExperienceInHeadphones: View {
 
         }
         .onAppear {
-            Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
-                // Transition to scene
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 transitionManagerObservable.transitionToScene?(1)
             }
         }

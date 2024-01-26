@@ -43,8 +43,7 @@ struct DevelopedWithLove: View {
             }
         }
         .onAppear {
-            Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { timer in
-                // Transition to scene
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                 transitionManagerObservable.transitionToScene?(1)
             }
         }

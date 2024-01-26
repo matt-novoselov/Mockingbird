@@ -38,8 +38,7 @@ struct LightBlinking: View {
             }
         }
         .onAppear {
-            Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { timer in
-                // Transition to scene
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                 transitionManagerObservable.transitionToScene?(10)
             }
         }
@@ -47,7 +46,7 @@ struct LightBlinking: View {
     
     private func blink() {
         let animationIntervals: [Double] = [
-            2,
+            TransitionManager().transitionDuration,
             0.05, 0.05, 0.05, 0.05,  // Initial quick flickers
             0.1, 0.1, 0.1,   // Initial quick flickers
             0.2, 0.2,        // Shorter pauses
