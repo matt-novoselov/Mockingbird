@@ -27,7 +27,7 @@ struct DevelopedWithLove: View {
                         .glow(color: Color("MainYellow").opacity(0.3), radius: 30)
                         
                         .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                                 if let circlePosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {
                                     ParticleView.spawnParticle(xpos: circlePosition.x, ypos: circlePosition.y)
                                 }
@@ -43,7 +43,7 @@ struct DevelopedWithLove: View {
             }
         }
         .onAppear {
-            Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { timer in
+            Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { timer in
                 // Transition to scene
                 transitionManagerObservable.transitionToScene?(1)
             }
