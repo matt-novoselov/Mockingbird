@@ -35,7 +35,7 @@ struct GamblingScene: View {
         
         ZStack{
             GeometryReader { geometry in
-                Color.red.opacity(0)
+                Color.clear
                     .onAppear {
                         if let centerOfScreen = GlobalPositionUtility.getGlobalPosition(view: geometry) {
                             centerOfTheScreen = centerOfScreen

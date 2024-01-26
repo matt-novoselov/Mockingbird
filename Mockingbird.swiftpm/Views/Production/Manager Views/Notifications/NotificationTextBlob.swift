@@ -25,7 +25,7 @@ struct NotificationTextBlob: View {
         ZStack (alignment: .top){
             Text(String(text.prefix(customShift)))
                 .font(getFont(size: 32))
-                .foregroundColor(.red.opacity(0))
+                .foregroundColor(.clear)
                 .frame(maxWidth: 330)
                 .padding()
                 .background(
@@ -49,7 +49,7 @@ struct NotificationTextBlob: View {
                 
                 Text(String(text.suffix(from: text.index(text.startIndex, offsetBy: shift))))
                     .font(getFont(size: 32))
-                    .foregroundColor(.red.opacity(0))
+                    .foregroundColor(.clear)
                 
             }
             .frame(maxWidth: 330)
@@ -59,7 +59,7 @@ struct NotificationTextBlob: View {
             ZStack (alignment: .bottomTrailing){
                 Text(text)
                     .font(getFont(size: 32))
-                    .foregroundColor(.red.opacity(0))
+                    .foregroundColor(.clear)
                     .frame(maxWidth: 330)
                     .padding()
                 

@@ -16,7 +16,7 @@ struct LayerMixingManager: View {
     var body: some View {
         ZStack{
             GeometryReader { geometry in
-                Color.red.opacity(0)
+                Color.clear
                     .onAppear {
                         screenSize = geometry.size
                     }
