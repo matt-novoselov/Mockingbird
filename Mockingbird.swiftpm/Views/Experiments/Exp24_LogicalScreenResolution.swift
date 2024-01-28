@@ -12,7 +12,6 @@ struct Exp24_LogicalScreenResolution: View {
                     .position(CGPoint(x: 1366-50, y: 1024-50))
             }
         }
-        .ignoresSafeArea()
     }
 
     func getScreenResolution(from size: CGSize) -> String {

@@ -78,7 +78,6 @@ struct NotificationTextBlob: View {
             }
         }
         .transition(.move(edge: .leading))
-        .ignoresSafeArea()
     }
     
     func typeWriter() {
@@ -144,14 +143,9 @@ struct ArrowCircleButton: View {
 }
 
 #Preview {
-    ZStack{
-        Color(.red)
-            .ignoresSafeArea()
+    VStack{
+        NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis aute.", showingArrow: true, showingTail: true, darkMode: true, arrowAction: {})
         
-        VStack{
-            NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis aute.", showingArrow: true, showingTail: true, darkMode: true, arrowAction: {})
-            
-            NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis aute.", showingArrow: true, showingTail: true, arrowAction: {})
-        }
+        NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis aute.", showingArrow: true, showingTail: true, arrowAction: {})
     }
 }

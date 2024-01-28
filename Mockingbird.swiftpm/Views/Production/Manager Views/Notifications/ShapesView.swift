@@ -59,12 +59,7 @@ struct BubbleShape: Shape {
 
 
 #Preview {
-    ZStack{
-        Color(.red)
-            .ignoresSafeArea()
-        
-        BubbleShape(showingTrail: true)
-            .frame(width: 300, height: 200)
-            .foregroundColor(Color.white)
-    }
+    BubbleShape(showingTrail: true)
+        .frame(width: 300, height: 200)
+        .foregroundColor(Color.red)
 }

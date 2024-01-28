@@ -70,5 +70,4 @@ class NotificationManager: ObservableObject {
 #Preview {
     NotificationManagerView()
         .environmentObject(NotificationManager())
-        .ignoresSafeArea()
 }

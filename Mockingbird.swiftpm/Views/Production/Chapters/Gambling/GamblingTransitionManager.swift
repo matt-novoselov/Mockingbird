@@ -39,7 +39,6 @@ struct GamblingTransitionManager: View {
             .environmentObject(transitionManagerObservable)
             .environmentObject(notificationManager)
         }
-        .ignoresSafeArea()
     }
     
     func switchScene(){
