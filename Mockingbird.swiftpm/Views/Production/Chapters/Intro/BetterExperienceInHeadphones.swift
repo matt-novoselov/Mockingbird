@@ -25,6 +25,7 @@ struct BetterExperienceInHeadphones: View {
                 FontText(text: "Better experience with headphones ", size: 64)
                     .multilineTextAlignment(.center)
                     .padding()
+                    .padding(.horizontal, 100)
             }
 
         }

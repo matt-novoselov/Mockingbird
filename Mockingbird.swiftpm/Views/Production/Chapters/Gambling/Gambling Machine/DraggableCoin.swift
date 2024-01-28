@@ -47,6 +47,7 @@ struct DraggableCoin: View {
                     )
             }
             .frame(width: circleSize, height: circleSize)
+            .transition(.asymmetric(insertion: .identity, removal: .scale(scale: 0.1)))
         }
     }
     
@@ -64,7 +65,9 @@ struct DraggableCoin: View {
         }
 
         withAnimation {
-            hasCollided = true
+            withAnimation{
+                hasCollided = true
+            }
             insertCoin()
         }
     }

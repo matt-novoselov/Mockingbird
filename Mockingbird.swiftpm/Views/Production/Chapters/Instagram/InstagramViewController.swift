@@ -46,13 +46,6 @@ struct InstagramViewController: View {
             transitionToNextPost()
         }
         .background(.orange)
-        ////
-        .frame(width: 500, height: 700)
-        .mask{
-            Rectangle()
-                .frame(width: 500, height: 700)
-        }
-        ////
     }
     
     func transitionToNextPost() {
