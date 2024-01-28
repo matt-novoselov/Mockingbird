@@ -93,7 +93,7 @@ struct InstagramScene: View {
         
         countVisitsToHeaven+=1
         isInHeaven = true
-        let animationDuration = 2.0
+        let animationDuration = 1.0
         
         withAnimation(.easeInOut(duration: animationDuration)) {
             heavenSlider = heavenSliderGoal ?? 1.0

@@ -131,7 +131,7 @@ struct GamblingScene: View {
     
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
         isInHeaven = true
-        let animationDuration = 3.0
+        let animationDuration = 1.5
         
         withAnimation(.easeInOut(duration: animationDuration)) {
             heavenSlider = heavenSliderGoal ?? 1.0

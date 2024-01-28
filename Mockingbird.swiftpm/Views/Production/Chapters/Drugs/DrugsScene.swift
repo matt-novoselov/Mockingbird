@@ -61,7 +61,7 @@ struct DrugsScene: View {
     }
     
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
-        let animationDuration = 5.0
+        let animationDuration = 2.5
         
         notificationManager.closeNotification()
         

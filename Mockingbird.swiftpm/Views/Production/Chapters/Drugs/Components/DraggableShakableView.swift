@@ -50,7 +50,7 @@ struct DraggableShakableView: View {
     }
     
     func CheckShake(value: DragGesture.Value){
-        if (abs(value.velocity.height) > 8000){
+        if (abs(value.velocity.height) > 6000){
             handleShake()
         }
     }

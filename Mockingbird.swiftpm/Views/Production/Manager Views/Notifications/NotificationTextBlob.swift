@@ -38,7 +38,7 @@ struct NotificationTextBlob: View {
                 )
                 .onChange(of: shift){
                     withAnimation{
-                        customShift = shift + 10
+                        customShift = shift + 12
                     }
                 }
             

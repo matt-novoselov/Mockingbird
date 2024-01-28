@@ -44,7 +44,7 @@ struct DevelopedWithLove: View {
             }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4.3) {
                 transitionManagerObservable.transitionToScene?(1)
             }
         }
