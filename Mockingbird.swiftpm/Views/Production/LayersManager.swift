@@ -26,6 +26,7 @@ struct LayersManager<InitialView: View>: View {
         }
         .environmentObject(NotificationManager())
         .environmentObject(TransitionManagerObservable())
+        .statusBar(hidden: true)
     }
 }
 
