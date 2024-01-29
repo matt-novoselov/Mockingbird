@@ -72,7 +72,7 @@ struct GamblingScene: View {
             }
             .onChange(of: notificationManager.isTextPrintFinished){
                 if (notificationManager.isTextPrintFinished == true && countVisitsToHeaven==0){
-                    withAnimation(Animation.easeInOut(duration: 1.5)){
+                    withAnimation(Animation.easeInOut(duration: 1.0)){
                         showingCoins = true
                     }
                 }
@@ -146,13 +146,13 @@ struct GamblingScene: View {
                 // handle end of visit to heaven
                 
                 isInHeaven = false
-                
-                if countVisitsToHeaven == 1{
-                    notificationManager.callNotification(ID: 11)
-                }
-                else if countVisitsToHeaven == 2{
-                    notificationManager.callNotification(ID: 12)
-                }
+            }
+            
+            if countVisitsToHeaven == 1{
+                notificationManager.callNotification(ID: 11)
+            }
+            else if countVisitsToHeaven == 2{
+                notificationManager.callNotification(ID: 12)
             }
         }
     }

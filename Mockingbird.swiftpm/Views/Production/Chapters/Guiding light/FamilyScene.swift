@@ -13,9 +13,11 @@ struct FamilyScene: View {
     
     @State var countMemners: Int = 0
     
+    @State public var darkSlider: Double = 0.8
+    
     var body: some View {
         ZStack{
-            LayerMixingManager(darkSlider: .constant(1), heavenSlider: .constant(0))
+            LayerMixingManager(darkSlider: $darkSlider, heavenSlider: .constant(0))
             
             HStack {
                 ForEach(0..<4) { _ in
@@ -25,10 +27,14 @@ struct FamilyScene: View {
             .padding()
         }
         .onChange(of: countMemners){
+            withAnimation(Animation.easeInOut(duration: 2.0)){
+                darkSlider -= 0.2
+            }
+            
             if countMemners==4{
                 notificationManager.callNotification(ID: 19, arrowAction: {
                     transitionManagerObservable.transitionToScene?(13)
-                }, darkMode: true)
+                }, darkMode: false)
             }
         }
     }

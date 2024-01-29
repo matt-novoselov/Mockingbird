@@ -13,9 +13,11 @@ struct PianoScene: View {
     
     @State var countTotalNotesEmited: Int = 0
     
+    @State public var darkSlider: Double = 1
+    
     var body: some View {
         ZStack{
-            LayerMixingManager(darkSlider: .constant(1), heavenSlider: .constant(0))
+            LayerMixingManager(darkSlider: $darkSlider, heavenSlider: .constant(0))
             
             HStack{
                 ForEach(0..<7) { _ in
@@ -24,6 +26,12 @@ struct PianoScene: View {
             }
         }
         .onChange(of: countTotalNotesEmited){
+            if countTotalNotesEmited == 2{
+                withAnimation(Animation.easeInOut(duration: 5.0)){
+                    darkSlider = 0.8
+                }
+            }
+            
             if countTotalNotesEmited==3{
                 notificationManager.callNotification(ID: 18, arrowAction: {
                     transitionManagerObservable.transitionToScene?(12)
