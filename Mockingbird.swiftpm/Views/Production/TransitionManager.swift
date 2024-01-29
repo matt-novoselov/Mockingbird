@@ -58,6 +58,7 @@ struct TransitionManager: View {
         .onAppear {
             transitionManagerObservable.setTransitionFunction(transitionFunction: transitionToScene)
         }
+        .edgesIgnoringSafeArea(.bottom)
     }
     
     func transitionToScene(newSceneID: Int) {
