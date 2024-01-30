@@ -28,6 +28,8 @@ struct GamblingScene: View {
     
     @State var hasStartedSwitchingToScene: Bool = false
     
+    let slotsView: SlotsRotation = SlotsRotation()
+    
     var body: some View {
         ZStack{
             GeometryReader { geometry in
@@ -45,14 +47,23 @@ struct GamblingScene: View {
                 Rectangle()
                     .frame(width: 200, height: 200)
                     .foregroundColor(isCoinInsertedInMachine ? Color.yellow : Color.green)
+                    .overlay(
+                        slotsView
+                            .frame(width: 300, height: 100)
+                            .mask(
+                                Rectangle()
+                                    .frame(width: 300, height: 100)
+                            )
+                            .scaleEffect(0.6)
+                    )
                 
                 AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, handleResult: handleResult, handleNoCoin: handleNoCoin)
             }
-
+            
             VStack {
                 HStack {
                     Spacer()
-               
+                    
                     if showingCoins{
                         VStack {
                             ForEach(0..<amountOfCoinsOnStart, id: \.self) { _ in

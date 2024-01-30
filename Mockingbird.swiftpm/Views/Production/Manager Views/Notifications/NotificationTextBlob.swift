@@ -82,7 +82,7 @@ struct NotificationTextBlob: View {
     
     func typeWriter() {
         if shift < text.count {
-            let interval: Double = notificationManager.isDebug ? 0.0005 : 0.05 / 2.0
+            let interval: Double = notificationManager.isDebug ? 0.0005 : 0.025
             
             DispatchQueue.main.asyncAfter(deadline: .now() + interval) {
                 shift += 1
