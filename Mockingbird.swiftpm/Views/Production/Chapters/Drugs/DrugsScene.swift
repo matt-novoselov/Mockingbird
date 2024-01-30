@@ -31,6 +31,7 @@ struct DrugsScene: View {
                 
                 if showPill{
                     DrugsPill(goToHeaven: goToHeaven, showPill: $showPill, count: $countPills)
+                        .padding(.bottom, 100)
                 }
             }
         }
