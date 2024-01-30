@@ -72,6 +72,7 @@ struct NotificationTextBlob: View {
             }
             
         }
+        .shadow(color: .black.opacity(darkMode ? 0 : 0.08), radius: 20)
         .onAppear(){
             DispatchQueue.main.asyncAfter(deadline: .now() + animationMoveInDuration - 0.25) {
                 typeWriter()
