@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Matt Novoselov on 21/01/24.
 //
@@ -10,7 +10,7 @@ import SwiftUI
 struct DraggableCoin: View {
     @EnvironmentObject var notificationManager: NotificationManager
     
-    @State private var circlePosition: CGPoint? // Make circlePosition optional
+    @State var circlePosition: CGPoint?
     @State var hasCollided: Bool = false
     
     @Binding var isCoinInsertedInMachine: Bool
@@ -19,6 +19,8 @@ struct DraggableCoin: View {
     var insertCoin: () -> Void
     var centerOfScreen :CGPoint
     
+    @State var hasReachedCollider: Bool = false
+    
     var body: some View {
         let circleSize: CGFloat = 100
         let initialLocation = CGPoint(x: circleSize / 2, y: circleSize / 2)
@@ -26,11 +28,16 @@ struct DraggableCoin: View {
         if !hasCollided{
             GeometryReader { geometry in
                 Circle()
+                    .scaleEffect(hasReachedCollider ? 0 : 1)
                     .position(circlePosition ?? initialLocation)
                     .foregroundColor(.red)
                     .gesture(
                         DragGesture()
                             .onChanged { value in
+                                if hasReachedCollider{
+                                    return
+                                }
+                                
                                 circlePosition = value.location
                                 
                                 let globalX: Double = geometry.frame(in: .global).origin.x + value.location.x - circleSize/2
@@ -40,14 +47,15 @@ struct DraggableCoin: View {
                                 checkCollision(coinCollider: coinCollider, centerOfScreen: centerOfScreen)
                             }
                             .onEnded { _ in
-                                withAnimation {
-                                    circlePosition = initialLocation
+                                if !hasReachedCollider{
+                                    withAnimation {
+                                        circlePosition = initialLocation
+                                    }
                                 }
                             }
                     )
             }
             .frame(width: circleSize, height: circleSize)
-            .transition(.asymmetric(insertion: .identity, removal: .scale(scale: 0.1)))
         }
     }
     
@@ -61,17 +69,20 @@ struct DraggableCoin: View {
         }
         
         let rectCollider = CGRect(x: centerOfScreen.x, y: centerOfScreen.y, width: 200, height: 200)
-
+        
         guard coinCollider.intersects(rectCollider) && !hasCollided && !isCoinInsertedInMachine else {
             return
         }
-
-        withAnimation {
+        
+        insertCoin()
+        
+        withAnimation{
+            hasReachedCollider = true
+        } completion: {
             withAnimation{
                 hasCollided = true
             }
-            insertCoin()
         }
+        
     }
-
 }
