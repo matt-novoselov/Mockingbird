@@ -17,7 +17,7 @@ struct DraggableCoin: View {
     @Binding var isInHeaven: Bool
     
     var insertCoin: () -> Void
-    var rectCollider: CGRect
+    var centerOfScreen :CGPoint
     
     var body: some View {
         let circleSize: CGFloat = 100
@@ -37,7 +37,7 @@ struct DraggableCoin: View {
                                 let globalY: Double = geometry.frame(in: .global).origin.y + value.location.y - circleSize/2
                                 let coinCollider = CGRect(x: globalX, y: globalY, width: circleSize, height: circleSize)
                                 
-                                checkCollision(coinCollider: coinCollider, rectCollider: rectCollider)
+                                checkCollision(coinCollider: coinCollider, centerOfScreen: centerOfScreen)
                             }
                             .onEnded { _ in
                                 withAnimation {
@@ -51,7 +51,7 @@ struct DraggableCoin: View {
         }
     }
     
-    func checkCollision(coinCollider: CGRect, rectCollider: CGRect) {
+    func checkCollision(coinCollider: CGRect, centerOfScreen: CGPoint) {
         if isInHeaven{
             return
         }
@@ -59,6 +59,8 @@ struct DraggableCoin: View {
         guard notificationManager.isTextPrintFinished else {
             return
         }
+        
+        let rectCollider = CGRect(x: centerOfScreen.x, y: centerOfScreen.y, width: 200, height: 200)
 
         guard coinCollider.intersects(rectCollider) && !hasCollided && !isCoinInsertedInMachine else {
             return

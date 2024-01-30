@@ -20,19 +20,15 @@ struct GamblingScene: View {
     
     @State var isInHeaven: Bool = false
     
-    @State var centerOfTheScreen: CGPoint?
+    @State var centerOfTheScreen: CGPoint = CGPoint(x: 0, y: 0)
     
     var amountOfCoinsOnStart: Int = 3
     
     @State var showingCoins: Bool = false
     
-//    var switchScene: () -> Void
-    
     @State var hasStartedSwitchingToScene: Bool = false
     
     var body: some View {
-        let rectCollider = createMachineCollider(height: 200, width: 200)
-        
         ZStack{
             GeometryReader { geometry in
                 Color.clear
@@ -46,20 +42,21 @@ struct GamblingScene: View {
             LayerMixingManager(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
             
             HStack (spacing: 0){
-                DynamicMachineCollider(rectCollider: rectCollider)
-                    .background(isCoinInsertedInMachine ? Color.yellow : Color.green)
+                Rectangle()
+                    .frame(width: 200, height: 200)
+                    .foregroundColor(isCoinInsertedInMachine ? Color.yellow : Color.green)
                 
                 AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, handleResult: handleResult, handleNoCoin: handleNoCoin)
             }
-            
+
             VStack {
                 HStack {
                     Spacer()
-                    
+               
                     if showingCoins{
                         VStack {
                             ForEach(0..<amountOfCoinsOnStart, id: \.self) { _ in
-                                DraggableCoin(isCoinInsertedInMachine: $isCoinInsertedInMachine, isInHeaven: $isInHeaven, insertCoin: insertCoin, rectCollider: rectCollider)
+                                DraggableCoin(isCoinInsertedInMachine: $isCoinInsertedInMachine, isInHeaven: $isInHeaven, insertCoin: insertCoin, centerOfScreen: centerOfTheScreen)
                                     .environmentObject(notificationManager)
                             }
                         }
@@ -99,7 +96,7 @@ struct GamblingScene: View {
         if countVisitsToHeaven<2{
             // case win
             
-            ParticleView.spawnParticle(xpos: Double(centerOfTheScreen?.x ?? 0), ypos: Double(centerOfTheScreen?.y ?? 0))
+            ParticleView.spawnParticle(xpos: Double(centerOfTheScreen.x), ypos: Double(centerOfTheScreen.y))
             
             let tuple = heavenValues[countVisitsToHeaven]
             goToHeaven(heavenSliderGoal: tuple.0, darkSliderAfterwards: tuple.1)
@@ -119,14 +116,6 @@ struct GamblingScene: View {
             //print("no coin, first try")
             notificationManager.callNotification(ID: 10)
         }
-        
-//        if notificationManager.isTextDisplayed == true && countVisitsToHeaven == 2 && notificationManager.isTextPrintFinished && !hasStartedSwitchingToScene{
-//            //print("no coin, switching scenes")
-//            hasStartedSwitchingToScene = true
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                switchScene()
-//            }
-//        }
     }
     
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
