@@ -38,7 +38,7 @@ struct DrugsPill: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .rotationEffect(.degrees(rotationAngle))
-                    .glow(color: Color("MainYellow").opacity(0.4), radius: 30)
+                    .glow(color: Color("MainYellow").opacity(0.5), radius: 30)
                     .onAppear(){
                         withAnimation{
                             rotationAngle += 60

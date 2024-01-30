@@ -37,7 +37,7 @@ struct TransitionManager: View {
                 case 9:
                     LightBlinking()
                 case 10:
-                    YouAreNotAlone()
+                    Text("Placeholder ID")
                 case 11:
                     PianoScene()
                 case 12:

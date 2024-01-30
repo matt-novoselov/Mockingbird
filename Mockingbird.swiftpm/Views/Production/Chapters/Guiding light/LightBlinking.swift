@@ -39,7 +39,7 @@ struct LightBlinking: View {
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                transitionManagerObservable.transitionToScene?(10)
+                transitionManagerObservable.transitionToScene?(11)
             }
         }
     }

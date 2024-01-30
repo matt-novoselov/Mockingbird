@@ -32,7 +32,7 @@ struct DraggableShakableView: View {
                         
                         CheckShake(value: value)
                         
-                        withAnimation{
+                        withAnimation(.easeOut(duration: 0.5)){
                             viewIsHeld = true
                         }
                     }
@@ -41,12 +41,11 @@ struct DraggableShakableView: View {
                             circlePosition = initialLocation
                         }
                         
-                        withAnimation{
+                        withAnimation(.easeOut(duration: 0.5)){
                             viewIsHeld = false
                         }
                     }
             )
-//            .background(.blue)
     }
     
     func CheckShake(value: DragGesture.Value){

@@ -19,11 +19,22 @@ struct PianoScene: View {
         ZStack{
             LayerMixingManager(darkSlider: $darkSlider, heavenSlider: .constant(0))
             
-            HStack{
-                ForEach(0..<7) { _ in
-                    pianoKey(countTotalNotesEmited: $countTotalNotesEmited)
+            ZStack(alignment: .top){
+                HStack{
+                    ForEach(0..<7) { _ in
+                        pianoKey(countTotalNotesEmited: $countTotalNotesEmited)
+                    }
+                }
+                
+                HStack{
+                    ForEach(0..<6) { index in
+                        pianoKeySmall(countTotalNotesEmited: $countTotalNotesEmited)
+                            .opacity(index==2 ? 0 : 1)
+                    }
                 }
             }
+            .scaleEffect(0.8)
+
         }
         .onChange(of: countTotalNotesEmited){
             if countTotalNotesEmited == 2{
@@ -63,6 +74,34 @@ struct pianoKey: View {
                 Rectangle()
                     .frame(width: 100, height: 400)
                     .foregroundColor(.white)
+            }
+            .buttonStyle(NoOpacityButtonStyle())
+        }
+    }
+}
+
+struct pianoKeySmall: View {
+    @State var animationHasEnded: Bool = true
+    @State var amountOfNotes: Int = 0
+    @Binding var countTotalNotesEmited: Int
+    
+    var body: some View {
+        ZStack{
+            ForEach(0..<amountOfNotes, id: \.self) { index in
+                Note()
+            }
+            
+            Button(
+                action: {
+                    playSound(name: "pop", ext: "mp3")
+                    
+                    countTotalNotesEmited+=1
+                    amountOfNotes+=1
+                }
+            ) {
+                Rectangle()
+                    .frame(width: 80, height: 200)
+                    .foregroundColor(.black)
             }
             .buttonStyle(NoOpacityButtonStyle())
         }
