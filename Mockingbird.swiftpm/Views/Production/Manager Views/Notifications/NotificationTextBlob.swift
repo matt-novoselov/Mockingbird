@@ -143,9 +143,11 @@ struct ArrowCircleButton: View {
 }
 
 #Preview {
-    VStack{
-        NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis aute.", showingArrow: true, showingTail: true, darkMode: true, arrowAction: {})
-        
-        NotificationTextBlob(text: "Ex est aliquip sunt excepteur id reprehenderit velit enim sunt eu ullamco duis duis elit duis aute.", showingArrow: true, showingTail: true, arrowAction: {})
-    }
+    LayersManager(initialView:
+        VStack{
+            NotificationTextBlob(text: NotificationsViewModel().notifications[9].text, showingArrow: true, showingTail: true, darkMode: true, arrowAction: {})
+            
+            NotificationTextBlob(text: NotificationsViewModel().notifications[9].text, showingArrow: true, showingTail: true, arrowAction: {})
+        }
+    )
 }
