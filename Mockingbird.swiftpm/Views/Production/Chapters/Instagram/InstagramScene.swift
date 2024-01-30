@@ -41,6 +41,7 @@ struct InstagramScene: View {
                             .mask(
                                 Image("iphone_frame")
                                     .resizable()
+                                    .aspectRatio(contentMode: .fill)
                             )
                     }
                 )
