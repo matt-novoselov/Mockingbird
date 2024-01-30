@@ -17,7 +17,7 @@ struct InstagramPostView: View {
     @EnvironmentObject var notificationManager: NotificationManager
     
     var body: some View {
-        VStack{
+        VStack (spacing: 0){
             HStack{
                 FontText(text: username, size: 20)
                     .foregroundColor(Color("InstagramGray"))
@@ -33,6 +33,7 @@ struct InstagramPostView: View {
                 .resizable()
                 .scaledToFit()
                 .cornerRadius(10)
+                .padding(.vertical)
             
             HStack{
                 InstagramIconButton(symbol: "SF_chat", filledSymbol: "SF_chat_filled", action: {action()}, isOneOfButtonsPressed: $isOneofbuttonsPressed)
@@ -100,4 +101,5 @@ struct InstagramIconButton: View {
     LayersManager(
         initialView: InstagramPostView(username: "@example", postedTimeAgo: "ex ago", image: "PH_calendar", action: InstagramViewController(action: InstagramScene().handleOnReaction, shouldChangePost: .constant(false)).transitionToNextPost)
     )
+    .frame(width: 500, height: 500)
 }

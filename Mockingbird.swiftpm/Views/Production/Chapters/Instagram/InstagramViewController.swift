@@ -38,14 +38,13 @@ struct InstagramViewController: View {
                     Text("Error, this sceneID doesn't exist")
                 }
             }
-            .padding()
             .transition(.pushLeftTransition)
             .environmentObject(notificationManager)
+            .padding(.horizontal, 20)
         }
         .onChange(of: shouldChangePost){
             transitionToNextPost()
         }
-        .background(.orange)
     }
     
     func transitionToNextPost() {
