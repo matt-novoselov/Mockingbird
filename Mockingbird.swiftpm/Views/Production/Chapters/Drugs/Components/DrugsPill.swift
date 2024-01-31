@@ -16,7 +16,7 @@ struct DrugsPill: View {
     
     
     let heavenValues: [(Double, Double)] = [
-        (1.0, 0.8),
+        (1.0, 0.75),
         (1.0, 1.0),
         (0.25, 1.0),
     ]

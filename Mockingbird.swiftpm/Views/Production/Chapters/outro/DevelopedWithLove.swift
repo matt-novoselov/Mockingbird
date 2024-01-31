@@ -25,7 +25,7 @@ struct DevelopedWithLove: View {
                         .interpolation(.high)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .glow(color: Color("MainYellow").opacity(0.3), radius: 30)
+                        .glow(color: Color("MainYellow").opacity(0.25), radius: 30)
                         
                         .onAppear {
                             DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {

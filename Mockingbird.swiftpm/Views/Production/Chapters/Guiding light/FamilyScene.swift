@@ -27,7 +27,7 @@ struct FamilyScene: View {
             .padding()
         }
         .onChange(of: countMemners){
-            withAnimation(Animation.easeInOut(duration: 2.0)){
+            withAnimation(Animation.easeInOut(duration: 5.0)){
                 darkSlider -= 0.2
             }
             

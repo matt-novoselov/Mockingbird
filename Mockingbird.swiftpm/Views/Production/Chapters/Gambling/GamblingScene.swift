@@ -119,7 +119,7 @@ struct GamblingScene: View {
     
     func handleResult(){
         let heavenValues: [(Double, Double)] = [
-            (0.85, 0.35),
+            (0.85, 0.4),
             (0.85, 0.5),
         ]
         

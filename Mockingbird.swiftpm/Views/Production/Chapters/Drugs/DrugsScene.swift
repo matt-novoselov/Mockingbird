@@ -11,7 +11,7 @@ struct DrugsScene: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
-    @State var darkSlider: Double = 0.5
+    @State var darkSlider: Double = 0.4
     @State var heavenSlider: Double = 0
     
     @State var isShaken: Bool = false
