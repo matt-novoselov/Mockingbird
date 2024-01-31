@@ -15,7 +15,11 @@ struct LastScene: View {
         ZStack{
             LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
             
-            Text("Rather than relying on substances or temporary escapes, try to find happiness in the present moment.")
+            Image("dopamine_addicted")
+                .interpolation(.high)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding(.all, 250)
         }
         .onAppear(){
             DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
