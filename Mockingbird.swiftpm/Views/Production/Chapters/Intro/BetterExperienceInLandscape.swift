@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BetterExperienceInHeadphones: View {
+struct BetterExperienceInLandscape: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
@@ -16,13 +16,14 @@ struct BetterExperienceInHeadphones: View {
             LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
             
             VStack (spacing: 0){
-                Image("SF_headphones")
+                Image("SF_orientation")
                     .interpolation(.high)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: 60)
+                    .frame(height: 95)
+                    .rotationEffect(Angle(degrees: 90))
                 
-                FontText(text: "Better experience with headphones ", size: 64)
+                FontText(text: "Better experience in the landscape mode", size: 64)
                     .multilineTextAlignment(.center)
                     .padding()
                     .padding(.horizontal, 100)
@@ -38,5 +39,5 @@ struct BetterExperienceInHeadphones: View {
 }
 
 #Preview {
-    LayersManager(initialView: BetterExperienceInHeadphones())
+    LayersManager(initialView: BetterExperienceInLandscape())
 }

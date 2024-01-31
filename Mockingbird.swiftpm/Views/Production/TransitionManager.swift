@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TransitionManager: View {
     @StateObject private var transitionManagerObservable = TransitionManagerObservable()
-    @State private var currentSceneID: Int = 3
+    @State private var currentSceneID: Int = 0
     let transitionDuration: Double = 1.5
     
     var body: some View {
@@ -17,8 +17,7 @@ struct TransitionManager: View {
             Group{
                 switch currentSceneID {
                 case 0:
-                    BetterExperienceInHeadphones()
-//                    BlockerMessage()
+                    BetterExperienceInLandscape()
                 case 1:
                     StartMenu()
                 case 2:
