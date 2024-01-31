@@ -59,6 +59,10 @@ struct InstagramScene: View {
     }
     
     func handleOnReaction(){
+        if countVisitsToHeaven>2{
+            return
+        }
+        
         let heavenValues: [(Double, Double)] = [
             (0.25, 0.05),
             (0.25, 0.1),
