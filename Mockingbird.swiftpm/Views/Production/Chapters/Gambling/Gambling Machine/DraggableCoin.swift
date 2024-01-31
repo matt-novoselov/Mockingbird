@@ -68,7 +68,7 @@ struct DraggableCoin: View {
             return
         }
         
-        let rectCollider = CGRect(x: centerOfScreen.x, y: centerOfScreen.y, width: 200, height: 200)
+        let rectCollider = CGRect(x: centerOfScreen.x - 100, y: centerOfScreen.y - 100, width: 200, height: 200)
         
         guard coinCollider.intersects(rectCollider) && !hasCollided && !isCoinInsertedInMachine else {
             return

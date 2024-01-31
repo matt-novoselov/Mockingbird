@@ -44,6 +44,14 @@ struct GamblingScene: View {
             LayerMixingManager(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
             
             HStack (spacing: 0){
+                Image("arrow_white")
+                    .interpolation(.high)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 250)
+                    .padding()
+                    .opacity(0)
+                
                 Rectangle()
                     .frame(width: 200, height: 200)
                     .foregroundColor(isCoinInsertedInMachine ? Color.yellow : Color.green)
@@ -58,6 +66,16 @@ struct GamblingScene: View {
                     )
                 
                 AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, handleResult: handleResult, handleNoCoin: handleNoCoin)
+                
+                Image("arrow_white")
+                    .interpolation(.high)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 250)
+                    .padding()
+                    .opacity(showingCoins ? 1 : 0)
+                    .opacity(countVisitsToHeaven == 0 ? 1 : 0)
+                    .opacity(isCoinInsertedInMachine == true ? 0 : 1)
             }
             
             VStack {
@@ -85,6 +103,7 @@ struct GamblingScene: View {
                     }
                 }
             }
+
         }
     }
     
