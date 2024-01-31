@@ -10,6 +10,7 @@ import SwiftUI
 struct SlotsRotation: View {
     @State private var offsetY: CGFloat = 0
     @State var imageSize: CGSize = CGSize(width: 0, height: 0)
+    @Binding var changeBool: Bool
     
     var body: some View {
         HStack{
@@ -30,6 +31,9 @@ struct SlotsRotation: View {
             
             singleSlot()
                 .offset(y: offsetY / 2 + 100)
+        }
+        .onChange(of: changeBool){
+            rotateSlots()
         }
     }
     
@@ -52,5 +56,5 @@ struct singleSlot: View {
 
 
 #Preview {
-    SlotsRotation()
+    SlotsRotation(changeBool: .constant(false))
 }

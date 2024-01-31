@@ -28,7 +28,7 @@ struct GamblingScene: View {
     
     @State var hasStartedSwitchingToScene: Bool = false
     
-    let slotsView: SlotsRotation = SlotsRotation()
+    @State var changeBool: Bool = false
     
     var body: some View {
         ZStack{
@@ -56,7 +56,7 @@ struct GamblingScene: View {
                     .frame(width: 200, height: 200)
                     .foregroundColor(isCoinInsertedInMachine ? Color.yellow : Color.green)
                     .overlay(
-                        slotsView
+                        SlotsRotation(changeBool: $changeBool)
                             .frame(width: 300, height: 100)
                             .mask(
                                 Rectangle()
@@ -125,6 +125,7 @@ struct GamblingScene: View {
         
         if countVisitsToHeaven<2{
             // case win
+            changeBool = true
             
             ParticleView.spawnParticle(xpos: Double(centerOfTheScreen.x), ypos: Double(centerOfTheScreen.y))
             
