@@ -47,7 +47,7 @@ struct DrugsPill: View {
             }
             .buttonStyle(NoOpacityButtonStyle())
         }
-        .frame(width: 80, height: 80)
+        .frame(width: 60, height: 60)
         .transition(
             .asymmetric(insertion: .move(edge: .top), removal: .opacity)
         )

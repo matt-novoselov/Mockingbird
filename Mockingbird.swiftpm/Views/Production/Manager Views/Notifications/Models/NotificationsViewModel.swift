@@ -21,7 +21,7 @@ class NotificationsViewModel{
         
         Notification(text: "The alcohol itself isn't what makes you feel good and it's not healthy."), // 5
         
-        Notification(text: "This association between drinking alcohol and feeling good can result in addiction."), // 6
+        Notification(text: "This association between drinking alcohol and feeling good can result in a serious addiction."), // 6
         
         Notification(text: "Addictive use of social media can closely resemble other substance use disorders."), // 7
         
@@ -29,9 +29,9 @@ class NotificationsViewModel{
         
         Notification(text: "Due to our dopamine systems, as we consume more, we actually desire more."), // 9
         
-        Notification(text: "When experiencing a gambling win, the brain releases dopamine, creating a desire to gamble more."), // 10
+        Notification(text: "But it’s important to remember that fleeting moments of pleasure are not real happiness."), // 10
         
-        Notification(text: "It’s important to remember that fleeting moments of pleasure are not real happiness."), // 11
+        Notification(text: "When experiencing a gambling win, the brain releases dopamine, creating a desire to gamble more."), // 11
         
         Notification(text: "Gambling can become an unhealthy obsession, resulting in financial and personal problems."), // 12
         
@@ -43,7 +43,7 @@ class NotificationsViewModel{
         
         Notification(text: "Engage in activities that are meaningful to you – it's the first step towards a brighter future."), // 16
         
-        Notification(text: "You are not alone. Your family, relatives, and friends can help you navigate through the storm."), // 17
+        Notification(text: "Remember that you are not alone. Your family, relatives, and friends can help you navigate through the storm."), // 17
         
         Notification(text: "Rather than relying on substances or temporary escapes, try to find happiness in the present moment.") // 18
 

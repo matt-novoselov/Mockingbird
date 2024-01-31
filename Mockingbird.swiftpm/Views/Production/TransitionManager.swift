@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TransitionManager: View {
     @StateObject private var transitionManagerObservable = TransitionManagerObservable()
-    @State private var currentSceneID: Int = 0
+    @State private var currentSceneID: Int = 6
     let transitionDuration: Double = 1.5
     
     var body: some View {
@@ -29,7 +29,7 @@ struct TransitionManager: View {
                 case 5:
                     InstagramScene()
                 case 6:
-                    GamblingTransitionManager()
+                    GamblingScene()
                 case 7:
                     Text("Placeholder ID")
                 case 8:

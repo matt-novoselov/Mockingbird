@@ -23,14 +23,14 @@ struct HeavenBackground: View {
     var body: some View {
         ZStack{
             Image("heaven_background")
-                .interpolation(.high)
+//                .interpolation(.high)
                 .resizable()
                 .scaledToFill()
                 .opacity(heavenSlider)
         
             if darkSlider>0.65{
                 Image("dark_dots")
-                    .interpolation(.high)
+//                    .interpolation(.high)
                     .resizable()
                     .scaledToFill()
                     .opacity(dotsAdjustedValue / 1.5)

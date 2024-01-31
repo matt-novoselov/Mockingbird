@@ -48,28 +48,31 @@ struct DrugsScene: View {
         
         isShaken = true
         
-        if countPills<3{
+        if countPills<2{
             countPills += 1
             withAnimation{
                 showPill = true
             }
         }
         else{
-            notificationManager.callNotification(ID: 15, arrowAction: {
-                transitionManagerObservable.transitionToScene?(9)
-            }, darkMode: true)
+            notificationManager.closeNotification()
+            DispatchQueue.main.asyncAfter(deadline: .now() + (NotificationTextBlob().animationMoveInDuration + 0.1)) {
+                notificationManager.callNotification(ID: 15, arrowAction: {
+                    transitionManagerObservable.transitionToScene?(9)
+                }, darkMode: true)
+            }
         }
     }
     
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
-        let animationDuration = 2.5
+        let animationDuration = 3.0
         
         notificationManager.closeNotification()
         
         withAnimation(.easeInOut(duration: animationDuration)) {
             heavenSlider = heavenSliderGoal ?? 1.0
         } completion: {
-            withAnimation(.none) {
+            withAnimation(.easeInOut(duration: 0.5)) {
                 darkSlider = darkSliderAfterwards ?? darkSlider
             }
             

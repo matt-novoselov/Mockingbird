@@ -116,7 +116,7 @@ struct AlcoholDrink: View {
                 let animationDuration = 3.0
                 
                 withAnimation(.easeInOut(duration: animationDuration)) {
-                    heavenSlider = 0.25
+                    heavenSlider = 0.5
                 } completion: {
                     withAnimation(.easeInOut(duration: animationDuration)) {
                         heavenSlider = 0
