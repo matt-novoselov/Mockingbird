@@ -33,7 +33,7 @@ struct PianoScene: View {
                     }
                 }
             }
-            .scaleEffect(0.8)
+            .scaleEffect(0.7)
 
         }
         .onChange(of: countTotalNotesEmited){
@@ -60,7 +60,7 @@ struct pianoKey: View {
     var body: some View {
         ZStack{
             ForEach(0..<amountOfNotes, id: \.self) { index in
-                Note()
+                Note(imageName: "SF_note")
             }
             
             Button(
@@ -88,7 +88,8 @@ struct pianoKeySmall: View {
     var body: some View {
         ZStack{
             ForEach(0..<amountOfNotes, id: \.self) { index in
-                Note()
+                Note(imageName: "SF_note_2")
+                    .offset(y: 100)
             }
             
             Button(
@@ -105,15 +106,17 @@ struct pianoKeySmall: View {
             }
             .buttonStyle(NoOpacityButtonStyle())
         }
+        .padding(.horizontal, 8)
     }
 }
 
 struct Note: View {
     @State var noteOffset: CGFloat = -150
     @State var noteOpacity: CGFloat = 1
+    var imageName: String = ""
     
     var body: some View {
-        Image("SF_note")
+        Image(imageName)
             .interpolation(.high)
             .resizable()
             .aspectRatio(contentMode: .fit)
