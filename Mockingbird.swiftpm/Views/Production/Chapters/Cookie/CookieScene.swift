@@ -46,6 +46,8 @@ struct Cookie: View {
     @EnvironmentObject var notificationManager: NotificationManager
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
+    @State var buttonPosition: CGPoint = CGPoint(x: 0, y: 0)
+    
     var body: some View {
         Button(action: {
             if !notificationManager.isTextPrintFinished{
@@ -57,6 +59,8 @@ struct Cookie: View {
             }
             
             isBitten = true
+            
+            ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
             
             notificationManager.closeNotification()
             
@@ -101,6 +105,16 @@ struct Cookie: View {
                 .interpolation(.high)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .background(
+                    GeometryReader{ geometry in
+                        Color.clear
+                            .onAppear(){
+                                if let buttonPosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {
+                                    self.buttonPosition = buttonPosition
+                                }
+                            }
+                    }
+                )
         }
         .buttonStyle(NoOpacityButtonStyle())
     }
