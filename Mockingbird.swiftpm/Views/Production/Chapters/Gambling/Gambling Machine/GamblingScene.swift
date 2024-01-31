@@ -22,7 +22,7 @@ struct GamblingScene: View {
     
     @State var centerOfTheScreen: CGPoint = CGPoint(x: 0, y: 0)
     
-    var amountOfCoinsOnStart: Int = 3
+    var amountOfCoinsOnStart: Int = 2
     
     @State var showingCoins: Bool = false
     
@@ -123,7 +123,7 @@ struct GamblingScene: View {
             (0.85, 0.5),
         ]
         
-        if countVisitsToHeaven<2{
+        if countVisitsToHeaven<1{
             // case win
             changeBool = true
             
@@ -136,7 +136,7 @@ struct GamblingScene: View {
         else{
             // case loose
             
-            notificationManager.callNotification(ID: 13, arrowAction: {
+            notificationManager.callNotification(ID: 12, arrowAction: {
                 transitionManagerObservable.transitionToScene?(8)
             })
         }
@@ -171,9 +171,9 @@ struct GamblingScene: View {
             if countVisitsToHeaven == 1{
                 notificationManager.callNotification(ID: 11)
             }
-            else if countVisitsToHeaven == 2{
-                notificationManager.callNotification(ID: 12)
-            }
+//            else if countVisitsToHeaven == 2{
+//                notificationManager.callNotification(ID: 12)
+//            }
         }
     }
 }

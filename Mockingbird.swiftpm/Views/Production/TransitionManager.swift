@@ -18,6 +18,7 @@ struct TransitionManager: View {
                 switch currentSceneID {
                 case 0:
                     BetterExperienceInHeadphones()
+//                    BlockerMessage()
                 case 1:
                     StartMenu()
                 case 2:

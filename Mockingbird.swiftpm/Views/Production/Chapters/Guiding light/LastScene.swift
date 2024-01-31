@@ -23,7 +23,7 @@ struct LastScene: View {
         }
         .onAppear(){
             DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
-                notificationManager.callNotification(ID: 20, arrowAction: {
+                notificationManager.callNotification(ID: 18, arrowAction: {
                     transitionManagerObservable.transitionToScene?(14)
                 })
             }

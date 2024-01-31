@@ -55,7 +55,7 @@ struct DrugsScene: View {
             }
         }
         else{
-            notificationManager.callNotification(ID: 16, arrowAction: {
+            notificationManager.callNotification(ID: 15, arrowAction: {
                 transitionManagerObservable.transitionToScene?(9)
             }, darkMode: true)
         }
@@ -79,10 +79,10 @@ struct DrugsScene: View {
                 isShaken = false
                 
                 if countPills == 1{
-                    notificationManager.callNotification(ID: 14, darkMode: true)
+                    notificationManager.callNotification(ID: 13, darkMode: true)
                 }
                 else if countPills == 2{
-                    notificationManager.callNotification(ID: 15, darkMode: true)
+                    notificationManager.callNotification(ID: 14, darkMode: true)
                 }
             }
         }

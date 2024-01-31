@@ -44,7 +44,7 @@ struct PianoScene: View {
             }
             
             if countTotalNotesEmited==3{
-                notificationManager.callNotification(ID: 18, arrowAction: {
+                notificationManager.callNotification(ID: 16, arrowAction: {
                     transitionManagerObservable.transitionToScene?(12)
                 }, darkMode: true)
             }

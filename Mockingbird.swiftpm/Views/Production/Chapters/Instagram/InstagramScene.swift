@@ -65,18 +65,8 @@ struct InstagramScene: View {
             (0.25, 0.15),
         ]
         
-        if countVisitsToHeaven<3{
-            let tuple = heavenValues[countVisitsToHeaven]
-            goToHeaven(heavenSliderGoal: tuple.0, darkSliderAfterwards: tuple.1)
-        }
-        else{
-            notificationManager.callNotification(
-                ID: 9,
-                arrowAction: {
-                    transitionManagerObservable.transitionToScene?(6)
-                }
-            )
-        }
+        let tuple = heavenValues[countVisitsToHeaven]
+        goToHeaven(heavenSliderGoal: tuple.0, darkSliderAfterwards: tuple.1)
     }
     
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
@@ -109,6 +99,14 @@ struct InstagramScene: View {
                 }
                 else if countVisitsToHeaven == 2{
                     notificationManager.callNotification(ID: 8)
+                }
+                else if countVisitsToHeaven == 3{
+                    notificationManager.callNotification(
+                        ID: 9,
+                        arrowAction: {
+                            transitionManagerObservable.transitionToScene?(6)
+                        }
+                    )
                 }
             }
         }

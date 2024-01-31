@@ -32,7 +32,7 @@ struct FamilyScene: View {
             }
             
             if countMemners==4{
-                notificationManager.callNotification(ID: 19, arrowAction: {
+                notificationManager.callNotification(ID: 17, arrowAction: {
                     transitionManagerObservable.transitionToScene?(13)
                 }, darkMode: false)
             }
