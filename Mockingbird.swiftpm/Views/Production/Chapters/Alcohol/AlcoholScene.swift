@@ -98,7 +98,7 @@ struct AlcoholDrink: View {
                 currentDisplayedImage = "PH_calendar"
             }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + NotificationTextBlob().animationMoveInDuration + 0.1) {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + NotificationTextBlob().animationMoveInDuration + 0.1) {
                 
                 if countBites != 2{
                     notificationManager.callNotification(
@@ -126,7 +126,7 @@ struct AlcoholDrink: View {
                         heavenSlider = 0
                     }
                 }
-            }
+//            }
             
         })
         {

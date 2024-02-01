@@ -72,7 +72,7 @@ struct Cookie: View {
             }
             
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + (countBites == 0 ? 0 : NotificationTextBlob().animationMoveInDuration + 0.1)) {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + (countBites == 0 ? 0 : NotificationTextBlob().animationMoveInDuration + 0.1)) {
                 
                 if countBites != 2{
                     notificationManager.callNotification(
@@ -100,7 +100,7 @@ struct Cookie: View {
                         heavenSlider = 0
                     }
                 }
-            }
+//            }
             
         })
         {

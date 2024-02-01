@@ -74,7 +74,7 @@ struct InstagramScene: View {
     }
     
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
-        notificationManager.closeNotification()
+//        notificationManager.closeNotification()
         
         countVisitsToHeaven+=1
         isInHeaven = true
