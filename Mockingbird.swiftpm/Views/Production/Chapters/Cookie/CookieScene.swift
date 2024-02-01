@@ -46,7 +46,7 @@ struct Cookie: View {
     @EnvironmentObject var notificationManager: NotificationManager
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
-    @State var buttonPosition: CGPoint = CGPoint(x: 0, y: 0)
+    @State var geomtryHolder: GeometryProxy?
     
     var body: some View {
         Button(action: {
@@ -60,7 +60,10 @@ struct Cookie: View {
             
             isBitten = true
             
-            ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
+            if let geometryHolder = geomtryHolder,
+               let buttonPosition = GlobalPositionUtility.getGlobalPosition(view: geometryHolder) {
+                ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
+            }
             
             notificationManager.closeNotification()
             
@@ -84,7 +87,7 @@ struct Cookie: View {
                         }
                     )
                 }
-
+                
                 
                 countBites+=1
                 
@@ -109,9 +112,7 @@ struct Cookie: View {
                     GeometryReader{ geometry in
                         Color.clear
                             .onAppear(){
-                                if let buttonPosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {
-                                    self.buttonPosition = buttonPosition
-                                }
+                                geomtryHolder = geometry
                             }
                     }
                 )

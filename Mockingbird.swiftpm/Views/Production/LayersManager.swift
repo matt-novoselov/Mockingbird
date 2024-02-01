@@ -21,8 +21,6 @@ struct LayersManager<InitialView: View>: View {
             SwiftuiParticles()
             
             NotificationManagerView()
-            
-//            PortraitModeBlockerView()
         }
         .environmentObject(NotificationManager())
         .environmentObject(TransitionManagerObservable())

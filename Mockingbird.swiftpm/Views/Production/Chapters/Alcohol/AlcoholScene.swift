@@ -73,6 +73,8 @@ struct AlcoholDrink: View {
     
     @State var buttonPosition: CGPoint = CGPoint(x: 0, y: 0)
     
+    @State var geomtryHolder: GeometryProxy?
+    
     var body: some View {
         Button(action: {
             if !notificationManager.isTextPrintFinished{
@@ -83,8 +85,10 @@ struct AlcoholDrink: View {
                 return
             }
             
-            ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
-            
+            if let geometryHolder = geomtryHolder,
+               let buttonPosition = GlobalPositionUtility.getGlobalPosition(view: geometryHolder) {
+                ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
+            }
             
             isBitten = true
             
@@ -134,9 +138,7 @@ struct AlcoholDrink: View {
                     GeometryReader{ geometry in
                         Color.clear
                             .onAppear(){
-                                if let buttonPosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {
-                                    self.buttonPosition = buttonPosition
-                                }
+                                geomtryHolder = geometry
                             }
                     }
                 )
