@@ -37,12 +37,12 @@ struct PianoScene: View {
 
         }
         .onChange(of: countTotalNotesEmited){
-            if countTotalNotesEmited == 2{
+            if countTotalNotesEmited<=3{
                 withAnimation(Animation.easeInOut(duration: 5.0)){
-                    darkSlider = 0.8
+                    darkSlider -= 0.07
                 }
             }
-            
+
             if countTotalNotesEmited==3{
                 notificationManager.callNotification(ID: 16, arrowAction: {
                     transitionManagerObservable.transitionToScene?(12)

@@ -13,7 +13,7 @@ struct FamilyScene: View {
     
     @State var countMemners: Int = 0
     
-    @State public var darkSlider: Double = 0.8
+    @State public var darkSlider: Double = 0.79
     
     var body: some View {
         ZStack{
