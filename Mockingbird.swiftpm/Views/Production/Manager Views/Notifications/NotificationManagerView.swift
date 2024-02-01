@@ -32,6 +32,19 @@ struct NotificationManagerView: View {
                 
                 Spacer()
             }
+            
+            if notificationManager.isDebug{
+                VStack{
+                    Button("Button") {
+                        notificationManager.callNotification(ID: 0)
+                    }
+                    
+                    Button("Button") {
+                        notificationManager.callNotification(ID: 1)
+                    }
+                }
+            }
+
         }
     }
 }

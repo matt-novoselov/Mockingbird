@@ -41,15 +41,31 @@ struct NotificationTextBlob: View {
                         customShift = shift + 12
                     }
                 }
+                .onChange(of: text){
+                    shift = 1
+                    
+                    withAnimation(){
+                        customShift = 1
+                    }
+                    
+                    typeWriter()
+                }
             
             Group {
                 Text(String(text.prefix(shift)))
                     .font(getFont(size: 32))
-                    .foregroundColor(darkMode ? .white : .black) +
+                    .foregroundColor(darkMode ? .white : .black)
+                +
                 
-                Text(String(text.suffix(from: text.index(text.startIndex, offsetBy: shift))))
-                    .font(getFont(size: 32))
-                    .foregroundColor(.clear)
+                Text(
+                    shift <= text.count ?
+                    
+                    String(text.suffix(text.count - shift))
+                    
+                    : ""
+                )
+                .font(getFont(size: 32))
+                .foregroundColor(.clear)
                 
             }
             .frame(maxWidth: 330)
@@ -145,10 +161,10 @@ struct ArrowCircleButton: View {
 
 #Preview {
     LayersManager(initialView:
-        VStack{
-            NotificationTextBlob(text: NotificationsViewModel().notifications[9].text, showingArrow: true, showingTail: true, darkMode: true, arrowAction: {})
-            
-            NotificationTextBlob(text: NotificationsViewModel().notifications[9].text, showingArrow: true, showingTail: true, arrowAction: {})
-        }
+                    VStack{
+        NotificationTextBlob(text: NotificationsViewModel().notifications[9].text, showingArrow: true, showingTail: true, darkMode: true, arrowAction: {})
+        
+        NotificationTextBlob(text: NotificationsViewModel().notifications[9].text, showingArrow: true, showingTail: true, arrowAction: {})
+    }
     )
 }
