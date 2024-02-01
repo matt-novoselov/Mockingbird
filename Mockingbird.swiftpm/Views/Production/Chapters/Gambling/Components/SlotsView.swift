@@ -11,49 +11,53 @@ struct SlotsRotation: View {
     @State private var offsetY: CGFloat = 0
     @State var imageSize: CGSize = CGSize(width: 0, height: 0)
     @Binding var changeBool: Bool
+    @State var firstVariation: Bool = false
+    
+    public let animationDuration: Double = 2.0
+    
+    let amountOfFruits: Int = 26
     
     var body: some View {
-        HStack{
-            singleSlot()
+        ZStack{
+            Image("slots")
+                .interpolation(.high)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
                 .background(
                     GeometryReader { proxy in
                         Color.clear
                             .onAppear(){
                                 imageSize = proxy.size
-                                offsetY = -imageSize.height
+                                offsetY = imageSize.height - imageSize.height / CGFloat(amountOfFruits)
                             }
                     }
                 )
                 .offset(y: offsetY / 2)
+                .onChange(of: changeBool){
+                    rotateSlots()
+                }
             
-            singleSlot()
-                .offset(y: offsetY / 2 - 100)
-            
-            singleSlot()
-                .offset(y: offsetY / 2 + 100)
-        }
-        .onChange(of: changeBool){
-            rotateSlots()
+//            Button("Button") {
+//                rotateSlots()
+//            }
         }
     }
     
     public func rotateSlots(){
-        withAnimation(.easeInOut(duration: 5)) {
-            offsetY = imageSize.height
+        if firstVariation{
+            withAnimation(.spring(duration: animationDuration)) {
+                offsetY = imageSize.height - imageSize.height / CGFloat(amountOfFruits)
+            }
         }
+        else{
+            withAnimation(.spring(duration: animationDuration)) {
+                offsetY = -imageSize.height + imageSize.height / CGFloat(amountOfFruits)
+            }
+        }
+        
+        firstVariation.toggle()
     }
 }
-
-struct singleSlot: View {
-    var body: some View {
-        Image("slots")
-            .interpolation(.high)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(width: 100)
-    }
-}
-
 
 #Preview {
     SlotsRotation(changeBool: .constant(false))

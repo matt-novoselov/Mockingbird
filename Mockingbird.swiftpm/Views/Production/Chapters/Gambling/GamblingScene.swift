@@ -30,6 +30,8 @@ struct GamblingScene: View {
     
     @State var changeBool: Bool = false
     
+    @State var shouldShowArrowAgain: Bool = true
+    
     var body: some View {
         ZStack{
             GeometryReader { geometry in
@@ -57,12 +59,14 @@ struct GamblingScene: View {
                     .foregroundColor(isCoinInsertedInMachine ? Color.yellow : Color.green)
                     .overlay(
                         SlotsRotation(changeBool: $changeBool)
-                            .frame(width: 300, height: 100)
+                            .frame(height: 50)
+                        //                            .background(
+                        //                                .blue
+                        //                            )
                             .mask(
                                 Rectangle()
-                                    .frame(width: 300, height: 100)
+                                    .frame(height: 50)
                             )
-                            .scaleEffect(0.6)
                     )
                 
                 AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, handleResult: handleResult, handleNoCoin: handleNoCoin)
@@ -74,8 +78,7 @@ struct GamblingScene: View {
                     .frame(width: 250)
                     .padding()
                     .opacity(showingCoins ? 1 : 0)
-                    .opacity(countVisitsToHeaven == 0 ? 1 : 0)
-                    .opacity(isCoinInsertedInMachine == true ? 0 : 1)
+                    .opacity(shouldShowArrowAgain ? 1 : 0)
             }
             
             VStack {
@@ -103,7 +106,7 @@ struct GamblingScene: View {
                     }
                 }
             }
-
+            
         }
     }
     
@@ -111,6 +114,10 @@ struct GamblingScene: View {
         if !isCoinInsertedInMachine{
             withAnimation(.easeInOut) {
                 isCoinInsertedInMachine = true
+            }
+            
+            withAnimation(.easeInOut) {
+                shouldShowArrowAgain = false
             }
             
             notificationManager.closeNotification()
@@ -125,20 +132,28 @@ struct GamblingScene: View {
         
         if countVisitsToHeaven<1{
             // case win
-            changeBool = true
+            changeBool.toggle()
             
-            ParticleView.spawnParticle(xpos: Double(centerOfTheScreen.x), ypos: Double(centerOfTheScreen.y))
-            
-            let tuple = heavenValues[countVisitsToHeaven]
-            goToHeaven(heavenSliderGoal: tuple.0, darkSliderAfterwards: tuple.1)
-            countVisitsToHeaven+=1
+            DispatchQueue.main.asyncAfter(deadline: .now() + SlotsRotation(changeBool: .constant(false)).animationDuration) {
+
+                ParticleView.spawnParticle(xpos: Double(centerOfTheScreen.x), ypos: Double(centerOfTheScreen.y))
+                
+                let tuple = heavenValues[countVisitsToHeaven]
+                goToHeaven(heavenSliderGoal: tuple.0, darkSliderAfterwards: tuple.1)
+                countVisitsToHeaven+=1
+                
+            }
         }
         else{
             // case loose
             
-            notificationManager.callNotification(ID: 12, arrowAction: {
-                transitionManagerObservable.transitionToScene?(8)
-            })
+            changeBool.toggle()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + SlotsRotation(changeBool: .constant(false)).animationDuration) {
+                notificationManager.callNotification(ID: 12, arrowAction: {
+                    transitionManagerObservable.transitionToScene?(8)
+                })
+            }
         }
     }
     
@@ -166,14 +181,15 @@ struct GamblingScene: View {
                 // handle end of visit to heaven
                 
                 isInHeaven = false
+                
+                if countVisitsToHeaven == 1{
+                    notificationManager.callNotification(ID: 11)
+                }
             }
             
-            if countVisitsToHeaven == 1{
-                notificationManager.callNotification(ID: 11)
-            }
-//            else if countVisitsToHeaven == 2{
-//                notificationManager.callNotification(ID: 12)
-//            }
+            //            else if countVisitsToHeaven == 2{
+            //                notificationManager.callNotification(ID: 12)
+            //            }
         }
     }
 }
