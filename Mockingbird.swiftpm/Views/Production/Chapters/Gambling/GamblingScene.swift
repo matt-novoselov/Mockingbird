@@ -132,6 +132,7 @@ struct GamblingScene: View {
         
         if countVisitsToHeaven<1{
             // case win
+            isInHeaven = true
             changeBool.toggle()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + SlotsRotation(changeBool: .constant(false)).animationDuration) {
@@ -165,7 +166,6 @@ struct GamblingScene: View {
     }
     
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
-        isInHeaven = true
         let animationDuration = 1.5
         
         withAnimation(.easeInOut(duration: animationDuration)) {
