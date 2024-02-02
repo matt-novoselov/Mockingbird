@@ -60,9 +60,6 @@ struct GamblingScene: View {
                     .overlay(
                         SlotsRotation(changeBool: $changeBool)
                             .frame(height: 50)
-                        //                            .background(
-                        //                                .blue
-                        //                            )
                             .mask(
                                 Rectangle()
                                     .frame(height: 50)
@@ -186,10 +183,6 @@ struct GamblingScene: View {
                     notificationManager.callNotification(ID: 11)
                 }
             }
-            
-            //            else if countVisitsToHeaven == 2{
-            //                notificationManager.callNotification(ID: 12)
-            //            }
         }
     }
 }

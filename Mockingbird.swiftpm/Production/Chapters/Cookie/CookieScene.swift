@@ -71,36 +71,32 @@ struct Cookie: View {
                 currentDisplayedImage = "PH_calendar"
             }
             
-            
-//            DispatchQueue.main.asyncAfter(deadline: .now() + (countBites == 0 ? 0 : NotificationTextBlob().animationMoveInDuration + 0.1)) {
-                
-                if countBites != 2{
-                    notificationManager.callNotification(
-                        ID: countBites
-                    )
-                }
-                else{
-                    notificationManager.callNotification(
-                        ID: countBites,
-                        arrowAction: {
-                            transitionManagerObservable.transitionToScene?(4)
-                        }
-                    )
-                }
-                
-                
-                countBites+=1
-                
-                let animationDuration = 3.0
-                
-                withAnimation(.easeInOut(duration: animationDuration)) {
-                    heavenSlider = 0.25
-                } completion: {
-                    withAnimation(.easeInOut(duration: animationDuration)) {
-                        heavenSlider = 0
+            if countBites != 2{
+                notificationManager.callNotification(
+                    ID: countBites
+                )
+            }
+            else{
+                notificationManager.callNotification(
+                    ID: countBites,
+                    arrowAction: {
+                        transitionManagerObservable.transitionToScene?(4)
                     }
+                )
+            }
+            
+            
+            countBites+=1
+            
+            let animationDuration = 3.0
+            
+            withAnimation(.easeInOut(duration: animationDuration)) {
+                heavenSlider = 0.25
+            } completion: {
+                withAnimation(.easeInOut(duration: animationDuration)) {
+                    heavenSlider = 0
                 }
-//            }
+            }
             
         })
         {
