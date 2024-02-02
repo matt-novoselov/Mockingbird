@@ -15,14 +15,11 @@ struct LastScene: View {
         ZStack{
             LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
             
-            Image("dopamine_addicted")
-                .interpolation(.high)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            CycleAnimated()
                 .padding(.all, 250)
         }
         .onAppear(){
-            DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration + 3.0) {
                 notificationManager.callNotification(ID: 18, arrowAction: {
                     transitionManagerObservable.transitionToScene?(14)
                 })
