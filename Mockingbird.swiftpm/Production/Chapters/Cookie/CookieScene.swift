@@ -18,20 +18,19 @@ struct CookieScene: View {
         ZStack {
             LayerMixingManager(darkSlider: .constant(0), heavenSlider: $heavenSlider)
             
-            HStack{
-                Cookie(countBites: $countBites, heavenSlider: $heavenSlider)
-                    .environmentObject(notificationManager)
-                    .environmentObject(transitionManagerObservable)
+            VStack{
+                HStack{
+                    Cookie(countBites: $countBites, heavenSlider: $heavenSlider)
+                    
+                    Cookie(countBites: $countBites, heavenSlider: $heavenSlider)
+
+                }
                 
                 Cookie(countBites: $countBites, heavenSlider: $heavenSlider)
-                    .environmentObject(notificationManager)
-                    .environmentObject(transitionManagerObservable)
-                
-                Cookie(countBites: $countBites, heavenSlider: $heavenSlider)
-                    .environmentObject(notificationManager)
-                    .environmentObject(transitionManagerObservable)
             }
-            .padding()
+            .environmentObject(notificationManager)
+            .environmentObject(transitionManagerObservable)
+            .padding(.all, 100)
             
         }
     }
