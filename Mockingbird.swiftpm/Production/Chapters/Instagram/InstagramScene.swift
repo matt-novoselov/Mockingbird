@@ -46,12 +46,26 @@ struct InstagramScene: View {
                     }
                 )
                 .overlay(
-                    Image("iphone_bezel")
-                        .interpolation(.high)
-                        .resizable()
-                        .padding(.all, -10)
-                        .aspectRatio(contentMode: .fit)
-                        .allowsHitTesting(false)
+                    ZStack{
+                        Image("iphone_bezel")
+                            .interpolation(.high)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .allowsHitTesting(false)
+                        
+                        VStack{
+                            Button(action: {}){
+                                Image("dynamic_island")
+                                    .interpolation(.high)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                            }
+                            .buttonStyle(NoOpacityButtonStyle())
+                            
+                            Spacer()
+                        }
+                    }
+                    .padding(.all, -10)
                 )
                 .padding(.vertical, 100)
             

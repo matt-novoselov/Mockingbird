@@ -19,12 +19,12 @@ struct InstagramPostView: View {
     var body: some View {
         VStack (spacing: 0){
             HStack{
-                FontText(text: username, size: 20)
+                FontText(text: username, size: 18)
                     .foregroundColor(Color("InstagramGray"))
                 
                 Spacer()
                 
-                FontText(text: postedTimeAgo, size: 20)
+                FontText(text: postedTimeAgo, size: 18)
                     .foregroundColor(Color("InstagramGray"))
             }
             
@@ -93,7 +93,7 @@ struct InstagramIconButton: View {
             }
             .buttonStyle(NoOpacityButtonStyle())
         }
-        .frame(width: 50, height: 50)
+        .frame(width: 40, height: 40)
     }
 }
 
