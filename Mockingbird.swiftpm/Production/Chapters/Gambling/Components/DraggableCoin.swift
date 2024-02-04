@@ -21,13 +21,17 @@ struct DraggableCoin: View {
     
     @State var hasReachedCollider: Bool = false
     
+    var selectedStyle: Int = 0
+    
     var body: some View {
         let circleSize: CGFloat = 100
         let initialLocation = CGPoint(x: circleSize / 2, y: circleSize / 2)
         
         if !hasCollided{
             GeometryReader { geometry in
-                Circle()
+                Image(selectedStyle == 0 ? "coin_1" : "coin_2")
+                    .interpolation(.high)
+                    .resizable()
                     .scaleEffect(hasReachedCollider ? 0 : 1)
                     .position(circlePosition ?? initialLocation)
                     .foregroundColor(.red)

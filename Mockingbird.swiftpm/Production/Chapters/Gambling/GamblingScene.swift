@@ -84,8 +84,8 @@ struct GamblingScene: View {
                     
                     if showingCoins{
                         VStack {
-                            ForEach(0..<amountOfCoinsOnStart, id: \.self) { _ in
-                                DraggableCoin(isCoinInsertedInMachine: $isCoinInsertedInMachine, isInHeaven: $isInHeaven, insertCoin: insertCoin, centerOfScreen: centerOfTheScreen)
+                            ForEach(0..<amountOfCoinsOnStart, id: \.self) { index in
+                                DraggableCoin(isCoinInsertedInMachine: $isCoinInsertedInMachine, isInHeaven: $isInHeaven, insertCoin: insertCoin, centerOfScreen: centerOfTheScreen, selectedStyle: index)
                                     .environmentObject(notificationManager)
                             }
                         }
