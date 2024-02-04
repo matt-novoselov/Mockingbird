@@ -19,7 +19,7 @@ struct LastScene: View {
             
             if displayingDiagram{
                 CycleAnimated()
-                    .padding(.all, 250)
+                    .scaleEffect(0.6)
             }
         }
         .onAppear(){
