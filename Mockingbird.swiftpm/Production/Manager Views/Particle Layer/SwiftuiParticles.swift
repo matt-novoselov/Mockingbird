@@ -21,9 +21,13 @@ struct ParticleView: UIViewRepresentable {
     func updateUIView(_ uiView: SKView, context: Context) {}
     
     static func spawnParticle(xpos: Double, ypos: Double) {
-        let particlesTapEffect: SKEmitterNode = SKEmitterNode(fileNamed: "Explosion.sks")!
-        scene.addChild(particlesTapEffect)
-        particlesTapEffect.position = CGPoint(x: xpos, y: scene.size.height - ypos)
+        if let particlesTapEffect = SKEmitterNode(fileNamed: "Explosion.sks") {
+            scene.addChild(particlesTapEffect)
+            particlesTapEffect.position = CGPoint(x: xpos, y: scene.size.height - ypos)
+        } else {
+            // Handle the case where the file cannot be loaded or is not found
+            print("Error loading Explosion.sks file")
+        }
     }
 }
 
