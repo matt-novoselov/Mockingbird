@@ -21,14 +21,14 @@ struct PianoScene: View {
             
             ZStack(alignment: .top){
                 HStack{
-                    ForEach(0..<7) { _ in
-                        pianoKey(countTotalNotesEmited: $countTotalNotesEmited)
+                    ForEach(0..<7) { index in
+                        pianoKey(countTotalNotesEmited: $countTotalNotesEmited, selectedStyle: index%3)
                     }
                 }
                 
                 HStack{
                     ForEach(0..<6) { index in
-                        pianoKeySmall(countTotalNotesEmited: $countTotalNotesEmited)
+                        pianoKeySmall(countTotalNotesEmited: $countTotalNotesEmited, selectedStyle: index%3)
                             .opacity(index==2 ? 0 : 1)
                     }
                 }
@@ -57,6 +57,9 @@ struct pianoKey: View {
     @State var amountOfNotes: Int = 0
     @Binding var countTotalNotesEmited: Int
     
+    var selectedStyle: Int = 0
+    let whiteKeys: [String] = ["piano_white_1","piano_white_2","piano_white_3"]
+    
     var body: some View {
         ZStack{
             ForEach(0..<amountOfNotes, id: \.self) { index in
@@ -71,7 +74,9 @@ struct pianoKey: View {
                     amountOfNotes+=1
                 }
             ) {
-                Rectangle()
+                Image(whiteKeys[selectedStyle])
+                    .interpolation(.high)
+                    .resizable()
                     .frame(width: 100, height: 400)
                     .foregroundColor(.white)
             }
@@ -84,6 +89,9 @@ struct pianoKeySmall: View {
     @State var animationHasEnded: Bool = true
     @State var amountOfNotes: Int = 0
     @Binding var countTotalNotesEmited: Int
+    
+    var selectedStyle: Int = 0
+    let blackKeys: [String] = ["piano_black_1","piano_black_2","piano_black_3"]
     
     var body: some View {
         ZStack{
@@ -100,7 +108,9 @@ struct pianoKeySmall: View {
                     amountOfNotes+=1
                 }
             ) {
-                Rectangle()
+                Image(blackKeys[selectedStyle])
+                    .interpolation(.high)
+                    .resizable()
                     .frame(width: 80, height: 200)
                     .foregroundColor(.black)
             }
