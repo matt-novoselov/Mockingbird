@@ -19,4 +19,10 @@ extension AnyTransition {
         let removal = AnyTransition.move(edge: .leading)
         return .asymmetric(insertion: insertion, removal: removal)
     }
+    
+    static var pushRightTransition: AnyTransition {
+        let insertion = AnyTransition.move(edge: .leading)
+        let removal = AnyTransition.move(edge: .trailing)
+        return .asymmetric(insertion: insertion, removal: removal)
+    }
 }

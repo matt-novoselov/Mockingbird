@@ -11,129 +11,37 @@ struct AlcoholScene: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
-    //    @State var imgSatuation: Double = 1
-    //    @State var imgOpacity: Double = 1
-    
     @State var countBites: Int = 0
     @State var heavenSlider: Double = 0
+    
+    @State var currentDrinkID: Int = 0
     
     var body: some View {
         ZStack{
             LayerMixingManager(darkSlider: .constant(0), heavenSlider: $heavenSlider)
             
-            HStack{
-                AlcoholDrink(countBites: $countBites, heavenSlider: $heavenSlider)
-                    .environmentObject(notificationManager)
-                    .environmentObject(transitionManagerObservable)
-                
-                AlcoholDrink(countBites: $countBites, heavenSlider: $heavenSlider)
-                    .environmentObject(notificationManager)
-                    .environmentObject(transitionManagerObservable)
-                
-                AlcoholDrink(countBites: $countBites, heavenSlider: $heavenSlider)
-                    .environmentObject(notificationManager)
-                    .environmentObject(transitionManagerObservable)
+            Group{
+                switch currentDrinkID {
+                case 0:
+                    AlcoholDrink(countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
+                case 1:
+                    AlcoholDrink(countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
+                case 2:
+                    AlcoholDrink(countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
+                default:
+                    Text("Error, this sceneID doesn't exist")
+                }
             }
+            .transition(.pushRightTransition)
+            .environmentObject(notificationManager)
+            .environmentObject(transitionManagerObservable)
             .padding()
             .onAppear(){
                 DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                     notificationManager.callNotification(ID: 3)
                 }
             }
-            
-            //                Image("PH_grid")
-            //                    .interpolation(.high)
-            //                    .saturation(imgSatuation)
-            //                    .opacity(imgOpacity)
-            //
-            //                Button("Button") {
-            //                    withAnimation(Animation.easeInOut(duration: 2.0)) {
-            //                        imgSatuation = 0
-            //                        imgOpacity = 0.8
-            //                    }
         }
-    }
-}
-
-struct AlcoholDrink: View {
-    @State var currentDisplayedImage: String = "PH_grid"
-    @Binding var countBites: Int
-    @Binding var heavenSlider: Double
-    @State var isBitten: Bool = false
-    
-    @EnvironmentObject var notificationManager: NotificationManager
-    @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
-    
-    @State var buttonPosition: CGPoint = CGPoint(x: 0, y: 0)
-    
-    @State var geomtryHolder: GeometryProxy?
-    
-    var body: some View {
-        Button(action: {
-            if !notificationManager.isTextPrintFinished{
-                return
-            }
-            
-            if isBitten{
-                return
-            }
-            
-            if let geometryHolder = geomtryHolder,
-               let buttonPosition = GlobalPositionUtility.getGlobalPosition(view: geometryHolder) {
-                ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
-            }
-            
-            isBitten = true
-            
-            notificationManager.closeNotification()
-            
-            withAnimation(.none) {
-                currentDisplayedImage = "PH_calendar"
-            }
-            
-            if countBites != 2{
-                notificationManager.callNotification(
-                    ID: countBites + 4
-                )
-            }
-            else{
-                notificationManager.callNotification(
-                    ID: countBites + 4,
-                    arrowAction: {
-                        transitionManagerObservable.transitionToScene?(5)
-                    }
-                )
-            }
-            
-            
-            countBites+=1
-            
-            let animationDuration = 3.0
-            
-            withAnimation(.easeInOut(duration: animationDuration)) {
-                heavenSlider = 0.5
-            } completion: {
-                withAnimation(.easeInOut(duration: animationDuration)) {
-                    heavenSlider = 0
-                }
-            }
-            
-        })
-        {
-            Image(currentDisplayedImage)
-                .interpolation(.high)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .background(
-                    GeometryReader{ geometry in
-                        Color.clear
-                            .onAppear(){
-                                geomtryHolder = geometry
-                            }
-                    }
-                )
-        }
-        .buttonStyle(NoOpacityButtonStyle())
     }
 }
 
