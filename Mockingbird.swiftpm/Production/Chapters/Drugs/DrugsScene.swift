@@ -23,9 +23,6 @@ struct DrugsScene: View {
         ZStack{
             LayerMixingManager(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
             
-            DraggableShakableView(handleShake: handleShake)
-                .glow(color: Color("MainYellow").opacity((1 - heavenSlider)/4.5), radius: 100)
-            
             VStack{
                 Spacer()
                 
@@ -34,6 +31,9 @@ struct DrugsScene: View {
                         .padding(.bottom, 100)
                 }
             }
+            
+            DraggableShakableView(handleShake: handleShake)
+                .glow(color: Color("MainYellow").opacity((1 - heavenSlider)/4.5), radius: 100)
         }
     }
     
