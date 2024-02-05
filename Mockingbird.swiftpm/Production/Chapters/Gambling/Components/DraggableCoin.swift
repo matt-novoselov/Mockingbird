@@ -29,7 +29,7 @@ struct DraggableCoin: View {
         
         if !hasCollided{
             GeometryReader { geometry in
-                Image(selectedStyle == 0 ? "coin_1" : "coin_2")
+                Image("coin_1")
                     .interpolation(.high)
                     .resizable()
                     .scaleEffect(hasReachedCollider ? 0 : 1)
