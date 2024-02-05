@@ -17,7 +17,7 @@ struct DraggableShakableView: View {
         let circleSize: CGFloat = 400
         let initialLocation = CGPoint(x: circleSize / 2, y: circleSize / 2)
         
-        Image("PH_drugs_box")
+        Image("pills_box")
             .interpolation(.high)
             .resizable()
             .aspectRatio(contentMode: .fit)
@@ -49,7 +49,7 @@ struct DraggableShakableView: View {
     }
     
     func CheckShake(value: DragGesture.Value){
-        if (abs(value.velocity.height) > 6000){
+        if (abs(value.velocity.height) > 7000){
             handleShake()
         }
     }

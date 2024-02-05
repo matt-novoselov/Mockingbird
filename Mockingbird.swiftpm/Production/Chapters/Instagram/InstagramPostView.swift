@@ -93,7 +93,7 @@ struct InstagramIconButton: View {
             }
             .buttonStyle(NoOpacityButtonStyle())
         }
-        .frame(width: 40, height: 40)
+        .frame(width: 45, height: 45)
     }
 }
 

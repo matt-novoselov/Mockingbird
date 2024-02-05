@@ -12,7 +12,7 @@ struct DrugsPill: View {
     @Binding var showPill: Bool
     @Binding var count: Int
     
-    @State private var rotationAngle: Double = Double.random(in: 0...360)
+    @State private var rotationAngle: Double = Double.random(in: -90...90)
     
     
     let heavenValues: [(Double, Double)] = [
@@ -33,15 +33,15 @@ struct DrugsPill: View {
                 
                 showPill = false
             }){
-                Image("drug_pill")
+                Image("round_pill")
                     .interpolation(.high)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .rotationEffect(.degrees(rotationAngle))
-                    .glow(color: Color("MainYellow").opacity(0.5), radius: 30)
+                    .glow(color: Color("MainYellow").opacity(0.4), radius: 30)
                     .onAppear(){
                         withAnimation{
-                            rotationAngle += 60
+                            rotationAngle = 0
                         }
                     }
             }

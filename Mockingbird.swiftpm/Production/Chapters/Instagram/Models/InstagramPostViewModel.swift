@@ -9,9 +9,9 @@ import Foundation
 
 class InstagramPostViewModel{
     var posts:[InstagramPost] = [
-        InstagramPost(username: "@placeholder1", postedTimeAgo: "ph1 ago", image: "PH_grid"),
-        InstagramPost(username: "@placeholder2", postedTimeAgo: "ph2 ago", image: "PH_grid"),
-        InstagramPost(username: "@placeholder3", postedTimeAgo: "ph3 ago", image: "PH_grid"),
-        InstagramPost(username: "@placeholder4", postedTimeAgo: "ph4 ago", image: "PH_grid"),
+        InstagramPost(username: "@skateboy2004", postedTimeAgo: "1h ago", image: "PH_grid"),
+        InstagramPost(username: "@purrfect_whiskers", postedTimeAgo: "20m ago", image: "PH_grid"),
+        InstagramPost(username: "@epic_explorer", postedTimeAgo: "5h ago", image: "PH_grid"),
+        InstagramPost(username: "@nom_nom_yummer", postedTimeAgo: "1d ago", image: "PH_grid"),
     ]
 }
