@@ -8,47 +8,32 @@
 import SwiftUI
 
 struct FamilyMember: View {
-    @State var isShowingShadow: Bool = false
-    @State var imageName: String = ""
+    var selectedStyle: Int = 0
+    @Binding public var showingImage: Bool
     
-    @Binding var countMemners: Int
+    @State private var showingMemberImage: Bool = false
     
-    @State var allowHitTesting: Bool = true
-    
-    let familyArray: [[String]] = [
-        ["family_2_empty", "family_2_filled"],
-        ["family_3_empty", "family_3_filled"],
-        ["family_4_empty", "family_4_filled"],
-        ["family_5_empty", "family_5_filled"],
+    let familyArray: [String] = [
+        "family_1_filled",
+        "family_2_filled",
+        "family_3_filled",
+        "family_4_filled",
     ]
     
-    var selectedStyle: Int = 0
-    
     var body: some View {
-        Button(action: {
-            if isShowingShadow{
-                return
+        ZStack{
+            if showingMemberImage{
+                Image(familyArray[selectedStyle])
+                    .interpolation(.high)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .glow(color: Color("MainYellow").opacity(0.3), radius: 70)
             }
-            else{
-                countMemners+=1
-                withAnimation{
-                    isShowingShadow = true
-                    imageName = familyArray[selectedStyle][1]
-                    allowHitTesting = false
-                }
-            }
-        })
-        {
-            Image(imageName)
-                .interpolation(.high)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .allowsHitTesting(allowHitTesting)
-                .glow(color: Color("MainYellow").opacity(isShowingShadow ? 0.3 : 0.0), radius: 70)
         }
-        .buttonStyle(NoOpacityButtonStyle())
-        .onAppear(){
-            imageName = familyArray[selectedStyle][0]
+        .onChange(of: showingImage){
+            withAnimation(.easeInOut(duration: 0.8)){
+                showingMemberImage = true
+            }
         }
     }
 }

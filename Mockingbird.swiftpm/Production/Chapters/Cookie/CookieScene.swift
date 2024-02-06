@@ -23,7 +23,6 @@ struct CookieScene: View {
                     Cookie(selectedStyle: 0, countBites: $countBites, heavenSlider: $heavenSlider)
                     
                     Cookie(selectedStyle: 1, countBites: $countBites, heavenSlider: $heavenSlider)
-
                 }
                 
                 Cookie(selectedStyle: 2, countBites: $countBites, heavenSlider: $heavenSlider)

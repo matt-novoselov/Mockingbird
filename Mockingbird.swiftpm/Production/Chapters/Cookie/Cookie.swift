@@ -16,7 +16,7 @@ struct Cookie: View {
     
     var selectedStyle: Int = 0
     
-    @State var currentDisplayedImage: String = ""
+    @State var currentDisplayedImage: String?
     @Binding var countBites: Int
     @Binding var heavenSlider: Double
     @State var isBitten: Bool = false
@@ -27,17 +27,21 @@ struct Cookie: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     var body: some View {
-        Image(currentDisplayedImage)
-            .interpolation(.high)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .onAppear(){
-                currentDisplayedImage = cookiesArray[selectedStyle][0]
+        ZStack{
+            if let selectedImage = currentDisplayedImage{
+                Image(selectedImage)
+                    .interpolation(.high)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .onTapGesture(coordinateSpace: .global) { location in
+                        performAction(location: location)
+                    }
+                    .scaleEffect(scaleCookie)
             }
-            .onTapGesture(coordinateSpace: .global) { location in
-                performAction(location: location)
-            }
-            .scaleEffect(scaleCookie)
+        }
+        .onAppear(){
+            currentDisplayedImage = cookiesArray[selectedStyle][0]
+        }
     }
     
     func performAction(location: CGPoint){
