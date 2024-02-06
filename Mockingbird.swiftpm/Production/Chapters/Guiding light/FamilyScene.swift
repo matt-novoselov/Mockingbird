@@ -21,10 +21,10 @@ struct FamilyScene: View {
             
             HStack {
                 ForEach(0..<4) { _ in
-                    FamilyMember(imageName: "PH_cubes", countMemners: $countMemners)
+                    FamilyMember(imageName: "family_test_empty", countMemners: $countMemners)
                 }
             }
-            .padding()
+            .padding(.all, 100)
         }
         .onChange(of: countMemners){
             withAnimation(Animation.easeInOut(duration: 5.0)){
@@ -42,7 +42,7 @@ struct FamilyScene: View {
 
 struct FamilyMember: View {
     @State var isShowingShadow: Bool = false
-    var imageName: String = ""
+    @State var imageName: String = ""
     
     @Binding var countMemners: Int
     
@@ -55,6 +55,7 @@ struct FamilyMember: View {
                 countMemners+=1
                 withAnimation{
                     isShowingShadow = true
+                    imageName = "family_test_filled"
                 }
             }
         })
@@ -63,7 +64,7 @@ struct FamilyMember: View {
                 .interpolation(.high)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .glow(color: Color("MainYellow").opacity(isShowingShadow ? 0.4 : 0.0), radius: 40)
+                .glow(color: Color("MainYellow").opacity(isShowingShadow ? 0.3 : 0.0), radius: 70)
         }
         .buttonStyle(NoOpacityButtonStyle())
     }
