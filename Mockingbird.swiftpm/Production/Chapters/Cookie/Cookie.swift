@@ -27,18 +27,14 @@ struct Cookie: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     var body: some View {
-        ZStack{
-            if let selectedImage = currentDisplayedImage{
-                Image(selectedImage)
-                    .interpolation(.high)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .onTapGesture(coordinateSpace: .global) { location in
-                        performAction(location: location)
-                    }
-                    .scaleEffect(scaleCookie)
+        Image(currentDisplayedImage ?? "")
+            .interpolation(.high)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .onTapGesture(coordinateSpace: .global) { location in
+                performAction(location: location)
             }
-        }
+            .scaleEffect(scaleCookie)
         .onAppear(){
             currentDisplayedImage = cookiesArray[selectedStyle][0]
         }

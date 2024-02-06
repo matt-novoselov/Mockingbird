@@ -40,7 +40,7 @@ struct InstagramViewController: View {
             }
             .transition(.pushLeftTransition)
             .environmentObject(notificationManager)
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 25)
         }
         .onChange(of: shouldChangePost){
             transitionToNextPost()
