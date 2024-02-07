@@ -54,59 +54,64 @@ struct GamblingScene: View {
                     .interpolation(.high)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 250)
+                    .frame(width: 200)
                     .padding()
                     .opacity(0)
                 
                 ZStack{
+                    AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, handleResult: handleResult, handleNoCoin: handleNoCoin)
+                        .frame(height: 100)
+                        .offset(x: 140, y: -20)
+                    
                     Image("gambling_base")
                         .interpolation(.high)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .foregroundColor(isCoinInsertedInMachine ? Color.yellow : Color.green)
+                        .frame(height: 350)
                         .overlay(
                             SlotsRotation(changeBool: $changeBool)
                                 .frame(width: 160)
                                 .mask(
                                     Rectangle()
-                                        .frame(height: 50)
+                                        .frame(height: 80)
+                                        .offset(y: 10)
                                 )
                         )
                     
-                    if showingBlinkingLights{
-                        ZStack{
-                            Image("gambling_lights_1")
-                                .interpolation(.high)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .glow(color: Color("MainYellow").opacity(0.4), radius: 10)
-                                .opacity(lightsBlinking ? 1 : 0)
-                            
-                            Image("gambling_lights_2")
-                                .interpolation(.high)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .glow(color: Color("MainYellow").opacity(0.4), radius: 10)
-                                .opacity(lightsBlinking ? 0 : 1)
-                        }
-                        .onAppear {
-                            Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { timer in
-                                lightsBlinking.toggle()
+                    ZStack{
+                        if showingBlinkingLights{
+                            ZStack{
+                                Image("gambling_lights_1")
+                                    .interpolation(.high)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .glow(color: Color("MainYellow").opacity(0.4), radius: 10)
+                                    .opacity(lightsBlinking ? 1 : 0)
+                                
+                                Image("gambling_lights_2")
+                                    .interpolation(.high)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .glow(color: Color("MainYellow").opacity(0.4), radius: 10)
+                                    .opacity(lightsBlinking ? 0 : 1)
+                            }
+                            .onAppear {
+                                Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { timer in
+                                    lightsBlinking.toggle()
+                                }
                             }
                         }
                     }
-
+                    .opacity(showingBlinkingLights ? 1 : 0)
                 }
                 .frame(height: 350)
-                
-                AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, handleResult: handleResult, handleNoCoin: handleNoCoin)
-                    .frame(height: 150)
+
                 
                 Image("arrow_white")
                     .interpolation(.high)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 250)
+                    .frame(width: 200)
                     .padding()
                     .opacity(showingCoins ? 1 : 0)
                     .opacity(shouldShowArrowAgain ? 1 : 0)
@@ -205,7 +210,7 @@ struct GamblingScene: View {
     }
     
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
-        let animationDuration = 1.5
+        let animationDuration = 2.5
         
         withAnimation(.easeInOut(duration: animationDuration)) {
             heavenSlider = heavenSliderGoal ?? 1.0
