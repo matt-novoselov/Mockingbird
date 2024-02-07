@@ -27,7 +27,7 @@ struct FamilyMember: View {
                     .interpolation(.high)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .glow(color: Color("MainYellow").opacity(0.3), radius: 70)
+                    .glow(color: Color("MainYellow").opacity(0.3), radius: 100)
             }
         }
         .onChange(of: showingImage){
