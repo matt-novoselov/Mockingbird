@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AlcoholDrink: View {
-    @State var currentDisplayedImage: String = "PH_grid"
+    @State var currentDisplayedImage: String = "bottle_filled"
     @Binding var countBites: Int
     @Binding var heavenSlider: Double
     @State var isBitten: Bool = false
@@ -41,8 +41,8 @@ struct AlcoholDrink: View {
             
             notificationManager.closeNotification()
             
-            withAnimation(.none) {
-                currentDisplayedImage = "PH_calendar"
+            withAnimation() {
+                currentDisplayedImage = "bottle_empty"
             }
             
             if countBites != 2{

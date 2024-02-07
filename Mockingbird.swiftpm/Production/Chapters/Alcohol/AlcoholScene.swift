@@ -35,7 +35,7 @@ struct AlcoholScene: View {
             .transition(.pushRightTransition)
             .environmentObject(notificationManager)
             .environmentObject(transitionManagerObservable)
-            .padding()
+            .padding(.all, 100)
             .onAppear(){
                 DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                     notificationManager.callNotification(ID: 3)
