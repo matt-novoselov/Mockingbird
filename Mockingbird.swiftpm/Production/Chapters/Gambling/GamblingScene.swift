@@ -61,22 +61,28 @@ struct GamblingScene: View {
                 ZStack{
                     AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, handleResult: handleResult, handleNoCoin: handleNoCoin)
                         .frame(height: 100)
-                        .offset(x: 140, y: -20)
+                        .offset(x: 160, y: -45)
                     
                     Image("gambling_base")
                         .interpolation(.high)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(height: 350)
                         .overlay(
                             SlotsRotation(changeBool: $changeBool)
-                                .frame(width: 160)
+                                .offset(y: 10)
+                                .frame(width: 170)
                                 .mask(
                                     Rectangle()
-                                        .frame(height: 80)
-                                        .offset(y: 10)
+                                        .frame(height: 60)
+                                        .offset(y: 15)
                                 )
                         )
+                        .overlay(){
+                            Image("gambling_overlay")
+                                .interpolation(.high)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        }
                     
                     ZStack{
                         if showingBlinkingLights{
