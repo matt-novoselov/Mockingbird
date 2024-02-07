@@ -32,6 +32,10 @@ struct GamblingScene: View {
     
     @State var shouldShowArrowAgain: Bool = true
     
+    @State var lightsBlinking: Bool = true
+    
+    @State var showingBlinkingLights: Bool = false
+    
     var body: some View {
         ZStack{
             GeometryReader { geometry in
@@ -54,19 +58,49 @@ struct GamblingScene: View {
                     .padding()
                     .opacity(0)
                 
-                Rectangle()
-                    .frame(width: 200, height: 200)
-                    .foregroundColor(isCoinInsertedInMachine ? Color.yellow : Color.green)
-                    .overlay(
-                        SlotsRotation(changeBool: $changeBool)
-                            .frame(height: 50)
-                            .mask(
-                                Rectangle()
-                                    .frame(height: 50)
-                            )
-                    )
+                ZStack{
+                    Image("gambling_base")
+                        .interpolation(.high)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundColor(isCoinInsertedInMachine ? Color.yellow : Color.green)
+                        .overlay(
+                            SlotsRotation(changeBool: $changeBool)
+                                .frame(width: 160)
+                                .mask(
+                                    Rectangle()
+                                        .frame(height: 50)
+                                )
+                        )
+                    
+                    if showingBlinkingLights{
+                        ZStack{
+                            Image("gambling_lights_1")
+                                .interpolation(.high)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .glow(color: Color("MainYellow").opacity(0.4), radius: 10)
+                                .opacity(lightsBlinking ? 1 : 0)
+                            
+                            Image("gambling_lights_2")
+                                .interpolation(.high)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .glow(color: Color("MainYellow").opacity(0.4), radius: 10)
+                                .opacity(lightsBlinking ? 0 : 1)
+                        }
+                        .onAppear {
+                            Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { timer in
+                                lightsBlinking.toggle()
+                            }
+                        }
+                    }
+
+                }
+                .frame(height: 350)
                 
                 AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, handleResult: handleResult, handleNoCoin: handleNoCoin)
+                    .frame(height: 150)
                 
                 Image("arrow_white")
                     .interpolation(.high)
@@ -117,6 +151,10 @@ struct GamblingScene: View {
                 shouldShowArrowAgain = false
             }
             
+            withAnimation(){
+                showingBlinkingLights = false
+            }
+            
             notificationManager.closeNotification()
         }
     }
@@ -135,6 +173,10 @@ struct GamblingScene: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + SlotsRotation(changeBool: .constant(false)).animationDuration) {
 
                 ParticleView.spawnParticle(xpos: Double(centerOfTheScreen.x), ypos: Double(centerOfTheScreen.y))
+                
+                withAnimation(){
+                    showingBlinkingLights = true
+                }
                 
                 let tuple = heavenValues[countVisitsToHeaven]
                 goToHeaven(heavenSliderGoal: tuple.0, darkSliderAfterwards: tuple.1)

@@ -28,6 +28,7 @@ struct FamilyScene: View {
                     .interpolation(.high)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .shadow(color: .white.opacity(1), radius: 100)
                 
                 FamilyMember(selectedStyle: 3, showingImage: $showingMember_3)
                 FamilyMember(selectedStyle: 2, showingImage: $showingMember_2)
