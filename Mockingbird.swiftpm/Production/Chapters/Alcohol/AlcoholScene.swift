@@ -16,6 +16,8 @@ struct AlcoholScene: View {
     
     @State var currentDrinkID: Int = 0
     
+    @State var canInteractAfterInitOpenening: Bool = false
+    
     var body: some View {
         ZStack{
             LayerMixingManager(darkSlider: .constant(0), heavenSlider: $heavenSlider)
@@ -24,15 +26,11 @@ struct AlcoholScene: View {
                 Group{
                     switch currentDrinkID {
                     case 0:
-                        ZStack{
-                            AlcoholDrink(selectedStyle: 2, countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
-                        }
+                        AlcoholDrink(selectedStyle: 2, countBites: $countBites, heavenSlider: $heavenSlider, canInteractAfterInitOpenening: $canInteractAfterInitOpenening, currentDrinkID: $currentDrinkID)
                     case 1:
-                        ZStack{
-                            AlcoholDrink(selectedStyle: 1, countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
-                        }
+                        AlcoholDrink(selectedStyle: 1, countBites: $countBites, heavenSlider: $heavenSlider, canInteractAfterInitOpenening: $canInteractAfterInitOpenening, currentDrinkID: $currentDrinkID)
                     case 2:
-                        AlcoholDrink(selectedStyle: 0, countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
+                        AlcoholDrink(selectedStyle: 0, countBites: $countBites, heavenSlider: $heavenSlider, canInteractAfterInitOpenening: $canInteractAfterInitOpenening, currentDrinkID: $currentDrinkID)
                             
                     default:
                         Text("Error, this sceneID doesn't exist")
@@ -47,6 +45,7 @@ struct AlcoholScene: View {
             .onAppear(){
                 DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                     notificationManager.callNotification(ID: 3)
+                    canInteractAfterInitOpenening = true
                 }
             }
             

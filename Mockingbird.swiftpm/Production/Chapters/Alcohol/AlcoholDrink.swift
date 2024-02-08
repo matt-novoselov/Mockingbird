@@ -20,6 +20,7 @@ struct AlcoholDrink: View {
     
     @Binding var countBites: Int
     @Binding var heavenSlider: Double
+    @Binding var canInteractAfterInitOpenening: Bool
     @State var isBitten: Bool = false
     
     @EnvironmentObject var notificationManager: NotificationManager
@@ -33,6 +34,10 @@ struct AlcoholDrink: View {
     
     var body: some View {
         Button(action: {
+            if !canInteractAfterInitOpenening{
+                return
+            }
+            
             if !notificationManager.isTextPrintFinished{
                 return
             }
