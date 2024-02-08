@@ -19,6 +19,8 @@ struct FamilyScene: View {
     @State var showingMember_2: Bool = false
     @State var showingMember_3: Bool = false
     
+    @State var showingGlowing: Bool = false
+    
     var body: some View {
         ZStack{
             LayerMixingManager(darkSlider: $darkSlider, heavenSlider: .constant(0))
@@ -40,6 +42,14 @@ struct FamilyScene: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .allowsHitTesting(false)
+                    .glow(color: Color("MainYellow").opacity(showingGlowing ? 0.3 : 0), radius: 100)
+                    .onChange(of: countMembers){
+                        if countMembers>=4{
+                            withAnimation(){
+                                showingGlowing = true
+                            }
+                        }
+                    }
             }
             .overlay(
                 HStack{
