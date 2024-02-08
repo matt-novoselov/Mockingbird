@@ -30,7 +30,7 @@ struct DoYouNeedHelp: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 45)
                         
-                        Link("+1 855 648 7228", destination: URL(string: "tel://+18556487228")!)
+                        Link("+1 800 662 4357", destination: URL(string: "tel://+18006624357")!)
                             .foregroundStyle(.black)
                             .font(getFont(size: 64))
                     }
@@ -42,7 +42,7 @@ struct DoYouNeedHelp: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 45)
                         
-                        Link("+1 800 662 4357", destination: URL(string: "tel://+18006624357")!)
+                        Link("+1 855 648 7228", destination: URL(string: "tel://+18556487228")!)
                             .foregroundStyle(.black)
                             .font(getFont(size: 64))
                     }
