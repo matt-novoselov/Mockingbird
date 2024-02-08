@@ -20,27 +20,36 @@ struct AlcoholScene: View {
         ZStack{
             LayerMixingManager(darkSlider: .constant(0), heavenSlider: $heavenSlider)
             
-            Group{
-                switch currentDrinkID {
-                case 0:
-                    AlcoholDrink(countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
-                case 1:
-                    AlcoholDrink(countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
-                case 2:
-                    AlcoholDrink(countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
-                default:
-                    Text("Error, this sceneID doesn't exist")
+            VStack{
+                Group{
+                    switch currentDrinkID {
+                    case 0:
+                        ZStack{
+                            AlcoholDrink(countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
+                        }
+                    case 1:
+                        ZStack{
+                            AlcoholDrink(countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
+                        }
+                    case 2:
+                        AlcoholDrink(countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
+                            
+                    default:
+                        Text("Error, this sceneID doesn't exist")
+                    }
                 }
+                .frame(maxWidth: .infinity)
+                .padding(.all, 100)
+                .transition(.pushRightTransition)
             }
-            .transition(.pushRightTransition)
             .environmentObject(notificationManager)
             .environmentObject(transitionManagerObservable)
-            .padding(.all, 100)
             .onAppear(){
                 DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                     notificationManager.callNotification(ID: 3)
                 }
             }
+            
         }
     }
 }
