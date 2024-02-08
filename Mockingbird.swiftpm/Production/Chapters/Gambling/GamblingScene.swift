@@ -36,6 +36,8 @@ struct GamblingScene: View {
     
     @State var showingBlinkingLights: Bool = false
     
+    @State var firstMessageWasDisplayed: Bool = false
+    
     var body: some View {
         ZStack{
             GeometryReader { geometry in
@@ -83,6 +85,8 @@ struct GamblingScene: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                         }
+                        .allowsHitTesting(false)
+                    
                     
                     ZStack{
                         if showingBlinkingLights{
@@ -109,9 +113,10 @@ struct GamblingScene: View {
                         }
                     }
                     .opacity(showingBlinkingLights ? 1 : 0)
+                    .allowsHitTesting(false)
                 }
                 .frame(height: 350)
-
+                
                 
                 Image("arrow_white")
                     .interpolation(.high)
@@ -182,7 +187,7 @@ struct GamblingScene: View {
             changeBool.toggle()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + SlotsRotation(changeBool: .constant(false)).animationDuration) {
-
+                
                 ParticleView.spawnParticle(xpos: Double(centerOfTheScreen.x), ypos: Double(centerOfTheScreen.y))
                 
                 withAnimation(){
@@ -209,8 +214,8 @@ struct GamblingScene: View {
     }
     
     func handleNoCoin(){
-        if notificationManager.isTextDisplayed == false && countVisitsToHeaven == 0{
-            //print("no coin, first try")
+        if notificationManager.isTextDisplayed == false && countVisitsToHeaven == 0 && !firstMessageWasDisplayed{
+            firstMessageWasDisplayed = true
             notificationManager.callNotification(ID: 10)
         }
     }

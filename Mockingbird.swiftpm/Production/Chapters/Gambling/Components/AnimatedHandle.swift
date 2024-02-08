@@ -24,13 +24,19 @@ struct AnimatedHandle: View {
             .resizable()
             .aspectRatio(contentMode: .fit)
             .rotationEffect(.degrees(rotationAngle), anchor: .bottom)
-            .onTapGesture {
-                if (isCoinInserted && !isAnimationInProcess){
-                    rotateHandleAnimation()
-                }
-                else{
-                    idleHandleAnimation()
-                }
+            .overlay(){
+                Color.clear
+                    .contentShape(Rectangle())
+                    .padding(.all, -20)
+                    .rotationEffect(.degrees(rotationAngle), anchor: .bottom)
+                    .onTapGesture {
+                        if (isCoinInserted && !isAnimationInProcess){
+                            rotateHandleAnimation()
+                        }
+                        else{
+                            idleHandleAnimation()
+                        }
+                    }
             }
             .onAppear {
                 Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
@@ -52,8 +58,8 @@ struct AnimatedHandle: View {
         } completion: {
             withAnimation(.easeInOut(duration: 0.4)) {
                 rotationAngle = 15
-                isAnimationInProcess = false
             } completion: {
+                isAnimationInProcess = false
                 isCoinInserted = false
                 handleResult()
                 }
@@ -75,6 +81,7 @@ struct AnimatedHandle: View {
         } completion: {
             withAnimation(.easeInOut(duration: 0.2)) {
                 rotationAngle = 15
+            } completion: {
                 isAnimationInProcess = false
             }
         }
