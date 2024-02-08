@@ -84,7 +84,7 @@ struct Cookie: View {
         
         countBites+=1
         
-        let animationDuration = 3.0
+        let animationDuration = 2.0
         
         withAnimation(.easeInOut(duration: animationDuration)) {
             heavenSlider = 0.25

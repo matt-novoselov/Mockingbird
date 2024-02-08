@@ -25,14 +25,14 @@ struct AlcoholScene: View {
                     switch currentDrinkID {
                     case 0:
                         ZStack{
-                            AlcoholDrink(countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
+                            AlcoholDrink(selectedStyle: 2, countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
                         }
                     case 1:
                         ZStack{
-                            AlcoholDrink(countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
+                            AlcoholDrink(selectedStyle: 1, countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
                         }
                     case 2:
-                        AlcoholDrink(countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
+                        AlcoholDrink(selectedStyle: 0, countBites: $countBites, heavenSlider: $heavenSlider, currentDrinkID: $currentDrinkID)
                             
                     default:
                         Text("Error, this sceneID doesn't exist")
