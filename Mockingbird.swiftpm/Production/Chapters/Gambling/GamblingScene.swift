@@ -20,8 +20,6 @@ struct GamblingScene: View {
     
     @State var isInHeaven: Bool = false
     
-    @State var centerOfTheScreen: CGPoint = CGPoint(x: 0, y: 0)
-    
     var amountOfCoinsOnStart: Int = 2
     
     @State var showingCoins: Bool = false
@@ -38,14 +36,14 @@ struct GamblingScene: View {
     
     @State var firstMessageWasDisplayed: Bool = false
     
+    @State var geomtryHolder: GeometryProxy?
+    
     var body: some View {
         ZStack{
             GeometryReader { geometry in
                 Color.clear
                     .onAppear {
-                        if let centerOfScreen = GlobalPositionUtility.getGlobalPosition(view: geometry) {
-                            centerOfTheScreen = centerOfScreen
-                        }
+                        geomtryHolder = geometry
                     }
             }
             
@@ -135,8 +133,12 @@ struct GamblingScene: View {
                     if showingCoins{
                         VStack {
                             ForEach(0..<amountOfCoinsOnStart, id: \.self) { index in
-                                DraggableCoin(isCoinInsertedInMachine: $isCoinInsertedInMachine, isInHeaven: $isInHeaven, insertCoin: insertCoin, centerOfScreen: centerOfTheScreen, selectedStyle: index)
-                                    .environmentObject(notificationManager)
+                                if let geomtryHolder = geomtryHolder {
+                                    if let centerOfTheScreen = GlobalPositionUtility.getGlobalPosition(view: geomtryHolder) {
+                                        DraggableCoin(isCoinInsertedInMachine: $isCoinInsertedInMachine, isInHeaven: $isInHeaven, insertCoin: insertCoin, centerOfScreen: centerOfTheScreen, selectedStyle: index)
+                                            .environmentObject(notificationManager)
+                                    }
+                                }
                             }
                         }
                         .padding()
@@ -188,7 +190,11 @@ struct GamblingScene: View {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + SlotsRotation(changeBool: .constant(false)).animationDuration) {
                 
-                ParticleView.spawnParticle(xpos: Double(centerOfTheScreen.x), ypos: Double(centerOfTheScreen.y))
+                if let geomtryHolder = geomtryHolder {
+                    if let centerOfTheScreen = GlobalPositionUtility.getGlobalPosition(view: geomtryHolder) {
+                        ParticleView.spawnParticle(xpos: Double(centerOfTheScreen.x), ypos: Double(centerOfTheScreen.y))
+                    }
+                }
                 
                 withAnimation(){
                     showingBlinkingLights = true
