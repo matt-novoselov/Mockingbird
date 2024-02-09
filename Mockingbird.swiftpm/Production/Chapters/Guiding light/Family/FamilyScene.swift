@@ -19,7 +19,7 @@ struct FamilyScene: View {
     @State var showingMember_2: Bool = false
     @State var showingMember_3: Bool = false
     
-    @State var showingGlowing: Bool = false
+    @State var mainGlowing: Double = 0.0
     
     @State var canInteractWithScene: Bool = false
     
@@ -44,12 +44,10 @@ struct FamilyScene: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .allowsHitTesting(false)
-                    .glow(color: Color("MainYellow").opacity(showingGlowing ? 0.3 : 0), radius: 100)
+                    .glow(color: Color("MainYellow").opacity(mainGlowing), radius: 100)
                     .onChange(of: countMembers){
-                        if countMembers>=4{
-                            withAnimation(){
-                                showingGlowing = true
-                            }
+                        withAnimation(){
+                            mainGlowing = Double(countMembers) / 10.0
                         }
                     }
             }
