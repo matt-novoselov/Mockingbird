@@ -21,6 +21,8 @@ struct FamilyScene: View {
     
     @State var showingGlowing: Bool = false
     
+    @State var canInteractWithScene: Bool = false
+    
     var body: some View {
         ZStack{
             LayerMixingManager(darkSlider: $darkSlider, heavenSlider: .constant(0))
@@ -53,18 +55,18 @@ struct FamilyScene: View {
             }
             .overlay(
                 HStack{
-                    MemeberButton(selectedStyle: 3, showingImage: $showingMember_3, countMemners: $countMembers)
+                    MemeberButton(selectedStyle: 3, showingImage: $showingMember_3, countMemners: $countMembers, canInteractWithScene: $canInteractWithScene)
                     
-                    MemeberButton(selectedStyle: 2, showingImage: $showingMember_2, countMemners: $countMembers)
+                    MemeberButton(selectedStyle: 2, showingImage: $showingMember_2, countMemners: $countMembers, canInteractWithScene: $canInteractWithScene)
                     
                     VStack{
-                        MemeberButton(selectedStyle: 0, showingImage: $showingMember_0, countMemners: $countMembers)
+                        MemeberButton(selectedStyle: 0, showingImage: $showingMember_0, countMemners: $countMembers, canInteractWithScene: $canInteractWithScene)
                         
                         Rectangle()
                             .opacity(0)
                     }
                     
-                    MemeberButton(selectedStyle: 1, showingImage: $showingMember_1, countMemners: $countMembers)
+                    MemeberButton(selectedStyle: 1, showingImage: $showingMember_1, countMemners: $countMembers, canInteractWithScene: $canInteractWithScene)
                 }
                 
             )
@@ -80,6 +82,11 @@ struct FamilyScene: View {
                 notificationManager.callNotification(ID: 17, arrowAction: {
                     transitionManagerObservable.transitionToScene?(13)
                 }, darkMode: false)
+            }
+        }
+        .onAppear(){
+            DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
+                canInteractWithScene = true
             }
         }
     }

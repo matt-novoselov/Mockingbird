@@ -11,6 +11,7 @@ struct MemeberButton: View {
     var selectedStyle: Int = 0
     @Binding var showingImage: Bool
     @Binding var countMemners: Int
+    @Binding var canInteractWithScene: Bool
     
     var body: some View {
         Color.clear
@@ -21,12 +22,15 @@ struct MemeberButton: View {
     }
     
     func performAction(){
+        if !canInteractWithScene{
+            return
+        }
+        
         if showingImage{
             return
         }
-        else{
-            countMemners+=1
-            showingImage = true
-        }
+        
+        countMemners+=1
+        showingImage = true
     }
 }
