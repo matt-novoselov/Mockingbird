@@ -134,8 +134,8 @@ struct ArrowAnimated: View {
                         }
                     }
                 )
+                .padding(.horizontal, 50)
         }
-        .padding(.horizontal, 20)
     }
 }
 
