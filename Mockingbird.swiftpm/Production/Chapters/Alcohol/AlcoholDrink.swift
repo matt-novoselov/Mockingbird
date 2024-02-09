@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct AlcoholDrink: View {
-    @State var currentDisplayedImage: String?
-    
-    let cookiesArray: [[String]] = [
+    let alcoholArray: [[String]] = [
         ["bottle_empty", "bottle_filled"],
         ["little_glass_empty", "little_glass_filled"],
         ["wine_glass_empty", "wine_glass_filled"],
@@ -21,7 +19,7 @@ struct AlcoholDrink: View {
     @Binding var countBites: Int
     @Binding var heavenSlider: Double
     @Binding var canInteractAfterInitOpenening: Bool
-    @State var isBitten: Bool = false
+    @State var isDrinken: Bool = false
     
     @EnvironmentObject var notificationManager: NotificationManager
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
@@ -31,6 +29,8 @@ struct AlcoholDrink: View {
     @State var geomtryHolder: GeometryProxy?
     
     @Binding var currentDrinkID: Int
+    
+    @State var currentState: Int = 1
     
     var body: some View {
         Button(action: {
@@ -42,7 +42,7 @@ struct AlcoholDrink: View {
                 return
             }
             
-            if isBitten{
+            if isDrinken{
                 return
             }
             
@@ -51,12 +51,12 @@ struct AlcoholDrink: View {
                 ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
             }
             
-            isBitten = true
+            isDrinken = true
             
             notificationManager.closeNotification()
             
             withAnimation() {
-                currentDisplayedImage = cookiesArray[selectedStyle][0]
+                currentState = 0
             }
             
             if countBites != 2{
@@ -90,7 +90,7 @@ struct AlcoholDrink: View {
             
         })
         {
-            Image(currentDisplayedImage ?? "")
+            Image(alcoholArray[selectedStyle][currentState])
                 .interpolation(.high)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -104,9 +104,6 @@ struct AlcoholDrink: View {
                 )
         }
         .buttonStyle(NoOpacityButtonStyle())
-        .onAppear(){
-            currentDisplayedImage = cookiesArray[selectedStyle][1]
-        }
         .padding(.top, selectedStyle == 1 ? 200 : 0)
         .padding(.top, selectedStyle == 2 ? 50 : 0)
     }

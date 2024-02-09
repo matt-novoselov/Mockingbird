@@ -16,7 +16,6 @@ struct Cookie: View {
     
     var selectedStyle: Int = 0
     
-    @State var currentDisplayedImage: String?
     @Binding var countBites: Int
     @Binding var heavenSlider: Double
     @State var isBitten: Bool = false
@@ -27,7 +26,7 @@ struct Cookie: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     var body: some View {
-        Image(currentDisplayedImage ?? "")
+        Image(isBitten ? "cookie_\(selectedStyle+1)_bitten" : "cookie_\(selectedStyle+1)")
             .interpolation(.high)
             .resizable()
             .aspectRatio(contentMode: .fit)
@@ -35,9 +34,6 @@ struct Cookie: View {
                 performAction(location: location)
             }
             .scaleEffect(scaleCookie)
-        .onAppear(){
-            currentDisplayedImage = cookiesArray[selectedStyle][0]
-        }
     }
     
     func performAction(location: CGPoint){
@@ -54,10 +50,6 @@ struct Cookie: View {
         notificationManager.closeNotification()
         
         ParticleView.spawnParticle(xpos: location.x, ypos: location.y)
-        
-        withAnimation(.none) {
-            currentDisplayedImage = cookiesArray[selectedStyle][1]
-        }
         
         withAnimation(.easeInOut(duration: 0.25)){
             scaleCookie = 0.95
