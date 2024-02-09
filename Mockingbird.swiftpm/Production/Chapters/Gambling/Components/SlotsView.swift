@@ -12,6 +12,7 @@ struct SlotsRotation: View {
     @State var imageSize: CGSize = CGSize(width: 0, height: 0)
     @Binding var changeBool: Bool
     @State var firstVariation: Bool = false
+    @State var countRotations: Int = 0
     
     public let animationDuration: Double = 2.0
     
@@ -19,7 +20,7 @@ struct SlotsRotation: View {
     
     var body: some View {
         ZStack{
-            Image("slots")
+            Image(countRotations < 2 ? "slots" : "slots2")
                 .interpolation(.high)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
@@ -44,9 +45,12 @@ struct SlotsRotation: View {
     }
     
     public func rotateSlots(){
+        countRotations+=1
+        
         if firstVariation{
             withAnimation(.spring(duration: animationDuration)) {
                 offsetY = imageSize.height - imageSize.height / CGFloat(amountOfFruits)
+                
             }
         }
         else{
