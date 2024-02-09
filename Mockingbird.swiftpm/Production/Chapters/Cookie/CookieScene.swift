@@ -14,6 +14,8 @@ struct CookieScene: View {
     @State var heavenSlider: Double = 0
     @State var countBites: Int = 0
     
+    @State var geomtryHolder: CGSize = CGSize(width: 0, height: 0)
+    
     var body: some View {
         ZStack {
             LayerMixingManager(darkSlider: .constant(0), heavenSlider: $heavenSlider)
@@ -21,11 +23,21 @@ struct CookieScene: View {
             VStack{
                 HStack{
                     Cookie(selectedStyle: 0, countBites: $countBites, heavenSlider: $heavenSlider)
+                        .background(
+                            GeometryReader{ geometry in
+                                Color.clear
+                                    .onAppear(){
+                                        geomtryHolder = geometry.size
+                                    }
+                            }
+                        )
                     
                     Cookie(selectedStyle: 1, countBites: $countBites, heavenSlider: $heavenSlider)
                 }
                 
                 Cookie(selectedStyle: 2, countBites: $countBites, heavenSlider: $heavenSlider)
+                    .frame(maxHeight: geomtryHolder.height)
+                
             }
             .environmentObject(notificationManager)
             .environmentObject(transitionManagerObservable)
