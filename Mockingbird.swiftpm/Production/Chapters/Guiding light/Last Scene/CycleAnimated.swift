@@ -22,30 +22,35 @@ struct CycleAnimated: View {
         ZStack{
             HStack{
                 ArrowAnimated(degreesAmount: $degreesAmount1, pointer: $pointer1)
+                    .background(
+                        GeometryReader{ proxy in
+                            Color.clear
+                                .onAppear(){
+                                    frameHeight = proxy.size.height
+                                }
+                        }
+                    )
+                
+                VStack{
+                    Image("dopamine_cropped_text")
+                        .interpolation(.high)
+                        .resizable()
+                        .scaledToFit()
+                        .opacity(textOpacity1)
+                    
+                    Spacer()
+                    
+                    Image("addicted_cropped_text")
+                        .interpolation(.high)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .opacity(textOpacity2)
+                }
+                .frame(maxHeight: frameHeight==0 ? .infinity : frameHeight)
                 
                 ArrowAnimated(degreesAmount: $degreesAmount2, pointer: $pointer2)
                     .rotationEffect(Angle(degrees: 180))
             }
-            .background(
-                GeometryReader{ proxy in
-                    Color.clear
-                        .onAppear(){
-//                            print(proxy.size.height)
-                            frameHeight = proxy.size.height
-                        }
-                }
-            )
-            
-            VStack{
-                FontText(text: "Dopamine", size: 110)
-                    .opacity(textOpacity1)
-                
-                Spacer()
-                
-                FontText(text: "Addicted", size: 110)
-                    .opacity(textOpacity2)
-            }
-            .frame(maxHeight: frameHeight==0 ? .infinity : frameHeight)
         }
         .onAppear(){
             
@@ -78,6 +83,7 @@ struct CycleAnimated: View {
         }
         }
         }
+
     }
     
 }
@@ -96,40 +102,47 @@ struct ArrowAnimated: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .mask(
-                    Circle()
-                        .trim(from: degreesAmount, to: 0.75) // 1
-                        .stroke(
-                            lineWidth: 1000
-                        )
+                    GeometryReader{ proxy in
+                        Circle()
+                            .offset(x: proxy.size.width/2)
+                            .trim(from: degreesAmount, to: 0.75) // 1
+                            .stroke(
+                                lineWidth: 1000
+                            )
+                    }
                 )
                 .padding(.vertical, 40)
                 .background(
-                    VStack{
+                    HStack{
                         Spacer()
-                        if pointer {
-                            Image("pointer")
-                                .interpolation(.high)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .scaleEffect(scalePointer)
-                            //                            .background(.green)
-                                .frame(width: 150)
-                                .onAppear(){
-                                    withAnimation(){
-                                        scalePointer = 1
+                        
+                        VStack{
+                            Spacer()
+                            if pointer {
+                                Image("pointer")
+                                    .interpolation(.high)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .scaleEffect(scalePointer, anchor: .trailing)
+                                    .frame(width: 75)
+                                    .onAppear(){
+                                        withAnimation(){
+                                            scalePointer = 1
+                                        }
                                     }
-                                }
+                            }
                         }
                     }
                 )
         }
+        .padding(.horizontal, 20)
     }
 }
 
 
 #Preview {
-    //    ArrowAnimated(degreesAmount: .constant(0.25))
-    //        .background(.red)
+//    ArrowAnimated(degreesAmount: .constant(0.25), pointer: .constant(false))
+//            .background(.red)
     
     CycleAnimated()
 }
