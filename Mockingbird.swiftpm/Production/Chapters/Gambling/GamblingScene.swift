@@ -50,14 +50,30 @@ struct GamblingScene: View {
             LayerMixingManager(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
             
             ZStack{
-                //                Image("arrow_white")
-                //                    .interpolation(.high)
-                //                    .resizable()
-                //                    .aspectRatio(contentMode: .fit)
-                //                    .frame(width: 200)
-                //                    .padding()
-                //                    .opacity(showingCoins ? 1 : 0)
-                //                    .opacity(shouldShowArrowAgain ? 1 : 0)
+                HStack{
+                    Image("arrow_white")
+                        .interpolation(.high)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(.all, 50)
+                        .opacity(0)
+                    
+                    Image("gambling_base")
+                        .interpolation(.high)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 350)
+                        .opacity(0)
+                    
+                    Image("arrow_white")
+                        .interpolation(.high)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(.all, 50)
+                        .opacity(showingCoins ? 1 : 0)
+                        .opacity(shouldShowArrowAgain ? 1 : 0)
+                }
+
             }
             
             ZStack{
