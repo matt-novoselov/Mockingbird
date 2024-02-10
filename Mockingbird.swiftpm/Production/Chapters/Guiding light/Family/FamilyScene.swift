@@ -20,6 +20,7 @@ struct FamilyScene: View {
     @State var showingMember_3: Bool = false
     
     @State var mainGlowing: Double = 0.0
+    @State var heartOpacity: Double = 0.0
     
     @State var canInteractWithScene: Bool = false
     
@@ -48,8 +49,17 @@ struct FamilyScene: View {
                     .onChange(of: countMembers){
                         withAnimation(){
                             mainGlowing = Double(countMembers) / 10.0
+                            heartOpacity = Double(countMembers) / 4
                         }
                     }
+                
+                Image("family_heart")
+                    .interpolation(.high)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .allowsHitTesting(false)
+                    .glow(color: Color("MainYellow").opacity(mainGlowing), radius: 100)
+                    .opacity(heartOpacity)
             }
             .overlay(
                 HStack{
