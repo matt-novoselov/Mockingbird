@@ -17,9 +17,10 @@ struct DraggableCoin: View {
     @Binding var isInHeaven: Bool
     
     var insertCoin: () -> Void
-    var centerOfScreen :CGPoint
     
     @State var hasReachedCollider: Bool = false
+    
+    @Binding var geomtryHolder: GeometryProxy?
     
     var selectedStyle: Int = 0
     
@@ -48,7 +49,12 @@ struct DraggableCoin: View {
                                 let globalY: Double = geometry.frame(in: .global).origin.y + value.location.y - circleSize/2
                                 let coinCollider = CGRect(x: globalX, y: globalY, width: circleSize, height: circleSize)
                                 
-                                checkCollision(coinCollider: coinCollider, centerOfScreen: centerOfScreen)
+                                if let geomtryHolder = geomtryHolder {
+                                    if let centerOfTheScreen = GlobalPositionUtility.getGlobalPosition(view: geomtryHolder) {
+                                        checkCollision(coinCollider: coinCollider, centerOfScreen: centerOfTheScreen)
+                                    }
+                                }
+
                             }
                             .onEnded { _ in
                                 if !hasReachedCollider{

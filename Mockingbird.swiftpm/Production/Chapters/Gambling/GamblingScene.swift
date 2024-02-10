@@ -49,82 +49,73 @@ struct GamblingScene: View {
             
             LayerMixingManager(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
             
-            HStack (spacing: 0){
-                Image("arrow_white")
+            ZStack{
+                //                Image("arrow_white")
+                //                    .interpolation(.high)
+                //                    .resizable()
+                //                    .aspectRatio(contentMode: .fit)
+                //                    .frame(width: 200)
+                //                    .padding()
+                //                    .opacity(showingCoins ? 1 : 0)
+                //                    .opacity(shouldShowArrowAgain ? 1 : 0)
+            }
+            
+            ZStack{
+                AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, handleResult: handleResult, handleNoCoin: handleNoCoin)
+                    .frame(height: 100)
+                    .offset(x: 160, y: -45)
+                
+                Image("gambling_base")
                     .interpolation(.high)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 200)
-                    .padding()
-                    .opacity(0)
+                    .overlay(
+                        SlotsRotation(changeBool: $changeBool)
+                            .offset(y: 10)
+                            .frame(width: 170)
+                            .mask(
+                                Rectangle()
+                                    .frame(height: 60)
+                                    .offset(y: 15)
+                            )
+                    )
+                    .overlay(){
+                        Image("gambling_overlay")
+                            .interpolation(.high)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }
+                    .allowsHitTesting(false)
+                
                 
                 ZStack{
-                    AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, handleResult: handleResult, handleNoCoin: handleNoCoin)
-                        .frame(height: 100)
-                        .offset(x: 160, y: -45)
-                    
-                    Image("gambling_base")
-                        .interpolation(.high)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .overlay(
-                            SlotsRotation(changeBool: $changeBool)
-                                .offset(y: 10)
-                                .frame(width: 170)
-                                .mask(
-                                    Rectangle()
-                                        .frame(height: 60)
-                                        .offset(y: 15)
-                                )
-                        )
-                        .overlay(){
-                            Image("gambling_overlay")
+                    if showingBlinkingLights{
+                        ZStack{
+                            Image("gambling_lights_1")
                                 .interpolation(.high)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
+                                .glow(color: Color("MainYellow").opacity(0.4), radius: 10)
+                                .opacity(lightsBlinking ? 1 : 0)
+                            
+                            Image("gambling_lights_2")
+                                .interpolation(.high)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .glow(color: Color("MainYellow").opacity(0.4), radius: 10)
+                                .opacity(lightsBlinking ? 0 : 1)
                         }
-                        .allowsHitTesting(false)
-                    
-                    
-                    ZStack{
-                        if showingBlinkingLights{
-                            ZStack{
-                                Image("gambling_lights_1")
-                                    .interpolation(.high)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .glow(color: Color("MainYellow").opacity(0.4), radius: 10)
-                                    .opacity(lightsBlinking ? 1 : 0)
-                                
-                                Image("gambling_lights_2")
-                                    .interpolation(.high)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .glow(color: Color("MainYellow").opacity(0.4), radius: 10)
-                                    .opacity(lightsBlinking ? 0 : 1)
-                            }
-                            .onAppear {
-                                Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { timer in
-                                    lightsBlinking.toggle()
-                                }
+                        .onAppear {
+                            Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { timer in
+                                lightsBlinking.toggle()
                             }
                         }
                     }
-                    .opacity(showingBlinkingLights ? 1 : 0)
-                    .allowsHitTesting(false)
                 }
-                .frame(height: 350)
-                
-                
-                Image("arrow_white")
-                    .interpolation(.high)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 200)
-                    .padding()
-                    .opacity(showingCoins ? 1 : 0)
-                    .opacity(shouldShowArrowAgain ? 1 : 0)
+                .opacity(showingBlinkingLights ? 1 : 0)
+                .allowsHitTesting(false)
             }
+            .frame(height: 350)
             
             VStack {
                 HStack {
@@ -133,12 +124,8 @@ struct GamblingScene: View {
                     if showingCoins{
                         VStack {
                             ForEach(0..<amountOfCoinsOnStart, id: \.self) { index in
-                                if let geomtryHolder = geomtryHolder {
-                                    if let centerOfTheScreen = GlobalPositionUtility.getGlobalPosition(view: geomtryHolder) {
-                                        DraggableCoin(isCoinInsertedInMachine: $isCoinInsertedInMachine, isInHeaven: $isInHeaven, insertCoin: insertCoin, centerOfScreen: centerOfTheScreen, selectedStyle: index)
-                                            .environmentObject(notificationManager)
-                                    }
-                                }
+                                DraggableCoin(isCoinInsertedInMachine: $isCoinInsertedInMachine, isInHeaven: $isInHeaven, insertCoin: insertCoin, geomtryHolder: $geomtryHolder, selectedStyle: index)
+                                    .environmentObject(notificationManager)
                             }
                         }
                         .padding()
