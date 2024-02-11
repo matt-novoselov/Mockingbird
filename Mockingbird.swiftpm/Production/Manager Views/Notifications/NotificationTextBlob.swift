@@ -31,11 +31,11 @@ struct NotificationTextBlob: View {
                 .frame(width: 330)
                 .padding()
                 .background(
-                    BubbleShape(showingTrail: showingTail)
+                    BubbleShape(trailProgress: showingTail ? 1 : 0)
                         .foregroundColor(darkMode ? Color("BlobDarkBackground") : .white)
                 )
                 .overlay(
-                    BubbleShape(showingTrail: showingTail)
+                    BubbleShape(trailProgress: showingTail ? 1 : 0)
                         .stroke(darkMode ? .white : .black, lineWidth: 3)
                 )
                 .onChange(of: shift){ _ in
@@ -50,6 +50,7 @@ struct NotificationTextBlob: View {
                     withAnimation(.easeInOut){
                         text = newValue
                         textOpacity = 1
+                        showingTail = notificationManager.arrowAction == nil
                     }
                     
                     withAnimation(.easeInOut(duration: 0.5)){
@@ -58,7 +59,6 @@ struct NotificationTextBlob: View {
                     
                     shift = 1
                     showingArrow = notificationManager.arrowAction != nil
-                    showingTail = notificationManager.arrowAction == nil
                     typeWriter()
                 }
 
@@ -82,7 +82,7 @@ struct NotificationTextBlob: View {
             }
             .frame(width: 330)
             .padding()
-            .clipShape(BubbleShape(showingTrail: showingTail))
+            .clipShape(BubbleShape(trailProgress: showingTail ? 1 : 0))
             
             ZStack (alignment: .bottomTrailing){
                 Text(text)

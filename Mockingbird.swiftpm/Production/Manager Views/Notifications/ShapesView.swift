@@ -3,27 +3,30 @@ import SwiftUI
 struct BubbleShape: Shape {
     private let radius: CGFloat
     private let tailSize: CGFloat
-    private var showingTrail: Bool
+    var trailProgress: CGFloat
 
-    init(radius: CGFloat = 25, showingTrail: Bool = false) {
+    init(radius: CGFloat = 25, trailProgress: CGFloat = 0) {
         self.radius = radius
         self.tailSize = 10
-        self.showingTrail = showingTrail
+        self.trailProgress = trailProgress
+    }
+
+    var animatableData: CGFloat {
+        get { trailProgress }
+        set { trailProgress = newValue }
     }
 
     func path(in rect: CGRect) -> Path {
-        Path { path in
+        let currentTrailSize = tailSize * trailProgress
+        return Path { path in
             path.move(to: CGPoint(x: rect.minX, y: rect.maxY - radius))
             
-            
-            if showingTrail{
-                path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY - rect.height / 2 + tailSize))
-                path.addCurve(
-                    to: CGPoint(x: rect.minX, y: rect.maxY - rect.height / 2 - tailSize),
-                    control1: CGPoint(x: rect.minX - tailSize*2, y: rect.maxY - rect.height / 2 ),
-                    control2: CGPoint(x: rect.minX, y: rect.maxY - rect.height / 2 - tailSize / 2 )
-                )
-            }
+            path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY - rect.height / 2 + currentTrailSize))
+            path.addCurve(
+                to: CGPoint(x: rect.minX, y: rect.maxY - rect.height / 2 - currentTrailSize),
+                control1: CGPoint(x: rect.minX - currentTrailSize*2, y: rect.maxY - rect.height / 2 ),
+                control2: CGPoint(x: rect.minX, y: rect.maxY - rect.height / 2 - currentTrailSize / 2 )
+            )
             
             path.addArc(
                 center: CGPoint(x: rect.minX + radius, y: rect.minY + radius),
@@ -57,9 +60,24 @@ struct BubbleShape: Shape {
     }
 }
 
+struct DebugShape: View {
+    @State var showingTrail: Bool = true
+    
+    var body: some View {
+        VStack {
+            BubbleShape(trailProgress: showingTrail ? 1 : 0)
+                .frame(width: 300, height: 200)
+                .foregroundColor(Color.red)
+            
+            Button("Button") {
+                withAnimation(){
+                    showingTrail.toggle()
+                }
+            }
+        }
+    }
+}
 
 #Preview {
-    BubbleShape(showingTrail: true)
-        .frame(width: 300, height: 200)
-        .foregroundColor(Color.red)
+    DebugShape()
 }
