@@ -172,7 +172,7 @@ struct GamblingScene: View {
                 shouldShowArrowAgain = false
             }
             
-            withAnimation(){
+            withAnimation(.easeInOut){
                 showingBlinkingLights = false
             }
             
@@ -199,7 +199,7 @@ struct GamblingScene: View {
                     }
                 }
                 
-                withAnimation(){
+                withAnimation(.easeInOut){
                     showingBlinkingLights = true
                 }
                 

@@ -55,7 +55,7 @@ struct AlcoholDrink: View {
             
 //            notificationManager.closeNotification()
             
-            withAnimation() {
+            withAnimation(.easeInOut) {
                 currentState = 0
             }
             

@@ -8,12 +8,9 @@
 import SwiftUI
 
 struct NotificationTextBlob: View {
-    var text: String = ""
-    @State var proxyText: String = ""
-    var showingArrow: Bool = false
-    @State var proxyShowingArrow: Bool = false
-    var showingTail: Bool = false
-    @State var proxyShowingTail: Bool = false
+    @State var text: String = ""
+    @State var showingArrow: Bool = false
+    @State var showingTail: Bool = false
     var darkMode: Bool = false
     var arrowAction: (() -> Void)?
     
@@ -21,6 +18,8 @@ struct NotificationTextBlob: View {
     @State var customShift: Int = 1
     @State var stateShowButton: Bool = false
     let animationMoveInDuration: Double = 1.0
+    
+    @State var textOpacity: Double = 1.0
     
     @EnvironmentObject var notificationManager: NotificationManager
     
@@ -32,11 +31,11 @@ struct NotificationTextBlob: View {
                 .frame(width: 330)
                 .padding()
                 .background(
-                    BubbleShape(showingTrail: proxyShowingTail)
+                    BubbleShape(showingTrail: showingTail)
                         .foregroundColor(darkMode ? Color("BlobDarkBackground") : .white)
                 )
                 .overlay(
-                    BubbleShape(showingTrail: proxyShowingTail)
+                    BubbleShape(showingTrail: showingTail)
                         .stroke(darkMode ? .white : .black, lineWidth: 3)
                 )
                 .onChange(of: shift){ _ in
@@ -44,42 +43,36 @@ struct NotificationTextBlob: View {
                         customShift = shift + 12
                     }
                 }
-                .onChange(of: text){ newValue in
+                .onChange(of: notificationManager.currentNotificationMessage){ newValue in
                     withAnimation(nil){
-                        proxyText = newValue
-                        shift = 1
-                        typeWriter()
+                        textOpacity = 0
+                    }
+                    withAnimation(.easeInOut){
+                        text = newValue
+                        textOpacity = 1
                     }
                     
-                    withAnimation(){
+                    withAnimation(.easeInOut(duration: 0.5)){
                         customShift = 1
                     }
-                }
-                .onAppear(){
-                    proxyText = text
-                    proxyShowingArrow = showingArrow
-                    proxyShowingTail = showingTail
-                }
-                .onChange(of: showingArrow){ newValue in
-                    proxyShowingArrow = newValue
-                }
-                .onChange(of: showingTail){ newValue in
-                    withAnimation(){
-                        proxyShowingTail = newValue
-                    }
+                    
+                    shift = 1
+                    showingArrow = notificationManager.arrowAction != nil
+                    showingTail = notificationManager.arrowAction == nil
+                    typeWriter()
                 }
 
             
             Group {
-                Text(String(proxyText.prefix(shift)))
+                Text(String(text.prefix(shift)))
                     .font(getFont(size: 32))
-                    .foregroundColor(darkMode ? .white : .black)
+                    .foregroundColor(darkMode ? .white.opacity(textOpacity) : .black.opacity(textOpacity))
                 +
                 
                 Text(
-                    shift <= proxyText.count ?
+                    shift <= text.count ?
                     
-                    String(proxyText.suffix(proxyText.count - shift))
+                    String(text.suffix(text.count - shift))
                     
                     : ""
                 )
@@ -89,16 +82,16 @@ struct NotificationTextBlob: View {
             }
             .frame(width: 330)
             .padding()
-            .clipShape(BubbleShape(showingTrail: proxyShowingTail))
+            .clipShape(BubbleShape(showingTrail: showingTail))
             
             ZStack (alignment: .bottomTrailing){
-                Text(proxyText)
+                Text(text)
                     .font(getFont(size: 32))
                     .foregroundColor(.clear)
                     .frame(width: 330)
                     .padding()
                 
-                if proxyShowingArrow{
+                if showingArrow{
                     ArrowCircleButton(darkMode: darkMode, arrowAction: arrowAction ?? nil)
                         .offset(x: 20, y: 20)
                         .scaleEffect(stateShowButton ? 1.0 : 0.0)
@@ -117,7 +110,7 @@ struct NotificationTextBlob: View {
     }
     
     func typeWriter() {
-        if shift < proxyText.count {
+        if shift < text.count {
             let interval: Double = notificationManager.isDebug ? 0.0005 : 0.03
             
             DispatchQueue.main.asyncAfter(deadline: .now() + interval) {
@@ -134,7 +127,7 @@ struct NotificationTextBlob: View {
     func handleEndOfAnimation(){
         notificationManager.isTextPrintFinished = true
         
-        if proxyShowingArrow{
+        if showingArrow{
             withAnimation{
                 stateShowButton = true
             }

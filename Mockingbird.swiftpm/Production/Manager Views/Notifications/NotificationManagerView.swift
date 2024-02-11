@@ -10,12 +10,13 @@ import SwiftUI
 
 struct NotificationManagerView: View {
     @EnvironmentObject var notificationManager: NotificationManager
+    @State var localIsTextDisplayed: Bool = false
     
     var body: some View {
         ZStack{
             VStack{
                 HStack{
-                    if(notificationManager.isTextDisplayed){
+                    if(localIsTextDisplayed){
                         NotificationTextBlob(
                             text: notificationManager.currentNotificationMessage,
                             showingArrow: notificationManager.arrowAction != nil,
@@ -28,6 +29,11 @@ struct NotificationManagerView: View {
                     }
                     
                     Spacer()
+                }
+                .onChange(of: notificationManager.isTextDisplayed){ newValue in
+                    withAnimation(Animation.easeInOut(duration: NotificationTextBlob(arrowAction: {}).animationMoveInDuration)) {
+                        localIsTextDisplayed = newValue
+                    }
                 }
                 
                 Spacer()
@@ -60,17 +66,14 @@ class NotificationManager: ObservableObject {
     @Published var isTextPrintFinished: Bool = true
     
     func callNotification(ID: Int, arrowAction: (() -> Void)? = nil, darkMode: Bool? = false) {
-        let notificationsSet = NotificationsViewModel().notifications
-        self.arrowAction = arrowAction
-        self.darkMode = darkMode
-        
-        self.isTextPrintFinished = false
-        
         withAnimation(nil){
+            let notificationsSet = NotificationsViewModel().notifications
+            self.arrowAction = arrowAction
+            self.darkMode = darkMode
+            
+            self.isTextPrintFinished = false
             currentNotificationMessage = notificationsSet[ID].text
-        }
-
-        withAnimation(Animation.easeInOut(duration: NotificationTextBlob(arrowAction: {}).animationMoveInDuration)) {
+            
             isTextDisplayed = true
         }
     }

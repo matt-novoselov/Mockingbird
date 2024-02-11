@@ -47,7 +47,7 @@ struct FamilyScene: View {
                     .allowsHitTesting(false)
                     .glow(color: Color("MainYellow").opacity(mainGlowing), radius: 100)
                     .onChange(of: countMembers){ _ in
-                        withAnimation(){
+                        withAnimation(.easeInOut){
                             mainGlowing = Double(countMembers) / 10.0
                             heartOpacity = Double(countMembers) / 4
                         }

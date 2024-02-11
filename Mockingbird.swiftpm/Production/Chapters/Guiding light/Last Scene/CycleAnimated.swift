@@ -124,7 +124,7 @@ struct ArrowAnimated: View {
                                     .scaleEffect(scalePointer, anchor: .trailing)
                                     .frame(width: 75)
                                     .onAppear(){
-                                        withAnimation(){
+                                        withAnimation(.easeInOut){
                                             scalePointer = 1
                                         }
                                     }
