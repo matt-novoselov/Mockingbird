@@ -13,6 +13,7 @@ struct NotificationTextBlob: View {
     var showingArrow: Bool = false
     @State var proxyShowingArrow: Bool = false
     var showingTail: Bool = false
+    @State var proxyShowingTail: Bool = false
     var darkMode: Bool = false
     var arrowAction: (() -> Void)?
     
@@ -25,17 +26,17 @@ struct NotificationTextBlob: View {
     
     var body: some View {
         ZStack (alignment: .top){
-            Text(String(proxyText.prefix(customShift)))
+            Text(String(text.prefix(customShift)))
                 .font(getFont(size: 32))
                 .foregroundColor(.clear)
                 .frame(width: 330)
                 .padding()
                 .background(
-                    BubbleShape(showingTrail: showingTail)
+                    BubbleShape(showingTrail: proxyShowingTail)
                         .foregroundColor(darkMode ? Color("BlobDarkBackground") : .white)
                 )
                 .overlay(
-                    BubbleShape(showingTrail: showingTail)
+                    BubbleShape(showingTrail: proxyShowingTail)
                         .stroke(darkMode ? .white : .black, lineWidth: 3)
                 )
                 .onChange(of: shift){ _ in
@@ -44,25 +45,33 @@ struct NotificationTextBlob: View {
                     }
                 }
                 .onChange(of: text){ newValue in
-                    proxyText = newValue
-                    shift = 1
+                    withAnimation(nil){
+                        proxyText = newValue
+                        shift = 1
+                        typeWriter()
+                    }
                     
                     withAnimation(){
                         customShift = 1
                     }
-                    
-                    typeWriter()
                 }
                 .onAppear(){
                     proxyText = text
                     proxyShowingArrow = showingArrow
+                    proxyShowingTail = showingTail
                 }
                 .onChange(of: showingArrow){ newValue in
                     proxyShowingArrow = newValue
                 }
+                .onChange(of: showingTail){ newValue in
+                    withAnimation(){
+                        proxyShowingTail = newValue
+                    }
+                }
+
             
             Group {
-                Text(String(text.prefix(shift)))
+                Text(String(proxyText.prefix(shift)))
                     .font(getFont(size: 32))
                     .foregroundColor(darkMode ? .white : .black)
                 +
@@ -80,7 +89,7 @@ struct NotificationTextBlob: View {
             }
             .frame(width: 330)
             .padding()
-            .clipShape(BubbleShape(showingTrail: showingTail))
+            .clipShape(BubbleShape(showingTrail: proxyShowingTail))
             
             ZStack (alignment: .bottomTrailing){
                 Text(proxyText)

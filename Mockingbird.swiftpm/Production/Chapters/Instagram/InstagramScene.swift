@@ -65,7 +65,7 @@ struct InstagramScene: View {
                             Spacer()
                         }
                     }
-                    .padding(.all, -10)
+                        .padding(.all, -10)
                 )
                 .padding(.vertical, 100)
             
@@ -88,7 +88,7 @@ struct InstagramScene: View {
     }
     
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
-//        notificationManager.closeNotification()
+        //        notificationManager.closeNotification()
         
         countVisitsToHeaven+=1
         isInHeaven = true
@@ -112,37 +112,30 @@ struct InstagramScene: View {
     }
     
     func handleTransition(){
-//        withAnimation(nil){
-            // handle end of visit to heaven
-            
-            isInHeaven = false
-            
-            // transition to next post
-            // P.S. this is a very weird way of calling a function
-            withAnimation(nil){
-                shouldChangePost.toggle()
-            }
-            
-            if countVisitsToHeaven == 1{
-                notificationManager.callNotification(ID: 7)
-            }
-            else if countVisitsToHeaven == 2{
-                withAnimation(nil){
-                    notificationManager.callNotification(ID: 8)
+        // handle end of visit to heaven
+        
+        isInHeaven = false
+        
+        // transition to next post
+        // P.S. this is a very weird way of calling a function
+        withAnimation(nil){
+            shouldChangePost.toggle()
+        }
+        
+        if countVisitsToHeaven == 1{
+            notificationManager.callNotification(ID: 7)
+        }
+        else if countVisitsToHeaven == 2{
+            notificationManager.callNotification(ID: 8)
+        }
+        else if countVisitsToHeaven == 3{
+            notificationManager.callNotification(
+                ID: 9,
+                arrowAction: {
+                    transitionManagerObservable.transitionToScene?(6)
                 }
-            }
-            else if countVisitsToHeaven == 3{
-                withAnimation(nil){
-                    notificationManager.callNotification(
-                        ID: 9,
-                        arrowAction: {
-                            transitionManagerObservable.transitionToScene?(6)
-                        }
-                    )
-                }
-            }
-//        }
-
+            )
+        }
     }
 }
 

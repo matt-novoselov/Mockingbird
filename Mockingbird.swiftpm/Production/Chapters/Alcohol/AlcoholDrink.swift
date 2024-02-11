@@ -53,7 +53,7 @@ struct AlcoholDrink: View {
             
             isDrinken = true
             
-            notificationManager.closeNotification()
+//            notificationManager.closeNotification()
             
             withAnimation() {
                 currentState = 0

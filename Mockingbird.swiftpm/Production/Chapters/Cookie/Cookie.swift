@@ -47,8 +47,6 @@ struct Cookie: View {
         
         isBitten = true
         
-        notificationManager.closeNotification()
-        
         ParticleView.spawnParticle(xpos: location.x, ypos: location.y)
         
         withAnimation(.easeInOut(duration: 0.25)){
