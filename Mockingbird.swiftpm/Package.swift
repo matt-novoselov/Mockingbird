@@ -10,7 +10,7 @@ import AppleProductTypes
 let package = Package(
     name: "Mockingbird",
     platforms: [
-        .iOS("17.0")
+        .iOS("16.0")
     ],
     products: [
         .iOSApplication(

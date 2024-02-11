@@ -55,10 +55,12 @@ struct AnimatedHandle: View {
         isAnimationInProcess = true
         withAnimation(.easeInOut(duration: 1.2)) {
             rotationAngle = 90
-        } completion: {
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
             withAnimation(.easeInOut(duration: 0.4)) {
                 rotationAngle = 15
-            } completion: {
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                 isAnimationInProcess = false
                 isCoinInserted = false
                 handleResult()
@@ -78,10 +80,12 @@ struct AnimatedHandle: View {
         isAnimationInProcess = true
         withAnimation(.easeInOut(duration: 0.2)) {
             rotationAngle = 25
-        } completion: {
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             withAnimation(.easeInOut(duration: 0.2)) {
                 rotationAngle = 15
-            } completion: {
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
                 isAnimationInProcess = false
             }
         }

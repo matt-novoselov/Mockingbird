@@ -53,7 +53,8 @@ struct Cookie: View {
         
         withAnimation(.easeInOut(duration: 0.25)){
             scaleCookie = 0.95
-        } completion: {
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25){
             withAnimation(.easeInOut(duration: 0.25)){
                 scaleCookie = 1
             }
@@ -80,7 +81,8 @@ struct Cookie: View {
         
         withAnimation(.easeInOut(duration: animationDuration)) {
             heavenSlider = 0.25
-        } completion: {
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
             withAnimation(.easeInOut(duration: animationDuration)) {
                 heavenSlider = 0
             }

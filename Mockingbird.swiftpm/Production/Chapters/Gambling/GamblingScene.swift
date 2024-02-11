@@ -151,7 +151,7 @@ struct GamblingScene: View {
                 }
                 Spacer()
             }
-            .onChange(of: notificationManager.isTextPrintFinished){
+            .onChange(of: notificationManager.isTextPrintFinished){ _ in
                 if (notificationManager.isTextPrintFinished == true && countVisitsToHeaven==0){
                     withAnimation(Animation.easeInOut(duration: 1.0)){
                         showingCoins = true
@@ -234,14 +234,16 @@ struct GamblingScene: View {
         
         withAnimation(.easeInOut(duration: animationDuration)) {
             heavenSlider = heavenSliderGoal ?? 1.0
-        } completion: {
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
             withAnimation(.easeInOut(duration: 0.5)) {
                 darkSlider = darkSliderAfterwards ?? darkSlider
             }
             
             withAnimation(.easeInOut(duration: animationDuration)) {
                 heavenSlider = 0
-            } completion: {
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration){
                 // handle end of visit to heaven
                 
                 isInHeaven = false

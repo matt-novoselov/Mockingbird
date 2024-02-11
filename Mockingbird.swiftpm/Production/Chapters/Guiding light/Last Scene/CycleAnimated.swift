@@ -54,30 +54,28 @@ struct CycleAnimated: View {
         }
         .onAppear(){
             
-            withAnimation(.easeInOut){
+            withAnimation(.easeInOut(duration: 0.25)) {
                 textOpacity1 = 1
             }
-        completion: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             withAnimation(.easeInOut(duration: 2.0)){
                 degreesAmount1 = 0.25
             }
-        completion: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             withAnimation(.none){
                 pointer1 = true
             }
-        completion: {
-            withAnimation(.easeInOut){
+                withAnimation(.easeInOut(duration: 0.25)) {
                 textOpacity2 = 1
             }
-        completion: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             withAnimation(.easeInOut(duration: 2.0)){
                 degreesAmount2 = 0.25
             }
-        completion: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             withAnimation(.none){
                 pointer2 = true
             }
-        }
         }
         }
         }

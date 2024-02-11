@@ -96,29 +96,43 @@ struct InstagramScene: View {
         
         withAnimation(.easeInOut(duration: animationDuration)) {
             heavenSlider = heavenSliderGoal ?? 1.0
-        } completion: {
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
             withAnimation(.easeInOut(duration: 0.5)) {
                 darkSlider = darkSliderAfterwards ?? darkSlider
             }
             
             withAnimation(.easeInOut(duration: animationDuration)) {
                 heavenSlider = 0
-            } completion: {
-                // handle end of visit to heaven
-                
-                isInHeaven = false
-                
-                // transition to next post
-                // P.S. this is a very weird way of calling a function
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
+                handleTransition()
+            }
+        }
+    }
+    
+    func handleTransition(){
+//        withAnimation(nil){
+            // handle end of visit to heaven
+            
+            isInHeaven = false
+            
+            // transition to next post
+            // P.S. this is a very weird way of calling a function
+            withAnimation(nil){
                 shouldChangePost.toggle()
-                
-                if countVisitsToHeaven == 1{
-                    notificationManager.callNotification(ID: 7)
-                }
-                else if countVisitsToHeaven == 2{
+            }
+            
+            if countVisitsToHeaven == 1{
+                notificationManager.callNotification(ID: 7)
+            }
+            else if countVisitsToHeaven == 2{
+                withAnimation(nil){
                     notificationManager.callNotification(ID: 8)
                 }
-                else if countVisitsToHeaven == 3{
+            }
+            else if countVisitsToHeaven == 3{
+                withAnimation(nil){
                     notificationManager.callNotification(
                         ID: 9,
                         arrowAction: {
@@ -127,7 +141,8 @@ struct InstagramScene: View {
                     )
                 }
             }
-        }
+//        }
+
     }
 }
 

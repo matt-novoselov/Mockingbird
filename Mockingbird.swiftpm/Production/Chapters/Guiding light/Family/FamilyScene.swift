@@ -46,7 +46,7 @@ struct FamilyScene: View {
                     .aspectRatio(contentMode: .fit)
                     .allowsHitTesting(false)
                     .glow(color: Color("MainYellow").opacity(mainGlowing), radius: 100)
-                    .onChange(of: countMembers){
+                    .onChange(of: countMembers){ _ in
                         withAnimation(){
                             mainGlowing = Double(countMembers) / 10.0
                             heartOpacity = Double(countMembers) / 4
@@ -81,7 +81,7 @@ struct FamilyScene: View {
             .padding(.all, 100)
             
         }
-        .onChange(of: countMembers){
+        .onChange(of: countMembers){ _ in
             withAnimation(Animation.easeInOut(duration: 5.0)){
                 darkSlider -= 0.2
             }

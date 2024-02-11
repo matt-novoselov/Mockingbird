@@ -36,7 +36,7 @@ struct PianoScene: View {
             .scaleEffect(0.7)
 
         }
-        .onChange(of: countTotalNotesEmited){
+        .onChange(of: countTotalNotesEmited){ _ in
             if countTotalNotesEmited<=3{
                 withAnimation(Animation.easeInOut(duration: 5.0)){
                     darkSlider -= 0.07

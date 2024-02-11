@@ -30,7 +30,7 @@ struct FamilyMember: View {
                     .glow(color: Color("MainYellow").opacity(0.3), radius: 100)
             }
         }
-        .onChange(of: showingImage){
+        .onChange(of: showingImage){ _ in
             withAnimation(.easeInOut(duration: 0.8)){
                 showingMemberImage = true
             }

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct NotificationTextBlob: View {
     var text: String = ""
+    @State var proxyText: String = ""
     var showingArrow: Bool = false
+    @State var proxyShowingArrow: Bool = false
     var showingTail: Bool = false
     var darkMode: Bool = false
     var arrowAction: (() -> Void)?
@@ -23,10 +25,10 @@ struct NotificationTextBlob: View {
     
     var body: some View {
         ZStack (alignment: .top){
-            Text(String(text.prefix(customShift)))
+            Text(String(proxyText.prefix(customShift)))
                 .font(getFont(size: 32))
                 .foregroundColor(.clear)
-                .frame(maxWidth: 330)
+                .frame(width: 330)
                 .padding()
                 .background(
                     BubbleShape(showingTrail: showingTail)
@@ -36,12 +38,13 @@ struct NotificationTextBlob: View {
                     BubbleShape(showingTrail: showingTail)
                         .stroke(darkMode ? .white : .black, lineWidth: 3)
                 )
-                .onChange(of: shift){
+                .onChange(of: shift){ _ in
                     withAnimation{
                         customShift = shift + 12
                     }
                 }
-                .onChange(of: text){
+                .onChange(of: text){ newValue in
+                    proxyText = newValue
                     shift = 1
                     
                     withAnimation(){
@@ -49,6 +52,13 @@ struct NotificationTextBlob: View {
                     }
                     
                     typeWriter()
+                }
+                .onAppear(){
+                    proxyText = text
+                    proxyShowingArrow = showingArrow
+                }
+                .onChange(of: showingArrow){ newValue in
+                    proxyShowingArrow = newValue
                 }
             
             Group {
@@ -58,9 +68,9 @@ struct NotificationTextBlob: View {
                 +
                 
                 Text(
-                    shift <= text.count ?
+                    shift <= proxyText.count ?
                     
-                    String(text.suffix(text.count - shift))
+                    String(proxyText.suffix(proxyText.count - shift))
                     
                     : ""
                 )
@@ -68,18 +78,18 @@ struct NotificationTextBlob: View {
                 .foregroundColor(.clear)
                 
             }
-            .frame(maxWidth: 330)
+            .frame(width: 330)
             .padding()
             .clipShape(BubbleShape(showingTrail: showingTail))
             
             ZStack (alignment: .bottomTrailing){
-                Text(text)
+                Text(proxyText)
                     .font(getFont(size: 32))
                     .foregroundColor(.clear)
-                    .frame(maxWidth: 330)
+                    .frame(width: 330)
                     .padding()
                 
-                if showingArrow{
+                if proxyShowingArrow{
                     ArrowCircleButton(darkMode: darkMode, arrowAction: arrowAction ?? nil)
                         .offset(x: 20, y: 20)
                         .scaleEffect(stateShowButton ? 1.0 : 0.0)
@@ -98,7 +108,7 @@ struct NotificationTextBlob: View {
     }
     
     func typeWriter() {
-        if shift < text.count {
+        if shift < proxyText.count {
             let interval: Double = notificationManager.isDebug ? 0.0005 : 0.03
             
             DispatchQueue.main.asyncAfter(deadline: .now() + interval) {
@@ -115,7 +125,7 @@ struct NotificationTextBlob: View {
     func handleEndOfAnimation(){
         notificationManager.isTextPrintFinished = true
         
-        if showingArrow{
+        if proxyShowingArrow{
             withAnimation{
                 stateShowButton = true
             }

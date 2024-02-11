@@ -31,7 +31,7 @@ struct StartMenu: View {
                             else{
                                 isButtonPressed = true
                             }
-                            playSound(name: "pop", ext: "mp3")
+//                            playSound(name: "pop", ext: "mp3")
                             
                             if let buttonPosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {
                                 ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)

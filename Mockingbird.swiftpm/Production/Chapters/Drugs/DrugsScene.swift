@@ -68,14 +68,16 @@ struct DrugsScene: View {
         
         withAnimation(.easeInOut(duration: animationDuration)) {
             heavenSlider = heavenSliderGoal ?? 1.0
-        } completion: {
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
             withAnimation(.easeInOut(duration: 0.5)) {
                 darkSlider = darkSliderAfterwards ?? darkSlider
             }
             
             withAnimation(.easeInOut(duration: animationDuration)) {
                 heavenSlider = 0
-            } completion: {
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
                 isShaken = false
                 
                 if countPills == 1{

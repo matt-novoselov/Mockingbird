@@ -66,7 +66,10 @@ class NotificationManager: ObservableObject {
         
         self.isTextPrintFinished = false
         
-        currentNotificationMessage = notificationsSet[ID].text
+        withAnimation(nil){
+            currentNotificationMessage = notificationsSet[ID].text
+        }
+
         withAnimation(Animation.easeInOut(duration: NotificationTextBlob(arrowAction: {}).animationMoveInDuration)) {
             isTextDisplayed = true
         }

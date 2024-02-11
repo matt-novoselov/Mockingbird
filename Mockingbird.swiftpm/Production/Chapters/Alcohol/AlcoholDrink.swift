@@ -80,10 +80,12 @@ struct AlcoholDrink: View {
             
             withAnimation(.easeInOut(duration: animationDuration)) {
                 heavenSlider = 0.65
-            } completion: {
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
                 withAnimation(.easeInOut(duration: animationDuration)) {
                     heavenSlider = 0
-                } completion: {
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
                     transitionToNextPost()
                 }
             }

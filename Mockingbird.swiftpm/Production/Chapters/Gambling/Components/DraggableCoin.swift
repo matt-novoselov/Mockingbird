@@ -86,9 +86,10 @@ struct DraggableCoin: View {
         
         insertCoin()
         
-        withAnimation{
+        withAnimation(.easeInOut(duration: 0.25)) {
             hasReachedCollider = true
-        } completion: {
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             withAnimation{
                 hasCollided = true
             }

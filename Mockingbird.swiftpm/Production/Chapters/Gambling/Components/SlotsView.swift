@@ -34,7 +34,7 @@ struct SlotsRotation: View {
                     }
                 )
                 .offset(y: offsetY / 2)
-                .onChange(of: changeBool){
+                .onChange(of: changeBool){ _ in
                     rotateSlots()
                 }
             
