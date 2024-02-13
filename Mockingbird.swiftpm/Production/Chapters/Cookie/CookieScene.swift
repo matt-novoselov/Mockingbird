@@ -22,7 +22,7 @@ struct CookieScene: View {
             
             VStack{
                 HStack{
-                    Cookie(selectedStyle: 0, countBites: $countBites, heavenSlider: $heavenSlider)
+                    Cookie(selectedStyle: 1, countBites: $countBites, heavenSlider: $heavenSlider)
                         .background(
                             GeometryReader{ geometry in
                                 Color.clear
@@ -32,10 +32,10 @@ struct CookieScene: View {
                             }
                         )
                     
-                    Cookie(selectedStyle: 1, countBites: $countBites, heavenSlider: $heavenSlider)
+                    Cookie(selectedStyle: 2, countBites: $countBites, heavenSlider: $heavenSlider)
                 }
                 
-                Cookie(selectedStyle: 2, countBites: $countBites, heavenSlider: $heavenSlider)
+                Cookie(selectedStyle: 3, countBites: $countBites, heavenSlider: $heavenSlider)
                     .frame(maxHeight: geomtryHolder.height)
                 
             }

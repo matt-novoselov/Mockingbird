@@ -7,26 +7,21 @@
 
 import SwiftUI
 
-struct Cookie: View {
-    let cookiesArray: [[String]] = [
-        ["cookie_1", "cookie_1_bitten"],
-        ["cookie_2", "cookie_2_bitten"],
-        ["cookie_3", "cookie_3_bitten"],
-    ]
-    
+struct Cookie: View {    
     var selectedStyle: Int = 0
     
     @Binding var countBites: Int
     @Binding var heavenSlider: Double
-    @State var isBitten: Bool = false
     
     @State var scaleCookie: Double = 1
+    @State var countLocalBites: Int = 0
+    
     
     @EnvironmentObject var notificationManager: NotificationManager
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
     var body: some View {
-        Image(isBitten ? "cookie_\(selectedStyle+1)_bitten" : "cookie_\(selectedStyle+1)")
+        Image("cookie_\(selectedStyle)_stage_\(countLocalBites)")
             .interpolation(.high)
             .resizable()
             .aspectRatio(contentMode: .fit)
@@ -37,15 +32,13 @@ struct Cookie: View {
     }
     
     func performAction(location: CGPoint){
+        if countBites>=3{
+            return
+        }
+        
         if !notificationManager.isTextPrintFinished{
             return
         }
-        
-        if isBitten{
-            return
-        }
-        
-        isBitten = true
         
         ParticleView.spawnParticle(xpos: location.x, ypos: location.y)
         
@@ -72,7 +65,7 @@ struct Cookie: View {
             )
         }
         
-        
+        countLocalBites+=1
         countBites+=1
         
         let animationDuration = 2.0
