@@ -96,11 +96,13 @@ struct NotificationTextBlob: View {
                         .offset(x: 20, y: 20)
                         .scaleEffect(stateShowButton ? 1.0 : 0.0)
                         .environmentObject(notificationManager)
+                        .shadow(color: .black.opacity(darkMode ? 0 : 0.1), radius: 20)
+                        .shadow(color: .white.opacity(darkMode ? 0.2 : 0), radius: 20)
                 }
             }
             
         }
-        .shadow(color: .black.opacity(darkMode ? 0 : 0.08), radius: 20)
+        .shadow(color: .black.opacity(darkMode ? 0 : 0.13), radius: 20)
         .onAppear(){
             DispatchQueue.main.asyncAfter(deadline: .now() + animationMoveInDuration - 0.25) {
                 typeWriter()
