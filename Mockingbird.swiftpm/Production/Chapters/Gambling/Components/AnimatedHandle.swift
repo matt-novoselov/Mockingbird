@@ -11,37 +11,54 @@ struct AnimatedHandle: View {
     @State private var rotationAngle: Double = 15
     @State var isAnimationInProcess: Bool = false
     @Binding var isCoinInserted: Bool
+    @State var isCoinInsertedAnimated: Bool = false
     
     var handleResult: () -> Void
     var handleNoCoin: () -> Void
     
     var body: some View {
-        Image("gambling_handle")
-            .interpolation(.high)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .rotationEffect(.degrees(rotationAngle), anchor: .bottom)
-            .overlay(){
-                Color.clear
-                    .contentShape(Rectangle())
-                    .background(.blue.opacity(0.0))
-                    .padding(.all, -40) // handle hitbox
-                    .rotationEffect(.degrees(rotationAngle), anchor: .bottom)
-                    .gesture(
-                        TapGesture()
-                            .onEnded {
-                                performPostGestureAction()
-                            }
-                            .exclusively(before: DragGesture()
-                                .onEnded { value in
-                                    if value.translation.height > 0 {
-                                        performPostGestureAction()
-                                    }
+        ZStack{
+            Image("gambling_handle")
+                .interpolation(.high)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .rotationEffect(.degrees(rotationAngle), anchor: .bottom)
+                .overlay(){
+                    Color.clear
+                        .contentShape(Rectangle())
+                        .background(.blue.opacity(0.0))
+                        .padding(.all, -40) // handle hitbox
+                        .rotationEffect(.degrees(rotationAngle), anchor: .bottom)
+                        .gesture(
+                            TapGesture()
+                                .onEnded {
+                                    performPostGestureAction()
                                 }
-                            )
-                    )
-                
-            }
+                                .exclusively(before: DragGesture()
+                                    .onEnded { value in
+                                        if value.translation.height > 0 {
+                                            performPostGestureAction()
+                                        }
+                                    }
+                                )
+                        )
+                    
+                }
+            
+            Image("handle_overlay")
+                .interpolation(.high)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .allowsHitTesting(false)
+                .rotationEffect(.degrees(rotationAngle), anchor: .bottom)
+                .glow(color: Color("MainYellow").opacity(0.8), radius: 50)
+                .opacity(isCoinInsertedAnimated ? 1 : 0)
+                .onChange(of: isCoinInserted){ newVal in
+                    withAnimation(.easeInOut(duration: 0.5)){
+                        isCoinInsertedAnimated = newVal
+                    }
+                }
+        }
             .onAppear {
                 Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
                     if (isCoinInserted){
