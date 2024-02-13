@@ -173,6 +173,11 @@ struct GamblingScene: View {
                     }
                 }
             }
+            .onAppear(){
+                DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
+                    notificationManager.callNotification(ID: 10)
+                }
+            }
             
         }
     }
@@ -238,10 +243,9 @@ struct GamblingScene: View {
     }
     
     func handleNoCoin(){
-        if notificationManager.isTextDisplayed == false && countVisitsToHeaven == 0 && !firstMessageWasDisplayed{
-            firstMessageWasDisplayed = true
-            notificationManager.callNotification(ID: 10)
-        }
+        // what happens if there is no coin inserted to the machine and user tries to pull lever?
+        
+        // idk, probably nothing
     }
     
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
