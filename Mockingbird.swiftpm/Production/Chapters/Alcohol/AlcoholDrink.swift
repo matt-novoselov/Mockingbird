@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct AlcoholDrink: View {
-    let alcoholArray: [[String]] = [
-        ["bottle_empty", "bottle_filled"],
-        ["little_glass_empty", "little_glass_filled"],
-        ["wine_glass_empty", "wine_glass_filled"],
-    ]
+    let alcoholArray: [String] = ["wine_bottle","little_glass","wine_glass"]
     
     var selectedStyle: Int = 0
     
@@ -53,8 +49,6 @@ struct AlcoholDrink: View {
             
             isDrinken = true
             
-//            notificationManager.closeNotification()
-            
             withAnimation(.easeInOut) {
                 currentState = 0
             }
@@ -92,18 +86,37 @@ struct AlcoholDrink: View {
             
         })
         {
-            Image(alcoholArray[selectedStyle][currentState])
-                .interpolation(.high)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .background(
-                    GeometryReader{ geometry in
-                        Color.clear
-                            .onAppear(){
-                                geomtryHolder = geometry
-                            }
+            ZStack{
+                ZStack{
+                    if !isDrinken{
+                        Image("\(alcoholArray[selectedStyle])_liquid_full")
+                            .interpolation(.high)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
                     }
-                )
+                    else{
+                        Image("\(alcoholArray[selectedStyle])_liquid_empty")
+                            .interpolation(.high)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }
+                }
+                .glow(color: Color("MainYellow").opacity(0.4), radius: 50)
+                
+                Image("\(alcoholArray[selectedStyle])")
+                    .interpolation(.high)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .background(
+                        GeometryReader{ geometry in
+                            Color.clear
+                                .onAppear(){
+                                    geomtryHolder = geometry
+                                }
+                        }
+                    )
+
+            }
         }
         .buttonStyle(NoOpacityButtonStyle())
         .padding(.top, selectedStyle == 1 ? 200 : 0)
