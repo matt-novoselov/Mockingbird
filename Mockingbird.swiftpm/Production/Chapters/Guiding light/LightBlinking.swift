@@ -12,6 +12,7 @@ struct LightBlinking: View {
     @EnvironmentObject var notificationManager: NotificationManager
     
     @State private var isGlowing = false
+    @State var isAnimInProgress: Bool = false
     
     var body: some View {
         ZStack {
@@ -27,21 +28,25 @@ struct LightBlinking: View {
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
                     
-                    FontText(text: "guiding light", size: 96)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(isGlowing ? .yellow : .white)
-                        .glow(color: Color("MainYellow").opacity(isGlowing ? 0.4 : 0.0), radius: 70)
-                        .onAppear {
-                            blink()
-                        }
+                    if isAnimInProgress{
+                        FontText(text: "guiding light", size: 96)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(isGlowing ? .yellow : .white)
+                            .glow(color: Color("MainYellow").opacity(isGlowing ? 0.4 : 0.0), radius: 70)
+                    }
+                    else{
+                        FontText(text: "guiding light", size: 96)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.yellow)
+                            .glow(color: Color("MainYellow").opacity(0.4), radius: 70)
+                    }
+
                 }
             }
         }
-//        .onAppear {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-//                transitionManagerObservable.transitionToScene?(11)
-//            }
-//        }
+        .onAppear {
+            blink()
+        }
         .gesture(
             TapGesture()
                 .onEnded {
@@ -58,13 +63,15 @@ struct LightBlinking: View {
     }
     
     func performTransition(){
+        isAnimInProgress = false
         transitionManagerObservable.transitionToScene?(11)
     }
     
     private func blink() {
+        isAnimInProgress = true
+        
         let animationIntervals: [Double] = [
             TransitionManager().transitionDuration,
-            0.05, 0.05, 0.05, 0.05,  // Initial quick flickers
             0.1, 0.1, 0.1,   // Initial quick flickers
             0.2, 0.2,        // Shorter pauses
             0.3, 0.3,        // Slightly longer pauses
@@ -80,6 +87,10 @@ struct LightBlinking: View {
                     self.isGlowing.toggle()
                 }
             }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 + animationIntervals.reduce(0, +)) {
+            isAnimInProgress = false
         }
     }
 }
