@@ -76,10 +76,10 @@ struct AnimatedHandle: View {
         }
         
         isAnimationInProcess = true
-        withAnimation(.easeInOut(duration: 0.2)) {
-            rotationAngle = 25
+        withAnimation(.easeInOut(duration: 0.3)) {
+            rotationAngle = 40
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             withAnimation(.easeInOut(duration: 0.2)) {
                 rotationAngle = 15
             }
