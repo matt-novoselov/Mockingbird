@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Matt Novoselov on 21/01/24.
 //
@@ -27,14 +27,20 @@ struct AnimatedHandle: View {
                     .background(.blue.opacity(0.0))
                     .padding(.all, -40) // handle hitbox
                     .rotationEffect(.degrees(rotationAngle), anchor: .bottom)
-                    .onTapGesture {
-                        if (isCoinInserted && !isAnimationInProcess){
-                            rotateHandleAnimation()
-                        }
-                        else{
-                            idleHandleAnimation()
-                        }
-                    }
+                    .gesture(
+                        TapGesture()
+                            .onEnded {
+                                performPostGestureAction()
+                            }
+                            .exclusively(before: DragGesture()
+                                .onEnded { value in
+                                    if value.translation.height > 0 {
+                                        performPostGestureAction()
+                                    }
+                                }
+                            )
+                    )
+                
             }
             .onAppear {
                 Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
@@ -43,6 +49,15 @@ struct AnimatedHandle: View {
                     }
                 }
             }
+    }
+    
+    func performPostGestureAction(){
+        if (isCoinInserted && !isAnimationInProcess){
+            rotateHandleAnimation()
+        }
+        else{
+            idleHandleAnimation()
+        }
     }
     
     func rotateHandleAnimation(){
@@ -62,7 +77,7 @@ struct AnimatedHandle: View {
                 isAnimationInProcess = false
                 isCoinInserted = false
                 handleResult()
-                }
+            }
         }
     }
     
