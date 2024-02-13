@@ -21,20 +21,26 @@ struct DevelopedWithLove: View {
                     .padding()
                 
                 GeometryReader { geometry in
-                    Image("SF_heart_white_bcg")
-                        .interpolation(.high)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .glow(color: Color("MainYellow").opacity(0.25), radius: 30)
-                        
-                        .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
-                                if let circlePosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {
-                                    ParticleView.spawnParticle(xpos: circlePosition.x, ypos: circlePosition.y)
-                                }
-                            }
-                        
+                    Button(action: {
+                        if let circlePosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {
+                            ParticleView.spawnParticle(xpos: circlePosition.x, ypos: circlePosition.y)
                         }
+                    }) {
+                        Image("SF_heart_white_bcg")
+                            .interpolation(.high)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .glow(color: Color("MainYellow").opacity(0.25), radius: 30)
+                            .onAppear {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
+                                    if let circlePosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {
+                                        ParticleView.spawnParticle(xpos: circlePosition.x, ypos: circlePosition.y)
+                                    }
+                                }
+                            
+                            }
+                    }
+                    .buttonStyle(NoOpacityButtonStyle())
                 }
                 .frame(width: 60, height: 60)
                 
