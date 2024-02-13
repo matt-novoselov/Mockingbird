@@ -22,19 +22,16 @@ struct InstagramIconButton: View {
         GeometryReader { geometry in
             Button(
                 action: {
-                    if currentPostID != 3{
-                        if isOneOfButtonsPressed{
-                            return
-                        }
-                        if notificationManager.isTextPrintFinished == false{
-                            return
-                        }
-                        
-                        action()
+                    if notificationManager.isTextPrintFinished == false{
+                        return
                     }
                     
                     if isButtonPressed{
                         return
+                    }
+                    
+                    if !isOneOfButtonsPressed{
+                        action()
                     }
 
                     withAnimation(Animation.easeInOut(duration: 0.2)){
