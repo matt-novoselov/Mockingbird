@@ -38,6 +38,8 @@ struct GamblingScene: View {
     
     @State var geomtryHolder: GeometryProxy?
     
+    @State var showingReward: Bool = false
+    
     var body: some View {
         ZStack{
             GeometryReader { geometry in
@@ -131,6 +133,18 @@ struct GamblingScene: View {
                 }
                 .opacity(showingBlinkingLights ? 1 : 0)
                 .allowsHitTesting(false)
+                
+                if showingBlinkingLights || showingReward {
+                    Image("gambling_reward_overlay")
+                        .interpolation(.high)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .glow(color: Color("MainYellow").opacity(0.2), radius: 10)
+                        .allowsHitTesting(false)
+                        .onAppear(){
+                            showingReward = true
+                        }
+                }
             }
             .frame(height: 350)
             
