@@ -11,7 +11,7 @@ struct InstagramViewController: View {
     @EnvironmentObject var notificationManager: NotificationManager
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
-    @State private var currentPostID: Int = 0
+    @State var currentPostID: Int = 0
     var posts:InstagramPostViewModel = InstagramPostViewModel()
     
     var action: () -> Void
@@ -24,16 +24,16 @@ struct InstagramViewController: View {
                 switch currentPostID {
                 case 0:
                     let selectedPost = posts.posts[0]
-                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, action: action)
+                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, action: action, currentPostID: $currentPostID)
                 case 1:
                     let selectedPost = posts.posts[1]
-                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, action: action)
+                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, action: action, currentPostID: $currentPostID)
                 case 2:
                     let selectedPost = posts.posts[2]
-                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, action: action)
+                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, action: action, currentPostID: $currentPostID)
                 case 3:
                     let selectedPost = posts.posts[3]
-                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, action: action)
+                    InstagramPostView(username: selectedPost.username, postedTimeAgo: selectedPost.postedTimeAgo, image: selectedPost.image, action: action, currentPostID: $currentPostID)
                 default:
                     Text("Error, this sceneID doesn't exist")
                 }
@@ -56,6 +56,6 @@ struct InstagramViewController: View {
     }
 }
 
-#Preview {
-    LayersManager(initialView: InstagramViewController(action: InstagramScene().handleOnReaction, shouldChangePost: .constant(false)))
-}
+//#Preview {
+//    LayersManager(initialView: InstagramViewController(action: InstagramScene().handleOnReaction, shouldChangePost: .constant(false), countTotalAmountOfLikes: .constant(0), currentPostID: .constant(0)))
+//}
