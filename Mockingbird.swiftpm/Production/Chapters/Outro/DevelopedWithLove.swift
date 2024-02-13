@@ -10,6 +10,7 @@ import SwiftUI
 struct DevelopedWithLove: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
+    @State var geomtryHolder: GeometryProxy?
     
     var body: some View {
         ZStack{
@@ -31,16 +32,18 @@ struct DevelopedWithLove: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .glow(color: Color("MainYellow").opacity(0.25), radius: 30)
-                            .onAppear {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
-                                    if let circlePosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {
-                                        ParticleView.spawnParticle(xpos: circlePosition.x, ypos: circlePosition.y)
-                                    }
-                                }
-                            
-                            }
                     }
                     .buttonStyle(NoOpacityButtonStyle())
+                    .onAppear(){
+                        geomtryHolder = geometry
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
+                            if let circlePosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {
+                                ParticleView.spawnParticle(xpos: circlePosition.x, ypos: circlePosition.y)
+                            }
+                        }
+                        
+                    }
                 }
                 .frame(width: 60, height: 60)
                 
@@ -49,11 +52,24 @@ struct DevelopedWithLove: View {
                     .padding()
             }
         }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
-                transitionManagerObservable.transitionToScene?(1)
-            }
-        }
+        
+        .gesture(
+            TapGesture()
+                .onEnded {
+                    performTransition()
+                }
+                .exclusively(before: DragGesture()
+                    .onEnded { value in
+                        if value.translation.height < 0 {
+                            performTransition()
+                        }
+                    }
+                )
+        )
+    }
+    
+    func performTransition(){
+        transitionManagerObservable.transitionToScene?(1)
     }
 }
 

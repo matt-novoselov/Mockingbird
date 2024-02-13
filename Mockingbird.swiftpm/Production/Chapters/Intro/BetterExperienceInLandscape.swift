@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Matt Novoselov on 23/01/24.
 //
@@ -28,13 +28,30 @@ struct BetterExperienceInLandscape: View {
                     .padding()
                     .padding(.horizontal, 100)
             }
-
+            
         }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                transitionManagerObservable.transitionToScene?(1)
-            }
-        }
+        .gesture(
+            TapGesture()
+                .onEnded {
+                    performTransition()
+                }
+                .exclusively(before: DragGesture()
+                    .onEnded { value in
+                        if value.translation.height < 0 {
+                            performTransition()
+                        }
+                    }
+                )
+        )
+        //        .onAppear {
+        //            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        //                transitionManagerObservable.transitionToScene?(1)
+        //            }
+        //        }
+    }
+    
+    func performTransition(){
+        transitionManagerObservable.transitionToScene?(1)
     }
 }
 

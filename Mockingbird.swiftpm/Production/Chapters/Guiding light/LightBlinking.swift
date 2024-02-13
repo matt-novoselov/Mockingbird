@@ -37,11 +37,28 @@ struct LightBlinking: View {
                 }
             }
         }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-                transitionManagerObservable.transitionToScene?(11)
-            }
-        }
+//        .onAppear {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+//                transitionManagerObservable.transitionToScene?(11)
+//            }
+//        }
+        .gesture(
+            TapGesture()
+                .onEnded {
+                    performTransition()
+                }
+                .exclusively(before: DragGesture()
+                    .onEnded { value in
+                        if value.translation.height < 0 {
+                            performTransition()
+                        }
+                    }
+                )
+        )
+    }
+    
+    func performTransition(){
+        transitionManagerObservable.transitionToScene?(11)
     }
     
     private func blink() {
