@@ -70,6 +70,7 @@ struct GamblingScene: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .padding(.all, 50)
+                        .shadow(radius: 25)
                         .opacity(showingCoins ? 1 : 0)
                         .opacity(shouldShowArrowAgain ? 1 : 0)
                 }
