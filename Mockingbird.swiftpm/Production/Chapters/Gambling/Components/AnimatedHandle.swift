@@ -16,9 +16,6 @@ struct AnimatedHandle: View {
     var handleNoCoin: () -> Void
     
     var body: some View {
-//        Rectangle()
-//            .frame(width: 20, height: 200)
-//            .foregroundColor(.blue)
         Image("gambling_handle")
             .interpolation(.high)
             .resizable()
@@ -27,7 +24,8 @@ struct AnimatedHandle: View {
             .overlay(){
                 Color.clear
                     .contentShape(Rectangle())
-                    .padding(.all, -20)
+                    .background(.blue.opacity(0.0))
+                    .padding(.all, -40) // handle hitbox
                     .rotationEffect(.degrees(rotationAngle), anchor: .bottom)
                     .onTapGesture {
                         if (isCoinInserted && !isAnimationInProcess){
