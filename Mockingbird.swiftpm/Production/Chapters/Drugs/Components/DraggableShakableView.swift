@@ -25,6 +25,7 @@ struct DraggableShakableView: View {
             .position(circlePosition ?? initialLocation)
             .frame(width: circleSize, height: circleSize)
             .foregroundColor(.red)
+            .glow(color: Color("MainYellow").opacity(0.25), radius: 100)
             .gesture(
                 DragGesture()
                     .onChanged { value in

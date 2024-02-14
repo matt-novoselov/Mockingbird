@@ -33,7 +33,6 @@ struct DrugsScene: View {
             }
             
             DraggableShakableView(handleShake: handleShake)
-                .glow(color: Color("MainYellow").opacity((1 - heavenSlider)/4.5), radius: 100)
         }
     }
     
