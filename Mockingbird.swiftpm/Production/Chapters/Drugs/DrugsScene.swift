@@ -43,8 +43,10 @@ struct DrugsScene: View {
                     .opacity(showingHint ? 0.2 : 0)
                     .onAppear(){
                         DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration + 0.25) {
-                            withAnimation(.easeInOut(duration: 1.0)){
-                                showingHint = true
+                            if !showPill{
+                                withAnimation(.easeInOut(duration: 1.0)){
+                                    showingHint = true
+                                }
                             }
                         }
                     }
