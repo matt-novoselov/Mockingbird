@@ -7,12 +7,35 @@
 
 import SwiftUI
 
-struct SwiftUIView: View {
+struct TapToContinueHint: View {
+    @State var lightBlinking: Bool = false
+    @Binding var displayingHint: Bool
+    
+    var darkMode: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Spacer()
+            
+            FontText(text: "tap to continue", size: 52)
+                .foregroundColor(darkMode ? .white : .black).opacity(lightBlinking ? 0.55 : 0.4)
+                .opacity(displayingHint ? 1 : 0)
+                .multilineTextAlignment(.center)
+                .padding(.bottom, 40)
+                .onAppear {
+                    let animationDuration: Double = 0.75
+                    
+                    Timer.scheduledTimer(withTimeInterval: animationDuration * 2, repeats: true) { timer in
+                        withAnimation(Animation.easeInOut(duration: animationDuration)) {
+                            lightBlinking.toggle()
+                        }
+                    }
+                }
+
+        }
     }
 }
 
 #Preview {
-    SwiftUIView()
+    TapToContinueHint(displayingHint: .constant(true), darkMode: false)
 }

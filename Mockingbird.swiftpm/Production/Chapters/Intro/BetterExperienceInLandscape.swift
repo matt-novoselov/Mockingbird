@@ -11,24 +11,29 @@ struct BetterExperienceInLandscape: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
+    @State var displayingHint: Bool = true
+    
     var body: some View {
         ZStack {
             LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
             
-            VStack (spacing: 0){
-                Image("SF_orientation")
-                    .interpolation(.high)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 95)
-                    .rotationEffect(Angle(degrees: 90))
+            ZStack{
+                VStack (spacing: 0){
+                    Image("SF_orientation")
+                        .interpolation(.high)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 95)
+                        .rotationEffect(Angle(degrees: 90))
+                    
+                    FontText(text: "Better experience in the landscape mode", size: 64)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .padding(.horizontal, 100)
+                }
                 
-                FontText(text: "Better experience in the landscape mode", size: 64)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                    .padding(.horizontal, 100)
+                TapToContinueHint(displayingHint: $displayingHint)
             }
-            
         }
         .gesture(
             TapGesture()
@@ -43,14 +48,12 @@ struct BetterExperienceInLandscape: View {
                     }
                 )
         )
-        //        .onAppear {
-        //            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-        //                transitionManagerObservable.transitionToScene?(1)
-        //            }
-        //        }
     }
     
     func performTransition(){
+        withAnimation(.easeInOut(duration: 0.5)){
+            displayingHint = false
+        }
         transitionManagerObservable.transitionToScene?(1)
     }
 }
