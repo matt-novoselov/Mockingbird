@@ -24,7 +24,7 @@ struct EachYearStatistics: View {
             TapToContinueHint(displayingHint: $displayingHint)
                 .onAppear(){
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
-                        withAnimation(.easeInOut(duration: 0.5)){
+                        withAnimation(.easeInOut(duration: 1.0)){
                             displayingHint = true
                         }
                     }
@@ -47,7 +47,7 @@ struct EachYearStatistics: View {
     }
     
     func performTransition(){
-        withAnimation(.easeInOut(duration: 0.5)){
+        withAnimation(.easeInOut(duration: 1.0)){
             displayingHint = false
         }
         transitionManagerObservable.transitionToScene?(3)

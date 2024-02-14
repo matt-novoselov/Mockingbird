@@ -12,7 +12,7 @@ struct LightBlinking: View {
     @EnvironmentObject var notificationManager: NotificationManager
     
     @State private var isGlowing = false
-    @State var isAnimInProgress: Bool = false
+    @State var isAnimInProgress: Bool = true
     
     @State var displayingHint: Bool = false
     
@@ -49,14 +49,16 @@ struct LightBlinking: View {
             TapToContinueHint(displayingHint: $displayingHint, darkMode: true)
                 .onAppear(){
                     DispatchQueue.main.asyncAfter(deadline: .now() + 6.5) {
-                        withAnimation(.easeInOut(duration: 0.5)){
+                        withAnimation(.easeInOut(duration: 1.0)){
                             displayingHint = true
                         }
                     }
                 }
         }
         .onAppear {
-            blink()
+            DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
+                blink()
+            }
         }
         .gesture(
             TapGesture()
@@ -74,7 +76,7 @@ struct LightBlinking: View {
     }
     
     func performTransition(){
-        withAnimation(.easeInOut(duration: 0.5)){
+        withAnimation(.easeInOut(duration: 1.0)){
             displayingHint = false
         }
         
@@ -83,14 +85,11 @@ struct LightBlinking: View {
     }
     
     private func blink() {
-        isAnimInProgress = true
-        
         let animationIntervals: [Double] = [
-            TransitionManager().transitionDuration,
-            0.1, 0.1, 0.1,   // Initial quick flickers
+            0.1, 0.1, 0.1, 0.1,   // Initial quick flickers
             0.2, 0.2,        // Shorter pauses
             0.3, 0.3,        // Slightly longer pauses
-            0.5,             // A bit longer pause
+            0.5,           // A bit longer pause
         ]
 
         var timePassed: Double = 0

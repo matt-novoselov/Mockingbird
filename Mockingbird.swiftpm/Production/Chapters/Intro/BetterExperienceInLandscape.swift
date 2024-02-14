@@ -51,7 +51,7 @@ struct BetterExperienceInLandscape: View {
     }
     
     func performTransition(){
-        withAnimation(.easeInOut(duration: 0.5)){
+        withAnimation(.easeInOut(duration: 1.0)){
             displayingHint = false
         }
         transitionManagerObservable.transitionToScene?(1)

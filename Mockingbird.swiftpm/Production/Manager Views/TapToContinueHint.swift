@@ -23,7 +23,7 @@ struct TapToContinueHint: View {
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 40)
                 .onAppear {
-                    withAnimation(Animation.easeInOut(duration: 2.0).repeatForever()) {
+                    withAnimation(Animation.easeInOut(duration: 1.0).repeatForever()) {
                         self.opacity = 0.55
                     }
                 }
