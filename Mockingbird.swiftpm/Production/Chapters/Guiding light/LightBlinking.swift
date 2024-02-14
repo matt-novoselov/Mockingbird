@@ -48,7 +48,7 @@ struct LightBlinking: View {
             
             TapToContinueHint(displayingHint: $displayingHint, darkMode: true)
                 .onAppear(){
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.5) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
                         withAnimation(.easeInOut(duration: 1.0)){
                             displayingHint = true
                         }
