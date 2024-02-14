@@ -267,6 +267,10 @@ struct GamblingScene: View {
             heavenSlider = heavenSliderGoal ?? 1.0
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
+            if countVisitsToHeaven == 1{
+                notificationManager.callNotification(ID: 11)
+            }
+            
             withAnimation(.easeInOut(duration: 0.5)) {
                 darkSlider = darkSliderAfterwards ?? darkSlider
             }
@@ -278,10 +282,6 @@ struct GamblingScene: View {
                 // handle end of visit to heaven
                 
                 isInHeaven = false
-                
-                if countVisitsToHeaven == 1{
-                    notificationManager.callNotification(ID: 11)
-                }
             }
         }
     }
