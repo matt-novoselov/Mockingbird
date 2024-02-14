@@ -18,6 +18,9 @@ struct DrugsScene: View {
     @State var showPill: Bool = false
     
     @State var countPills: Int = 0
+    @State var countShakes: Int = 0
+    
+    @State var showingHint: Bool = false
     
     var body: some View {
         ZStack{
@@ -32,7 +35,30 @@ struct DrugsScene: View {
                 }
             }
             
-            DraggableShakableView(handleShake: handleShake)
+            ZStack{
+                Image("drugs_hint")
+                    .interpolation(.high)
+                    .aspectRatio(contentMode: .fit)
+                    .allowsTightening(false)
+                    .opacity(showingHint ? 0.2 : 0)
+                    .onAppear(){
+                        DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration + 0.25) {
+                            withAnimation(.easeInOut(duration: 1.0)){
+                                showingHint = true
+                            }
+                        }
+                    }
+                    .onChange(of: notificationManager.isTextPrintFinished){ newValue in
+                        if newValue == true && countShakes<3{
+                            withAnimation(.easeInOut(duration: 1.0)){
+                                showingHint = true
+                            }
+                        }
+                    }
+                
+                DraggableShakableView(handleShake: handleShake)
+            }
+
         }
     }
     
@@ -43,6 +69,12 @@ struct DrugsScene: View {
         
         if !notificationManager.isTextPrintFinished{
             return
+        }
+        
+        countShakes += 1
+        
+        withAnimation(.easeInOut(duration: 1.0)){
+            showingHint = false
         }
         
         isShaken = true
