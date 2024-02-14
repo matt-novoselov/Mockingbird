@@ -11,6 +11,8 @@ struct DraggableShakableView: View {
     @State private var circlePosition: CGPoint?
     @State var viewIsHeld: Bool = false
     
+    @State private var opacity: Double = 0.25
+    
     var handleShake: () -> Void
     
     var body: some View {
@@ -25,7 +27,12 @@ struct DraggableShakableView: View {
             .position(circlePosition ?? initialLocation)
             .frame(width: circleSize, height: circleSize)
             .foregroundColor(.red)
-            .glow(color: Color("MainYellow").opacity(0.25), radius: 100)
+            .glow(color: Color("MainYellow").opacity(opacity), radius: 100)
+            .onAppear {
+                withAnimation(Animation.easeInOut(duration: 2.0).repeatForever()) {
+                    self.opacity = 0.15
+                }
+            }
             .gesture(
                 DragGesture()
                     .onChanged { value in

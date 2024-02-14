@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TapToContinueHint: View {
-    @State var lightBlinking: Bool = false
+    @State private var opacity: Double = 0.4
     @Binding var displayingHint: Bool
     
     var darkMode: Bool = false
@@ -18,17 +18,13 @@ struct TapToContinueHint: View {
             Spacer()
             
             FontText(text: "tap to continue", size: 52)
-                .foregroundColor(darkMode ? .white : .black).opacity(lightBlinking ? 0.55 : 0.4)
+                .foregroundColor(darkMode ? .white : .black).opacity(opacity)
                 .opacity(displayingHint ? 1 : 0)
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 40)
                 .onAppear {
-                    let animationDuration: Double = 0.75
-                    
-                    Timer.scheduledTimer(withTimeInterval: animationDuration * 2, repeats: true) { timer in
-                        withAnimation(Animation.easeInOut(duration: animationDuration)) {
-                            lightBlinking.toggle()
-                        }
+                    withAnimation(Animation.easeInOut(duration: 2.0).repeatForever()) {
+                        self.opacity = 0.55
                     }
                 }
 
