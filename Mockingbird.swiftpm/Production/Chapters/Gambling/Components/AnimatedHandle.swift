@@ -11,6 +11,7 @@ struct AnimatedHandle: View {
     @State private var rotationAngle: Double = 15
     @State var isAnimationInProcess: Bool = false
     @Binding var isCoinInserted: Bool
+    @Binding var isCoinInsertedEarly: Bool
     @State var isCoinInsertedAnimated: Bool = false
     
     var handleResult: () -> Void
@@ -78,6 +79,10 @@ struct AnimatedHandle: View {
     }
     
     func rotateHandleAnimation(){
+        withAnimation(.easeInOut(duration: 1.0)){
+            isCoinInsertedEarly = false
+        }
+        
         if(isAnimationInProcess){
             return
         }
@@ -123,5 +128,5 @@ struct AnimatedHandle: View {
 }
 
 #Preview {
-    AnimatedHandle(isCoinInserted: .constant(false), handleResult: GamblingScene().handleResult, handleNoCoin: {})
+    AnimatedHandle(isCoinInserted: .constant(false), isCoinInsertedEarly: .constant(false), handleResult: GamblingScene().handleResult, handleNoCoin: {})
 }

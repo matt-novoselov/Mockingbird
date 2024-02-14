@@ -40,6 +40,8 @@ struct GamblingScene: View {
     
     @State var showingReward: Bool = false
     
+    @State var isCoinInsertedEarly: Bool = false
+    
     var body: some View {
         ZStack{
             GeometryReader { geometry in
@@ -76,11 +78,17 @@ struct GamblingScene: View {
                         .opacity(showingCoins ? 1 : 0)
                         .opacity(shouldShowArrowAgain ? 1 : 0)
                 }
-
             }
             
             ZStack{
-                AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, handleResult: handleResult, handleNoCoin: handleNoCoin)
+                Image("gambling_hint")
+                    .interpolation(.high)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .shadow(color: .black.opacity(0.4), radius: 25)
+                    .opacity(isCoinInsertedEarly ? 1 : 0)
+                
+                AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, isCoinInsertedEarly: $isCoinInsertedEarly, handleResult: handleResult, handleNoCoin: handleNoCoin)
                     .frame(height: 100)
                     .offset(x: 160, y: -45)
                 
@@ -186,6 +194,10 @@ struct GamblingScene: View {
         if !isCoinInsertedInMachine{
             withAnimation(.easeInOut) {
                 isCoinInsertedInMachine = true
+            }
+            
+            withAnimation(.easeInOut(duration: 1.0)) {
+                isCoinInsertedEarly = true
             }
             
             withAnimation(.easeInOut) {
