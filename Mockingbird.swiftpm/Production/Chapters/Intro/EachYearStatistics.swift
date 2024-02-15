@@ -12,6 +12,7 @@ struct EachYearStatistics: View {
     @EnvironmentObject var notificationManager: NotificationManager
     
     @State var displayingHint: Bool = false
+    @State var canTransition: Bool = false
     
     var body: some View {
         ZStack {
@@ -30,7 +31,11 @@ struct EachYearStatistics: View {
                     }
                 }
         }
-        
+        .onAppear(){
+            DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
+                canTransition = true
+            }
+        }
         .gesture(
             TapGesture()
                 .onEnded {
@@ -47,6 +52,10 @@ struct EachYearStatistics: View {
     }
     
     func performTransition(){
+        if !canTransition{
+            return
+        }
+        
         withAnimation(.easeInOut(duration: 1.0)){
             displayingHint = false
         }

@@ -15,6 +15,7 @@ struct LightBlinking: View {
     @State var isAnimInProgress: Bool = true
     
     @State var displayingHint: Bool = false
+    @State var canTransition: Bool = false
     
     var body: some View {
         ZStack {
@@ -58,6 +59,7 @@ struct LightBlinking: View {
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                 blink()
+                canTransition = true
             }
         }
         .gesture(
@@ -76,6 +78,10 @@ struct LightBlinking: View {
     }
     
     func performTransition(){
+        if !canTransition{
+            return
+        }
+        
         withAnimation(.easeInOut(duration: 1.0)){
             displayingHint = false
         }

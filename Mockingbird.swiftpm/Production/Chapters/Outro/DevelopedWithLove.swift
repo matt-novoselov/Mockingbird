@@ -12,6 +12,8 @@ struct DevelopedWithLove: View {
     @EnvironmentObject var notificationManager: NotificationManager
     @State var geomtryHolder: GeometryProxy?
     
+    @State var canTransition: Bool = false
+    
     var body: some View {
         ZStack{
             LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
@@ -52,7 +54,11 @@ struct DevelopedWithLove: View {
                     .padding()
             }
         }
-        
+        .onAppear(){
+            DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
+                canTransition = true
+            }
+        }
         .gesture(
             TapGesture()
                 .onEnded {
@@ -69,6 +75,10 @@ struct DevelopedWithLove: View {
     }
     
     func performTransition(){
+        if !canTransition{
+            return
+        }
+        
         transitionManagerObservable.transitionToScene?(1)
     }
 }
