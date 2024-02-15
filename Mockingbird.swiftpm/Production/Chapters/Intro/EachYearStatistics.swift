@@ -13,6 +13,7 @@ struct EachYearStatistics: View {
     
     @State var displayingHint: Bool = false
     @State var canTransition: Bool = false
+    @State var TransitionStarted: Bool = false
     
     var body: some View {
         ZStack {
@@ -25,8 +26,10 @@ struct EachYearStatistics: View {
             TapToContinueHint(displayingHint: $displayingHint)
                 .onAppear(){
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
-                        withAnimation(.easeInOut(duration: 1.0)){
-                            displayingHint = true
+                        if !TransitionStarted{
+                            withAnimation(.easeInOut(duration: 1.0)){
+                                displayingHint = true
+                            }
                         }
                     }
                 }
@@ -55,6 +58,8 @@ struct EachYearStatistics: View {
         if !canTransition{
             return
         }
+        
+        TransitionStarted = true
         
         withAnimation(.easeInOut(duration: 1.0)){
             displayingHint = false

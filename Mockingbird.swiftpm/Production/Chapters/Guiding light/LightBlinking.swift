@@ -17,6 +17,8 @@ struct LightBlinking: View {
     @State var displayingHint: Bool = false
     @State var canTransition: Bool = false
     
+    @State var TransitionStarted: Bool = false
+    
     var body: some View {
         ZStack {
             LayerMixingManager(darkSlider: .constant(1), heavenSlider: .constant(0))
@@ -49,9 +51,11 @@ struct LightBlinking: View {
             
             TapToContinueHint(displayingHint: $displayingHint, darkMode: true)
                 .onAppear(){
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
-                        withAnimation(.easeInOut(duration: 1.0)){
-                            displayingHint = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
+                        if !TransitionStarted{
+                            withAnimation(.easeInOut(duration: 1.0)){
+                                displayingHint = true
+                            }
                         }
                     }
                 }
@@ -81,6 +85,8 @@ struct LightBlinking: View {
         if !canTransition{
             return
         }
+        
+        TransitionStarted = true
         
         withAnimation(.easeInOut(duration: 1.0)){
             displayingHint = false

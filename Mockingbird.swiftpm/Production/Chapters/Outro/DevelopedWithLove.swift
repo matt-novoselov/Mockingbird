@@ -14,6 +14,7 @@ struct DevelopedWithLove: View {
     
     @State var canTransition: Bool = false
     
+    
     var body: some View {
         ZStack{
             LayerMixingManager(darkSlider: .constant(0), heavenSlider: .constant(0))
