@@ -142,17 +142,21 @@ struct GamblingScene: View {
                 .opacity(showingBlinkingLights ? 1 : 0)
                 .allowsHitTesting(false)
                 
-                if showingBlinkingLights || showingReward {
-                    Image("gambling_reward_overlay")
-                        .interpolation(.high)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .glow(color: Color("MainYellow").opacity(0.2), radius: 10)
-                        .allowsHitTesting(false)
-                        .onAppear(){
-                            showingReward = true
+                Image("gambling_reward_overlay")
+                    .interpolation(.high)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .glow(color: Color("MainYellow").opacity(0.2), radius: 10)
+                    .allowsHitTesting(false)
+                    .opacity(showingReward ? 1 : 0)
+                    .onChange(of: showingBlinkingLights){ newVal in
+                        if showingReward == false{
+                            withAnimation(.easeInOut(duration: 0.25)){
+                                showingReward = true
+                            }
                         }
-                }
+                    }
+                
             }
             .frame(height: 350)
             
@@ -247,6 +251,11 @@ struct GamblingScene: View {
             changeBool.toggle()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + SlotsRotation(changeBool: .constant(false)).animationDuration) {
+                
+                withAnimation(.easeInOut(duration: 0.25)){
+                    showingReward = false
+                }
+                
                 notificationManager.callNotification(ID: 12, arrowAction: {
                     transitionManagerObservable.transitionToScene?(8)
                 })
