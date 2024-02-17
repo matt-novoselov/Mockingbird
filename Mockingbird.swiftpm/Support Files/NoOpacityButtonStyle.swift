@@ -16,3 +16,13 @@ struct NoOpacityButtonStyle: ButtonStyle {
             .animation(Animation.easeInOut(duration: 0.5), value: configuration.isPressed)
     }
 }
+
+struct ScaleUpButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(
+                configuration.isPressed ? 1.1 : 1.0
+            )
+            .animation(Animation.easeInOut(duration: 0.5), value: configuration.isPressed)
+    }
+}

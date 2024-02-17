@@ -60,7 +60,7 @@ struct InstagramScene: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                             }
-                            .buttonStyle(NoOpacityButtonStyle())
+                            .buttonStyle(ScaleUpButtonStyle())
                             
                             Spacer()
                         }
