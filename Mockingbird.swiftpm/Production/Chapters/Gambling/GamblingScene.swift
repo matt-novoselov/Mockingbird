@@ -42,6 +42,8 @@ struct GamblingScene: View {
     
     @State var isCoinInsertedEarly: Bool = false
     
+    @State var shouldAnimate: Bool = false
+    
     var body: some View {
         ZStack{
             GeometryReader { geometry in
@@ -54,33 +56,6 @@ struct GamblingScene: View {
             LayerMixingManager(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
             
             ZStack{
-                HStack{
-                    Image("arrow_white")
-                        .interpolation(.high)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding(.all, 50)
-                        .opacity(0)
-                    
-                    Image("gambling_base")
-                        .interpolation(.high)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 350)
-                        .opacity(0)
-                    
-                    Image("arrow_white")
-                        .interpolation(.high)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding(.all, 50)
-                        .shadow(radius: 25)
-                        .opacity(showingCoins ? 1 : 0)
-                        .opacity(shouldShowArrowAgain ? 1 : 0)
-                }
-            }
-            
-            ZStack{
                 Image("gambling_hint")
                     .interpolation(.high)
                     .resizable()
@@ -88,7 +63,7 @@ struct GamblingScene: View {
                     .shadow(color: .black.opacity(0.4), radius: 25)
                     .opacity(isCoinInsertedEarly ? 1 : 0)
                 
-                AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, isCoinInsertedEarly: $isCoinInsertedEarly, handleResult: handleResult, handleNoCoin: handleNoCoin)
+                AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, isCoinInsertedEarly: $isCoinInsertedEarly, handleResult: handleResult, handleNoCoin: {})
                     .frame(height: 100)
                     .offset(x: 160, y: -45)
                 
@@ -183,6 +158,10 @@ struct GamblingScene: View {
                     withAnimation(Animation.easeInOut(duration: 1.0)){
                         showingCoins = true
                     }
+                    
+                    withAnimation(Animation.easeInOut(duration: 5.0).repeatForever()) {
+                        shouldAnimate.toggle()
+                    }
                 }
             }
             .onAppear(){
@@ -190,6 +169,25 @@ struct GamblingScene: View {
                     notificationManager.callNotification(ID: 10)
                 }
             }
+            
+            GeometryReader(){ proxy in
+                let imageSize: CGFloat = 100
+                
+                Image("SF_finger_point")
+                    .interpolation(.high)
+                    .resizable()
+                    .allowsHitTesting(false)
+                    .shadow(color: .black.opacity(0.25), radius: 25)
+                    .frame(width: imageSize, height: imageSize)
+                    .rotationEffect(Angle(degrees: shouldAnimate ? -15 : 0))
+                    .offset(
+                        x: shouldAnimate ? (proxy.size.width/2) : (proxy.size.width - imageSize),
+                        y: shouldAnimate ?  (proxy.size.height/2) : (0)
+                    )
+                    .opacity(showingCoins ? 1 : 0)
+                    .opacity(shouldShowArrowAgain ? 1 : 0)
+            }
+            .padding(.all, 50)
             
         }
     }
@@ -261,12 +259,6 @@ struct GamblingScene: View {
                 })
             }
         }
-    }
-    
-    func handleNoCoin(){
-        // what happens if there is no coin inserted to the machine and user tries to pull lever?
-        
-        // idk, probably nothing
     }
     
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
