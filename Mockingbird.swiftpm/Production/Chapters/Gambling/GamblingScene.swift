@@ -42,7 +42,9 @@ struct GamblingScene: View {
     
     @State var isCoinInsertedEarly: Bool = false
     
-    @State var shouldAnimate: Bool = false
+    @State var shouldAnimate: Bool = true
+    
+    @State var showingHandHint: Bool = false
     
     var body: some View {
         ZStack{
@@ -159,8 +161,14 @@ struct GamblingScene: View {
                         showingCoins = true
                     }
                     
-                    withAnimation(Animation.easeInOut(duration: 5.0).repeatForever()) {
-                        shouldAnimate.toggle()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                        withAnimation(Animation.easeInOut(duration: 1.0)){
+                            showingHandHint = true
+                        }
+                        
+                        withAnimation(Animation.easeInOut(duration: 3.0).repeatForever()) {
+                            shouldAnimate.toggle()
+                        }
                     }
                 }
             }
@@ -181,11 +189,12 @@ struct GamblingScene: View {
                     .frame(width: imageSize, height: imageSize)
                     .rotationEffect(Angle(degrees: shouldAnimate ? -15 : 0))
                     .offset(
-                        x: shouldAnimate ? (proxy.size.width/2) : (proxy.size.width - imageSize),
-                        y: shouldAnimate ?  (proxy.size.height/2) : (0)
+                        x: shouldAnimate ? (proxy.size.width/1.3) : (proxy.size.width - imageSize),
+                        y: shouldAnimate ?  (proxy.size.height/5) : (0)
                     )
                     .opacity(showingCoins ? 1 : 0)
                     .opacity(shouldShowArrowAgain ? 1 : 0)
+                    .opacity(showingHandHint ? 1 : 0)
             }
             .padding(.all, 50)
             
