@@ -87,6 +87,13 @@ struct AlcoholDrink: View {
         })
         {
             ZStack{
+                if selectedStyle==0{
+                    Image("wine_bottle_underlaying")
+                        .interpolation(.high)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                }
+                
                 ZStack{
                     if !isDrinken{
                         Image("\(alcoholArray[selectedStyle])_liquid_full")
