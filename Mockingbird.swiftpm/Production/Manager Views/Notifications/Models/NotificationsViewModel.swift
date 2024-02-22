@@ -45,7 +45,7 @@ class NotificationsViewModel{
         
         Notification(text: "Remember that you are not alone. Your family, relatives, and friends can help you navigate through the storm."), // 17
         
-        Notification(text: "Rather than relying on substances or temporary escapes, try to find happiness in the present moment.") // 18
+        Notification(text: "Rather than relying on substances or temporary escapes, try to find happiness in the present moment!") // 18
 
     ]
 }

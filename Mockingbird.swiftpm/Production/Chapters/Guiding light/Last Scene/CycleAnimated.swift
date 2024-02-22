@@ -17,6 +17,8 @@ struct CycleAnimated: View {
     @State var pointer1: Bool = false
     @State var pointer2: Bool = false
     
+    @State var geomtryHolder: GeometryProxy?
+    
     var body: some View {
         
         ZStack{
@@ -37,6 +39,14 @@ struct CycleAnimated: View {
                         .resizable()
                         .scaledToFit()
                         .opacity(textOpacity1)
+                        .background(
+                            GeometryReader{ geometry in
+                                Color.clear
+                                    .onAppear(){
+                                        geomtryHolder = geometry
+                                    }
+                            }
+                        )
                     
                     Spacer()
                     
@@ -58,30 +68,42 @@ struct CycleAnimated: View {
                 textOpacity1 = 1
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            withAnimation(.easeInOut(duration: 2.0)){
-                degreesAmount1 = 0.25
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            withAnimation(.none){
-                pointer1 = true
-            }
-                withAnimation(.easeInOut(duration: 0.25)) {
-                textOpacity2 = 1
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            withAnimation(.easeInOut(duration: 2.0)){
-                degreesAmount2 = 0.25
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            withAnimation(.none){
-                pointer2 = true
+                
+                if let geometryHolder = geomtryHolder,
+                   let buttonPosition = GlobalPositionUtility.getGlobalPosition(view: geometryHolder) {
+                    ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
+                }
+                
+                withAnimation(.easeInOut(duration: 2.0)){
+                    degreesAmount1 = 0.25
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    withAnimation(.none){
+                        pointer1 = true
+                    }
+                    withAnimation(.easeInOut(duration: 0.25)) {
+                        textOpacity2 = 1
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                        withAnimation(.easeInOut(duration: 2.0)){
+                            degreesAmount2 = 0.25
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                            
+                            if let geometryHolder = geomtryHolder,
+                               let buttonPosition = GlobalPositionUtility.getGlobalPosition(view: geometryHolder) {
+                                ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
+                            }
+                            
+                            withAnimation(.none){
+                                pointer2 = true
+                            }
+                        }
+                    }
+                }
             }
         }
-        }
-        }
-        }
-        }
-
+        
     }
     
 }
@@ -139,8 +161,5 @@ struct ArrowAnimated: View {
 
 
 #Preview {
-//    ArrowAnimated(degreesAmount: .constant(0.25), pointer: .constant(false))
-//            .background(.red)
-    
     CycleAnimated()
 }
