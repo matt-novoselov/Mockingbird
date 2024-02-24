@@ -203,6 +203,8 @@ struct GamblingScene: View {
     
     func insertCoin() {
         if !isCoinInsertedInMachine{
+            playSound(name: "Insert_Coin", ext: "mp3")
+            
             withAnimation(.easeInOut) {
                 isCoinInsertedInMachine = true
             }
@@ -272,6 +274,8 @@ struct GamblingScene: View {
     
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
         let animationDuration = 2.5
+        
+        playSound(name: "heaven_gambling", ext: "mp3")
         
         withAnimation(.easeInOut(duration: animationDuration)) {
             heavenSlider = heavenSliderGoal ?? 1.0

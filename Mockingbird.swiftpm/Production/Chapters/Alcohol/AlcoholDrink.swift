@@ -47,6 +47,9 @@ struct AlcoholDrink: View {
                 ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
             }
             
+            playSound(name: "Drink_\(selectedStyle+1)", ext: "mp3")
+            playSound(name: "heaven_drink", ext: "mp3")
+            
             isDrinken = true
             
             withAnimation(.easeInOut) {

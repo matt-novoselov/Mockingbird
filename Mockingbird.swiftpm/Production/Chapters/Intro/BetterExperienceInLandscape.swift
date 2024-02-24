@@ -34,6 +34,9 @@ struct BetterExperienceInLandscape: View {
                 
                 TapToContinueHint(displayingHint: $displayingHint)
             }
+            .onAppear(){
+                playSound(name: "Sound_Init", ext: "mp3")
+            }
         }
         .gesture(
             TapGesture()

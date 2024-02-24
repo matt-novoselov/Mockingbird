@@ -33,6 +33,8 @@ struct InstagramIconButton: View {
                     if !isOneOfButtonsPressed{
                         action()
                     }
+                    
+                    playSound(name: "Like_Button", ext: "mp3")
 
                     withAnimation(Animation.easeInOut(duration: 0.2)){
                         isButtonPressed = true

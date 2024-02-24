@@ -97,6 +97,8 @@ struct DrugsScene: View {
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
         let animationDuration = 3.0
         
+        playSound(name: "heaven_drugs", ext: "mp3")
+        
         notificationManager.closeNotification()
         
         withAnimation(.easeInOut(duration: animationDuration)) {

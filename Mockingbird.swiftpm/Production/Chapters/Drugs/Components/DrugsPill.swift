@@ -31,6 +31,8 @@ struct DrugsPill: View {
                     ParticleView.spawnParticle(xpos: circlePosition.x, ypos: circlePosition.y)
                 }
                 
+                playSound(name: "Take_Pill", ext: "mp3")
+                
                 showPill = false
             }){
                 Image("round_pill")

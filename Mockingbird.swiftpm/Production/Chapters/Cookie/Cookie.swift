@@ -42,6 +42,8 @@ struct Cookie: View {
         
         ParticleView.spawnParticle(xpos: location.x, ypos: location.y)
         
+        playSound(name: "Cookie_\(countBites+1)", ext: "mp3")
+        
         withAnimation(.easeInOut(duration: 0.25)){
             scaleCookie = 0.95
         }

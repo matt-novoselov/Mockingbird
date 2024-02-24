@@ -87,6 +87,8 @@ struct AnimatedHandle: View {
             return
         }
         
+        playSound(name: "Lever_Pull", ext: "mp3")
+        
         isAnimationInProcess = true
         withAnimation(.easeInOut(duration: 1.2)) {
             rotationAngle = 90
