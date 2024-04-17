@@ -1,0 +1,945 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1AC834802BC407FC0006740F /* PatrickHand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834052BC407FC0006740F /* PatrickHand.ttf */; };
+		1AC834812BC407FC0006740F /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834072BC407FC0006740F /* Explosion.sks */; };
+		1AC834822BC407FC0006740F /* Cookie_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834092BC407FC0006740F /* Cookie_1.mp3 */; };
+		1AC834832BC407FC0006740F /* Cookie_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC8340A2BC407FC0006740F /* Cookie_2.mp3 */; };
+		1AC834842BC407FC0006740F /* Cookie_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC8340B2BC407FC0006740F /* Cookie_3.mp3 */; };
+		1AC834852BC407FC0006740F /* Drink_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC8340D2BC407FC0006740F /* Drink_1.mp3 */; };
+		1AC834862BC407FC0006740F /* Drink_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC8340E2BC407FC0006740F /* Drink_2.mp3 */; };
+		1AC834872BC407FC0006740F /* Drink_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC8340F2BC407FC0006740F /* Drink_3.mp3 */; };
+		1AC834882BC407FC0006740F /* piano_black_0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834112BC407FC0006740F /* piano_black_0.mp3 */; };
+		1AC834892BC407FC0006740F /* piano_black_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834122BC407FC0006740F /* piano_black_1.mp3 */; };
+		1AC8348A2BC407FC0006740F /* piano_black_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834132BC407FC0006740F /* piano_black_2.mp3 */; };
+		1AC8348B2BC407FC0006740F /* piano_black_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834142BC407FC0006740F /* piano_black_3.mp3 */; };
+		1AC8348C2BC407FC0006740F /* piano_black_4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834152BC407FC0006740F /* piano_black_4.mp3 */; };
+		1AC8348D2BC407FC0006740F /* piano_white_0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834172BC407FC0006740F /* piano_white_0.mp3 */; };
+		1AC8348E2BC407FC0006740F /* piano_white_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834182BC407FC0006740F /* piano_white_1.mp3 */; };
+		1AC8348F2BC407FC0006740F /* piano_white_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834192BC407FC0006740F /* piano_white_2.mp3 */; };
+		1AC834902BC407FC0006740F /* piano_white_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC8341A2BC407FC0006740F /* piano_white_3.mp3 */; };
+		1AC834912BC407FC0006740F /* piano_white_4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC8341B2BC407FC0006740F /* piano_white_4.mp3 */; };
+		1AC834922BC407FC0006740F /* piano_white_5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC8341C2BC407FC0006740F /* piano_white_5.mp3 */; };
+		1AC834932BC407FC0006740F /* piano_white_6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC8341D2BC407FC0006740F /* piano_white_6.mp3 */; };
+		1AC834942BC407FC0006740F /* heaven_drink.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834202BC407FC0006740F /* heaven_drink.mp3 */; };
+		1AC834952BC407FC0006740F /* heaven_drugs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834212BC407FC0006740F /* heaven_drugs.mp3 */; };
+		1AC834962BC407FC0006740F /* heaven_gambling.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834222BC407FC0006740F /* heaven_gambling.mp3 */; };
+		1AC834972BC407FC0006740F /* Insert_Coin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834232BC407FC0006740F /* Insert_Coin.mp3 */; };
+		1AC834982BC407FC0006740F /* Lever_Pull.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834242BC407FC0006740F /* Lever_Pull.mp3 */; };
+		1AC834992BC407FC0006740F /* Like_Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834252BC407FC0006740F /* Like_Button.mp3 */; };
+		1AC8349A2BC407FC0006740F /* Sound_Init.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834262BC407FC0006740F /* Sound_Init.mp3 */; };
+		1AC8349B2BC407FC0006740F /* Start_click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834272BC407FC0006740F /* Start_click.mp3 */; };
+		1AC8349C2BC407FC0006740F /* Take_Pill.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834282BC407FC0006740F /* Take_Pill.mp3 */; };
+		1AC834A12BC407FC0006740F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AC834302BC407FC0006740F /* Assets.xcassets */; };
+		1AC834A22BC407FC0006740F /* AlcoholDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834312BC407FC0006740F /* AlcoholDrink.swift */; };
+		1AC834A32BC407FC0006740F /* AlcoholScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834322BC407FC0006740F /* AlcoholScene.swift */; };
+		1AC834A42BC407FC0006740F /* Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834342BC407FC0006740F /* Cookie.swift */; };
+		1AC834A52BC407FC0006740F /* CookieScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834352BC407FC0006740F /* CookieScene.swift */; };
+		1AC834A62BC407FC0006740F /* DraggableShakableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834372BC407FC0006740F /* DraggableShakableView.swift */; };
+		1AC834A72BC407FC0006740F /* DrugsPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834382BC407FC0006740F /* DrugsPill.swift */; };
+		1AC834A82BC407FC0006740F /* DrugsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8343A2BC407FC0006740F /* DrugsScene.swift */; };
+		1AC834A92BC407FC0006740F /* AnimatedHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8343C2BC407FC0006740F /* AnimatedHandle.swift */; };
+		1AC834AA2BC407FC0006740F /* DraggableCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8343D2BC407FC0006740F /* DraggableCoin.swift */; };
+		1AC834AB2BC407FC0006740F /* SlotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8343E2BC407FC0006740F /* SlotsView.swift */; };
+		1AC834AC2BC407FC0006740F /* GamblingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834402BC407FC0006740F /* GamblingScene.swift */; };
+		1AC834AD2BC407FC0006740F /* FamilyMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834422BC407FC0006740F /* FamilyMember.swift */; };
+		1AC834AE2BC407FC0006740F /* FamilyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834432BC407FC0006740F /* FamilyScene.swift */; };
+		1AC834AF2BC407FC0006740F /* MemeberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834442BC407FC0006740F /* MemeberButton.swift */; };
+		1AC834B02BC407FC0006740F /* CycleAnimated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834462BC407FC0006740F /* CycleAnimated.swift */; };
+		1AC834B12BC407FC0006740F /* LastScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834472BC407FC0006740F /* LastScene.swift */; };
+		1AC834B22BC407FC0006740F /* PianoKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834492BC407FC0006740F /* PianoKey.swift */; };
+		1AC834B32BC407FC0006740F /* PianoKeySmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8344A2BC407FC0006740F /* PianoKeySmall.swift */; };
+		1AC834B42BC407FC0006740F /* PianoNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8344B2BC407FC0006740F /* PianoNote.swift */; };
+		1AC834B52BC407FC0006740F /* PianoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8344D2BC407FC0006740F /* PianoScene.swift */; };
+		1AC834B62BC407FC0006740F /* LightBlinking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8344F2BC407FC0006740F /* LightBlinking.swift */; };
+		1AC834B72BC407FC0006740F /* InstagramIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834512BC407FC0006740F /* InstagramIconButton.swift */; };
+		1AC834B82BC407FC0006740F /* InstagramPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834522BC407FC0006740F /* InstagramPostView.swift */; };
+		1AC834B92BC407FC0006740F /* InstagramPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834542BC407FC0006740F /* InstagramPostModel.swift */; };
+		1AC834BA2BC407FC0006740F /* InstagramPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834552BC407FC0006740F /* InstagramPostViewModel.swift */; };
+		1AC834BB2BC407FC0006740F /* InstagramScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834572BC407FC0006740F /* InstagramScene.swift */; };
+		1AC834BC2BC407FC0006740F /* InstagramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834582BC407FC0006740F /* InstagramViewController.swift */; };
+		1AC834BD2BC407FC0006740F /* BetterExperienceInLandscape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8345A2BC407FC0006740F /* BetterExperienceInLandscape.swift */; };
+		1AC834BE2BC407FC0006740F /* EachYearStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8345B2BC407FC0006740F /* EachYearStatistics.swift */; };
+		1AC834BF2BC407FC0006740F /* StartMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8345C2BC407FC0006740F /* StartMenu.swift */; };
+		1AC834C02BC407FC0006740F /* DevelopedWithLove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8345E2BC407FC0006740F /* DevelopedWithLove.swift */; };
+		1AC834C12BC407FC0006740F /* DoYouNeedHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8345F2BC407FC0006740F /* DoYouNeedHelp.swift */; };
+		1AC834C22BC407FC0006740F /* DarkBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834622BC407FC0006740F /* DarkBackground.swift */; };
+		1AC834C32BC407FC0006740F /* HeavenBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834632BC407FC0006740F /* HeavenBackground.swift */; };
+		1AC834C42BC407FC0006740F /* WhiteBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834642BC407FC0006740F /* WhiteBackground.swift */; };
+		1AC834C52BC407FC0006740F /* LayerMixingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834662BC407FC0006740F /* LayerMixingManager.swift */; };
+		1AC834C62BC407FC0006740F /* NotificationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834682BC407FC0006740F /* NotificationsModel.swift */; };
+		1AC834C72BC407FC0006740F /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834692BC407FC0006740F /* NotificationsViewModel.swift */; };
+		1AC834C82BC407FC0006740F /* NotificationManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8346B2BC407FC0006740F /* NotificationManagerView.swift */; };
+		1AC834C92BC407FC0006740F /* NotificationTextBlob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8346C2BC407FC0006740F /* NotificationTextBlob.swift */; };
+		1AC834CA2BC407FC0006740F /* ShapesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8346D2BC407FC0006740F /* ShapesView.swift */; };
+		1AC834CB2BC407FC0006740F /* ParticleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8346F2BC407FC0006740F /* ParticleLayer.swift */; };
+		1AC834CC2BC407FC0006740F /* SwiftuiParticles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834702BC407FC0006740F /* SwiftuiParticles.swift */; };
+		1AC834CD2BC407FC0006740F /* TapToContinueHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834722BC407FC0006740F /* TapToContinueHint.swift */; };
+		1AC834CE2BC407FC0006740F /* LayersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834742BC407FC0006740F /* LayersManager.swift */; };
+		1AC834CF2BC407FC0006740F /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834752BC407FC0006740F /* TransitionManager.swift */; };
+		1AC834D02BC407FC0006740F /* MyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834772BC407FC0006740F /* MyApp.swift */; };
+		1AC834D12BC407FC0006740F /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834782BC407FC0006740F /* CustomFont.swift */; };
+		1AC834D22BC407FC0006740F /* ExtensionGlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834792BC407FC0006740F /* ExtensionGlow.swift */; };
+		1AC834D32BC407FC0006740F /* ExtensionTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8347A2BC407FC0006740F /* ExtensionTransition.swift */; };
+		1AC834D42BC407FC0006740F /* FontText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8347B2BC407FC0006740F /* FontText.swift */; };
+		1AC834D52BC407FC0006740F /* GlobalPositionUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8347C2BC407FC0006740F /* GlobalPositionUtility.swift */; };
+		1AC834D62BC407FC0006740F /* NoOpacityButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8347D2BC407FC0006740F /* NoOpacityButtonStyle.swift */; };
+		1AC834D72BC407FC0006740F /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8347E2BC407FC0006740F /* SoundPlayer.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1AC833F32BC407B20006740F /* Mockingbird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mockingbird.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AC834052BC407FC0006740F /* PatrickHand.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PatrickHand.ttf; sourceTree = "<group>"; };
+		1AC834072BC407FC0006740F /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
+		1AC834092BC407FC0006740F /* Cookie_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Cookie_1.mp3; sourceTree = "<group>"; };
+		1AC8340A2BC407FC0006740F /* Cookie_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Cookie_2.mp3; sourceTree = "<group>"; };
+		1AC8340B2BC407FC0006740F /* Cookie_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Cookie_3.mp3; sourceTree = "<group>"; };
+		1AC8340D2BC407FC0006740F /* Drink_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Drink_1.mp3; sourceTree = "<group>"; };
+		1AC8340E2BC407FC0006740F /* Drink_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Drink_2.mp3; sourceTree = "<group>"; };
+		1AC8340F2BC407FC0006740F /* Drink_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Drink_3.mp3; sourceTree = "<group>"; };
+		1AC834112BC407FC0006740F /* piano_black_0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano_black_0.mp3; sourceTree = "<group>"; };
+		1AC834122BC407FC0006740F /* piano_black_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano_black_1.mp3; sourceTree = "<group>"; };
+		1AC834132BC407FC0006740F /* piano_black_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano_black_2.mp3; sourceTree = "<group>"; };
+		1AC834142BC407FC0006740F /* piano_black_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano_black_3.mp3; sourceTree = "<group>"; };
+		1AC834152BC407FC0006740F /* piano_black_4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano_black_4.mp3; sourceTree = "<group>"; };
+		1AC834172BC407FC0006740F /* piano_white_0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano_white_0.mp3; sourceTree = "<group>"; };
+		1AC834182BC407FC0006740F /* piano_white_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano_white_1.mp3; sourceTree = "<group>"; };
+		1AC834192BC407FC0006740F /* piano_white_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano_white_2.mp3; sourceTree = "<group>"; };
+		1AC8341A2BC407FC0006740F /* piano_white_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano_white_3.mp3; sourceTree = "<group>"; };
+		1AC8341B2BC407FC0006740F /* piano_white_4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano_white_4.mp3; sourceTree = "<group>"; };
+		1AC8341C2BC407FC0006740F /* piano_white_5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano_white_5.mp3; sourceTree = "<group>"; };
+		1AC8341D2BC407FC0006740F /* piano_white_6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano_white_6.mp3; sourceTree = "<group>"; };
+		1AC834202BC407FC0006740F /* heaven_drink.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = heaven_drink.mp3; sourceTree = "<group>"; };
+		1AC834212BC407FC0006740F /* heaven_drugs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = heaven_drugs.mp3; sourceTree = "<group>"; };
+		1AC834222BC407FC0006740F /* heaven_gambling.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = heaven_gambling.mp3; sourceTree = "<group>"; };
+		1AC834232BC407FC0006740F /* Insert_Coin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Insert_Coin.mp3; sourceTree = "<group>"; };
+		1AC834242BC407FC0006740F /* Lever_Pull.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Lever_Pull.mp3; sourceTree = "<group>"; };
+		1AC834252BC407FC0006740F /* Like_Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Like_Button.mp3; sourceTree = "<group>"; };
+		1AC834262BC407FC0006740F /* Sound_Init.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sound_Init.mp3; sourceTree = "<group>"; };
+		1AC834272BC407FC0006740F /* Start_click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Start_click.mp3; sourceTree = "<group>"; };
+		1AC834282BC407FC0006740F /* Take_Pill.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Take_Pill.mp3; sourceTree = "<group>"; };
+		1AC834302BC407FC0006740F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1AC834312BC407FC0006740F /* AlcoholDrink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlcoholDrink.swift; sourceTree = "<group>"; };
+		1AC834322BC407FC0006740F /* AlcoholScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlcoholScene.swift; sourceTree = "<group>"; };
+		1AC834342BC407FC0006740F /* Cookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cookie.swift; sourceTree = "<group>"; };
+		1AC834352BC407FC0006740F /* CookieScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CookieScene.swift; sourceTree = "<group>"; };
+		1AC834372BC407FC0006740F /* DraggableShakableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableShakableView.swift; sourceTree = "<group>"; };
+		1AC834382BC407FC0006740F /* DrugsPill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrugsPill.swift; sourceTree = "<group>"; };
+		1AC8343A2BC407FC0006740F /* DrugsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrugsScene.swift; sourceTree = "<group>"; };
+		1AC8343C2BC407FC0006740F /* AnimatedHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedHandle.swift; sourceTree = "<group>"; };
+		1AC8343D2BC407FC0006740F /* DraggableCoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableCoin.swift; sourceTree = "<group>"; };
+		1AC8343E2BC407FC0006740F /* SlotsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotsView.swift; sourceTree = "<group>"; };
+		1AC834402BC407FC0006740F /* GamblingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamblingScene.swift; sourceTree = "<group>"; };
+		1AC834422BC407FC0006740F /* FamilyMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMember.swift; sourceTree = "<group>"; };
+		1AC834432BC407FC0006740F /* FamilyScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyScene.swift; sourceTree = "<group>"; };
+		1AC834442BC407FC0006740F /* MemeberButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeberButton.swift; sourceTree = "<group>"; };
+		1AC834462BC407FC0006740F /* CycleAnimated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleAnimated.swift; sourceTree = "<group>"; };
+		1AC834472BC407FC0006740F /* LastScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastScene.swift; sourceTree = "<group>"; };
+		1AC834492BC407FC0006740F /* PianoKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PianoKey.swift; sourceTree = "<group>"; };
+		1AC8344A2BC407FC0006740F /* PianoKeySmall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PianoKeySmall.swift; sourceTree = "<group>"; };
+		1AC8344B2BC407FC0006740F /* PianoNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PianoNote.swift; sourceTree = "<group>"; };
+		1AC8344D2BC407FC0006740F /* PianoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PianoScene.swift; sourceTree = "<group>"; };
+		1AC8344F2BC407FC0006740F /* LightBlinking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightBlinking.swift; sourceTree = "<group>"; };
+		1AC834512BC407FC0006740F /* InstagramIconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramIconButton.swift; sourceTree = "<group>"; };
+		1AC834522BC407FC0006740F /* InstagramPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramPostView.swift; sourceTree = "<group>"; };
+		1AC834542BC407FC0006740F /* InstagramPostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramPostModel.swift; sourceTree = "<group>"; };
+		1AC834552BC407FC0006740F /* InstagramPostViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramPostViewModel.swift; sourceTree = "<group>"; };
+		1AC834572BC407FC0006740F /* InstagramScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramScene.swift; sourceTree = "<group>"; };
+		1AC834582BC407FC0006740F /* InstagramViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramViewController.swift; sourceTree = "<group>"; };
+		1AC8345A2BC407FC0006740F /* BetterExperienceInLandscape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetterExperienceInLandscape.swift; sourceTree = "<group>"; };
+		1AC8345B2BC407FC0006740F /* EachYearStatistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachYearStatistics.swift; sourceTree = "<group>"; };
+		1AC8345C2BC407FC0006740F /* StartMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartMenu.swift; sourceTree = "<group>"; };
+		1AC8345E2BC407FC0006740F /* DevelopedWithLove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopedWithLove.swift; sourceTree = "<group>"; };
+		1AC8345F2BC407FC0006740F /* DoYouNeedHelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoYouNeedHelp.swift; sourceTree = "<group>"; };
+		1AC834622BC407FC0006740F /* DarkBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkBackground.swift; sourceTree = "<group>"; };
+		1AC834632BC407FC0006740F /* HeavenBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeavenBackground.swift; sourceTree = "<group>"; };
+		1AC834642BC407FC0006740F /* WhiteBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhiteBackground.swift; sourceTree = "<group>"; };
+		1AC834662BC407FC0006740F /* LayerMixingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerMixingManager.swift; sourceTree = "<group>"; };
+		1AC834682BC407FC0006740F /* NotificationsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsModel.swift; sourceTree = "<group>"; };
+		1AC834692BC407FC0006740F /* NotificationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		1AC8346B2BC407FC0006740F /* NotificationManagerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManagerView.swift; sourceTree = "<group>"; };
+		1AC8346C2BC407FC0006740F /* NotificationTextBlob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTextBlob.swift; sourceTree = "<group>"; };
+		1AC8346D2BC407FC0006740F /* ShapesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapesView.swift; sourceTree = "<group>"; };
+		1AC8346F2BC407FC0006740F /* ParticleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleLayer.swift; sourceTree = "<group>"; };
+		1AC834702BC407FC0006740F /* SwiftuiParticles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftuiParticles.swift; sourceTree = "<group>"; };
+		1AC834722BC407FC0006740F /* TapToContinueHint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapToContinueHint.swift; sourceTree = "<group>"; };
+		1AC834742BC407FC0006740F /* LayersManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayersManager.swift; sourceTree = "<group>"; };
+		1AC834752BC407FC0006740F /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
+		1AC834772BC407FC0006740F /* MyApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyApp.swift; sourceTree = "<group>"; };
+		1AC834782BC407FC0006740F /* CustomFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
+		1AC834792BC407FC0006740F /* ExtensionGlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionGlow.swift; sourceTree = "<group>"; };
+		1AC8347A2BC407FC0006740F /* ExtensionTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionTransition.swift; sourceTree = "<group>"; };
+		1AC8347B2BC407FC0006740F /* FontText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontText.swift; sourceTree = "<group>"; };
+		1AC8347C2BC407FC0006740F /* GlobalPositionUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalPositionUtility.swift; sourceTree = "<group>"; };
+		1AC8347D2BC407FC0006740F /* NoOpacityButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoOpacityButtonStyle.swift; sourceTree = "<group>"; };
+		1AC8347E2BC407FC0006740F /* SoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1AC833F02BC407B20006740F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1AC833EA2BC407B20006740F = {
+			isa = PBXGroup;
+			children = (
+				1AC834302BC407FC0006740F /* Assets.xcassets */,
+				1AC834772BC407FC0006740F /* MyApp.swift */,
+				1AC834762BC407FC0006740F /* Production */,
+				1AC8342A2BC407FC0006740F /* Resources */,
+				1AC8347F2BC407FC0006740F /* Support Files */,
+				1AC833F42BC407B20006740F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1AC833F42BC407B20006740F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1AC833F32BC407B20006740F /* Mockingbird.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1AC834062BC407FC0006740F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834052BC407FC0006740F /* PatrickHand.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		1AC834082BC407FC0006740F /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834072BC407FC0006740F /* Explosion.sks */,
+			);
+			path = Particles;
+			sourceTree = "<group>";
+		};
+		1AC8340C2BC407FC0006740F /* Cookie */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834092BC407FC0006740F /* Cookie_1.mp3 */,
+				1AC8340A2BC407FC0006740F /* Cookie_2.mp3 */,
+				1AC8340B2BC407FC0006740F /* Cookie_3.mp3 */,
+			);
+			path = Cookie;
+			sourceTree = "<group>";
+		};
+		1AC834102BC407FC0006740F /* Drinks */ = {
+			isa = PBXGroup;
+			children = (
+				1AC8340D2BC407FC0006740F /* Drink_1.mp3 */,
+				1AC8340E2BC407FC0006740F /* Drink_2.mp3 */,
+				1AC8340F2BC407FC0006740F /* Drink_3.mp3 */,
+			);
+			path = Drinks;
+			sourceTree = "<group>";
+		};
+		1AC834162BC407FC0006740F /* Black */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834112BC407FC0006740F /* piano_black_0.mp3 */,
+				1AC834122BC407FC0006740F /* piano_black_1.mp3 */,
+				1AC834132BC407FC0006740F /* piano_black_2.mp3 */,
+				1AC834142BC407FC0006740F /* piano_black_3.mp3 */,
+				1AC834152BC407FC0006740F /* piano_black_4.mp3 */,
+			);
+			path = Black;
+			sourceTree = "<group>";
+		};
+		1AC8341E2BC407FC0006740F /* White */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834172BC407FC0006740F /* piano_white_0.mp3 */,
+				1AC834182BC407FC0006740F /* piano_white_1.mp3 */,
+				1AC834192BC407FC0006740F /* piano_white_2.mp3 */,
+				1AC8341A2BC407FC0006740F /* piano_white_3.mp3 */,
+				1AC8341B2BC407FC0006740F /* piano_white_4.mp3 */,
+				1AC8341C2BC407FC0006740F /* piano_white_5.mp3 */,
+				1AC8341D2BC407FC0006740F /* piano_white_6.mp3 */,
+			);
+			path = White;
+			sourceTree = "<group>";
+		};
+		1AC8341F2BC407FC0006740F /* Piano */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834162BC407FC0006740F /* Black */,
+				1AC8341E2BC407FC0006740F /* White */,
+			);
+			path = Piano;
+			sourceTree = "<group>";
+		};
+		1AC834292BC407FC0006740F /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				1AC8340C2BC407FC0006740F /* Cookie */,
+				1AC834102BC407FC0006740F /* Drinks */,
+				1AC8341F2BC407FC0006740F /* Piano */,
+				1AC834202BC407FC0006740F /* heaven_drink.mp3 */,
+				1AC834212BC407FC0006740F /* heaven_drugs.mp3 */,
+				1AC834222BC407FC0006740F /* heaven_gambling.mp3 */,
+				1AC834232BC407FC0006740F /* Insert_Coin.mp3 */,
+				1AC834242BC407FC0006740F /* Lever_Pull.mp3 */,
+				1AC834252BC407FC0006740F /* Like_Button.mp3 */,
+				1AC834262BC407FC0006740F /* Sound_Init.mp3 */,
+				1AC834272BC407FC0006740F /* Start_click.mp3 */,
+				1AC834282BC407FC0006740F /* Take_Pill.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		1AC8342A2BC407FC0006740F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834062BC407FC0006740F /* Fonts */,
+				1AC834082BC407FC0006740F /* Particles */,
+				1AC834292BC407FC0006740F /* Sounds */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1AC834332BC407FC0006740F /* Alcohol */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834312BC407FC0006740F /* AlcoholDrink.swift */,
+				1AC834322BC407FC0006740F /* AlcoholScene.swift */,
+			);
+			path = Alcohol;
+			sourceTree = "<group>";
+		};
+		1AC834362BC407FC0006740F /* Cookie */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834342BC407FC0006740F /* Cookie.swift */,
+				1AC834352BC407FC0006740F /* CookieScene.swift */,
+			);
+			path = Cookie;
+			sourceTree = "<group>";
+		};
+		1AC834392BC407FC0006740F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834372BC407FC0006740F /* DraggableShakableView.swift */,
+				1AC834382BC407FC0006740F /* DrugsPill.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		1AC8343B2BC407FC0006740F /* Drugs */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834392BC407FC0006740F /* Components */,
+				1AC8343A2BC407FC0006740F /* DrugsScene.swift */,
+			);
+			path = Drugs;
+			sourceTree = "<group>";
+		};
+		1AC8343F2BC407FC0006740F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1AC8343C2BC407FC0006740F /* AnimatedHandle.swift */,
+				1AC8343D2BC407FC0006740F /* DraggableCoin.swift */,
+				1AC8343E2BC407FC0006740F /* SlotsView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		1AC834412BC407FC0006740F /* Gambling */ = {
+			isa = PBXGroup;
+			children = (
+				1AC8343F2BC407FC0006740F /* Components */,
+				1AC834402BC407FC0006740F /* GamblingScene.swift */,
+			);
+			path = Gambling;
+			sourceTree = "<group>";
+		};
+		1AC834452BC407FC0006740F /* Family */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834422BC407FC0006740F /* FamilyMember.swift */,
+				1AC834432BC407FC0006740F /* FamilyScene.swift */,
+				1AC834442BC407FC0006740F /* MemeberButton.swift */,
+			);
+			path = Family;
+			sourceTree = "<group>";
+		};
+		1AC834482BC407FC0006740F /* Last Scene */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834462BC407FC0006740F /* CycleAnimated.swift */,
+				1AC834472BC407FC0006740F /* LastScene.swift */,
+			);
+			path = "Last Scene";
+			sourceTree = "<group>";
+		};
+		1AC8344C2BC407FC0006740F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834492BC407FC0006740F /* PianoKey.swift */,
+				1AC8344A2BC407FC0006740F /* PianoKeySmall.swift */,
+				1AC8344B2BC407FC0006740F /* PianoNote.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		1AC8344E2BC407FC0006740F /* Piano scene */ = {
+			isa = PBXGroup;
+			children = (
+				1AC8344C2BC407FC0006740F /* Components */,
+				1AC8344D2BC407FC0006740F /* PianoScene.swift */,
+			);
+			path = "Piano scene";
+			sourceTree = "<group>";
+		};
+		1AC834502BC407FC0006740F /* Guiding light */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834452BC407FC0006740F /* Family */,
+				1AC834482BC407FC0006740F /* Last Scene */,
+				1AC8344E2BC407FC0006740F /* Piano scene */,
+				1AC8344F2BC407FC0006740F /* LightBlinking.swift */,
+			);
+			path = "Guiding light";
+			sourceTree = "<group>";
+		};
+		1AC834532BC407FC0006740F /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834512BC407FC0006740F /* InstagramIconButton.swift */,
+				1AC834522BC407FC0006740F /* InstagramPostView.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		1AC834562BC407FC0006740F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834542BC407FC0006740F /* InstagramPostModel.swift */,
+				1AC834552BC407FC0006740F /* InstagramPostViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1AC834592BC407FC0006740F /* Instagram */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834532BC407FC0006740F /* Content */,
+				1AC834562BC407FC0006740F /* Models */,
+				1AC834572BC407FC0006740F /* InstagramScene.swift */,
+				1AC834582BC407FC0006740F /* InstagramViewController.swift */,
+			);
+			path = Instagram;
+			sourceTree = "<group>";
+		};
+		1AC8345D2BC407FC0006740F /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				1AC8345A2BC407FC0006740F /* BetterExperienceInLandscape.swift */,
+				1AC8345B2BC407FC0006740F /* EachYearStatistics.swift */,
+				1AC8345C2BC407FC0006740F /* StartMenu.swift */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
+		1AC834602BC407FC0006740F /* Outro */ = {
+			isa = PBXGroup;
+			children = (
+				1AC8345E2BC407FC0006740F /* DevelopedWithLove.swift */,
+				1AC8345F2BC407FC0006740F /* DoYouNeedHelp.swift */,
+			);
+			path = Outro;
+			sourceTree = "<group>";
+		};
+		1AC834612BC407FC0006740F /* Chapters */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834332BC407FC0006740F /* Alcohol */,
+				1AC834362BC407FC0006740F /* Cookie */,
+				1AC8343B2BC407FC0006740F /* Drugs */,
+				1AC834412BC407FC0006740F /* Gambling */,
+				1AC834502BC407FC0006740F /* Guiding light */,
+				1AC834592BC407FC0006740F /* Instagram */,
+				1AC8345D2BC407FC0006740F /* Intro */,
+				1AC834602BC407FC0006740F /* Outro */,
+			);
+			path = Chapters;
+			sourceTree = "<group>";
+		};
+		1AC834652BC407FC0006740F /* Backgrounds Views */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834622BC407FC0006740F /* DarkBackground.swift */,
+				1AC834632BC407FC0006740F /* HeavenBackground.swift */,
+				1AC834642BC407FC0006740F /* WhiteBackground.swift */,
+			);
+			path = "Backgrounds Views";
+			sourceTree = "<group>";
+		};
+		1AC834672BC407FC0006740F /* Background Mixing */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834652BC407FC0006740F /* Backgrounds Views */,
+				1AC834662BC407FC0006740F /* LayerMixingManager.swift */,
+			);
+			path = "Background Mixing";
+			sourceTree = "<group>";
+		};
+		1AC8346A2BC407FC0006740F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834682BC407FC0006740F /* NotificationsModel.swift */,
+				1AC834692BC407FC0006740F /* NotificationsViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1AC8346E2BC407FC0006740F /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				1AC8346A2BC407FC0006740F /* Models */,
+				1AC8346B2BC407FC0006740F /* NotificationManagerView.swift */,
+				1AC8346C2BC407FC0006740F /* NotificationTextBlob.swift */,
+				1AC8346D2BC407FC0006740F /* ShapesView.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		1AC834712BC407FC0006740F /* Particle Layer */ = {
+			isa = PBXGroup;
+			children = (
+				1AC8346F2BC407FC0006740F /* ParticleLayer.swift */,
+				1AC834702BC407FC0006740F /* SwiftuiParticles.swift */,
+			);
+			path = "Particle Layer";
+			sourceTree = "<group>";
+		};
+		1AC834732BC407FC0006740F /* Manager Views */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834672BC407FC0006740F /* Background Mixing */,
+				1AC8346E2BC407FC0006740F /* Notifications */,
+				1AC834712BC407FC0006740F /* Particle Layer */,
+				1AC834722BC407FC0006740F /* TapToContinueHint.swift */,
+			);
+			path = "Manager Views";
+			sourceTree = "<group>";
+		};
+		1AC834762BC407FC0006740F /* Production */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834612BC407FC0006740F /* Chapters */,
+				1AC834732BC407FC0006740F /* Manager Views */,
+				1AC834742BC407FC0006740F /* LayersManager.swift */,
+				1AC834752BC407FC0006740F /* TransitionManager.swift */,
+			);
+			path = Production;
+			sourceTree = "<group>";
+		};
+		1AC8347F2BC407FC0006740F /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1AC834782BC407FC0006740F /* CustomFont.swift */,
+				1AC834792BC407FC0006740F /* ExtensionGlow.swift */,
+				1AC8347A2BC407FC0006740F /* ExtensionTransition.swift */,
+				1AC8347B2BC407FC0006740F /* FontText.swift */,
+				1AC8347C2BC407FC0006740F /* GlobalPositionUtility.swift */,
+				1AC8347D2BC407FC0006740F /* NoOpacityButtonStyle.swift */,
+				1AC8347E2BC407FC0006740F /* SoundPlayer.swift */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1AC833F22BC407B20006740F /* Mockingbird */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1AC834012BC407B30006740F /* Build configuration list for PBXNativeTarget "Mockingbird" */;
+			buildPhases = (
+				1AC833EF2BC407B20006740F /* Sources */,
+				1AC833F02BC407B20006740F /* Frameworks */,
+				1AC833F12BC407B20006740F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mockingbird;
+			productName = MockingbirdPort;
+			productReference = 1AC833F32BC407B20006740F /* Mockingbird.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1AC833EB2BC407B20006740F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					1AC833F22BC407B20006740F = {
+						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
+					};
+				};
+			};
+			buildConfigurationList = 1AC833EE2BC407B20006740F /* Build configuration list for PBXProject "Mockingbird" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1AC833EA2BC407B20006740F;
+			productRefGroup = 1AC833F42BC407B20006740F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1AC833F22BC407B20006740F /* Mockingbird */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1AC833F12BC407B20006740F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AC834892BC407FC0006740F /* piano_black_1.mp3 in Resources */,
+				1AC834952BC407FC0006740F /* heaven_drugs.mp3 in Resources */,
+				1AC834972BC407FC0006740F /* Insert_Coin.mp3 in Resources */,
+				1AC834802BC407FC0006740F /* PatrickHand.ttf in Resources */,
+				1AC834A12BC407FC0006740F /* Assets.xcassets in Resources */,
+				1AC8349C2BC407FC0006740F /* Take_Pill.mp3 in Resources */,
+				1AC8349B2BC407FC0006740F /* Start_click.mp3 in Resources */,
+				1AC834852BC407FC0006740F /* Drink_1.mp3 in Resources */,
+				1AC834992BC407FC0006740F /* Like_Button.mp3 in Resources */,
+				1AC834962BC407FC0006740F /* heaven_gambling.mp3 in Resources */,
+				1AC834932BC407FC0006740F /* piano_white_6.mp3 in Resources */,
+				1AC8348E2BC407FC0006740F /* piano_white_1.mp3 in Resources */,
+				1AC8348D2BC407FC0006740F /* piano_white_0.mp3 in Resources */,
+				1AC834982BC407FC0006740F /* Lever_Pull.mp3 in Resources */,
+				1AC8348C2BC407FC0006740F /* piano_black_4.mp3 in Resources */,
+				1AC834842BC407FC0006740F /* Cookie_3.mp3 in Resources */,
+				1AC8348F2BC407FC0006740F /* piano_white_2.mp3 in Resources */,
+				1AC8349A2BC407FC0006740F /* Sound_Init.mp3 in Resources */,
+				1AC834902BC407FC0006740F /* piano_white_3.mp3 in Resources */,
+				1AC834912BC407FC0006740F /* piano_white_4.mp3 in Resources */,
+				1AC8348B2BC407FC0006740F /* piano_black_3.mp3 in Resources */,
+				1AC834942BC407FC0006740F /* heaven_drink.mp3 in Resources */,
+				1AC834872BC407FC0006740F /* Drink_3.mp3 in Resources */,
+				1AC8348A2BC407FC0006740F /* piano_black_2.mp3 in Resources */,
+				1AC834882BC407FC0006740F /* piano_black_0.mp3 in Resources */,
+				1AC834832BC407FC0006740F /* Cookie_2.mp3 in Resources */,
+				1AC834812BC407FC0006740F /* Explosion.sks in Resources */,
+				1AC834862BC407FC0006740F /* Drink_2.mp3 in Resources */,
+				1AC834922BC407FC0006740F /* piano_white_5.mp3 in Resources */,
+				1AC834822BC407FC0006740F /* Cookie_1.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1AC833EF2BC407B20006740F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AC834A72BC407FC0006740F /* DrugsPill.swift in Sources */,
+				1AC834D72BC407FC0006740F /* SoundPlayer.swift in Sources */,
+				1AC834CD2BC407FC0006740F /* TapToContinueHint.swift in Sources */,
+				1AC834B22BC407FC0006740F /* PianoKey.swift in Sources */,
+				1AC834BD2BC407FC0006740F /* BetterExperienceInLandscape.swift in Sources */,
+				1AC834C42BC407FC0006740F /* WhiteBackground.swift in Sources */,
+				1AC834AF2BC407FC0006740F /* MemeberButton.swift in Sources */,
+				1AC834D32BC407FC0006740F /* ExtensionTransition.swift in Sources */,
+				1AC834A62BC407FC0006740F /* DraggableShakableView.swift in Sources */,
+				1AC834A32BC407FC0006740F /* AlcoholScene.swift in Sources */,
+				1AC834AC2BC407FC0006740F /* GamblingScene.swift in Sources */,
+				1AC834AD2BC407FC0006740F /* FamilyMember.swift in Sources */,
+				1AC834C92BC407FC0006740F /* NotificationTextBlob.swift in Sources */,
+				1AC834A92BC407FC0006740F /* AnimatedHandle.swift in Sources */,
+				1AC834A82BC407FC0006740F /* DrugsScene.swift in Sources */,
+				1AC834CF2BC407FC0006740F /* TransitionManager.swift in Sources */,
+				1AC834B42BC407FC0006740F /* PianoNote.swift in Sources */,
+				1AC834A52BC407FC0006740F /* CookieScene.swift in Sources */,
+				1AC834C12BC407FC0006740F /* DoYouNeedHelp.swift in Sources */,
+				1AC834B12BC407FC0006740F /* LastScene.swift in Sources */,
+				1AC834AA2BC407FC0006740F /* DraggableCoin.swift in Sources */,
+				1AC834BF2BC407FC0006740F /* StartMenu.swift in Sources */,
+				1AC834D02BC407FC0006740F /* MyApp.swift in Sources */,
+				1AC834B52BC407FC0006740F /* PianoScene.swift in Sources */,
+				1AC834C02BC407FC0006740F /* DevelopedWithLove.swift in Sources */,
+				1AC834CA2BC407FC0006740F /* ShapesView.swift in Sources */,
+				1AC834CC2BC407FC0006740F /* SwiftuiParticles.swift in Sources */,
+				1AC834BB2BC407FC0006740F /* InstagramScene.swift in Sources */,
+				1AC834D12BC407FC0006740F /* CustomFont.swift in Sources */,
+				1AC834D42BC407FC0006740F /* FontText.swift in Sources */,
+				1AC834D52BC407FC0006740F /* GlobalPositionUtility.swift in Sources */,
+				1AC834C82BC407FC0006740F /* NotificationManagerView.swift in Sources */,
+				1AC834B72BC407FC0006740F /* InstagramIconButton.swift in Sources */,
+				1AC834CB2BC407FC0006740F /* ParticleLayer.swift in Sources */,
+				1AC834AE2BC407FC0006740F /* FamilyScene.swift in Sources */,
+				1AC834AB2BC407FC0006740F /* SlotsView.swift in Sources */,
+				1AC834C62BC407FC0006740F /* NotificationsModel.swift in Sources */,
+				1AC834BE2BC407FC0006740F /* EachYearStatistics.swift in Sources */,
+				1AC834C22BC407FC0006740F /* DarkBackground.swift in Sources */,
+				1AC834A42BC407FC0006740F /* Cookie.swift in Sources */,
+				1AC834B62BC407FC0006740F /* LightBlinking.swift in Sources */,
+				1AC834D22BC407FC0006740F /* ExtensionGlow.swift in Sources */,
+				1AC834B82BC407FC0006740F /* InstagramPostView.swift in Sources */,
+				1AC834B92BC407FC0006740F /* InstagramPostModel.swift in Sources */,
+				1AC834B32BC407FC0006740F /* PianoKeySmall.swift in Sources */,
+				1AC834C72BC407FC0006740F /* NotificationsViewModel.swift in Sources */,
+				1AC834BA2BC407FC0006740F /* InstagramPostViewModel.swift in Sources */,
+				1AC834C32BC407FC0006740F /* HeavenBackground.swift in Sources */,
+				1AC834B02BC407FC0006740F /* CycleAnimated.swift in Sources */,
+				1AC834CE2BC407FC0006740F /* LayersManager.swift in Sources */,
+				1AC834A22BC407FC0006740F /* AlcoholDrink.swift in Sources */,
+				1AC834BC2BC407FC0006740F /* InstagramViewController.swift in Sources */,
+				1AC834C52BC407FC0006740F /* LayerMixingManager.swift in Sources */,
+				1AC834D62BC407FC0006740F /* NoOpacityButtonStyle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1AC833FF2BC407B30006740F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1AC834002BC407B30006740F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1AC834022BC407B30006740F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = GXDG2KXXXC;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.9;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.novoselov.Mockingbird;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		1AC834032BC407B30006740F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = GXDG2KXXXC;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.9;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.novoselov.Mockingbird;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1AC833EE2BC407B20006740F /* Build configuration list for PBXProject "Mockingbird" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AC833FF2BC407B30006740F /* Debug */,
+				1AC834002BC407B30006740F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1AC834012BC407B30006740F /* Build configuration list for PBXNativeTarget "Mockingbird" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AC834022BC407B30006740F /* Debug */,
+				1AC834032BC407B30006740F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1AC833EB2BC407B20006740F /* Project object */;
+}
