@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct MemeberButton: View {
-    var selectedStyle: Int = 0
+    
+    // Property that describes if an image is being shown
     @Binding var showingImage: Bool
-    @Binding var countMemners: Int
+    
+    // Count how many members were alredy touched
+    @Binding var countMembers: Int
+    
+    // Property that prevents accidential interaction with the scene until transition is complete
     @Binding var canInteractWithScene: Bool
     
     var body: some View {
@@ -21,6 +26,7 @@ struct MemeberButton: View {
             }
     }
     
+    // Action that happens after image is being touched
     func performAction(){
         if !canInteractWithScene{
             return
@@ -30,7 +36,7 @@ struct MemeberButton: View {
             return
         }
         
-        countMemners+=1
+        countMembers+=1
         showingImage = true
     }
 }

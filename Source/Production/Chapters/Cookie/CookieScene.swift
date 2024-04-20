@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct CookieScene: View {
+    
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
+    // Property that controls value of heaven background
     @State var heavenSlider: Double = 0
+    
+    // Count an amount of total cookie bites
     @State var countBites: Int = 0
     
+    // Holder for Geometry Proxy
     @State var geomtryHolder: CGSize = CGSize(width: 0, height: 0)
     
     var body: some View {
@@ -23,6 +28,7 @@ struct CookieScene: View {
             VStack{
                 HStack{
                     Cookie(selectedStyle: 1, countBites: $countBites, heavenSlider: $heavenSlider)
+                        // Update the geometry holder for one of the cookie
                         .background(
                             GeometryReader{ geometry in
                                 Color.clear

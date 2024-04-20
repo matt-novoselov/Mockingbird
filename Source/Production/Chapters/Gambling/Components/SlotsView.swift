@@ -8,14 +8,26 @@
 import SwiftUI
 
 struct SlotsRotation: View {
+    
+    // Slots image offset on Y axis
     @State private var offsetY: CGFloat = 0
+    
+    // Autommatically determine slots texture size
     @State var imageSize: CGSize = CGSize(width: 0, height: 0)
-    @Binding var changeBool: Bool
+    
+    // Variable to rotate slots between 2 positions (rotated and idle)
+    @Binding var rotateSlotsState: Bool
+    
+    // Variable to control and switch different variations of slots texture
     @State var firstVariation: Bool = false
+    
+    // Count how many times slots were rotated
     @State var countRotations: Int = 0
     
+    // Adjust animation duration
     public let animationDuration: Double = 2.0
     
+    // Amount of fruits in the slots texture
     let amountOfFruits: Int = 26
     
     var body: some View {
@@ -25,6 +37,7 @@ struct SlotsRotation: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .background(
+                    // Determine image size
                     GeometryReader { proxy in
                         Color.clear
                             .onAppear(){
@@ -34,12 +47,13 @@ struct SlotsRotation: View {
                     }
                 )
                 .offset(y: offsetY / 2)
-                .onChange(of: changeBool){
+                .onChange(of: rotateSlotsState){
                     rotateSlots()
                 }
         }
     }
     
+    // Function to perform slots rotation
     public func rotateSlots(){
         countRotations+=1
         
@@ -55,10 +69,11 @@ struct SlotsRotation: View {
             }
         }
         
+        // Toggle texture variation after slots were rotated
         firstVariation.toggle()
     }
 }
 
 #Preview {
-    SlotsRotation(changeBool: .constant(false))
+    SlotsRotation(rotateSlotsState: .constant(false))
 }

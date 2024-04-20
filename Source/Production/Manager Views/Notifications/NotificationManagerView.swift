@@ -8,8 +8,12 @@
 import SwiftUI
 
 
+// iew responsible for managing notifications
 struct NotificationManagerView: View {
+    
     @EnvironmentObject var notificationManager: NotificationManager
+    
+    // Animated bool that controls if notification is present or not
     @State var localIsTextDisplayed: Bool = false
     
     var body: some View {
@@ -31,6 +35,7 @@ struct NotificationManagerView: View {
                     Spacer()
                 }
                 .onChange(of: notificationManager.isTextDisplayed){
+                    // Update the local bool, if isTextDisplayed changes in the Notification Manager
                     withAnimation(Animation.easeInOut(duration: NotificationTextBlob(arrowAction: {}).animationMoveInDuration)) {
                         localIsTextDisplayed = notificationManager.isTextDisplayed
                     }
@@ -39,6 +44,7 @@ struct NotificationManagerView: View {
                 Spacer()
             }
             
+            // Buttons for debugging purposes
             if notificationManager.isDebug{
                 VStack{
                     Button("Button") {
@@ -56,15 +62,30 @@ struct NotificationManagerView: View {
 }
 
 
+// Notification Manager
 class NotificationManager: ObservableObject {
+    
+    // Enable or disable debugging
     @Published var isDebug: Bool = false
+    
     // - - - - - - - - - - - - - - - - - - - - //
+    
+    // Bool that controls if the notification is displayed
     @Published var isTextDisplayed: Bool = false
+    
+    // Text for notification
     @Published var currentNotificationMessage: String = ""
+    
+    // Action for notification arrow
     @Published var arrowAction: (() -> Void)? = nil
+    
+    // Style of the notification
     @Published var darkMode: Bool?
+    
+    // Bool that controls if the print animation is finished
     @Published var isTextPrintFinished: Bool = true
     
+    // Function that calls a new notification from the stack
     func callNotification(ID: Int, arrowAction: (() -> Void)? = nil, darkMode: Bool? = false) {
         withAnimation(nil){
             let notificationsSet = NotificationsViewModel().notifications
@@ -78,6 +99,7 @@ class NotificationManager: ObservableObject {
         }
     }
     
+    // Function that closes and hides notification
     func closeNotification() {
         withAnimation(Animation.easeInOut(duration: NotificationTextBlob(arrowAction: {}).animationMoveInDuration)) {
             isTextDisplayed = false

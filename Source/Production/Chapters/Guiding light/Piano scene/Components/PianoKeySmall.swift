@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct pianoKeySmall: View {
-    @State var animationHasEnded: Bool = true
-    @State var amountOfNotes: Int = 0
-    @Binding var countTotalNotesEmited: Int
     
+    // Amount of notes that should be spawned
+    @State var amountOfNotes: Int = 0
+    
+    // Count how many notes have been emitted
+    @Binding var countTotalNotesEmitted: Int
+    
+    // Index of they key
     var selectedIndex: Int = 0
+    
+    // Array of images for black notes
     let blackKeys: [String] = ["piano_black_1","piano_black_2","piano_black_3"]
+    
+    // Array of sound effects for each note
     let pianoSounds: [String] = [
         "piano_black_0",
         "piano_black_1",
@@ -21,7 +29,7 @@ struct pianoKeySmall: View {
         "piano_black_3",
         "piano_black_4",
         "piano_black_4",
-        ]
+    ]
     
     var body: some View {
         ZStack{
@@ -32,9 +40,10 @@ struct pianoKeySmall: View {
             
             Button(
                 action: {
+                    // Play sound effect
                     playSound(name: pianoSounds[selectedIndex], ext: "mp3")
                     
-                    countTotalNotesEmited+=1
+                    countTotalNotesEmitted+=1
                     amountOfNotes+=1
                 }
             ) {

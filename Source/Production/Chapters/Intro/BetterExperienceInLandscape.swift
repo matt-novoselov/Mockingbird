@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct BetterExperienceInLandscape: View {
+    
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
+    // Property that controls if hint should be shown
     @State var displayingHint: Bool = true
     
     var body: some View {
@@ -31,12 +33,17 @@ struct BetterExperienceInLandscape: View {
                         .padding(.horizontal, 100)
                 }
                 
+                // Hint that appears after a while to help users havigate to the next scene
                 TapToContinueHint(displayingHint: $displayingHint)
             }
+            
+            // Play initialization empty sound to awake sound manager
             .onAppear(){
                 playSound(name: "Sound_Init", ext: "mp3")
             }
         }
+        
+        // Transition to the next scene on tap or slide
         .gesture(
             TapGesture()
                 .onEnded {
@@ -52,6 +59,7 @@ struct BetterExperienceInLandscape: View {
         )
     }
     
+    // Function to perform transition
     func performTransition(){
         withAnimation(.easeInOut(duration: 1.0)){
             displayingHint = false

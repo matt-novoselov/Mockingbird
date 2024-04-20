@@ -7,9 +7,16 @@
 
 import SwiftUI
 
+// This is a View that handles transitions between different Views
 struct TransitionManager: View {
+    
+    // Initiate Transition Manager
     @StateObject private var transitionManagerObservable = TransitionManagerObservable()
+    
+    // The ID of the currently displayed scene
     @State private var currentSceneID: Int = 0
+    
+    // Animation duration
     let transitionDuration: Double = 1.5
     
     var body: some View {
@@ -61,6 +68,7 @@ struct TransitionManager: View {
         .edgesIgnoringSafeArea(.bottom)
     }
     
+    // Function that transitions from one scene to another
     func transitionToScene(newSceneID: Int) {
         withAnimation(.easeInOut(duration: transitionDuration)) {
             currentSceneID = newSceneID

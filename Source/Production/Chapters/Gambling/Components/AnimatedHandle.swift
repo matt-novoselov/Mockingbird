@@ -8,13 +8,26 @@
 import SwiftUI
 
 struct AnimatedHandle: View {
+    
+    // Angle at which the handle is rotated
     @State private var rotationAngle: Double = 15
+    
+    // Value that controls if animation is currenlty being played
     @State var isAnimationInProcess: Bool = false
+    
+    // Value that controls if coin is inserted into the machine
     @Binding var isCoinInserted: Bool
+    
+    // Value that controls if coin was inserted early
     @Binding var isCoinInsertedEarly: Bool
+    
+    // Animated proprty of coin insertion
     @State var isCoinInsertedAnimated: Bool = false
     
+    // Action that happens after handle rotation
     var handleResult: () -> Void
+    
+    // Action that happens if user tries to pull lever without coin being inserted
     var handleNoCoin: () -> Void
     
     var body: some View {
@@ -30,6 +43,8 @@ struct AnimatedHandle: View {
                         .background(.blue.opacity(0.0))
                         .padding(.all, -40) // handle hitbox
                         .rotationEffect(.degrees(rotationAngle), anchor: .bottom)
+                    
+                    // Rotate handle on tap or slide
                         .gesture(
                             TapGesture()
                                 .onEnded {
@@ -60,15 +75,17 @@ struct AnimatedHandle: View {
                     }
                 }
         }
-            .onAppear {
-                Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
-                    if (isCoinInserted){
-                        idleHandleAnimation()
-                    }
+        // Give a jiggling hint every 5 seconds to indicate that the slot is empty
+        .onAppear {
+            Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
+                if (isCoinInserted){
+                    idleHandleAnimation()
                 }
             }
+        }
     }
     
+    // Handle user interaction with handle
     func performPostGestureAction(){
         if (isCoinInserted && !isAnimationInProcess){
             rotateHandleAnimation()
@@ -78,6 +95,7 @@ struct AnimatedHandle: View {
         }
     }
     
+    // Function for rotating handle animation
     func rotateHandleAnimation(){
         withAnimation(.easeInOut(duration: 1.0)){
             isCoinInsertedEarly = false
@@ -87,12 +105,15 @@ struct AnimatedHandle: View {
             return
         }
         
+        // Play sound effect
         playSound(name: "Lever_Pull", ext: "mp3")
         
         isAnimationInProcess = true
+        
         withAnimation(.easeInOut(duration: 1.2)) {
             rotationAngle = 90
         }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
             withAnimation(.easeInOut(duration: 0.4)) {
                 rotationAngle = 15
@@ -105,6 +126,7 @@ struct AnimatedHandle: View {
         }
     }
     
+    // Idle animation for handle (a little bit of jiggling)
     func idleHandleAnimation(){
         if(isAnimationInProcess){
             return
@@ -115,9 +137,11 @@ struct AnimatedHandle: View {
         }
         
         isAnimationInProcess = true
+        
         withAnimation(.easeInOut(duration: 0.3)) {
             rotationAngle = 40
         }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             withAnimation(.easeInOut(duration: 0.2)) {
                 rotationAngle = 15

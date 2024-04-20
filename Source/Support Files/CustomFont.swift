@@ -7,7 +7,10 @@
 
 import SwiftUI
 
+// Function that locates and returns font
 func getFont(size: CGFloat) -> Font {
+    
+    // Find Patrick Hand font in the Resource folder
     if let cfURL = Bundle.main.url(forResource: "PatrickHand", withExtension: "ttf") as CFURL? {
         CTFontManagerRegisterFontsForURL(cfURL, CTFontManagerScope.process, nil)
         

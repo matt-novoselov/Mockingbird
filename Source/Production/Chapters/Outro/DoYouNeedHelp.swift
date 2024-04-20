@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DoYouNeedHelp: View {
+    
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
@@ -23,6 +24,8 @@ struct DoYouNeedHelp: View {
                 Spacer()
                 
                 VStack(alignment: .leading, spacing: 0){
+                    
+                    // Block 1
                     HStack(spacing: 30){
                         Image("SF_phone")
                             .interpolation(.high)
@@ -35,6 +38,7 @@ struct DoYouNeedHelp: View {
                             .font(getFont(size: 64))
                     }
                     
+                    // Block 2
                     HStack(spacing: 30){
                         Image("SF_phone")
                             .interpolation(.high)
@@ -47,6 +51,7 @@ struct DoYouNeedHelp: View {
                             .font(getFont(size: 64))
                     }
                     
+                    // Block 3
                     HStack(spacing: 30){
                         Image("SF_globe")
                             .interpolation(.high)

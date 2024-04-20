@@ -7,43 +7,72 @@
 
 import SwiftUI
 
+
+// Animated and customized Text Blob
 struct NotificationTextBlob: View {
+    
+    // Text that goes inside of the notification
     @State var text: String = ""
+    
+    // Property that decribes if an arrow will be shown after text print is complete
     @State var showingArrow: Bool = false
+    
+    // Property that describes if tail is shown
     @State var showingTail: Bool = false
+    
+    // Custom style that depends on dark or light modes
     var darkMode: Bool = false
+    
+    // Action that should be performed after click on the arrow button
     var arrowAction: (() -> Void)?
     
+    // Typewriter shift of the slice of the text
     @State var shift: Int = 0
-    @State var customShift: Int = 1
+    
+    // Animated typewriter shift for bubble shape
+    @State var animatedShift: Int = 1
+    
+    // Bool that controls if the arrow button should be shown
     @State var stateShowButton: Bool = false
+    
+    // Animation duration for bubble move in
     let animationMoveInDuration: Double = 1.0
     
+    // Animated opacity of the text of the notification
     @State var textOpacity: Double = 1.0
     
     @EnvironmentObject var notificationManager: NotificationManager
     
     var body: some View {
         ZStack (alignment: .top){
-            Text(String(text.prefix(customShift)))
+            Text(String(text.prefix(animatedShift)))
                 .font(getFont(size: 32))
                 .foregroundColor(.clear)
                 .frame(width: 330)
                 .padding()
-                .background(
+            
+                .background{
+                    // Main background
                     BubbleShape(trailProgress: showingTail ? 1 : 0)
                         .foregroundColor(darkMode ? Color("BlobDarkBackground") : .white)
-                )
-                .overlay(
+                }
+            
+                .overlay{
+                    // Stroke
                     BubbleShape(trailProgress: showingTail ? 1 : 0)
                         .stroke(darkMode ? .white : .black, lineWidth: 3)
-                )
+                }
+            
                 .onChange(of: shift){
+                    // Update the animated shift so it's slightly faster than the typical one
                     withAnimation{
-                        customShift = shift + 12
+                        animatedShift = shift + 12
                     }
                 }
+            
+                // Reset notification to display new text
                 .onChange(of: notificationManager.currentNotificationMessage){
+                    
                     withAnimation(nil){
                         textOpacity = 0
                     }
@@ -54,15 +83,16 @@ struct NotificationTextBlob: View {
                     }
                     
                     withAnimation(.easeInOut(duration: 0.5)){
-                        customShift = 1
+                        animatedShift = 1
                     }
                     
                     shift = 1
                     showingArrow = notificationManager.arrowAction != nil
                     typeWriter()
+                    
                 }
-
             
+            // Slicing the text
             Group {
                 Text(String(text.prefix(shift)))
                     .font(getFont(size: 32))
@@ -84,6 +114,7 @@ struct NotificationTextBlob: View {
             .padding()
             .clipShape(BubbleShape(trailProgress: showingTail ? 1 : 0))
             
+            // Descibe bubble shape
             ZStack (alignment: .bottomTrailing){
                 Text(text)
                     .font(getFont(size: 32))
@@ -104,6 +135,8 @@ struct NotificationTextBlob: View {
         }
         .shadow(color: .black.opacity(darkMode ? 0 : 0.13), radius: 20)
         .onAppear(){
+            
+            // Start typewriter animation after appear
             DispatchQueue.main.asyncAfter(deadline: .now() + animationMoveInDuration - 0.25) {
                 typeWriter()
             }
@@ -111,6 +144,7 @@ struct NotificationTextBlob: View {
         .transition(.move(edge: .leading))
     }
     
+    // Function that handles typewriter animation and text slicing
     func typeWriter() {
         if shift < text.count {
             let interval: Double = notificationManager.isDebug ? 0.0005 : 0.03
@@ -126,6 +160,7 @@ struct NotificationTextBlob: View {
         }
     }
     
+    // Action that happens on the end of text print
     func handleEndOfAnimation(){
         notificationManager.isTextPrintFinished = true
         
@@ -137,8 +172,13 @@ struct NotificationTextBlob: View {
     }
 }
 
+// View for arrow button
 struct ArrowCircleButton: View {
+    
+    // Custom style for dark and light modes
     var darkMode: Bool = false
+    
+    // Action that should be performed after click on the arrow button
     var arrowAction: (() -> Void)?
     
     @EnvironmentObject var notificationManager: NotificationManager
@@ -146,6 +186,7 @@ struct ArrowCircleButton: View {
     var body: some View {
         Button(
             action: {
+                // Close notification before performing an action
                 notificationManager.closeNotification()
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + NotificationTextBlob().animationMoveInDuration) {

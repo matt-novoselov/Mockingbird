@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct DarkBackground: View {
+    
+    // Value of the dark slider
     @Binding var darkSlider: Double
     
+    // Point after each the transition to the new style happens
     var breakPoint: Double = 0.5
+    
+    // Adjust value based on the break point
     var dotsAdjustedValue: Double {
         if darkSlider <= breakPoint {
             return darkSlider / 2
@@ -22,13 +27,11 @@ struct DarkBackground: View {
     var body: some View {
         ZStack{            
             Image("dark_background")
-//                .interpolation(.high)
                 .resizable()
                 .scaledToFill()
                 .opacity(darkSlider)
             
             Image("dark_dots")
-//                .interpolation(.high)
                 .resizable()
                 .scaledToFill()
                 .opacity(dotsAdjustedValue)

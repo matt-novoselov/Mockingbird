@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Button with no transparency effect on click
 struct NoOpacityButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -17,6 +18,7 @@ struct NoOpacityButtonStyle: ButtonStyle {
     }
 }
 
+// Button that scales up on click
 struct ScaleUpButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label

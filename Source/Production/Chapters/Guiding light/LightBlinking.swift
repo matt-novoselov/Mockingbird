@@ -8,15 +8,23 @@
 import SwiftUI
 
 struct LightBlinking: View {
+    
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
+    // Property that controls if the text currenly has glowing effect
     @State private var isGlowing = false
-    @State var isAnimInProgress: Bool = true
     
+    // Property that controls if animation is currenlty being played
+    @State var isAnimationInProgress: Bool = true
+    
+    // Property that controls if hint should be shown
     @State var displayingHint: Bool = false
+    
+    // Property to prevent accidential switch to the next scene
     @State var canTransition: Bool = false
     
+    // Property that controls transition between scenes, after the transition has started
     @State var TransitionStarted: Bool = false
     
     var body: some View {
@@ -33,7 +41,8 @@ struct LightBlinking: View {
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
                     
-                    if isAnimInProgress{
+                    // Glowing text
+                    if isAnimationInProgress{
                         FontText(text: "guiding light", size: 96)
                             .multilineTextAlignment(.center)
                             .foregroundColor(isGlowing ? .yellow : .white)
@@ -49,6 +58,7 @@ struct LightBlinking: View {
                 }
             }
             
+            // Hint that appears after a while to help users havigate to the next scene
             TapToContinueHint(displayingHint: $displayingHint, darkMode: true)
                 .onAppear(){
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
@@ -60,12 +70,16 @@ struct LightBlinking: View {
                     }
                 }
         }
+        
+        // Delay blinking aniamtion before transition is complete
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                 blink()
                 canTransition = true
             }
         }
+        
+        // Transition to the next scene on tap or slide
         .gesture(
             TapGesture()
                 .onEnded {
@@ -79,8 +93,10 @@ struct LightBlinking: View {
                     }
                 )
         )
+        
     }
     
+    // Function to perform transition
     func performTransition(){
         if !canTransition{
             return
@@ -92,10 +108,11 @@ struct LightBlinking: View {
             displayingHint = false
         }
         
-        isAnimInProgress = false
+        isAnimationInProgress = false
         transitionManagerObservable.transitionToScene?(11)
     }
     
+    // Function for blinking aniamtion
     private func blink() {
         let animationIntervals: [Double] = [
             0.1, 0.1, 0.1, 0.1,   // Initial quick flickers
@@ -116,7 +133,7 @@ struct LightBlinking: View {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 + animationIntervals.reduce(0, +)) {
-            isAnimInProgress = false
+            isAnimationInProgress = false
         }
     }
 }

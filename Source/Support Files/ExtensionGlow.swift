@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Extension for glowing effect
 extension View {
     func glow(color: Color = .red, radius: CGFloat = 20) -> some View {
         self

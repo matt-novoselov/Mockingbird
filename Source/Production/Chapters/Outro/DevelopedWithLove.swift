@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct DevelopedWithLove: View {
+    
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
+    
+    // Property to handle Geometry Proxy
     @State var geomtryHolder: GeometryProxy?
     
+    // Prevent accidential transitions until certain point
     @State var canTransition: Bool = false
-    
     
     var body: some View {
         ZStack{
@@ -24,6 +27,7 @@ struct DevelopedWithLove: View {
                     .multilineTextAlignment(.center)
                     .padding()
                 
+                // Geometry Reader wrapper for the button to determine it's global position
                 GeometryReader { geometry in
                     Button(action: {
                         if let circlePosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {
@@ -37,6 +41,8 @@ struct DevelopedWithLove: View {
                             .glow(color: Color("MainYellow").opacity(0.25), radius: 30)
                     }
                     .buttonStyle(NoOpacityButtonStyle())
+                    
+                    // Assign Geometry Proxy on appear of the scene
                     .onAppear(){
                         geomtryHolder = geometry
 
@@ -45,8 +51,8 @@ struct DevelopedWithLove: View {
                                 ParticleView.spawnParticle(xpos: circlePosition.x, ypos: circlePosition.y)
                             }
                         }
-                        
                     }
+                    
                 }
                 .frame(width: 60, height: 60)
                 
@@ -55,11 +61,15 @@ struct DevelopedWithLove: View {
                     .padding()
             }
         }
+        
+        // Unlock transitions after scene transition is complete
         .onAppear(){
             DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                 canTransition = true
             }
         }
+        
+        // Swipe or tap to transition to the next scene
         .gesture(
             TapGesture()
                 .onEnded {
@@ -73,8 +83,10 @@ struct DevelopedWithLove: View {
                     }
                 )
         )
+        
     }
     
+    // Perform transition to the next scene
     func performTransition(){
         if !canTransition{
             return

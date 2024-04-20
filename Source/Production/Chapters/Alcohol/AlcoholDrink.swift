@@ -8,24 +8,38 @@
 import SwiftUI
 
 struct AlcoholDrink: View {
-    let alcoholArray: [String] = ["wine_bottle","little_glass","wine_glass"]
-    
-    var selectedStyle: Int = 0
-    
-    @Binding var countBites: Int
-    @Binding var heavenSlider: Double
-    @Binding var canInteractAfterInitOpenening: Bool
-    @State var isDrinken: Bool = false
     
     @EnvironmentObject var notificationManager: NotificationManager
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
+    // Define textures of drinks
+    let alcoholArray: [String] = ["wine_bottle","little_glass","wine_glass"]
+    
+    // Style of the texture of the drink
+    var selectedStyle: Int = 0
+    
+    // Count total amount of times the different drinks were drank
+    @Binding var countBites: Int
+    
+    // Control the value of the heaven slider
+    @Binding var heavenSlider: Double
+    
+    // Prevent accidential intercation with the scene before transition animation is done
+    @Binding var canInteractAfterInitOpenening: Bool
+    
+    // Value that describes if the drink was already drank
+    @State var isDrinken: Bool = false
+    
+    // Control the position in the space
     @State var buttonPosition: CGPoint = CGPoint(x: 0, y: 0)
     
+    // Holder for Geometry Proxy
     @State var geomtryHolder: GeometryProxy?
     
+    // Control the ID of the currenlty displayed drink
     @Binding var currentDrinkID: Int
     
+    // Control the state of the drink
     @State var currentState: Int = 1
     
     var body: some View {
@@ -47,6 +61,7 @@ struct AlcoholDrink: View {
                 ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
             }
             
+            // Play sound effects
             playSound(name: "Drink_\(selectedStyle+1)", ext: "mp3")
             playSound(name: "heaven_drink", ext: "mp3")
             

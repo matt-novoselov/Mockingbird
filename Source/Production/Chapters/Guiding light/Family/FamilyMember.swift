@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct FamilyMember: View {
+    
+    // Set style for each button
     var selectedStyle: Int = 0
-    @Binding public var showingImage: Bool
+    
+    // Property that describes if an image is being shown
+    @Binding var showingImage: Bool
     
     @State private var showingMemberImage: Bool = false
     
+    // Array of images for each family member style
     let familyArray: [String] = [
         "family_1_filled",
         "family_2_filled",
@@ -21,6 +26,7 @@ struct FamilyMember: View {
     ]
     
     var body: some View {
+        
         ZStack{
             if showingMemberImage{
                 Image(familyArray[selectedStyle])
@@ -30,10 +36,13 @@ struct FamilyMember: View {
                     .glow(color: Color("MainYellow").opacity(0.3), radius: 100)
             }
         }
+        
+        // Animation to display new overlay image
         .onChange(of: showingImage){
             withAnimation(.easeInOut(duration: 0.8)){
                 showingMemberImage = true
             }
         }
+        
     }
 }

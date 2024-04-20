@@ -7,7 +7,10 @@
 
 import AudioToolbox
 
+// Function that locates and plays sound
 func playSound(name: String, ext: String) {
+    
+    // Locate the sound in the Resources
     guard let soundURL = Bundle.main.url(forResource: name, withExtension: ext) else {
         print("[!] Error playing audio file")
         return

@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct InstagramScene: View {
+    
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
+    // Value of the dark background
     @State var darkSlider: Double = 0
+    
+    // Value of the heaven background
     @State var heavenSlider: Double = 0
     
+    // Count how many times the animation "going to heaven" was played
     @State var countVisitsToHeaven: Int = 0
+    
+    // Property that controls if animation "going to heaven" is currenlty being played
     @State var isInHeaven: Bool = false
     
     @State private var shouldChangePost: Bool = false
@@ -36,6 +43,7 @@ struct InstagramScene: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                         
+                        // Main interactable part of the Scene
                         InstagramViewController(action: handleOnReaction, shouldChangePost: $shouldChangePost)
                             .environmentObject(transitionManagerObservable)
                             .mask(
@@ -54,6 +62,7 @@ struct InstagramScene: View {
                             .allowsHitTesting(false)
                         
                         VStack{
+                            // Easter egg with dynamic island
                             Button(action: {}){
                                 Image("dynamic_island")
                                     .interpolation(.high)
@@ -72,12 +81,17 @@ struct InstagramScene: View {
         }
     }
     
+    // Function that is being call after user posts a reaction
     func handleOnReaction(){
+        
         if countVisitsToHeaven>2{
             return
         }
         
+        // Adjust values for each "going to heaven" animations
+        // For example first of all, the heaven background will go to 0.25, at the same time at the peak of the animation, the value of the dark background will be changed to a new one
         let heavenValues: [(Double, Double)] = [
+            // Heaven value, Dark value
             (0.25, 0.05),
             (0.25, 0.1),
             (0.25, 0.15),
@@ -87,9 +101,13 @@ struct InstagramScene: View {
         goToHeaven(heavenSliderGoal: tuple.0, darkSliderAfterwards: tuple.1)
     }
     
+    // Function that plays "going to heaven" animation
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
+        
         countVisitsToHeaven+=1
         isInHeaven = true
+        
+        // Adjust animation duration
         let animationDuration = 1.0
         
         withAnimation(.easeInOut(duration: animationDuration)) {
@@ -124,7 +142,6 @@ struct InstagramScene: View {
                     }
                     
                     // transition to next post
-                    // P.S. this is a very weird way of calling a function
                     withAnimation(nil){
                         shouldChangePost.toggle()
                     }

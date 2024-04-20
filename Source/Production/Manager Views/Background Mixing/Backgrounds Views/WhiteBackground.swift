@@ -11,7 +11,6 @@ struct WhiteBackground: View {
     var body: some View {
         ZStack{
             Image("white_background")
-//                .interpolation(.high)
                 .resizable()
                 .scaledToFill()
         }

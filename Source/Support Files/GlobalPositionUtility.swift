@@ -7,9 +7,10 @@
 
 import SwiftUI
 
+// Function that translates form local coordinates to the global space
 struct GlobalPositionUtility {
     static func getGlobalPosition(view: GeometryProxy) -> CGPoint? {
-        let circleRect = view.frame(in: .global)
-        return CGPoint(x: circleRect.midX, y: circleRect.midY)
+        let viewFrame = view.frame(in: .global)
+        return CGPoint(x: viewFrame.midX, y: viewFrame.midY)
     }
 }

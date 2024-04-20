@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct InstagramViewController: View {
+    
     @EnvironmentObject var notificationManager: NotificationManager
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     
+    // ID of the current Instagram post displayed in the scene
     @State var currentPostID: Int = 0
-    var posts:InstagramPostViewModel = InstagramPostViewModel()
     
+    // Load all posts from the View Model
+    var posts: InstagramPostViewModel = InstagramPostViewModel()
+    
+    // Variable that handles action that should happen after posting the reaction (transition to the scene or call notification)
     var action: () -> Void
     
     @Binding var shouldChangePost: Bool
@@ -21,6 +26,7 @@ struct InstagramViewController: View {
     var body: some View {
         VStack{
             Group{
+                // Display according post based on the post ID
                 switch currentPostID {
                 case 0:
                     let selectedPost = posts.posts[0]
@@ -47,6 +53,7 @@ struct InstagramViewController: View {
         }
     }
     
+    // Function to transition to the next Instagram post
     func transitionToNextPost() {
         withAnimation(.easeInOut(duration: 1)) {
             if currentPostID<posts.posts.count-1{

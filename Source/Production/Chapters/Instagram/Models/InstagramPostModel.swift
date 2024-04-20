@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Instagram Post Model
 struct InstagramPost: Identifiable {
     var id = UUID()
     var username: String

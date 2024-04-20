@@ -8,18 +8,29 @@
 import SwiftUI
 
 struct DrugsScene: View {
+    
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
+    // Property that controls value of dark background
     @State var darkSlider: Double = 0.4
+    
+    // Property that controls value of heaven background
     @State var heavenSlider: Double = 0
     
+    // Control if drug box was shaken
     @State var isShaken: Bool = false
-    @State var showPill: Bool = false
     
+    // Value that controls if pill is being shown
+    @State var showingPill: Bool = false
+    
+    // Count an amount of eaten pills
     @State var countPills: Int = 0
+    
+    // Count an amount of box shakes
     @State var countShakes: Int = 0
     
+    // Shwoing hint to help users understand the action
     @State var showingHint: Bool = false
     
     var body: some View {
@@ -29,8 +40,8 @@ struct DrugsScene: View {
             VStack{
                 Spacer()
                 
-                if showPill{
-                    DrugsPill(goToHeaven: goToHeaven, showPill: $showPill, count: $countPills)
+                if showingPill{
+                    DrugsPill(goToHeaven: goToHeaven, showPill: $showingPill, count: $countPills)
                         .padding(.bottom, 100)
                 }
             }
@@ -41,9 +52,11 @@ struct DrugsScene: View {
                     .aspectRatio(contentMode: .fit)
                     .allowsTightening(false)
                     .opacity(showingHint ? 0.2 : 0)
+                
+                    // Display hint
                     .onAppear(){
                         DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration + 0.25) {
-                            if !showPill{
+                            if !showingPill{
                                 withAnimation(.easeInOut(duration: 1.0)){
                                     showingHint = true
                                 }
@@ -58,12 +71,14 @@ struct DrugsScene: View {
                         }
                     }
                 
+                // Drug box interactable view
                 DraggableShakableView(handleShake: handleShake)
             }
 
         }
     }
     
+    // Acrion that happens after box was shaken
     func handleShake() {
         if isShaken{
             return
@@ -84,7 +99,7 @@ struct DrugsScene: View {
         if countPills<2{
             countPills += 1
             withAnimation{
-                showPill = true
+                showingPill = true
             }
         }
         else{
@@ -94,11 +109,16 @@ struct DrugsScene: View {
         }
     }
     
+    // Animation for going to heaven
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
+        
+        // Adjust animation duration
         let animationDuration = 3.0
         
+        // Play sound effect
         playSound(name: "heaven_drugs", ext: "mp3")
         
+        // Close notifiaction
         notificationManager.closeNotification()
         
         withAnimation(.easeInOut(duration: animationDuration)) {

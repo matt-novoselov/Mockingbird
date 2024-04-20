@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct AlcoholScene: View {
+    
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
-    @State var countBites: Int = 0
+    // Count total amount of times the different drinks were drank
+    @State var countDrinks: Int = 0
+    
+    // Property that controls value of heaven background
     @State var heavenSlider: Double = 0
     
+    // Control the ID of the currenlty displayed drink
     @State var currentDrinkID: Int = 0
     
+    // Prevent accidential intercation with the scene before transition animation is done
     @State var canInteractAfterInitOpenening: Bool = false
     
     var body: some View {
@@ -24,16 +30,17 @@ struct AlcoholScene: View {
             
             VStack{
                 Group{
+                    // Display drink according to its ID
                     switch currentDrinkID {
                     case 0:
-                        AlcoholDrink(selectedStyle: 2, countBites: $countBites, heavenSlider: $heavenSlider, canInteractAfterInitOpenening: $canInteractAfterInitOpenening, currentDrinkID: $currentDrinkID)
+                        AlcoholDrink(selectedStyle: 2, countBites: $countDrinks, heavenSlider: $heavenSlider, canInteractAfterInitOpenening: $canInteractAfterInitOpenening, currentDrinkID: $currentDrinkID)
                     case 1:
-                        AlcoholDrink(selectedStyle: 1, countBites: $countBites, heavenSlider: $heavenSlider, canInteractAfterInitOpenening: $canInteractAfterInitOpenening, currentDrinkID: $currentDrinkID)
+                        AlcoholDrink(selectedStyle: 1, countBites: $countDrinks, heavenSlider: $heavenSlider, canInteractAfterInitOpenening: $canInteractAfterInitOpenening, currentDrinkID: $currentDrinkID)
                     case 2:
-                        AlcoholDrink(selectedStyle: 0, countBites: $countBites, heavenSlider: $heavenSlider, canInteractAfterInitOpenening: $canInteractAfterInitOpenening, currentDrinkID: $currentDrinkID)
+                        AlcoholDrink(selectedStyle: 0, countBites: $countDrinks, heavenSlider: $heavenSlider, canInteractAfterInitOpenening: $canInteractAfterInitOpenening, currentDrinkID: $currentDrinkID)
                             
                     default:
-                        Text("Error, this sceneID doesn't exist")
+                        Text("Error, this drink ID doesn't exist")
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -42,6 +49,8 @@ struct AlcoholScene: View {
             }
             .environmentObject(notificationManager)
             .environmentObject(transitionManagerObservable)
+            
+            // Prevent accidential intercation with the scene before transition animation is done
             .onAppear(){
                 DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                     notificationManager.callNotification(ID: 3)

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Instagram Post Vew Model
 class InstagramPostViewModel{
     var posts:[InstagramPost] = [
         InstagramPost(username: "@skateboy2004", postedTimeAgo: "1h ago", image: "insta_skateboard"),

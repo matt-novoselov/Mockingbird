@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct HeavenBackground: View {
+    
+    // Value of the heaven slider
     @Binding var heavenSlider: Double
+    
+    // Value of the dark slider
     @Binding var darkSlider: Double
     
+    // Point after each the transition to the new style happens
     var breakPoint: Double = 0.5
+    
+    // Adjust value based on the break point
     var dotsAdjustedValue: Double {
         if heavenSlider <= breakPoint {
             return heavenSlider / 2
@@ -23,14 +30,12 @@ struct HeavenBackground: View {
     var body: some View {
         ZStack{
             Image("heaven_background")
-//                .interpolation(.high)
                 .resizable()
                 .scaledToFill()
                 .opacity(heavenSlider)
         
             if darkSlider>0.65{
                 Image("dark_dots")
-//                    .interpolation(.high)
                     .resizable()
                     .scaledToFill()
                     .opacity(dotsAdjustedValue / 1.5)

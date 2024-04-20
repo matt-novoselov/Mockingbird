@@ -7,19 +7,20 @@
 
 import SwiftUI
 
-struct LayersManager<InitialView: View>: View {
-    let initialView: InitialView
-
-    init(initialView: InitialView) {
-        self.initialView = initialView
-    }
+// This is a View responsible for mixing different layers in the game
+struct LayersManager: View {
+    
+    // Base ground View
+    let initialView: any View
 
     var body: some View {
         ZStack {
-            initialView
+            AnyView(initialView)
             
+            // Particles Layer
             SwiftuiParticles()
             
+            // Notifications Layer
             NotificationManagerView()
         }
         .environmentObject(NotificationManager())

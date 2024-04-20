@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Structure for Text with custom font
 struct FontText: View {
     @State private var font: Font?
     var text: String

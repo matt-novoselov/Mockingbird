@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+// View that is responsible for combining different background layers
 struct LayerMixingManager: View {
+    
     @Binding var darkSlider: Double
     @Binding var heavenSlider: Double
     

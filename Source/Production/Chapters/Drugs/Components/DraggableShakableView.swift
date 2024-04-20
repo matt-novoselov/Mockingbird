@@ -8,35 +8,45 @@
 import SwiftUI
 
 struct DraggableShakableView: View {
-    @State private var circlePosition: CGPoint?
+    
+    // Control the position of the box at the scene
+    @State private var boxPosition: CGPoint?
+    
+    // Value that controls if the box is currenlty being held
     @State var viewIsHeld: Bool = false
     
-    @State private var opacity: Double = 0.25
+    // Opacity of the glowing effect
+    @State private var glowingOpacity: Double = 0.25
     
+    // Action that happens after the box was shaken
     var handleShake: () -> Void
     
     var body: some View {
-        let circleSize: CGFloat = 400
-        let initialLocation = CGPoint(x: circleSize / 2, y: circleSize / 2)
+        
+        // Adjust the size if the collider
+        let boxSize: CGFloat = 400
+        let initialLocation = CGPoint(x: boxSize / 2, y: boxSize / 2)
         
         Image("pills_box")
             .interpolation(.high)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .rotationEffect(Angle(degrees: viewIsHeld ? 65 : 0))
-            .position(circlePosition ?? initialLocation)
-            .frame(width: circleSize, height: circleSize)
+            .position(boxPosition ?? initialLocation)
+            .frame(width: boxSize, height: boxSize)
             .foregroundColor(.red)
-            .glow(color: Color("MainYellow").opacity(opacity), radius: 100)
+            .glow(color: Color("MainYellow").opacity(glowingOpacity), radius: 100)
             .onAppear {
                 withAnimation(Animation.easeInOut(duration: 2.0).repeatForever()) {
-                    self.opacity = 0.15
+                    self.glowingOpacity = 0.15
                 }
             }
+        
+            // Drag gesture that returns box to the initial position on release
             .gesture(
                 DragGesture()
                     .onChanged { value in
-                        circlePosition = value.location
+                        boxPosition = value.location
                         
                         CheckShake(value: value)
                         
@@ -46,7 +56,7 @@ struct DraggableShakableView: View {
                     }
                     .onEnded { _ in
                         withAnimation {
-                            circlePosition = initialLocation
+                            boxPosition = initialLocation
                         }
                         
                         withAnimation(.easeOut(duration: 0.5)){
@@ -56,6 +66,7 @@ struct DraggableShakableView: View {
             )
     }
     
+    // Function that checks shaking force and performs an action
     func CheckShake(value: DragGesture.Value){
         let velocityForce: CGFloat = 1500
         

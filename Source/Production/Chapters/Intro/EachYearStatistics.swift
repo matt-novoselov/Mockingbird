@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct EachYearStatistics: View {
+    
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
+    // Property that controls if hint should be shown
     @State var displayingHint: Bool = false
+    
+    // Property to prevent accidential switch to the next scene
     @State var canTransition: Bool = false
+    
+    // Property that controls transition between scenes, after the transition has started
     @State var TransitionStarted: Bool = false
     
     var body: some View {
@@ -23,6 +29,7 @@ struct EachYearStatistics: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 150)
             
+            // Hint that appears after a while to help users havigate to the next scene
             TapToContinueHint(displayingHint: $displayingHint)
                 .onAppear(){
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
@@ -34,11 +41,15 @@ struct EachYearStatistics: View {
                     }
                 }
         }
+        
+        // Prevent accidential transitions to the next scene
         .onAppear(){
             DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                 canTransition = true
             }
         }
+        
+        // Transition to the next scene on tap or slide
         .gesture(
             TapGesture()
                 .onEnded {
@@ -54,6 +65,7 @@ struct EachYearStatistics: View {
         )
     }
     
+    // Function to perform transition
     func performTransition(){
         if !canTransition{
             return

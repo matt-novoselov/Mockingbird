@@ -8,46 +8,65 @@
 import SwiftUI
 
 struct GamblingScene: View {
+    
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
+    // Property that controls value of the dark background
     @State public var darkSlider: Double = 0.15
+    
+    // Property that controls value of the heaven background
     @State var heavenSlider: Double = 0
     
+    // Property that controls if there is currently a coin inserted in to the machine
     @State var isCoinInsertedInMachine: Bool = false
     
+    // Count how many times heaven animation was played
     @State var countVisitsToHeaven: Int = 0
     
+    // Property that controls if heaven animation is currenlty being played
     @State var isInHeaven: Bool = false
     
-    var amountOfCoinsOnStart: Int = 2
+    // Adjust amount of coins on start
+    let amountOfCoinsOnStart: Int = 2
     
+    // Animated property that hides coins on the start
     @State var showingCoins: Bool = false
     
+    // Property that controls if transition to the scene is currently in progress
     @State var hasStartedSwitchingToScene: Bool = false
     
-    @State var changeBool: Bool = false
+    // Property that performs slots rotation
+    @State var rotateSlots: Bool = false
     
+    // Property that controls if arrow hint should be shown
     @State var shouldShowArrowAgain: Bool = true
     
+    // Property that controls if gambling winning lights are shown
     @State var lightsBlinking: Bool = true
     
+    // Property that controls if gambling winning lights are shown
     @State var showingBlinkingLights: Bool = false
     
-    @State var firstMessageWasDisplayed: Bool = false
-    
+    // Property for holding Geometry Proxy
     @State var geomtryHolder: GeometryProxy?
     
+    // Showing coins prize in the machine
     @State var showingReward: Bool = false
     
+    // Property that controls if coin was inserted before hint was displayed
     @State var isCoinInsertedEarly: Bool = false
     
-    @State var shouldAnimate: Bool = true
+    // Property that controls if hand animation should be played
+    @State var shouldAnimateHandHint: Bool = true
     
+    // Property that controls if hand animation should be shown
     @State var showingHandHint: Bool = false
     
     var body: some View {
         ZStack{
+            
+            // Adjust Geometry Proxy
             GeometryReader { geometry in
                 Color.clear
                     .onAppear {
@@ -58,6 +77,7 @@ struct GamblingScene: View {
             LayerMixingManager(darkSlider: $darkSlider, heavenSlider: $heavenSlider)
             
             ZStack{
+                // Arrow hint
                 Image("gambling_hint")
                     .interpolation(.high)
                     .resizable()
@@ -65,16 +85,18 @@ struct GamblingScene: View {
                     .shadow(color: .black.opacity(0.4), radius: 25)
                     .opacity(isCoinInsertedEarly ? 1 : 0)
                 
+                // Handle of the gambling machine
                 AnimatedHandle(isCoinInserted: $isCoinInsertedInMachine, isCoinInsertedEarly: $isCoinInsertedEarly, handleResult: handleResult, handleNoCoin: {})
                     .frame(height: 100)
                     .offset(x: 160, y: -45)
                 
+                // Base of the gambling machine
                 Image("gambling_base")
                     .interpolation(.high)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .overlay(
-                        SlotsRotation(changeBool: $changeBool)
+                        SlotsRotation(rotateSlotsState: $rotateSlots)
                             .offset(y: 10)
                             .frame(width: 170)
                             .mask(
@@ -91,7 +113,7 @@ struct GamblingScene: View {
                     }
                     .allowsHitTesting(false)
                 
-                
+                // Shoing blinking light animation on win
                 ZStack{
                     if showingBlinkingLights{
                         ZStack{
@@ -141,6 +163,7 @@ struct GamblingScene: View {
                 HStack {
                     Spacer()
                     
+                    // Spawn drag and drop coins
                     if showingCoins{
                         VStack {
                             ForEach(0..<amountOfCoinsOnStart, id: \.self) { index in
@@ -167,11 +190,13 @@ struct GamblingScene: View {
                         }
                         
                         withAnimation(Animation.easeInOut(duration: 3.0).repeatForever()) {
-                            shouldAnimate.toggle()
+                            shouldAnimateHandHint.toggle()
                         }
                     }
                 }
             }
+            
+            // Call notififcation after transition is complete
             .onAppear(){
                 DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                     notificationManager.callNotification(ID: 10)
@@ -187,10 +212,10 @@ struct GamblingScene: View {
                     .allowsHitTesting(false)
                     .shadow(color: .black.opacity(0.25), radius: 25)
                     .frame(width: imageSize, height: imageSize)
-                    .rotationEffect(Angle(degrees: shouldAnimate ? -15 : 0))
+                    .rotationEffect(Angle(degrees: shouldAnimateHandHint ? -15 : 0))
                     .offset(
-                        x: shouldAnimate ? (proxy.size.width/1.3) : (proxy.size.width - imageSize),
-                        y: shouldAnimate ?  (proxy.size.height/5) : (0)
+                        x: shouldAnimateHandHint ? (proxy.size.width/1.3) : (proxy.size.width - imageSize),
+                        y: shouldAnimateHandHint ?  (proxy.size.height/5) : (0)
                     )
                     .opacity(showingCoins ? 1 : 0)
                     .opacity(shouldShowArrowAgain ? 1 : 0)
@@ -201,8 +226,10 @@ struct GamblingScene: View {
         }
     }
     
+    // Function that is being performed after coin was inserted
     func insertCoin() {
         if !isCoinInsertedInMachine{
+            // Play sound effect
             playSound(name: "Insert_Coin", ext: "mp3")
             
             withAnimation(.easeInOut) {
@@ -221,12 +248,17 @@ struct GamblingScene: View {
                 showingBlinkingLights = false
             }
             
+            // Close notification
             notificationManager.closeNotification()
         }
     }
     
+    // Handle results of the gambling slots rotation
     func handleResult(){
+        // Adjust values for each "going to heaven" animations
+        // For example first of all, the heaven background will go to 0.25, at the same time at the peak of the animation, the value of the dark background will be changed to a new one
         let heavenValues: [(Double, Double)] = [
+            // Heaven value, Dark value
             (0.85, 0.4),
             (0.85, 0.5),
         ]
@@ -234,9 +266,9 @@ struct GamblingScene: View {
         if countVisitsToHeaven<1{
             // case win
             isInHeaven = true
-            changeBool.toggle()
+            rotateSlots.toggle()
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + SlotsRotation(changeBool: .constant(false)).animationDuration) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + SlotsRotation(rotateSlotsState: .constant(false)).animationDuration) {
                 
                 if let geomtryHolder = geomtryHolder {
                     if let centerOfTheScreen = GlobalPositionUtility.getGlobalPosition(view: geomtryHolder) {
@@ -257,9 +289,9 @@ struct GamblingScene: View {
         else{
             // case loose
             
-            changeBool.toggle()
+            rotateSlots.toggle()
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + SlotsRotation(changeBool: .constant(false)).animationDuration) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + SlotsRotation(rotateSlotsState: .constant(false)).animationDuration) {
                 
                 withAnimation(.easeInOut(duration: 0.25)){
                     showingReward = false
@@ -272,9 +304,11 @@ struct GamblingScene: View {
         }
     }
     
+    // Function that controls animation of going to heaven
     func goToHeaven(heavenSliderGoal: Double?, darkSliderAfterwards: Double?){
         let animationDuration = 2.5
         
+        // Play sound effects
         playSound(name: "heaven_gambling", ext: "mp3")
         
         withAnimation(.easeInOut(duration: animationDuration)) {

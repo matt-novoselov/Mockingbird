@@ -7,15 +7,22 @@
 
 import SwiftUI
 
-struct Cookie: View {    
+struct Cookie: View {
+    
+    // Control the style (texture variant) of the cookie
     var selectedStyle: Int = 0
     
+    // Count total amount of times the cookie was bitten
     @Binding var countBites: Int
+    
+    // Control the value of heaven background
     @Binding var heavenSlider: Double
     
+    // Size of the cookie for on click animation
     @State var scaleCookie: Double = 1
-    @State var countLocalBites: Int = 0
     
+    // Count amount of times the current cookie was bitten
+    @State var countLocalBites: Int = 0
     
     @EnvironmentObject var notificationManager: NotificationManager
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
@@ -31,6 +38,7 @@ struct Cookie: View {
             .scaleEffect(scaleCookie)
     }
     
+    // Action that happens after the cookie was bitten
     func performAction(location: CGPoint){
         if countBites>=3{
             return
@@ -40,19 +48,25 @@ struct Cookie: View {
             return
         }
         
+        // Play particles animation
         ParticleView.spawnParticle(xpos: location.x, ypos: location.y)
         
+        // Play sound effect
         playSound(name: "Cookie_\(countBites+1)", ext: "mp3")
         
+        // Create scale up animation
         withAnimation(.easeInOut(duration: 0.25)){
             scaleCookie = 0.95
         }
+        
+        // Create scale down animation
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25){
             withAnimation(.easeInOut(duration: 0.25)){
                 scaleCookie = 1
             }
         }
         
+        // Call according notification
         if countBites != 2{
             notificationManager.callNotification(
                 ID: countBites
@@ -70,8 +84,10 @@ struct Cookie: View {
         countLocalBites+=1
         countBites+=1
         
+        // Adjust heaven animation duration
         let animationDuration = 2.0
         
+        // Play heaven animation
         withAnimation(.easeInOut(duration: animationDuration)) {
             heavenSlider = 0.25
         }

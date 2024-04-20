@@ -8,23 +8,36 @@
 import SwiftUI
 
 struct DraggableCoin: View {
+    
     @EnvironmentObject var notificationManager: NotificationManager
     
-    @State var circlePosition: CGPoint?
+    // Position od the coin in the space
+    @State var coinPosition: CGPoint?
+    
+    // Property that controls is the coin has collided with the collder
     @State var hasCollided: Bool = false
     
+    // Prooperty that controls if the coin was inserted to the gambling machine
     @Binding var isCoinInsertedInMachine: Bool
+    
+    // Property that controls if heaven aimation is currenlty being played
     @Binding var isInHeaven: Bool
     
+    // Action that happens after coin was inserted
     var insertCoin: () -> Void
     
+    // Property that controls is the coin has reached the collder
     @State var hasReachedCollider: Bool = false
     
+    // Holder for Geometry Proxy to determine coin size and position
     @Binding var geomtryHolder: GeometryProxy?
     
+    // Selected style for coin's texture
     var selectedStyle: Int = 0
     
     var body: some View {
+        
+        // Adjust coin size
         let circleSize: CGFloat = 100
         let initialLocation = CGPoint(x: circleSize / 2, y: circleSize / 2)
         
@@ -34,8 +47,10 @@ struct DraggableCoin: View {
                     .interpolation(.high)
                     .resizable()
                     .scaleEffect(hasReachedCollider ? 0 : 1)
-                    .position(circlePosition ?? initialLocation)
+                    .position(coinPosition ?? initialLocation)
                     .foregroundColor(.red)
+                
+                    // Gesture to drag coin around the scene that return to initial position on release
                     .gesture(
                         DragGesture()
                             .onChanged { value in
@@ -43,7 +58,7 @@ struct DraggableCoin: View {
                                     return
                                 }
                                 
-                                circlePosition = value.location
+                                coinPosition = value.location
                                 
                                 let globalX: Double = geometry.frame(in: .global).origin.x + value.location.x - circleSize/2
                                 let globalY: Double = geometry.frame(in: .global).origin.y + value.location.y - circleSize/2
@@ -59,7 +74,7 @@ struct DraggableCoin: View {
                             .onEnded { _ in
                                 if !hasReachedCollider{
                                     withAnimation {
-                                        circlePosition = initialLocation
+                                        coinPosition = initialLocation
                                     }
                                 }
                             }
@@ -69,6 +84,7 @@ struct DraggableCoin: View {
         }
     }
     
+    // Function that checks if the coin collides with collider
     func checkCollision(coinCollider: CGRect, centerOfScreen: CGPoint) {
         if isInHeaven{
             return
@@ -89,6 +105,7 @@ struct DraggableCoin: View {
         withAnimation(.easeInOut(duration: 0.25)) {
             hasReachedCollider = true
         }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             withAnimation{
                 hasCollided = true
