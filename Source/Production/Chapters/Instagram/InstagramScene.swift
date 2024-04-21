@@ -21,7 +21,7 @@ struct InstagramScene: View {
     // Count how many times the animation "going to heaven" was played
     @State var countVisitsToHeaven: Int = 0
     
-    // Property that controls if animation "going to heaven" is currenlty being played
+    // Property that controls if animation "going to heaven" is currently being played
     @State var isInHeaven: Bool = false
     
     @State private var shouldChangePost: Bool = false

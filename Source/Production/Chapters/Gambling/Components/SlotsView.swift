@@ -12,7 +12,7 @@ struct SlotsRotation: View {
     // Slots image offset on Y axis
     @State private var offsetY: CGFloat = 0
     
-    // Autommatically determine slots texture size
+    // Automatically determine slots texture size
     @State var imageSize: CGSize = CGSize(width: 0, height: 0)
     
     // Variable to rotate slots between 2 positions (rotated and idle)

@@ -19,7 +19,7 @@ struct CookieScene: View {
     @State var countBites: Int = 0
     
     // Holder for Geometry Proxy
-    @State var geomtryHolder: CGSize = CGSize(width: 0, height: 0)
+    @State var geometryHolder: CGSize = CGSize(width: 0, height: 0)
     
     var body: some View {
         ZStack {
@@ -33,7 +33,7 @@ struct CookieScene: View {
                             GeometryReader{ geometry in
                                 Color.clear
                                     .onAppear(){
-                                        geomtryHolder = geometry.size
+                                        geometryHolder = geometry.size
                                     }
                             }
                         )
@@ -42,7 +42,7 @@ struct CookieScene: View {
                 }
                 
                 Cookie(selectedStyle: 3, countBites: $countBites, heavenSlider: $heavenSlider)
-                    .frame(maxHeight: geomtryHolder.height)
+                    .frame(maxHeight: geometryHolder.height)
                 
             }
             .environmentObject(notificationManager)

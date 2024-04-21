@@ -30,7 +30,7 @@ struct DrugsScene: View {
     // Count an amount of box shakes
     @State var countShakes: Int = 0
     
-    // Shwoing hint to help users understand the action
+    // Showing hint to help users understand the action
     @State var showingHint: Bool = false
     
     var body: some View {
@@ -71,14 +71,14 @@ struct DrugsScene: View {
                         }
                     }
                 
-                // Drug box interactable view
+                // Drug box intractable view
                 DraggableShakableView(handleShake: handleShake)
             }
 
         }
     }
     
-    // Acrion that happens after box was shaken
+    // Action that happens after box was shaken
     func handleShake() {
         if isShaken{
             return
@@ -118,7 +118,7 @@ struct DrugsScene: View {
         // Play sound effect
         playSound(name: "heaven_drugs", ext: "mp3")
         
-        // Close notifiaction
+        // Close notification
         notificationManager.closeNotification()
         
         withAnimation(.easeInOut(duration: animationDuration)) {

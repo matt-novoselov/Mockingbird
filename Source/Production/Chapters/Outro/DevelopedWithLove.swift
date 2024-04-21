@@ -13,9 +13,9 @@ struct DevelopedWithLove: View {
     @EnvironmentObject var notificationManager: NotificationManager
     
     // Property to handle Geometry Proxy
-    @State var geomtryHolder: GeometryProxy?
+    @State var geometryHolder: GeometryProxy?
     
-    // Prevent accidential transitions until certain point
+    // Prevent accidental transitions until certain point
     @State var canTransition: Bool = false
     
     var body: some View {
@@ -44,7 +44,7 @@ struct DevelopedWithLove: View {
                     
                     // Assign Geometry Proxy on appear of the scene
                     .onAppear(){
-                        geomtryHolder = geometry
+                        geometryHolder = geometry
 
                         DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                             if let circlePosition = GlobalPositionUtility.getGlobalPosition(view: geometry) {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-// iew responsible for managing notifications
+// View responsible for managing notifications
 struct NotificationManagerView: View {
     
     @EnvironmentObject var notificationManager: NotificationManager

@@ -13,7 +13,7 @@ struct TapToContinueHint: View {
     // Current opacity of the text
     @State private var opacity: Double = 0.4
     
-    // Bool that controls if the Hint is currenlty displayed or not
+    // Bool that controls if the Hint is currently displayed or not
     @Binding var displayingHint: Bool
     
     // Apply different style for dark and light modes

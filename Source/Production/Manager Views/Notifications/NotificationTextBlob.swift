@@ -14,7 +14,7 @@ struct NotificationTextBlob: View {
     // Text that goes inside of the notification
     @State var text: String = ""
     
-    // Property that decribes if an arrow will be shown after text print is complete
+    // Property that describes if an arrow will be shown after text print is complete
     @State var showingArrow: Bool = false
     
     // Property that describes if tail is shown

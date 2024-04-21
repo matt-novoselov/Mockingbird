@@ -19,10 +19,10 @@ struct InstagramIconButton: View {
     // Action that should be performed after clicking the symbol
     var action: () -> Void
     
-    // Property that ensures singletone performance of the button
+    // Property that ensures singletons performance of the button
     @State var isButtonPressed: Bool = false
     
-    // Property that controls if 1 of 3 buttons were already clciked
+    // Property that controls if 1 of 3 buttons were already clicked
     @Binding var isOneOfButtonsPressed: Bool
     
     // Get current post ID under which the reactions are being displayed

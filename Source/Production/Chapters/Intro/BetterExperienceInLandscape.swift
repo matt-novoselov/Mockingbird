@@ -33,7 +33,7 @@ struct BetterExperienceInLandscape: View {
                         .padding(.horizontal, 100)
                 }
                 
-                // Hint that appears after a while to help users havigate to the next scene
+                // Hint that appears after a while to help users navigate to the next scene
                 TapToContinueHint(displayingHint: $displayingHint)
             }
             

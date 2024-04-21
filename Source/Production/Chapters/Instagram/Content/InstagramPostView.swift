@@ -13,7 +13,7 @@ struct InstagramPostView: View {
     var image: String
     var action: () -> Void
     @Binding var currentPostID: Int 
-    @State var isOneofbuttonsPressed: Bool = false
+    @State var isOneOfTheButtonsPressed: Bool = false
     
     @EnvironmentObject var notificationManager: NotificationManager
     
@@ -37,15 +37,15 @@ struct InstagramPostView: View {
                 .padding(.vertical)
             
             HStack{
-                InstagramIconButton(symbol: "SF_chat", filledSymbol: "SF_chat_filled", action: {action()}, isOneOfButtonsPressed: $isOneofbuttonsPressed, currentPostID: $currentPostID)
+                InstagramIconButton(symbol: "SF_chat", filledSymbol: "SF_chat_filled", action: {action()}, isOneOfButtonsPressed: $isOneOfTheButtonsPressed, currentPostID: $currentPostID)
                 
                 Spacer()
                 
-                InstagramIconButton(symbol: "SF_like", filledSymbol: "SF_like_filled", action: {action()}, isOneOfButtonsPressed: $isOneofbuttonsPressed, currentPostID: $currentPostID)
+                InstagramIconButton(symbol: "SF_like", filledSymbol: "SF_like_filled", action: {action()}, isOneOfButtonsPressed: $isOneOfTheButtonsPressed, currentPostID: $currentPostID)
                 
                 Spacer()
                 
-                InstagramIconButton(symbol: "SF_forward", filledSymbol: "SF_forward_filled", action: {action()}, isOneOfButtonsPressed: $isOneofbuttonsPressed, currentPostID: $currentPostID)
+                InstagramIconButton(symbol: "SF_forward", filledSymbol: "SF_forward_filled", action: {action()}, isOneOfButtonsPressed: $isOneOfTheButtonsPressed, currentPostID: $currentPostID)
             }
             .environmentObject(notificationManager)
         }

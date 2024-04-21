@@ -24,19 +24,19 @@ struct AlcoholDrink: View {
     // Control the value of the heaven slider
     @Binding var heavenSlider: Double
     
-    // Prevent accidential intercation with the scene before transition animation is done
-    @Binding var canInteractAfterInitOpenening: Bool
+    // Prevent accidental interaction with the scene before transition animation is done
+    @Binding var canInteractAfterInitialOpening: Bool
     
     // Value that describes if the drink was already drank
-    @State var isDrinken: Bool = false
+    @State var isDrank: Bool = false
     
     // Control the position in the space
     @State var buttonPosition: CGPoint = CGPoint(x: 0, y: 0)
     
     // Holder for Geometry Proxy
-    @State var geomtryHolder: GeometryProxy?
+    @State var geometryHolder: GeometryProxy?
     
-    // Control the ID of the currenlty displayed drink
+    // Control the ID of the currently displayed drink
     @Binding var currentDrinkID: Int
     
     // Control the state of the drink
@@ -44,7 +44,7 @@ struct AlcoholDrink: View {
     
     var body: some View {
         Button(action: {
-            if !canInteractAfterInitOpenening{
+            if !canInteractAfterInitialOpening{
                 return
             }
             
@@ -52,11 +52,11 @@ struct AlcoholDrink: View {
                 return
             }
             
-            if isDrinken{
+            if isDrank{
                 return
             }
             
-            if let geometryHolder = geomtryHolder,
+            if let geometryHolder = geometryHolder,
                let buttonPosition = GlobalPositionUtility.getGlobalPosition(view: geometryHolder) {
                 ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
             }
@@ -65,7 +65,7 @@ struct AlcoholDrink: View {
             playSound(name: "Drink_\(selectedStyle+1)", ext: "mp3")
             playSound(name: "heaven_drink", ext: "mp3")
             
-            isDrinken = true
+            isDrank = true
             
             withAnimation(.easeInOut) {
                 currentState = 0
@@ -113,7 +113,7 @@ struct AlcoholDrink: View {
                 }
                 
                 ZStack{
-                    if !isDrinken{
+                    if !isDrank{
                         Image("\(alcoholArray[selectedStyle])_liquid_full")
                             .interpolation(.high)
                             .resizable()
@@ -136,7 +136,7 @@ struct AlcoholDrink: View {
                         GeometryReader{ geometry in
                             Color.clear
                                 .onAppear(){
-                                    geomtryHolder = geometry
+                                    geometryHolder = geometry
                                 }
                         }
                     )

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MemeberButton: View {
+struct MemberButton: View {
     
     // Property that describes if an image is being shown
     @Binding var showingImage: Bool

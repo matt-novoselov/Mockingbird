@@ -21,7 +21,7 @@ struct CycleAnimated: View {
     // Opacity of the diagram text 2
     @State var textOpacity2: Double = 0
     
-    // Height of the frame to display text in based on height of geomtryHolder
+    // Height of the frame to display text in based on height of geometryHolder
     @State var frameHeight: Double = 0
     
     // Property that controls id the arrow pointer is being displayed
@@ -31,7 +31,7 @@ struct CycleAnimated: View {
     @State var isPointer2displayed: Bool = false
     
     // Holder for Geometry Proxy
-    @State var geomtryHolder: GeometryProxy?
+    @State var geometryHolder: GeometryProxy?
     
     var body: some View {
         
@@ -59,9 +59,9 @@ struct CycleAnimated: View {
                             GeometryReader{ geometry in
                                 Color.clear
                                 
-                                    // Link geomtry Holder to the value
+                                    // Link geometry Holder to the value
                                     .onAppear(){
-                                        geomtryHolder = geometry
+                                        geometryHolder = geometry
                                     }
                             }
                         )
@@ -89,7 +89,7 @@ struct CycleAnimated: View {
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 
-                if let geometryHolder = geomtryHolder,
+                if let geometryHolder = geometryHolder,
                    let buttonPosition = GlobalPositionUtility.getGlobalPosition(view: geometryHolder) {
                     ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
                 }
@@ -110,7 +110,7 @@ struct CycleAnimated: View {
                         }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                             
-                            if let geometryHolder = geomtryHolder,
+                            if let geometryHolder = geometryHolder,
                                let buttonPosition = GlobalPositionUtility.getGlobalPosition(view: geometryHolder) {
                                 ParticleView.spawnParticle(xpos: buttonPosition.x, ypos: buttonPosition.y)
                             }

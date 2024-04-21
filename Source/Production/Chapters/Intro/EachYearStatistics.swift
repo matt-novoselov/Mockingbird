@@ -15,7 +15,7 @@ struct EachYearStatistics: View {
     // Property that controls if hint should be shown
     @State var displayingHint: Bool = false
     
-    // Property to prevent accidential switch to the next scene
+    // Property to prevent accidental switch to the next scene
     @State var canTransition: Bool = false
     
     // Property that controls transition between scenes, after the transition has started
@@ -29,7 +29,7 @@ struct EachYearStatistics: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 150)
             
-            // Hint that appears after a while to help users havigate to the next scene
+            // Hint that appears after a while to help users navigate to the next scene
             TapToContinueHint(displayingHint: $displayingHint)
                 .onAppear(){
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
@@ -42,7 +42,7 @@ struct EachYearStatistics: View {
                 }
         }
         
-        // Prevent accidential transitions to the next scene
+        // Prevent accidental transitions to the next scene
         .onAppear(){
             DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                 canTransition = true

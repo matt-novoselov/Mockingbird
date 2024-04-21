@@ -24,7 +24,7 @@ struct GamblingScene: View {
     // Count how many times heaven animation was played
     @State var countVisitsToHeaven: Int = 0
     
-    // Property that controls if heaven animation is currenlty being played
+    // Property that controls if heaven animation is currently being played
     @State var isInHeaven: Bool = false
     
     // Adjust amount of coins on start
@@ -49,7 +49,7 @@ struct GamblingScene: View {
     @State var showingBlinkingLights: Bool = false
     
     // Property for holding Geometry Proxy
-    @State var geomtryHolder: GeometryProxy?
+    @State var geometryHolder: GeometryProxy?
     
     // Showing coins prize in the machine
     @State var showingReward: Bool = false
@@ -70,7 +70,7 @@ struct GamblingScene: View {
             GeometryReader { geometry in
                 Color.clear
                     .onAppear {
-                        geomtryHolder = geometry
+                        geometryHolder = geometry
                     }
             }
             
@@ -167,7 +167,7 @@ struct GamblingScene: View {
                     if showingCoins{
                         VStack {
                             ForEach(0..<amountOfCoinsOnStart, id: \.self) { index in
-                                DraggableCoin(isCoinInsertedInMachine: $isCoinInsertedInMachine, isInHeaven: $isInHeaven, insertCoin: insertCoin, geomtryHolder: $geomtryHolder, selectedStyle: index)
+                                DraggableCoin(isCoinInsertedInMachine: $isCoinInsertedInMachine, isInHeaven: $isInHeaven, insertCoin: insertCoin, geometryHolder: $geometryHolder, selectedStyle: index)
                                     .environmentObject(notificationManager)
                             }
                         }
@@ -196,7 +196,7 @@ struct GamblingScene: View {
                 }
             }
             
-            // Call notififcation after transition is complete
+            // Call notification after transition is complete
             .onAppear(){
                 DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                     notificationManager.callNotification(ID: 10)
@@ -270,8 +270,8 @@ struct GamblingScene: View {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + SlotsRotation(rotateSlotsState: .constant(false)).animationDuration) {
                 
-                if let geomtryHolder = geomtryHolder {
-                    if let centerOfTheScreen = GlobalPositionUtility.getGlobalPosition(view: geomtryHolder) {
+                if let geometryHolder = geometryHolder {
+                    if let centerOfTheScreen = GlobalPositionUtility.getGlobalPosition(view: geometryHolder) {
                         ParticleView.spawnParticle(xpos: Double(centerOfTheScreen.x), ypos: Double(centerOfTheScreen.y))
                     }
                 }

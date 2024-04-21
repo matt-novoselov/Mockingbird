@@ -18,11 +18,11 @@ struct AlcoholScene: View {
     // Property that controls value of heaven background
     @State var heavenSlider: Double = 0
     
-    // Control the ID of the currenlty displayed drink
+    // Control the ID of the currently displayed drink
     @State var currentDrinkID: Int = 0
     
-    // Prevent accidential intercation with the scene before transition animation is done
-    @State var canInteractAfterInitOpenening: Bool = false
+    // Prevent accidental interaction with the scene before transition animation is done
+    @State var canInteractAfterInitialOpening: Bool = false
     
     var body: some View {
         ZStack{
@@ -33,11 +33,11 @@ struct AlcoholScene: View {
                     // Display drink according to its ID
                     switch currentDrinkID {
                     case 0:
-                        AlcoholDrink(selectedStyle: 2, countBites: $countDrinks, heavenSlider: $heavenSlider, canInteractAfterInitOpenening: $canInteractAfterInitOpenening, currentDrinkID: $currentDrinkID)
+                        AlcoholDrink(selectedStyle: 2, countBites: $countDrinks, heavenSlider: $heavenSlider, canInteractAfterInitialOpening: $canInteractAfterInitialOpening, currentDrinkID: $currentDrinkID)
                     case 1:
-                        AlcoholDrink(selectedStyle: 1, countBites: $countDrinks, heavenSlider: $heavenSlider, canInteractAfterInitOpenening: $canInteractAfterInitOpenening, currentDrinkID: $currentDrinkID)
+                        AlcoholDrink(selectedStyle: 1, countBites: $countDrinks, heavenSlider: $heavenSlider, canInteractAfterInitialOpening: $canInteractAfterInitialOpening, currentDrinkID: $currentDrinkID)
                     case 2:
-                        AlcoholDrink(selectedStyle: 0, countBites: $countDrinks, heavenSlider: $heavenSlider, canInteractAfterInitOpenening: $canInteractAfterInitOpenening, currentDrinkID: $currentDrinkID)
+                        AlcoholDrink(selectedStyle: 0, countBites: $countDrinks, heavenSlider: $heavenSlider, canInteractAfterInitialOpening: $canInteractAfterInitialOpening, currentDrinkID: $currentDrinkID)
                             
                     default:
                         Text("Error, this drink ID doesn't exist")
@@ -50,11 +50,11 @@ struct AlcoholScene: View {
             .environmentObject(notificationManager)
             .environmentObject(transitionManagerObservable)
             
-            // Prevent accidential intercation with the scene before transition animation is done
+            // Prevent accidental interaction with the scene before transition animation is done
             .onAppear(){
                 DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                     notificationManager.callNotification(ID: 3)
-                    canInteractAfterInitOpenening = true
+                    canInteractAfterInitialOpening = true
                 }
             }
             

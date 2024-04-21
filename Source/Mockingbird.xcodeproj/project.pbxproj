@@ -50,7 +50,7 @@
 		1AC834AC2BC407FC0006740F /* GamblingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834402BC407FC0006740F /* GamblingScene.swift */; };
 		1AC834AD2BC407FC0006740F /* FamilyMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834422BC407FC0006740F /* FamilyMember.swift */; };
 		1AC834AE2BC407FC0006740F /* FamilyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834432BC407FC0006740F /* FamilyScene.swift */; };
-		1AC834AF2BC407FC0006740F /* MemeberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834442BC407FC0006740F /* MemeberButton.swift */; };
+		1AC834AF2BC407FC0006740F /* MemberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834442BC407FC0006740F /* MemberButton.swift */; };
 		1AC834B02BC407FC0006740F /* CycleAnimated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834462BC407FC0006740F /* CycleAnimated.swift */; };
 		1AC834B12BC407FC0006740F /* LastScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834472BC407FC0006740F /* LastScene.swift */; };
 		1AC834B22BC407FC0006740F /* PianoKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834492BC407FC0006740F /* PianoKey.swift */; };
@@ -138,7 +138,7 @@
 		1AC834402BC407FC0006740F /* GamblingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamblingScene.swift; sourceTree = "<group>"; };
 		1AC834422BC407FC0006740F /* FamilyMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMember.swift; sourceTree = "<group>"; };
 		1AC834432BC407FC0006740F /* FamilyScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyScene.swift; sourceTree = "<group>"; };
-		1AC834442BC407FC0006740F /* MemeberButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeberButton.swift; sourceTree = "<group>"; };
+		1AC834442BC407FC0006740F /* MemberButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberButton.swift; sourceTree = "<group>"; };
 		1AC834462BC407FC0006740F /* CycleAnimated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleAnimated.swift; sourceTree = "<group>"; };
 		1AC834472BC407FC0006740F /* LastScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastScene.swift; sourceTree = "<group>"; };
 		1AC834492BC407FC0006740F /* PianoKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PianoKey.swift; sourceTree = "<group>"; };
@@ -372,7 +372,7 @@
 			children = (
 				1AC834422BC407FC0006740F /* FamilyMember.swift */,
 				1AC834432BC407FC0006740F /* FamilyScene.swift */,
-				1AC834442BC407FC0006740F /* MemeberButton.swift */,
+				1AC834442BC407FC0006740F /* MemberButton.swift */,
 			);
 			path = Family;
 			sourceTree = "<group>";
@@ -668,7 +668,7 @@
 				1AC834B22BC407FC0006740F /* PianoKey.swift in Sources */,
 				1AC834BD2BC407FC0006740F /* BetterExperienceInLandscape.swift in Sources */,
 				1AC834C42BC407FC0006740F /* WhiteBackground.swift in Sources */,
-				1AC834AF2BC407FC0006740F /* MemeberButton.swift in Sources */,
+				1AC834AF2BC407FC0006740F /* MemberButton.swift in Sources */,
 				1AC834D32BC407FC0006740F /* ExtensionTransition.swift in Sources */,
 				1AC834A62BC407FC0006740F /* DraggableShakableView.swift in Sources */,
 				1AC834A32BC407FC0006740F /* AlcoholScene.swift in Sources */,

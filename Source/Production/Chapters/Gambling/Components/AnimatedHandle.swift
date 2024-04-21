@@ -12,7 +12,7 @@ struct AnimatedHandle: View {
     // Angle at which the handle is rotated
     @State private var rotationAngle: Double = 15
     
-    // Value that controls if animation is currenlty being played
+    // Value that controls if animation is currently being played
     @State var isAnimationInProcess: Bool = false
     
     // Value that controls if coin is inserted into the machine
@@ -21,7 +21,7 @@ struct AnimatedHandle: View {
     // Value that controls if coin was inserted early
     @Binding var isCoinInsertedEarly: Bool
     
-    // Animated proprty of coin insertion
+    // Animated property of coin insertion
     @State var isCoinInsertedAnimated: Bool = false
     
     // Action that happens after handle rotation

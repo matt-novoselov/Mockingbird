@@ -11,26 +11,26 @@ struct DraggableCoin: View {
     
     @EnvironmentObject var notificationManager: NotificationManager
     
-    // Position od the coin in the space
+    // Position of the coin in the space
     @State var coinPosition: CGPoint?
     
-    // Property that controls is the coin has collided with the collder
+    // Property that controls is the coin has collided with the collider
     @State var hasCollided: Bool = false
     
-    // Prooperty that controls if the coin was inserted to the gambling machine
+    // Property that controls if the coin was inserted to the gambling machine
     @Binding var isCoinInsertedInMachine: Bool
     
-    // Property that controls if heaven aimation is currenlty being played
+    // Property that controls if heaven animation is currently being played
     @Binding var isInHeaven: Bool
     
     // Action that happens after coin was inserted
     var insertCoin: () -> Void
     
-    // Property that controls is the coin has reached the collder
+    // Property that controls is the coin has reached the collider
     @State var hasReachedCollider: Bool = false
     
     // Holder for Geometry Proxy to determine coin size and position
-    @Binding var geomtryHolder: GeometryProxy?
+    @Binding var geometryHolder: GeometryProxy?
     
     // Selected style for coin's texture
     var selectedStyle: Int = 0
@@ -64,8 +64,8 @@ struct DraggableCoin: View {
                                 let globalY: Double = geometry.frame(in: .global).origin.y + value.location.y - circleSize/2
                                 let coinCollider = CGRect(x: globalX, y: globalY, width: circleSize, height: circleSize)
                                 
-                                if let geomtryHolder = geomtryHolder {
-                                    if let centerOfTheScreen = GlobalPositionUtility.getGlobalPosition(view: geomtryHolder) {
+                                if let geometryHolder = geometryHolder {
+                                    if let centerOfTheScreen = GlobalPositionUtility.getGlobalPosition(view: geometryHolder) {
                                         checkCollision(coinCollider: coinCollider, centerOfScreen: centerOfTheScreen)
                                     }
                                 }

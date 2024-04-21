@@ -12,7 +12,7 @@ struct DraggableShakableView: View {
     // Control the position of the box at the scene
     @State private var boxPosition: CGPoint?
     
-    // Value that controls if the box is currenlty being held
+    // Value that controls if the box is currently being held
     @State var viewIsHeld: Bool = false
     
     // Opacity of the glowing effect

@@ -18,7 +18,7 @@ struct StartMenu: View {
     // Current index of displayed image from the array
     @State private var currentIndex = 0
     
-    // Lock accidential transitions after one tap
+    // Lock accidental transitions after one tap
     @State var isButtonPressed: Bool = false
     
     var body: some View {

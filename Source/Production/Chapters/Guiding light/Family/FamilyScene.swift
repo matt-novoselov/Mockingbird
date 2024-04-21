@@ -18,19 +18,19 @@ struct FamilyScene: View {
     // Property that controls value of the dark background
     @State public var darkSlider: Double = 0.79
     
-    // Animated proprty that contols if each family member is being shown
+    // Animated property that controls if each family member is being shown
     @State var showingMember_0: Bool = false
     @State var showingMember_1: Bool = false
     @State var showingMember_2: Bool = false
     @State var showingMember_3: Bool = false
     
-    // Animated proprty of the whole family glowing effect
+    // Animated property of the whole family glowing effect
     @State var mainGlowing: Double = 0.0
     
-    // Animated proprty of the heart glowing effect
+    // Animated property of the heart glowing effect
     @State var heartOpacity: Double = 0.0
     
-    // Property that prevents accidential interaction with the scene before transition is complete
+    // Property that prevents accidental interaction with the scene before transition is complete
     @State var canInteractWithScene: Bool = false
     
     var body: some View {
@@ -74,18 +74,18 @@ struct FamilyScene: View {
             }
             .overlay(
                 HStack{
-                    MemeberButton(showingImage: $showingMember_3, countMembers: $countMembers, canInteractWithScene: $canInteractWithScene)
+                    MemberButton(showingImage: $showingMember_3, countMembers: $countMembers, canInteractWithScene: $canInteractWithScene)
                     
-                    MemeberButton(showingImage: $showingMember_2, countMembers: $countMembers, canInteractWithScene: $canInteractWithScene)
+                    MemberButton(showingImage: $showingMember_2, countMembers: $countMembers, canInteractWithScene: $canInteractWithScene)
                     
                     VStack{
-                        MemeberButton(showingImage: $showingMember_0, countMembers: $countMembers, canInteractWithScene: $canInteractWithScene)
+                        MemberButton(showingImage: $showingMember_0, countMembers: $countMembers, canInteractWithScene: $canInteractWithScene)
                         
                         Rectangle()
                             .opacity(0)
                     }
                     
-                    MemeberButton(showingImage: $showingMember_1, countMembers: $countMembers, canInteractWithScene: $canInteractWithScene)
+                    MemberButton(showingImage: $showingMember_1, countMembers: $countMembers, canInteractWithScene: $canInteractWithScene)
                 }
                 
             )
@@ -109,7 +109,7 @@ struct FamilyScene: View {
             }
         }
         
-        // Wait until the transition is complete to allow scene intercations
+        // Wait until the transition is complete to allow scene interactions
         .onAppear(){
             DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                 canInteractWithScene = true

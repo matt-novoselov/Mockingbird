@@ -12,16 +12,16 @@ struct LightBlinking: View {
     @EnvironmentObject var transitionManagerObservable: TransitionManagerObservable
     @EnvironmentObject var notificationManager: NotificationManager
     
-    // Property that controls if the text currenly has glowing effect
+    // Property that controls if the text currently has glowing effect
     @State private var isGlowing = false
     
-    // Property that controls if animation is currenlty being played
+    // Property that controls if animation is currently being played
     @State var isAnimationInProgress: Bool = true
     
     // Property that controls if hint should be shown
     @State var displayingHint: Bool = false
     
-    // Property to prevent accidential switch to the next scene
+    // Property to prevent accidental switch to the next scene
     @State var canTransition: Bool = false
     
     // Property that controls transition between scenes, after the transition has started
@@ -58,7 +58,7 @@ struct LightBlinking: View {
                 }
             }
             
-            // Hint that appears after a while to help users havigate to the next scene
+            // Hint that appears after a while to help users navigate to the next scene
             TapToContinueHint(displayingHint: $displayingHint, darkMode: true)
                 .onAppear(){
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
@@ -71,7 +71,7 @@ struct LightBlinking: View {
                 }
         }
         
-        // Delay blinking aniamtion before transition is complete
+        // Delay blinking animation before transition is complete
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + TransitionManager().transitionDuration) {
                 blink()
