@@ -91,6 +91,7 @@
 		1AC834D52BC407FC0006740F /* GlobalPositionUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8347C2BC407FC0006740F /* GlobalPositionUtility.swift */; };
 		1AC834D62BC407FC0006740F /* NoOpacityButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8347D2BC407FC0006740F /* NoOpacityButtonStyle.swift */; };
 		1AC834D72BC407FC0006740F /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8347E2BC407FC0006740F /* SoundPlayer.swift */; };
+		1ADEF1F22BD6F3DB00086502 /* Water.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEF1F12BD6F3DB00086502 /* Water.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,6 +180,7 @@
 		1AC8347C2BC407FC0006740F /* GlobalPositionUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalPositionUtility.swift; sourceTree = "<group>"; };
 		1AC8347D2BC407FC0006740F /* NoOpacityButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoOpacityButtonStyle.swift; sourceTree = "<group>"; };
 		1AC8347E2BC407FC0006740F /* SoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
+		1ADEF1F12BD6F3DB00086502 /* Water.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Water.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +307,7 @@
 		1AC8342A2BC407FC0006740F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1ADEF1F32BD6F48500086502 /* Shaders */,
 				1AC834062BC407FC0006740F /* Fonts */,
 				1AC834082BC407FC0006740F /* Particles */,
 				1AC834292BC407FC0006740F /* Sounds */,
@@ -563,6 +566,14 @@
 			path = "Support Files";
 			sourceTree = "<group>";
 		};
+		1ADEF1F32BD6F48500086502 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				1ADEF1F12BD6F3DB00086502 /* Water.metal */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -685,6 +696,7 @@
 				1AC834AA2BC407FC0006740F /* DraggableCoin.swift in Sources */,
 				1AC834BF2BC407FC0006740F /* StartMenu.swift in Sources */,
 				1AC834D02BC407FC0006740F /* MyApp.swift in Sources */,
+				1ADEF1F22BD6F3DB00086502 /* Water.metal in Sources */,
 				1AC834B52BC407FC0006740F /* PianoScene.swift in Sources */,
 				1AC834C02BC407FC0006740F /* DevelopedWithLove.swift in Sources */,
 				1AC834CA2BC407FC0006740F /* ShapesView.swift in Sources */,
@@ -865,7 +877,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.novoselov.Mockingbird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -904,7 +916,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.novoselov.Mockingbird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
