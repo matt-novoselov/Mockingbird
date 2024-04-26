@@ -9,8 +9,11 @@
 
 Unlock the secrets of dopamine and addiction with Mockingbird - an interactive journey into understanding addictive behaviors. Dive deep into topics like social media addiction and the science behind dopamine's role in our choices.
 
-<img src="https://github.com/matt-novoselov/Mockingbird/blob/c2428cd9c7f9195de0b510cd879de3648462164a/Thumbnail.png" alt="GIF">
+<a href="https://youtu.be/R0QVJzb8U3o" target="_blank">
+  <img src="https://github.com/matt-novoselov/Mockingbird/blob/c2428cd9c7f9195de0b510cd879de3648462164a/Thumbnail.png" alt="GIF">
+</a>
 
+[![](https://github.com/matt-novoselov/matt-novoselov/blob/34555effedede5dd5aa24ae675218d989e976cf6/Files/YouTube_Badge.svg)](https://youtu.be/R0QVJzb8U3o)
 [![](https://github.com/matt-novoselov/matt-novoselov/blob/6386e5860d859930957588548cf1f968774ffc7e/Files/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg)](https://apps.apple.com/app/mockingbird-game/id6498711042)
 
 ## Description
