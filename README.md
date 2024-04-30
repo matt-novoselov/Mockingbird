@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/matt-novoselov/Mockingbird/blob/c2428cd9c7f9195de0b510cd879de3648462164a/MockingbirdIconRounded.png" alt="Logo" width="80" height="80">
+  <img src="https://github.com/matt-novoselov/Mockingbird/blob/bcb1595360a31f2d423739039811c72c41471135/MockingbirdIconRounded.png" alt="Logo" width="80" height="80">
   <h2 align="center">
     Mockingbird
   </h2>
