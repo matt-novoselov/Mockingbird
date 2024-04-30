@@ -17,7 +17,13 @@ Unlock the secrets of dopamine and addiction with Mockingbird - an interactive j
 [![](https://github.com/matt-novoselov/matt-novoselov/blob/6386e5860d859930957588548cf1f968774ffc7e/Files/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg)](https://apps.apple.com/app/mockingbird-game/id6498711042)
 
 ## Description
-SwiftUI, SpriteKit, Metal !!!!!
+Each year, over **10 million people** die from different types of addiction. Finding themselves in bad company, teenagers often seek acceptance by **“Mocking”** the behavior of their peers, which can lead to sad consequences.
+
+Mockingbird aims to educate teenagers about the destructive nature of addictive substances and how to deal with them. It's not just about knowing that addictive substances are harmful; it's crucial to understand how they work and how they can trap you.
+
+The main part of the app is built using **SwiftUI** to create a visual interface, transitions, and animations. **SpriteKit** was used to incorporate overlay particle effects and other minor elements of the app. Mockingbird utilizes **Metal shaders** in certain sections of the game to enhance visual effects. Additionally, the app employs **AudioToolbox** to play sound effects and background music.
+
+All assets were drawn using **Adobe Fresco** specifically for the game.
 
 ## Requirements
 - iOS 17.0+
@@ -33,6 +39,8 @@ SwiftUI, SpriteKit, Metal !!!!!
 <br>
 
 ## Credits
+The app uses free copyright and public domain sound effects, which are covered by the **Community Creative Commons** license (CC0 1.0 DEED), sourced from https://freesound.org/. Some sound effects were additionally edited using Adobe Premiere Pro 2022.
+
 Distributed under the MIT license. See **LICENSE** for more information.
 
 Developed with ❤️ by Matt Novoselov
